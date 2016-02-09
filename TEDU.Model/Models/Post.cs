@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace TEDU.Model
 {
-    [Table("Posts")]
     public class Post
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { set; get; }
 
         [Required]

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TEDU.Model
 {
     public class Category
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { set; get; }
 
         [Required]
