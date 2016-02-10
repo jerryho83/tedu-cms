@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using Autofac;
+using Autofac.Integration.Mvc;
 using System.Linq;
 using System.Reflection;
-using System.Web;
+using System.Web.Mvc;
 using TEDU.Data.Infrastructure;
 using TEDU.Data.Repositories;
 using TEDU.Service;
-using Autofac;
-using Autofac.Integration.Mvc;
-using System.Web.Mvc;
 using TEDU.Web.Mappings;
 
 namespace TEDU.Web.App_Start

@@ -9,7 +9,7 @@ using TEDU.Model;
 
 namespace TEDU.Data
 {
-    public class StoreSeedData : DropCreateDatabaseIfModelChanges<TEDUEntities>
+    public class TEDUSeedData : DropCreateDatabaseIfModelChanges<TEDUEntities>
     {
         protected override void Seed(TEDUEntities context)
         {
