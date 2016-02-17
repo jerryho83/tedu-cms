@@ -16,7 +16,7 @@ namespace TEDU.Web
         protected void Application_Start(object sender, EventArgs e)
         {
             // Init database
-            System.Data.Entity.Database.SetInitializer(new TEDUSeedData());
+            //System.Data.Entity.Database.SetInitializer(new TEDUSeedData());
 
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);

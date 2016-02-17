@@ -22,7 +22,7 @@ namespace TEDU.Model
         public string CreatedBy { set; get; }
 
         public string LastModifiedBy { set; get; }
-        public DateTime LastModifiedDate { set; get; }
+        public DateTime? LastModifiedDate { set; get; }
 
         [Required]
         public string Status { set; get; }

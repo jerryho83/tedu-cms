@@ -35,7 +35,7 @@ namespace TEDU.Model
 
         public DateTime CreatedDate { set; get; }
         public string CreateBy { set; get; }
-        public DateTime LastModifiedDate { set; get; }
+        public DateTime? LastModifiedDate { set; get; }
         public string LastModifiedBy { set; get; }
 
         public string OtherStatus { set; get; }
