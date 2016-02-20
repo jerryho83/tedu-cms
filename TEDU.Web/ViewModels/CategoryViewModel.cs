@@ -5,11 +5,12 @@ using System.Web;
 
 namespace TEDU.Web.ViewModels
 {
+    [Serializable]
     public class CategoryViewModel
     {
-        public int CategoryID { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
 
-        public List<PostViewModel> Gadgets { get; set; }
+        public List<PostViewModel> Posts { get; set; }
     }
 }

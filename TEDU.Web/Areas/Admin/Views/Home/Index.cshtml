@@ -1,7 +1,10 @@
-﻿
+﻿@model IEnumerable<TEDU.Model.Category>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
 }
 
-<h2>Index</h2>
+@foreach (var item in Model)
+{
+    <li>@item.Name</li>
+}

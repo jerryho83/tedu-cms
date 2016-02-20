@@ -17,7 +17,9 @@ namespace TEDU.Web.Mappings
 
         protected override void Configure()
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             Mapper.CreateMap<Category, CategoryViewModel>();
+#pragma warning restore CS0618 // Type or member is obsolete
             Mapper.CreateMap<Post, PostViewModel>();
         }
     }

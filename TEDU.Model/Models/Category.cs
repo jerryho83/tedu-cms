@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TEDU.Model
 {
+    
     public class Category
     {
         [Key]

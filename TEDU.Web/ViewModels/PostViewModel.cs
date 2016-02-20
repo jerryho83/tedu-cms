@@ -2,6 +2,7 @@
 
 namespace TEDU.Web.ViewModels
 {
+    [Serializable]
     public class PostViewModel
     {
         public int ID { set; get; }

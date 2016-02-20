@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEDU.Service", "TEDU.Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEDU.Web", "TEDU.Web\TEDU.Web.csproj", "{4A95181B-4AA2-4ADF-85A4-0F3A13384222}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEDU.Test", "TEDU.Test\TEDU.Test.csproj", "{849357BB-3EF6-4F4C-AA3C-BD2E7E517095}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{4A95181B-4AA2-4ADF-85A4-0F3A13384222}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A95181B-4AA2-4ADF-85A4-0F3A13384222}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A95181B-4AA2-4ADF-85A4-0F3A13384222}.Release|Any CPU.Build.0 = Release|Any CPU
+		{849357BB-3EF6-4F4C-AA3C-BD2E7E517095}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{849357BB-3EF6-4F4C-AA3C-BD2E7E517095}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{849357BB-3EF6-4F4C-AA3C-BD2E7E517095}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{849357BB-3EF6-4F4C-AA3C-BD2E7E517095}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

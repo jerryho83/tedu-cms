@@ -19,7 +19,8 @@ namespace TEDU.Web.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
-            return View();
+            var model = categoryService.GetCategories();
+            return View(model);
         }
     }
 }
