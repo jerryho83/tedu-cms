@@ -11,7 +11,9 @@ namespace TEDU.Data
 {
     public class TEDUEntities : DbContext
     {
-        public TEDUEntities() : base("TEDUConnectionDb") { }
+        public TEDUEntities() : base("TEDUConnectionDb") {
+            this.Configuration.LazyLoadingEnabled = false;
+        }
 
         public DbSet<Category> Categories { set; get; }
         public DbSet<Post> Posts { set; get; }
