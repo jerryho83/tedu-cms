@@ -4,9 +4,7 @@ namespace TEDU.Data.Migrations
     using Model;
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<TEDU.Data.TEDUEntities>
     {
@@ -20,8 +18,9 @@ namespace TEDU.Data.Migrations
             GetCategories().ForEach(c => context.Categories.AddOrUpdate(c));
             GetPosts().ForEach(g => context.Posts.AddOrUpdate(g));
 
-            context.Commit();
+            context.SaveChanges();
         }
+
         private static List<Category> GetCategories()
         {
             return new List<Category>
@@ -218,7 +217,6 @@ namespace TEDU.Data.Migrations
                     Image = "ulefone.jpg",
                      CreatedDate=DateTime.Now
                 }
-
             };
         }
     }
