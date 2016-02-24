@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace TEDU.Web.App_Start
 {
@@ -13,24 +9,22 @@ namespace TEDU.Web.App_Start
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                "~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryplugins").Include(
-               "~/scripts/jquery.slimscroll.min.js",
-               "~/scripts/fastclick.js",
-               "~/scripts/main.js"));
-
-            //bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-            //            "~/Scripts/jquery.validate*"));
-
-            bundles.Add(new ScriptBundle("~/bundles/angularjs").Include(
+            bundles.Add(new ScriptBundle("~/bundles/vendors").Include(
+                        "~/scripts/jquery.slimscroll.min.js",
+                        "~/scripts/fastclick.js",
+                        "~/Scripts/toastr.js",
+                        "~/scripts/main.js",
                         "~/Scripts/angular.js",
                         "~/Scripts/angular-route.js",
-                        "~/Scripts/angular-resource.js",
-                        "~/Scripts/app/app.js",
-                        "~/Scripts/app/home/homeCtrl.js",
-                        "~/Scripts/app/home/categoryCtrl.js",
-                        "~/Scripts/app/home/postCtrl.js"
+                        "~/Scripts/angular-resource.js"
                         ));
-
+            bundles.Add(new ScriptBundle("~/bundles/spa").Include(
+                       "~/Scripts/app/modules/common.core.js",
+                       "~/Scripts/app/app.js",
+                       "~/Scripts/app/home/homeCtrl.js",
+                       "~/Scripts/app/categories/categoryCtrl.js",
+                       "~/Scripts/app/posts/postCtrl.js"
+                       ));
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -40,9 +34,10 @@ namespace TEDU.Web.App_Start
                       "~/scripts/bootstrap.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Contents/admin/css/bootstrap/bootstrap.min.css",
-                      "~/Contents/admin/css/AdminLTE.min.css",
-                      "~/Contents/admin/css/skins/_all-skins.min.css"));
+                      "~/Content/admin/css/bootstrap/bootstrap.min.css",
+                      "~/Content/admin/css/AdminLTE.min.css",
+                      "~/Content/admin/css/skins/_all-skins.min.css",
+                       "~/content/admin/toastr.css"));
 
             BundleTable.EnableOptimizations = false;
             //BundleTable.EnableOptimizations = true;

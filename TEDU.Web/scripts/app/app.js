@@ -18,7 +18,7 @@
                  templateUrl: "/scripts/app/posts/listPosts.html",
                  controller: "postCtrl"
              })
-            .otherwise({ redirectTo: "/login" });
+            .otherwise({ redirectTo: "/admin/login" });
         $locationProvider.html5Mode(true).hashPrefix('!')
     }
 })();
