@@ -5,11 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TEDU.Model
 {
-    
     public class Category
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
 
         [Required]
@@ -19,10 +18,13 @@ namespace TEDU.Model
         public string Alias { set; get; }
 
         public int? ParentID { set; get; }
-        public DateTime CreatedDate { set; get; }
+
+        public DateTime? CreatedDate { set; get; }
+
         public string CreatedBy { set; get; }
 
         public string LastModifiedBy { set; get; }
+
         public DateTime? LastModifiedDate { set; get; }
 
         [Required]
