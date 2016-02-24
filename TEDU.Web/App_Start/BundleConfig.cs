@@ -19,7 +19,8 @@ namespace TEDU.Web.App_Start
                         "~/Scripts/angular-resource.js"
                         ));
             bundles.Add(new ScriptBundle("~/bundles/spa").Include(
-                       "~/Scripts/app/modules/common.core.js",
+                        "~/Scripts/app/modules/common.core.js",
+                       "~/Scripts/app/modules/common.ui.js",
                        "~/Scripts/app/app.js",
                        "~/Scripts/app/home/homeCtrl.js",
                        "~/Scripts/app/categories/categoryCtrl.js",

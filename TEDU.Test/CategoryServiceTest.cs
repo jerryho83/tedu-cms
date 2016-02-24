@@ -1,25 +1,20 @@
-﻿using Moq;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TEDU.Model;
 using TEDU.Service;
 
 namespace TEDU.Test
 {
-    [TestFixture]
+    [TestClass]
     public class CategoryServiceTest
     {
-        [TestCase]
+        [TestMethod]
         public void TestGetCategories()
         {
             Mock<ICategoryService> mockCategory = new Mock<ICategoryService>();
-            int count = mockCategory.Object.GetCategories().Count();
-            Assert.Equals(count, 1);
+            int totalRow;
+            int count = mockCategory.Object.GetCategories(0, 1, out totalRow).Count();
+            Assert.AreEqual(1, count);
         }
-
     }
 }

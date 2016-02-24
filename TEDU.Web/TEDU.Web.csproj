@@ -277,6 +277,8 @@
     <Content Include="Scripts\app\categories\listCategories.html" />
     <Content Include="Scripts\app\home\index.html" />
     <Content Include="Scripts\app\home\homeCtrl.js" />
+    <Content Include="Scripts\app\layout\customPager.directive.js" />
+    <Content Include="Scripts\app\layout\pager.html" />
     <Content Include="Scripts\app\modules\common.ui.js" />
     <Content Include="Scripts\app\posts\listPosts.html" />
     <Content Include="Scripts\app\posts\postCtrl.js" />
@@ -1094,6 +1096,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Core\ApiControllerBase.cs" />
+    <Compile Include="Infrastructure\Core\PaginationSet.cs" />
     <Compile Include="Infrastructure\Dispatcher\AreaHttpControllerSelector.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Mappings\DomainToViewModelMappingProfile.cs" />

@@ -17,6 +17,8 @@ namespace TEDU.Data
 
         public DbSet<Category> Categories { set; get; }
         public DbSet<Post> Posts { set; get; }
+        public DbSet<Error> Errors { set; get; }
+
         public virtual void Commit()
         {
             base.SaveChanges();
@@ -26,6 +28,7 @@ namespace TEDU.Data
         {
             modelBuilder.Configurations.Add(new CategoryConfiguration());
             modelBuilder.Configurations.Add(new PostConfiguration());
+            modelBuilder.Configurations.Add(new ErrorConfiguration());
         }
     }
 }

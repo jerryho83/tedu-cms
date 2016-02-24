@@ -7,6 +7,7 @@ namespace TEDU.Data.Configuration
     {
         public CategoryConfiguration()
         {
+            HasKey(x => x.ID);
             ToTable("Categories");
         }
     }

@@ -11,7 +11,7 @@ namespace TEDU.Service
 {
     public interface ICategoryService
     {
-        IEnumerable<Category> GetCategories(string name = null);
+        IEnumerable<Category> GetCategories(int page, int pageSize, out int totalRow, string filter = null);
         Category GetCategory(int id);
         Category GetCategory(string name);
         void CreateCategory(Category category);
@@ -31,12 +31,37 @@ namespace TEDU.Service
 
         #region ICategoryService Members
 
-        public IEnumerable<Category> GetCategories(string name = null)
+        public IEnumerable<Category> GetCategories(int page, int pageSize, out int totalRow, string filter = null)
         {
-            if (string.IsNullOrEmpty(name))
-                return categorysRepository.GetAll();
+            IEnumerable<Category> model;
+            if (!string.IsNullOrEmpty(filter))
+            {
+                model = categorysRepository
+                    .GetMany(m => m.Name.ToLower()
+                    .Contains(filter.ToLower().Trim()))
+                    .OrderBy(m => m.ID)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+
+                totalRow = categorysRepository
+                    .GetMany(m => m.Name.ToLower()
+                    .Contains(filter.ToLower().Trim()))
+                    .Count();
+            }
             else
-                return categorysRepository.GetAll().Where(c => c.Name == name);
+            {
+                model = categorysRepository
+                    .GetAll()
+                    .OrderBy(m => m.ID)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+
+                totalRow = categorysRepository.GetAll().Count();
+            }
+
+            return model;
         }
 
         public Category GetCategory(int id)
