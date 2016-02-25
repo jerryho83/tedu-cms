@@ -107,8 +107,8 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
                     <li class="treeview">
-                        <a href="/admin">
-                            <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
+                        <a ui-sref="home">
+                            <i class="fa fa-dashboard"></i> <span>Home</span> 
                         </a>
                        
                     </li>
@@ -118,8 +118,8 @@
                             <span>CMS</span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="/admin/categories"><i class="fa fa-circle-o"></i>Categories</a></li>
-                            <li><a href="/admin/posts"><i class="fa fa-circle-o"></i>Posts</a></li>
+                            <li><a ui-sref="categories"><i class="fa fa-circle-o"></i>Categories</a></li>
+                            <li><a ui-sref="posts"><i class="fa fa-circle-o"></i>Posts</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -129,7 +129,7 @@
         <!-- =============================================== -->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <div ng-view></div>
+            <div ui-view></div>
         </div><!-- /.content-wrapper -->
         <footer class="main-footer">
             <div class="pull-right hidden-xs">

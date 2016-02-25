@@ -2,7 +2,9 @@
     'use strict'
 
     app.controller('categoryCtrl', categoryCtrl);
+
     categoryCtrl.$inject = ['$scope', 'apiService', 'notificationService'];
+
     function categoryCtrl($scope, apiService, notificationService) {
         $scope.loading = true;
         $scope.data = [];

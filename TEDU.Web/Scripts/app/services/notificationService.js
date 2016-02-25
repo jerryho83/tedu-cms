@@ -48,4 +48,4 @@
 
     }
 
-})(angular.module('TEDU'));
+})(angular.module('common.core'));

@@ -1,24 +1,29 @@
 ﻿(function () {
     'use strict'
-    angular.module('TEDU', ['ngRoute'])
+    angular.module('TEDU', ['ui.router'])
     .config(config);
 
-    config.$inject = ['$routeProvider', '$locationProvider'];
-    function config($routeProvider, $locationProvider) {
-        $routeProvider
-            .when('/admin', {
+    config.$inject = ['$stateProvider', '$urlRouterProvider'];
+
+    function config($stateProvider, $urlRouterProvider) {
+
+        $urlRouterProvider.otherwise("/admin");
+
+        $stateProvider
+            .state('home', {
+                url: "/admin",
                 templateUrl: "/scripts/app/home/index.html",
                 controller: "homeCtrl"
             })
-             .when('/admin/categories', {
+             .state('categories', {
+                 url: '/categories',
                  templateUrl: "/scripts/app/categories/listCategories.html",
                  controller: "categoryCtrl"
              })
-             .when('/admin/posts', {
+             .state('posts', {
+                 url: '/posts',
                  templateUrl: "/scripts/app/posts/listPosts.html",
                  controller: "postCtrl"
-             })
-            .otherwise({ redirectTo: "/admin/login" });
-        $locationProvider.html5Mode(true).hashPrefix('!')
+             });
     }
 })();
