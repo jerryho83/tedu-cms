@@ -20,6 +20,11 @@
                  templateUrl: "/scripts/app/categories/listCategories.html",
                  controller: "categoryCtrl"
              })
+             .state('edit_category', {
+                 url: '/edit_category',
+                 templateUrl: "/scripts/app/categories/editCategory.html",
+                 controller: "categoryCtrl"
+             })
              .state('posts', {
                  url: '/posts',
                  templateUrl: "/scripts/app/posts/listPosts.html",

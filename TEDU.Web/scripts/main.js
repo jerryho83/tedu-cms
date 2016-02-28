@@ -276,6 +276,7 @@ function _init() {
             }
         },
         fixSidebar: function () {
+   
             //Make sure the body tag has the .fixed class
             if (!$("body").hasClass("fixed")) {
                 if (typeof $.fn.slimScroll != 'undefined') {
@@ -287,7 +288,6 @@ function _init() {
             }
             //Enable slimscroll for fixed layout
             if ($.AdminLTE.options.sidebarSlimScroll) {
-                console.log('1');
                 if (typeof $.fn.slimScroll != 'undefined') {
                     //Destroy if it exists
                     $(".sidebar").slimScroll({ destroy: true }).height("auto");

@@ -35,10 +35,10 @@
                         <tbody>
                             <tr ng-repeat="item in data | filter:filterExpression">
                                 <td>{{item.ID}}</td>
-                                <td><a ui-sref="edit_categories">{{item.Name}}</a></td>
+                                <td><a ui-sref="edit_category">{{item.Name}}</a></td>
                                 <th>{{item.LastModifiedDate}}</th>
                                 <td><span ng-class="{'badge bg-red':item.Status=='Locked','badge bg-green':item.Status=='Publish'}">{{item.Status}}</span></td>
-                                <td><button class="btn btn-sm btn-danger ">Xóa</button></td>
+                                <td><button class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></button></td>
                             </tr>
                         </tbody>
 
