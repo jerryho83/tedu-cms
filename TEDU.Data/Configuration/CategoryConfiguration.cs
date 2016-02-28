@@ -1,4 +1,5 @@
-﻿using System.Data.Entity.ModelConfiguration;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
 using TEDU.Model;
 
 namespace TEDU.Data.Configuration
@@ -7,7 +8,11 @@ namespace TEDU.Data.Configuration
     {
         public CategoryConfiguration()
         {
-            HasKey(x => x.ID);
+            Property(x => x.ID).IsRequired()
+                 .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            Property(x => x.Name).IsRequired().HasMaxLength(250);
+            Property(x => x.Alias).IsRequired().HasMaxLength(250);
+            Property(x => x.Status).IsRequired();
             ToTable("Categories");
         }
     }

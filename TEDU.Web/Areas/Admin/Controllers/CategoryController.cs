@@ -17,12 +17,12 @@ namespace TEDU.Web.Areas.Admin.Controllers
         private readonly ICategoryService categoryService;
 
         public CategoryController(ICategoryService categoryService,IErrorService errorService):
-            base(errorService)
+           base(errorService)
         {
             this.categoryService = categoryService;
         }
 
-        [Route("{page:int=0}/{pageSize=3}/{filter?}")]
+        [AllowAnonymous]
         public HttpResponseMessage Get(HttpRequestMessage request, int? page, int? pageSize, string filter = null)
         {
             int currentPage = page.Value;

@@ -11,6 +11,7 @@ namespace TEDU.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(TEDU.Data.TEDUEntities context)

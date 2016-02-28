@@ -17,14 +17,16 @@ namespace TEDU.Web.App_Start
                         "~/Scripts/angular.js",
                         "~/Scripts/angular-route.js",
                          "~/Scripts/angular-ui-router.js",
-                        "~/Scripts/angular-resource.js"
+                          "~/Scripts/angular-cookies.js",
+                        "~/Scripts/angular-resource.js",
+                         "~/Scripts/angular-ui/ui-bootstrap-tpls.js"
                         ));
             bundles.Add(new ScriptBundle("~/bundles/spa").Include(
                        "~/Scripts/app/modules/common.core.js",
                        "~/Scripts/app/modules/common.ui.js",
                        "~/Scripts/app/app.js",
-                       "~/Scripts/app/services/apiService.js",
                        "~/Scripts/app/services/notificationService.js",
+                       "~/Scripts/app/services/apiService.js",
                        "~/Scripts/app/layout/customPager.directive.js",
                        "~/Scripts/app/home/homeCtrl.js",
                        "~/Scripts/app/categories/categoryCtrl.js",

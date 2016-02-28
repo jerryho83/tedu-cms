@@ -25,16 +25,20 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th style="width: 10px">ID</th>
-                                <th>Name</th>
-                                <th style="width: 40px">Status</th>
+                                <th style="width: 5%">ID</th>
+                                <th>Tên</th>
+                                <th style="width:10%;">Ngày sửa</th>
+                                <th style="width: 10%">Trạng thái</th>
+                                <th style="width:5%"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="item in data | filter:filterExpression">
                                 <td>{{item.ID}}</td>
-                                <td>{{item.Name}}</td>
-                                <td><span class="badge bg-red">55%</span></td>
+                                <td><a ui-sref="edit_categories">{{item.Name}}</a></td>
+                                <th>{{item.LastModifiedDate}}</th>
+                                <td><span ng-class="{'badge bg-red':item.Status=='Locked','badge bg-green':item.Status=='Publish'}">{{item.Status}}</span></td>
+                                <td><button class="btn btn-sm btn-danger ">Xóa</button></td>
                             </tr>
                         </tbody>
 

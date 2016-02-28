@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict'
-    angular.module('TEDU', ['ui.router'])
+    angular.module('TEDU', ['ui.router', 'common.core', 'common.ui'])
     .config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];

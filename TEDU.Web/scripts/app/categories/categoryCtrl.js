@@ -8,25 +8,25 @@
     function categoryCtrl($scope, apiService, notificationService) {
         $scope.loading = true;
         $scope.data = [];
-        $scope.page = 0;
+        $scope.page = 1;
         $scope.pageCount = 0;
 
         $scope.search = search;
         $scope.clearSearch = clearSearch;
 
         function search(page) {
-            page = page || 0;
+            page = page || 1;
 
             $scope.loading = true;
             var config = {
-                param: {
+                params: {
                     page: page,
                     pageSize: 20,
                     filter: $scope.filterExpression
                 }
             }
 
-            apiService.get('/admin/api/category/GetListCategories/1', dataLoadCompleted, dataLoadFailed);
+            apiService.get('/admin/api/category/Get/1', config, dataLoadCompleted, dataLoadFailed);
 
         }
 

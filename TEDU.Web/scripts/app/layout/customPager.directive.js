@@ -13,8 +13,8 @@
                 customPath: '@'
             },
             replace: true,
-            restrict: 'E',
-            template: '/scripts/app/layout/pager.html',
+            restrict: 'A',
+            templateUrl: '/scripts/app/layout/pager.html',
             controller: [
                 '$scope', function ($scope) {
                     $scope.search = function (i) {

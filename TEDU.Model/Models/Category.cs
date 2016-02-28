@@ -8,13 +8,10 @@ namespace TEDU.Model
     public class Category
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
 
-        [Required]
         public string Name { set; get; }
 
-        [Required]
         public string Alias { set; get; }
 
         public int? ParentID { set; get; }
@@ -27,7 +24,6 @@ namespace TEDU.Model
 
         public DateTime? LastModifiedDate { set; get; }
 
-        [Required]
         public string Status { set; get; }
 
         public virtual ICollection<Post> Posts { set; get; }

@@ -8,9 +8,22 @@ namespace TEDU.Web.ViewModels
     [Serializable]
     public class CategoryViewModel
     {
-        public int ID { get; set; }
-        public string Name { get; set; }
+        public int ID { set; get; }
 
-        public List<PostViewModel> Posts { get; set; }
+        public string Name { set; get; }
+
+        public string Alias { set; get; }
+
+        public int? ParentID { set; get; }
+
+        public DateTime? CreatedDate { set; get; }
+
+        public string CreatedBy { set; get; }
+
+        public string LastModifiedBy { set; get; }
+
+        public DateTime? LastModifiedDate { set; get; }
+
+        public string Status { set; get; }
     }
 }

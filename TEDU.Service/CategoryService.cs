@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TEDU.Common;
 using TEDU.Data.Infrastructure;
 using TEDU.Data.Repositories;
 using TEDU.Model;
@@ -38,27 +39,29 @@ namespace TEDU.Service
             {
                 model = categorysRepository
                     .GetMany(m => m.Name.ToLower()
-                    .Contains(filter.ToLower().Trim()))
+                    .Contains(filter.ToLower().Trim()) &&
+                    m.Status == StatusEnum.Publish.ToString())
                     .OrderBy(m => m.ID)
-                    .Skip(page * pageSize)
+                    .Skip((page - 1) * pageSize)
                     .Take(pageSize)
                     .ToList();
 
                 totalRow = categorysRepository
                     .GetMany(m => m.Name.ToLower()
-                    .Contains(filter.ToLower().Trim()))
+                    .Contains(filter.ToLower().Trim()) &&
+                    m.Status == StatusEnum.Publish.ToString())
                     .Count();
             }
             else
             {
                 model = categorysRepository
-                    .GetAll()
+                    .GetMany(x => x.Status == StatusEnum.Publish.ToString())
                     .OrderBy(m => m.ID)
-                    .Skip(page * pageSize)
+                    .Skip((page - 1) * pageSize)
                     .Take(pageSize)
                     .ToList();
 
-                totalRow = categorysRepository.GetAll().Count();
+                totalRow = categorysRepository.GetMany(x => x.Status == StatusEnum.Publish.ToString()).Count();
             }
 
             return model;
