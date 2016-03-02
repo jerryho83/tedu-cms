@@ -26,6 +26,7 @@ namespace TEDU.Web.Areas.Admin.Controllers
         public HttpResponseMessage Get(HttpRequestMessage request, int? page, int? pageSize, string filter = null)
         {
             int currentPage = page.Value;
+
             int currentPageSize = pageSize.Value;
 
             return CreateHttpResponse(request, () =>

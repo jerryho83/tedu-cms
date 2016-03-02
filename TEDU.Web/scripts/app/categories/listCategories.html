@@ -17,7 +17,9 @@
                     <div class="col-md-12">
                         <div class="col-md-6">
                             <input type="text" id="txtSearch" ng-model="filterExpression" class="form-control" placeholder="Nhập từ khóa..." />
-
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-success pull-right" ui-sref="add_category"><i class="fa fa-plus"></i> Thêm mới</button>
                         </div>
                     </div>
                 </div><!-- /.box-header -->
@@ -43,11 +45,19 @@
                         </tbody>
 
                     </table>
+                    <div ng-if="loading">
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4">
+                            <i class="fa fa-refresh fa-4x fa-spin"></i> <label class="label label-primary">Loading data...</label>
+                        </div>
+                        <div class="col-xs-4"></div>
+                    </div>
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix">
                     <custom-pager page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="search(page)"></custom-pager>
                 </div>
             </div><!-- /.box -->
+            
         </div><!-- /.col -->
     </div><!-- /.row -->
 </section><!-- /.content -->

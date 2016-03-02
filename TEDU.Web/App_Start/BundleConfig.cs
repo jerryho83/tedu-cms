@@ -16,10 +16,13 @@ namespace TEDU.Web.App_Start
                         "~/scripts/main.js",
                         "~/Scripts/angular.js",
                         "~/Scripts/angular-route.js",
-                         "~/Scripts/angular-ui-router.js",
-                          "~/Scripts/angular-cookies.js",
+                        "~/Scripts/angular-ui-router.js",
+                        "~/Scripts/angular-cookies.js",
                         "~/Scripts/angular-resource.js",
-                         "~/Scripts/angular-ui/ui-bootstrap-tpls.js"
+                        "~/Scripts/angular-ui/ui-bootstrap-tpls.js",
+                        "~/Scripts/loading-bar.js",
+                        "~/Scripts/jquery.fancybox.js",
+                        "~/Scripts/jquery.fancybox-media.js"
                         ));
             bundles.Add(new ScriptBundle("~/bundles/spa").Include(
                        "~/Scripts/app/modules/common.core.js",
@@ -30,6 +33,8 @@ namespace TEDU.Web.App_Start
                        "~/Scripts/app/layout/customPager.directive.js",
                        "~/Scripts/app/home/homeCtrl.js",
                        "~/Scripts/app/categories/categoryCtrl.js",
+                       "~/Scripts/app/categories/addCategoryCtrl.js",
+                       "~/Scripts/app/categories/editCategoryCtrl.js",
                        "~/Scripts/app/posts/postCtrl.js"
                        ));
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
@@ -44,7 +49,10 @@ namespace TEDU.Web.App_Start
                       "~/Content/admin/css/bootstrap/bootstrap.min.css",
                       "~/Content/admin/css/AdminLTE.min.css",
                       "~/Content/admin/css/skins/_all-skins.min.css",
-                       "~/content/admin/toastr.css"));
+                      "~/content/toastr.css",
+                      "~/content/jquery.fancybox.css",
+                      "~/content/loading-bar.css"
+                       ));
 
             BundleTable.EnableOptimizations = false;
             //BundleTable.EnableOptimizations = true;

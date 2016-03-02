@@ -42,7 +42,7 @@ namespace TEDU.Service
                     .Contains(filter.ToLower().Trim()) &&
                     m.Status == StatusEnum.Publish.ToString())
                     .OrderBy(m => m.ID)
-                    .Skip((page - 1) * pageSize)
+                    .Skip(page * pageSize)
                     .Take(pageSize)
                     .ToList();
 
@@ -57,7 +57,7 @@ namespace TEDU.Service
                 model = categorysRepository
                     .GetMany(x => x.Status == StatusEnum.Publish.ToString())
                     .OrderBy(m => m.ID)
-                    .Skip((page - 1) * pageSize)
+                    .Skip(page * pageSize)
                     .Take(pageSize)
                     .ToList();
 

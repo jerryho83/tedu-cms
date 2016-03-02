@@ -8,20 +8,20 @@
     function categoryCtrl($scope, apiService, notificationService) {
         $scope.loading = true;
         $scope.data = [];
-        $scope.page = 1;
+        $scope.page = 0;
         $scope.pageCount = 0;
 
         $scope.search = search;
         $scope.clearSearch = clearSearch;
 
         function search(page) {
-            page = page || 1;
+            page = page || 0;
 
             $scope.loading = true;
             var config = {
                 params: {
                     page: page,
-                    pageSize: 20,
+                    pageSize: 10,
                     filter: $scope.filterExpression
                 }
             }
