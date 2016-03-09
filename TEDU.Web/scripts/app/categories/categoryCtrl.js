@@ -3,9 +3,9 @@
 
     app.controller('categoryCtrl', categoryCtrl);
 
-    categoryCtrl.$inject = ['$scope', 'apiService', 'notificationService'];
+    categoryCtrl.$inject = ['$scope', 'apiService', 'notificationService', 'modalService'];
 
-    function categoryCtrl($scope, apiService, notificationService) {
+    function categoryCtrl($scope, apiService, notificationService, modalService) {
         $scope.loading = true;
         $scope.data = [];
         $scope.page = 0;
@@ -14,6 +14,25 @@
         $scope.search = search;
         $scope.clearSearch = clearSearch;
 
+        $scope.deleteItem = deleteItem;
+
+        function deleteItem(id) {
+            modalService.showConfirm('Bạn có chắc muốn xóa?', deleteSubmit);
+        }
+        function deleteSubmit(id) {
+            var config = {
+                params: {
+                    id: id
+                }
+            }
+            apiService.post('/admin/api/category/Delete/' + id, config, function () {
+                notificationService.displaySuccess('Đã xóa thành công.');
+                search();
+            },
+            function () {
+                notificationService.displayError('Xóa không thành công.');
+            });
+        }
         function search(page) {
             page = page || 0;
 

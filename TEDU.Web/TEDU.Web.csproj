@@ -306,7 +306,10 @@
     <Content Include="Scripts\app\posts\listPosts.html" />
     <Content Include="Scripts\app\posts\postCtrl.js" />
     <Content Include="Scripts\app\services\apiService.js" />
+    <Content Include="Scripts\app\services\modalService.js" />
     <Content Include="Scripts\app\services\notificationService.js" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\fastclick.js" />

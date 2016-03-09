@@ -16,6 +16,7 @@ namespace TEDU.Service
         Category GetCategory(int id);
         Category GetCategory(string name);
         void CreateCategory(Category category);
+        void Delete(Category category);
         void SaveCategory();
     }
 
@@ -83,7 +84,10 @@ namespace TEDU.Service
         {
             categorysRepository.Add(category);
         }
-
+        public void Delete(Category category)
+        {
+            categorysRepository.Delete(category);
+        }
         public void SaveCategory()
         {
             unitOfWork.Commit();
