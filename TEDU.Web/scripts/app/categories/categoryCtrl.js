@@ -25,7 +25,7 @@
                     id: id
                 }
             }
-            apiService.post('/admin/api/category/Delete/' + id, config, function () {
+            apiService.post('/admin/api/category/Delete', config, function () {
                 notificationService.displaySuccess('Đã xóa thành công.');
                 search();
             },

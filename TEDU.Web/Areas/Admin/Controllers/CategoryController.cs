@@ -51,7 +51,7 @@ namespace TEDU.Web.Areas.Admin.Controllers
             });
         }
 
-        [AllowAnonymous]
+        [HttpGet]
         public HttpResponseMessage Get(HttpRequestMessage request, int? page, int? pageSize, string filter = null)
         {
             int currentPage = page.Value;
