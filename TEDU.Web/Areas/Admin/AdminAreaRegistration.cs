@@ -23,7 +23,7 @@ namespace TEDU.Web.Areas.Admin
             );
             context.MapHttpRoute(
                  name: "Administration_DefaultApi",
-                 routeTemplate: "Admin/api/{controller}/{action}/{id}",
+                 routeTemplate: "api/Admin/{controller}/{id}",
                  defaults: new {id = RouteParameter.Optional }
             );
            

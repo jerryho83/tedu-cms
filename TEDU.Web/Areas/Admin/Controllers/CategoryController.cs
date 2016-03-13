@@ -21,7 +21,7 @@ namespace TEDU.Web.Areas.Admin.Controllers
         {
             this.categoryService = categoryService;
         }
-        [HttpPost]
+        [HttpDelete]
         public HttpResponseMessage Delete(HttpRequestMessage request,int id)
         {
             return CreateHttpResponse(request, () =>
@@ -34,12 +34,12 @@ namespace TEDU.Web.Areas.Admin.Controllers
                 }
                 else
                 {
-                    var movieDb = categoryService.GetCategory(id);
-                    if (movieDb == null)
+                    var categoryDb = categoryService.GetCategory(id);
+                    if (categoryDb == null)
                         response = request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid Id.");
                     else
                     {
-                        categoryService.Delete(movieDb);
+                        categoryService.Delete(categoryDb);
 
                         categoryService.SaveCategory();
 
@@ -51,7 +51,6 @@ namespace TEDU.Web.Areas.Admin.Controllers
             });
         }
 
-        [AllowAnonymous]
         public HttpResponseMessage Get(HttpRequestMessage request, int? page, int? pageSize, string filter = null)
         {
             int currentPage = page.Value;

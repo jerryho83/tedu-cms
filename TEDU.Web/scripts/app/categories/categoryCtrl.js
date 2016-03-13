@@ -17,20 +17,21 @@
         $scope.deleteItem = deleteItem;
 
         function deleteItem(id) {
-            modalService.showConfirm('Bạn có chắc muốn xóa?', deleteSubmit);
-        }
-        function deleteSubmit(id) {
-            var config = {
-                params: {
-                    id: id
+            modalService.showConfirm('Bạn có chắc muốn xóa?', function (result) {
+                if (result) {
+                    var config = {
+                        params: {
+                            id: id
+                        }
+                    }
+                    apiService.del('/api/admin/category', config, function () {
+                        notificationService.displaySuccess('Đã xóa thành công.');
+                        search();
+                    },
+                    function () {
+                        notificationService.displayError('Xóa không thành công.');
+                    });
                 }
-            }
-            apiService.post('/admin/api/category/Delete/' + id, config, function () {
-                notificationService.displaySuccess('Đã xóa thành công.');
-                search();
-            },
-            function () {
-                notificationService.displayError('Xóa không thành công.');
             });
         }
         function search(page) {
@@ -45,7 +46,7 @@
                 }
             }
 
-            apiService.get('/admin/api/category/Get/1', config, dataLoadCompleted, dataLoadFailed);
+            apiService.get('/api/admin/category', config, dataLoadCompleted, dataLoadFailed);
 
         }
 

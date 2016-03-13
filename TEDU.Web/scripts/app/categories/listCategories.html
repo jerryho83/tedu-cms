@@ -29,6 +29,7 @@
                             <tr>
                                 <th style="width: 5%">ID</th>
                                 <th>Tên</th>
+                                <th style="width:10%;">Ngày tạo</th>
                                 <th style="width:10%;">Ngày sửa</th>
                                 <th style="width: 10%">Trạng thái</th>
                                 <th style="width:5%"></th>
@@ -38,9 +39,11 @@
                             <tr ng-repeat="item in data | filter:filterExpression">
                                 <td>{{item.ID}}</td>
                                 <td><a ui-sref="edit_category">{{item.Name}}</a></td>
+                                <th>{{item.CreatedDate | date:'yyyy-MM-dd HH:mm'}}</th>
                                 <th>{{item.LastModifiedDate}}</th>
                                 <td><span ng-class="{'badge bg-red':item.Status=='Locked','badge bg-green':item.Status=='Publish'}">{{item.Status}}</span></td>
-                                <td><button class="btn btn-sm btn-danger" ng-click="deleteItem(item.ID)"><i class="fa fa-trash-o"></i></button></td>
+                                <td><button class="btn btn-sm btn-danger" ng-click="deleteItem(item.ID)"><i class="fa fa-trash-o"></i></button>
+                                </td>
                             </tr>
                         </tbody>
 

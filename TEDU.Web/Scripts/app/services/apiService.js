@@ -7,7 +7,8 @@
     function apiService($http, $location, notificationService, $rootScope) {
         var service = {
             get: get,
-            post: post
+            post: post,
+            del: del
         }
         function get(url, config, success, failure) {
             return $http.get(url, config)
@@ -41,6 +42,21 @@
                     });
         }
 
+        function del(url, data, success, failure) {
+            return $http.delete(url, data)
+                    .then(function (result) {
+                        success(result);
+                    }, function (error) {
+                        if (error.status == '401') {
+                            notificationService.displayError('Authentication required.');
+                            $rootScope.previousState = $location.path();
+                            $location.path('/admin/login');
+                        }
+                        else if (failure != null) {
+                            failure(error);
+                        }
+                    });
+        }
         return service;
     }
 
