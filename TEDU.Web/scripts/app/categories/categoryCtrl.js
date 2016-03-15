@@ -3,9 +3,9 @@
 
     app.controller('categoryCtrl', categoryCtrl);
 
-    categoryCtrl.$inject = ['$scope', 'apiService', 'notificationService', 'modalService'];
+    categoryCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox'];
 
-    function categoryCtrl($scope, apiService, notificationService, modalService) {
+    function categoryCtrl($scope, apiService, notificationService, $ngBootbox) {
         $scope.loading = true;
         $scope.data = [];
         $scope.page = 0;
@@ -17,22 +17,22 @@
         $scope.deleteItem = deleteItem;
 
         function deleteItem(id) {
-            modalService.showConfirm('Bạn có chắc muốn xóa?', function (result) {
-                if (result) {
-                    var config = {
-                        params: {
-                            id: id
-                        }
-                    }
-                    apiService.del('/api/admin/category', config, function () {
-                        notificationService.displaySuccess('Đã xóa thành công.');
-                        search();
-                    },
-                    function () {
-                        notificationService.displayError('Xóa không thành công.');
-                    });
-                }
-            });
+            console.log(id);
+            $ngBootbox.confirm('Bạn có chắc muốn xóa?')
+                .then(function (id) {
+                   var config = {
+                       params: {
+                           id: id
+                       }
+                   }
+                   apiService.del('/api/admin/category', config, function () {
+                       notificationService.displaySuccess('Đã xóa thành công.');
+                       search();
+                   },
+                   function () {
+                       notificationService.displayError('Xóa không thành công.');
+                   });
+               });
         }
         function search(page) {
             page = page || 0;

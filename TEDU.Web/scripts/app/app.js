@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict'
-    angular.module('TEDU', ['ui.router', 'common.core', 'common.ui'])
+    angular.module('TEDU', ['ui.router', 'ngBootbox', 'common.core', 'common.ui'])
     .config(config)
     .run(run);
 

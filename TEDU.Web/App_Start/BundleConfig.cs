@@ -20,6 +20,7 @@ namespace TEDU.Web.App_Start
                         "~/Scripts/angular-ui-router.js",
                         "~/Scripts/angular-cookies.js",
                         "~/Scripts/angular-resource.js",
+                         "~/Scripts/ngBootbox.min.js",
                         "~/Scripts/angular-ui/ui-bootstrap-tpls.js",
                         "~/Scripts/loading-bar.js",
                         "~/Scripts/jquery.fancybox.js",
