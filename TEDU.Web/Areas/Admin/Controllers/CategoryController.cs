@@ -8,6 +8,7 @@ using System.Web.Http;
 using TEDU.Model;
 using TEDU.Service;
 using TEDU.Web.Infrastructure.Core;
+using TEDU.Web.Infrastructure.Extensions;
 using TEDU.Web.ViewModels;
 
 namespace TEDU.Web.Areas.Admin.Controllers
@@ -16,13 +17,14 @@ namespace TEDU.Web.Areas.Admin.Controllers
     {
         private readonly ICategoryService categoryService;
 
-        public CategoryController(ICategoryService categoryService,IErrorService errorService):
+        public CategoryController(ICategoryService categoryService, IErrorService errorService) :
            base(errorService)
         {
             this.categoryService = categoryService;
         }
+
         [HttpDelete]
-        public HttpResponseMessage Delete(HttpRequestMessage request,int id)
+        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -79,5 +81,36 @@ namespace TEDU.Web.Areas.Admin.Controllers
                 return response;
             });
         }
+
+        [HttpPost]
+        public HttpResponseMessage Add(HttpRequestMessage request, CategoryViewModel category)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    Category newCategory = new Category();
+
+                    newCategory.UpdateCategory(category);
+
+                    categoryService.CreateCategory(newCategory);
+
+                    categoryService.SaveCategory();
+
+                    // Update view model
+                    category = Mapper.Map<Category, CategoryViewModel>(newCategory);
+                    response = request.CreateResponse<CategoryViewModel>(HttpStatusCode.Created, category);
+                }
+
+                return response;
+            });
+        }
+
     }
 }

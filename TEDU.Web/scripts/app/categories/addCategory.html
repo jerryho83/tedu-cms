@@ -1,10 +1,60 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-	<meta charset="utf-8" />
-</head>
-<body>
+﻿<section class="content-header">
+    <h1>
+        Thêm mới danh mục
 
-</body>
-</html>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li><a ui-sref="categories">Danh mục tin tức</a></li>
+        <li class="active"><a href="#">Thêm mới</a></li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title"> Thêm mới danh mục</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form class="form-horizontal" role="form" novalidate angular-validator name="addCategoryForm" angular-validator-submit="AddCategory()">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Tên danh mục</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" validate-on="blur"
+                                       required reqired-message="Tên danh mục bắt buộc." ng-model="model.Name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Alias</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="model.Alias">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Danh mục cha</label>
+                            <div class="col-sm-10">
+                                <select type="text" class="form-control" ng-model="model.ParentID" ng-options="option.ID as option.Name for option in categories"></select>
+                                <input type="hidden" name="ParentID" ng-model="model.ParentID" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="model.Status"> Kích hoạt
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.box-body -->
+                    <div class="box-footer">
+                        <a ui-sref="categories" class="btn btn-default">Hủy bỏ</a>
+                        <button type="submit" class="btn btn-info pull-right">Lưu</button>
+                    </div><!-- /.box-footer -->
+                </form>
+            </div><!-- /.box -->
+        </div>
+    </div>
+</section>

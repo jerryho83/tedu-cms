@@ -16,6 +16,7 @@
 /// <reference path="Scripts/angular-ui/ui-bootstrap.js" />
 /// <reference path="Scripts/angular-ui/ui-bootstrap-tpls.js" />
 /// <reference path="Scripts/angular-ui-router.js" />
+/// <reference path="scripts/angular-validator.min.js" />
 /// <reference path="Scripts/app/app.js" />
 /// <reference path="Scripts/app/categories/addCategoryCtrl.js" />
 /// <reference path="Scripts/app/categories/categoryCtrl.js" />

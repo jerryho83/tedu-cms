@@ -17,9 +17,8 @@
         $scope.deleteItem = deleteItem;
 
         function deleteItem(id) {
-            console.log(id);
             $ngBootbox.confirm('Bạn có chắc muốn xóa?')
-                .then(function (id) {
+                .then(function () {
                    var config = {
                        params: {
                            id: id
