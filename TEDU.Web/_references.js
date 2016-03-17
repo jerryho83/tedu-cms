@@ -1,5 +1,4 @@
 ﻿/// <autosync enabled="true" />
-/// <reference path="Scripts/ai.0.15.0-build58334.js" />
 /// <reference path="Scripts/angular.js" />
 /// <reference path="Scripts/angular-animate.js" />
 /// <reference path="Scripts/angular-aria.js" />
