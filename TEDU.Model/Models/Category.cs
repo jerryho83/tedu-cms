@@ -10,8 +10,12 @@ namespace TEDU.Model
         [Key]
         public int ID { set; get; }
 
+        [Column(TypeName = "nvarchar")]
+        [StringLength(250)]
         public string Name { set; get; }
 
+        [Column(TypeName = "varchar")]
+        [StringLength(250)]
         public string Alias { set; get; }
 
         public int? ParentID { set; get; }
@@ -24,7 +28,7 @@ namespace TEDU.Model
 
         public DateTime? LastModifiedDate { set; get; }
 
-        public string Status { set; get; }
+        public bool Status { set; get; }
 
         public virtual ICollection<Post> Posts { set; get; }
     }

@@ -19,9 +19,10 @@ namespace TEDU.Data.Migrations
                     CreatedBy = c.String(),
                     LastModifiedBy = c.String(),
                     LastModifiedDate = c.DateTime(nullable: false),
-                    Status = c.String(nullable: false),
+                    Status = c.Boolean(nullable: false),
                 })
                 .PrimaryKey(t => t.ID);
+
 
             CreateTable(
                 "dbo.Posts",

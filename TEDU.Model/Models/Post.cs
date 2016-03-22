@@ -9,12 +9,16 @@ namespace TEDU.Model
         [Key]
         public int ID { set; get; }
 
-
+        [Column(TypeName = "nvarchar")]
+        [StringLength(250)]
         public string Name { set; get; }
 
-
+        [Column(TypeName = "varchar")]
+        [StringLength(250)]
         public string Alias { set; get; }
 
+        [Column(TypeName = "nvarchar")]
+        [StringLength(250)]
         public string Description { set; get; }
 
         public int CategoryID { set; get; }
@@ -25,12 +29,16 @@ namespace TEDU.Model
 
         public string PostType { set; get; }
 
+        [Column(TypeName = "nvarchar")]
+        [StringLength(250)]
         public string Source { set; get; }
 
         public string Status { set; get; }
 
         public int? ViewCount { set; get; }
 
+        [Column(TypeName = "nvarchar")]
+        [StringLength(250)]
         public string Tags { set; get; }
 
         public DateTime? CreatedDate { set; get; }

@@ -45,7 +45,7 @@
                 }
             }
 
-            apiService.get('/api/admin/category', config, dataLoadCompleted, dataLoadFailed);
+            apiService.get('/api/admin/category/getlistpaging', config, dataLoadCompleted, dataLoadFailed);
 
         }
 

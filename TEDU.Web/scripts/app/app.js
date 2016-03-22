@@ -23,7 +23,7 @@
                  controller: "categoryCtrl"
              })
              .state('edit_category', {
-                 url: '/edit_category',
+                 url: '/edit_category/:id',
                  templateUrl: "/scripts/app/categories/editCategory.html",
                  controller: "editCategoryCtrl"
              })

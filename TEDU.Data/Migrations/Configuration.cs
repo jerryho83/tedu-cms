@@ -16,10 +16,11 @@ namespace TEDU.Data.Migrations
 
         protected override void Seed(TEDU.Data.TEDUEntities context)
         {
-            GetCategories().ForEach(c => context.Categories.AddOrUpdate(c));
-            GetPosts().ForEach(g => context.Posts.AddOrUpdate(g));
+            //GetCategories().ForEach(c => context.Categories.AddOrUpdate(c));
 
-            context.SaveChanges();
+            //GetPosts().ForEach(g => context.Posts.AddOrUpdate(g));
+
+            //context.SaveChanges();
         }
 
         private static List<Category> GetCategories()
@@ -29,19 +30,19 @@ namespace TEDU.Data.Migrations
                 new Category {
                     Name = ".NET",
                     Alias = "dotnet",
-                    Status = StatusEnum.Publish.ToString(),
+                    Status = true,
                     CreatedDate=DateTime.Now
                 },
                 new Category {
                     Name = "Database",
                     Alias = "database",
-                    Status = StatusEnum.Publish.ToString(),
+                    Status = true,
                      CreatedDate=DateTime.Now
                 },
                new Category {
                     Name = "Front End",
                     Alias = "front-end",
-                    Status = StatusEnum.Publish.ToString(),
+                    Status =true,
                      CreatedDate=DateTime.Now
                 },
             };

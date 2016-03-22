@@ -24,6 +24,7 @@ namespace TEDU.Web.Areas.Admin.Controllers
         }
 
         [HttpDelete]
+        [Route("delete/{id:int}")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -53,7 +54,8 @@ namespace TEDU.Web.Areas.Admin.Controllers
             });
         }
 
-        public HttpResponseMessage Get(HttpRequestMessage request, int? page, int? pageSize, string filter = null)
+        [Route("getlistpaging")]
+        public HttpResponseMessage GetListPaging(HttpRequestMessage request, int? page, int? pageSize, string filter = null)
         {
             int currentPage = page.Value;
 
@@ -82,7 +84,70 @@ namespace TEDU.Web.Areas.Admin.Controllers
             });
         }
 
+        [HttpGet]
+        [Route("getlistparent")]
+        public HttpResponseMessage GetListParent(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                IEnumerable<Category> model = categoryService.GetCategories();
+                IEnumerable<CategoryViewModel> modelVM = Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryViewModel>>(model);
+
+                response = request.CreateResponse(HttpStatusCode.OK, modelVM);
+
+                return response;
+            });
+        }
+
+        [HttpGet]
+        [Route("api/category/{id:int}")]
+        public HttpResponseMessage GetDetails(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                var category = categoryService.GetCategory(id);
+
+                var categoryVM = Mapper.Map<Category, CategoryViewModel>(category);
+
+                response = request.CreateResponse<CategoryViewModel>(HttpStatusCode.OK, categoryVM);
+
+                return response;
+            });
+        }
+
+        [Route("update")]
+        [HttpPut]
+        public HttpResponseMessage Update(HttpRequestMessage request, CategoryViewModel category)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var movieDb = categoryService.GetCategory(category.ID);
+                    if (movieDb == null)
+                        response = request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid.");
+                    else
+                    {
+                        movieDb.UpdateCategory(category);
+                        categoryService.SaveCategory();
+                        response = request.CreateResponse<CategoryViewModel>(HttpStatusCode.OK, category);
+                    }
+                }
+
+                return response;
+            });
+        }
+
         [HttpPost]
+        [Route("add")]
         public HttpResponseMessage Add(HttpRequestMessage request, CategoryViewModel category)
         {
             return CreateHttpResponse(request, () =>

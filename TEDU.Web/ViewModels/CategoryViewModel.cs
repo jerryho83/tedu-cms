@@ -24,6 +24,6 @@ namespace TEDU.Web.ViewModels
 
         public DateTime? LastModifiedDate { set; get; }
 
-        public string Status { set; get; }
+        public bool Status { set; get; }
     }
 }

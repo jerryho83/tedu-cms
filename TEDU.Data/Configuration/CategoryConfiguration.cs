@@ -12,7 +12,6 @@ namespace TEDU.Data.Configuration
                  .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(x => x.Name).IsRequired().HasMaxLength(250);
             Property(x => x.Alias).IsRequired().HasMaxLength(250);
-            Property(x => x.Status).IsRequired();
             ToTable("Categories");
         }
     }

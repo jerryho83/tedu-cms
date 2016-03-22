@@ -272,6 +272,7 @@
     <Content Include="Scripts\app\categories\editCategory.html" />
     <Content Include="Scripts\app\categories\editCategoryCtrl.js" />
     <Content Include="Scripts\app\categories\listCategories.html" />
+    <Content Include="Scripts\app\filters\boolStatus.filter.js" />
     <Content Include="Scripts\app\home\index.html" />
     <Content Include="Scripts\app\home\homeCtrl.js" />
     <Content Include="Scripts\app\layout\customPager.directive.js" />
@@ -280,6 +281,7 @@
     <Content Include="Scripts\app\posts\listPosts.html" />
     <Content Include="Scripts\app\posts\postCtrl.js" />
     <Content Include="Scripts\app\services\apiService.js" />
+    <Content Include="Scripts\app\services\commonService.js" />
     <Content Include="Scripts\app\services\modalService.js" />
     <Content Include="Scripts\app\services\notificationService.js" />
     <Content Include="Scripts\bootbox.js" />

@@ -13,6 +13,7 @@ namespace TEDU.Service
     public interface ICategoryService
     {
         IEnumerable<Category> GetCategories(int page, int pageSize, out int totalRow, string filter = null);
+        IEnumerable<Category> GetCategories();
         Category GetCategory(int id);
         Category GetCategory(string name);
         void CreateCategory(Category category);
@@ -41,7 +42,7 @@ namespace TEDU.Service
                 model = categorysRepository
                     .GetMany(m => m.Name.ToLower()
                     .Contains(filter.ToLower().Trim()) &&
-                    m.Status == StatusEnum.Publish.ToString())
+                    m.Status)
                     .OrderBy(m => m.ID)
                     .Skip(page * pageSize)
                     .Take(pageSize)
@@ -50,19 +51,19 @@ namespace TEDU.Service
                 totalRow = categorysRepository
                     .GetMany(m => m.Name.ToLower()
                     .Contains(filter.ToLower().Trim()) &&
-                    m.Status == StatusEnum.Publish.ToString())
+                    m.Status)
                     .Count();
             }
             else
             {
                 model = categorysRepository
-                    .GetMany(x => x.Status == StatusEnum.Publish.ToString())
+                    .GetMany(x => x.Status)
                     .OrderBy(m => m.ID)
                     .Skip(page * pageSize)
                     .Take(pageSize)
                     .ToList();
 
-                totalRow = categorysRepository.GetMany(x => x.Status == StatusEnum.Publish.ToString()).Count();
+                totalRow = categorysRepository.GetMany(x => x.Status).Count();
             }
 
             return model;
@@ -91,6 +92,17 @@ namespace TEDU.Service
         public void SaveCategory()
         {
             unitOfWork.Commit();
+        }
+
+        public IEnumerable<Category> GetCategories()
+        {
+            IEnumerable<Category> model;
+            model = categorysRepository
+                   .GetMany(x => x.Status)
+                   .OrderByDescending(m => m.CreatedDate)
+                   .ToList();
+
+            return model;
         }
 
         #endregion

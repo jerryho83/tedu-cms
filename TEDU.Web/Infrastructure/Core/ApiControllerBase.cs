@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -23,6 +24,22 @@ namespace TEDU.Web.Infrastructure.Core
             try
             {
                 response = function.Invoke();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var eve in ex.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                LogError(ex);
+                response = request.CreateResponse(HttpStatusCode.BadRequest, ex.InnerException.Message);
+
             }
             catch (DbUpdateException ex)
             {
