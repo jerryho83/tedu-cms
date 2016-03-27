@@ -59,21 +59,9 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201602111329068_InitialCreate.cs" />
-    <Compile Include="Migrations\201602111329068_InitialCreate.Designer.cs">
-      <DependentUpon>201602111329068_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602240953302_InitialCreate2.cs" />
-    <Compile Include="Migrations\201602240953302_InitialCreate2.Designer.cs">
-      <DependentUpon>201602240953302_InitialCreate2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603171557589_InitialCreate3.cs" />
-    <Compile Include="Migrations\201603171557589_InitialCreate3.Designer.cs">
-      <DependentUpon>201603171557589_InitialCreate3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603171615195_InitialCreate4.cs" />
-    <Compile Include="Migrations\201603171615195_InitialCreate4.Designer.cs">
-      <DependentUpon>201603171615195_InitialCreate4.cs</DependentUpon>
+    <Compile Include="Migrations\201603270723490_ChangeDB.cs" />
+    <Compile Include="Migrations\201603270723490_ChangeDB.Designer.cs">
+      <DependentUpon>201603270723490_ChangeDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,22 +81,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201602111329068_InitialCreate.resx">
-      <DependentUpon>201602111329068_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602240953302_InitialCreate2.resx">
-      <DependentUpon>201602240953302_InitialCreate2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603171557589_InitialCreate3.resx">
-      <DependentUpon>201603171557589_InitialCreate3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603171615195_InitialCreate4.resx">
-      <DependentUpon>201603171615195_InitialCreate4.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201603270723490_ChangeDB.resx">
+      <DependentUpon>201603270723490_ChangeDB.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -21,6 +21,8 @@ namespace TEDU.Data.Migrations
             //GetPosts().ForEach(g => context.Posts.AddOrUpdate(g));
 
             //context.SaveChanges();
+
+
         }
 
         private static List<Category> GetCategories()

@@ -1,4 +1,5 @@
-﻿using TEDU.Common.Helper;
+﻿using TEDU.Common;
+using TEDU.Common.Helper;
 using TEDU.Model;
 using TEDU.Web.ViewModels;
 
@@ -39,6 +40,7 @@ namespace TEDU.Web.Infrastructure.Extensions
             post.Status = postVm.Status;
             post.MetaKeyword = postVm.MetaKeyword;
             post.MetaDescription = postVm.MetaDescription;
+            post.PostType = PostTypeEnum.Article.ToString();
 
         }
     }

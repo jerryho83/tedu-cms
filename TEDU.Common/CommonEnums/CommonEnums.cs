@@ -15,4 +15,12 @@ namespace TEDU.Common
         Trash,
         Top
     }
+
+    public enum PostTypeEnum
+    {
+        Article,
+        Image,
+        Video,
+        File
+    }
 }

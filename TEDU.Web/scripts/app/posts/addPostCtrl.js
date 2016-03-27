@@ -14,7 +14,7 @@
         // setup editor options
         $scope.editorOptions = {
             language: 'vi',
-            uiColor: '#000000'
+            height:'200px'
         };
         $scope.CreateAlias = CreateAlias;
 
@@ -28,12 +28,12 @@
 
 
 
-        $scope.AddCategory = AddCategory;
+        $scope.AddPost = AddPost;
 
         function CreateAlias() {
-            $scope.category.Alias = commonService.makeSeoTitle($scope.post.Name);
+            $scope.post.Alias = commonService.makeSeoTitle($scope.post.Name);
         }
-        function AddCategory() {
+        function AddPost() {
             apiService.post('/api/admin/post/add', $scope.post, addSuccessed, addFailed);
         }
 

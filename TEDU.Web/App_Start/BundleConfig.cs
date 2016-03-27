@@ -14,6 +14,7 @@ namespace TEDU.Web.App_Start
                         "~/scripts/fastclick.js",
                         "~/Scripts/toastr.js",
                          "~/Scripts/bootbox.min.js",
+                        "~/Scripts/ckeditor/ckeditor.js",
                         "~/scripts/main.js",
                         "~/Scripts/angular.js",
                         "~/Scripts/angular-route.js",
@@ -25,7 +26,8 @@ namespace TEDU.Web.App_Start
                         "~/Scripts/angular-ui/ui-bootstrap-tpls.js",
                         "~/Scripts/loading-bar.js",
                         "~/Scripts/jquery.fancybox.js",
-                        "~/Scripts/jquery.fancybox-media.js"
+                        "~/Scripts/jquery.fancybox-media.js",
+                          "~/Scripts/ng-ckeditor.min.js"
                         ));
             bundles.Add(new ScriptBundle("~/bundles/spa").Include(
                        "~/Scripts/app/modules/common.core.js",

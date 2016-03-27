@@ -23,16 +23,21 @@ namespace TEDU.Model
 
         public int CategoryID { set; get; }
 
+        [StringLength(250)]
         public string Image { set; get; }
 
         public string Content { set; get; }
 
+        [StringLength(20)]
+        [Column(TypeName = "varchar")]
         public string PostType { set; get; }
 
         [Column(TypeName = "nvarchar")]
         [StringLength(250)]
         public string Source { set; get; }
 
+        [StringLength(10)]
+        [Column(TypeName = "varchar")]
         public string Status { set; get; }
 
         public int? ViewCount { set; get; }
@@ -43,12 +48,15 @@ namespace TEDU.Model
 
         public DateTime? CreatedDate { set; get; }
 
+        [StringLength(50)]
         public string CreateBy { set; get; }
 
         public DateTime? LastModifiedDate { set; get; }
 
+        [StringLength(50)]
         public string LastModifiedBy { set; get; }
 
+        [StringLength(50)]
         public string OtherStatus { set; get; }
 
         public virtual Category Category { set; get; }
