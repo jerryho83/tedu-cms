@@ -278,6 +278,10 @@
     <Content Include="Scripts\app\layout\customPager.directive.js" />
     <Content Include="Scripts\app\layout\pager.html" />
     <Content Include="Scripts\app\modules\common.ui.js" />
+    <Content Include="Scripts\app\posts\addPost.html" />
+    <Content Include="Scripts\app\posts\addPostCtrl.js" />
+    <Content Include="Scripts\app\posts\editPost.html" />
+    <Content Include="Scripts\app\posts\editPostCtrl.js" />
     <Content Include="Scripts\app\posts\listPosts.html" />
     <Content Include="Scripts\app\posts\postCtrl.js" />
     <Content Include="Scripts\app\services\apiService.js" />
@@ -1102,6 +1106,7 @@
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">

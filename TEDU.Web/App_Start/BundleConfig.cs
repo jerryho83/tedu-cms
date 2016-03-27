@@ -41,7 +41,9 @@ namespace TEDU.Web.App_Start
                        "~/Scripts/app/categories/categoryCtrl.js",
                        "~/Scripts/app/categories/addCategoryCtrl.js",
                        "~/Scripts/app/categories/editCategoryCtrl.js",
-                       "~/Scripts/app/posts/postCtrl.js"
+                       "~/Scripts/app/posts/postCtrl.js",
+                       "~/Scripts/app/posts/addPostCtrl.js",
+                       "~/Scripts/app/posts/editPostCtrl.js"
                        ));
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

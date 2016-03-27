@@ -52,5 +52,13 @@ namespace TEDU.Model
         public string OtherStatus { set; get; }
 
         public virtual Category Category { set; get; }
+
+        [Column(TypeName = "nvarchar")]
+        [StringLength(250)]
+        public string MetaKeyword { set; get; }
+
+        [Column(TypeName = "nvarchar")]
+        [StringLength(250)]
+        public string MetaDescription { set; get; }
     }
 }

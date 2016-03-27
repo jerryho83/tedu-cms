@@ -25,5 +25,9 @@ namespace TEDU.Web.ViewModels
         public DateTime? LastModifiedDate { set; get; }
 
         public bool Status { set; get; }
+
+        public string MetaKeyword { set; get; }
+
+        public string MetaDescription { set; get; }
     }
 }

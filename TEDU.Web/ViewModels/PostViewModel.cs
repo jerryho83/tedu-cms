@@ -28,5 +28,9 @@ namespace TEDU.Web.ViewModels
         public string LastModifiedBy { set; get; }
 
         public string OtherStatus { set; get; }
+
+        public string MetaKeyword { set; get; }
+
+        public string MetaDescription { set; get; }
     }
 }

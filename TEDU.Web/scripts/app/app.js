@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict'
-    angular.module('TEDU', ['ui.router', 'ngBootbox', 'common.core', 'common.ui'])
+    angular.module('TEDU', ['common.core', 'common.ui'])
     .config(config)
     .run(run);
 
@@ -36,7 +36,17 @@
                  url: '/posts',
                  templateUrl: "/scripts/app/posts/listPosts.html",
                  controller: "postCtrl"
-             });
+             })
+             .state('edit_post', {
+                 url: '/edit_post/:id',
+                 templateUrl: "/scripts/app/posts/editPost.html",
+                 controller: "editPostCtrl"
+             })
+            .state('add_post', {
+                url: '/add_post',
+                templateUrl: "/scripts/app/posts/addPost.html",
+                controller: "addPostCtrl"
+            });
     }
 
     function run() {

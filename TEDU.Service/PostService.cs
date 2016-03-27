@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TEDU.Common;
 using TEDU.Data.Infrastructure;
 using TEDU.Data.Repositories;
 using TEDU.Model;
@@ -13,9 +14,10 @@ namespace TEDU.Service
     public interface IPostService
     {
         IEnumerable<Post> GetPosts();
-        IEnumerable<Post> GetCategoryPosts(string categoryName, string PostName = null);
+        IEnumerable<Post> GetPosts(int page, int pageSize, out int totalRow, string filter = null);
         Post GetPost(int id);
         void CreatePost(Post Post);
+        void Delete(Post post);
         void SavePost();
     }
 
@@ -40,10 +42,39 @@ namespace TEDU.Service
             return Posts;
         }
 
-        public IEnumerable<Post> GetCategoryPosts(string categoryName, string PostName = null)
+        public IEnumerable<Post> GetPosts(int page, int pageSize, out int totalRow, string filter = null)
         {
-            var category = categoryRepository.GetCategoryByName(categoryName);
-            return category.Posts.Where(g => g.Name.ToLower().Contains(PostName.ToLower().Trim()));
+            IEnumerable<Post> model;
+            if (!string.IsNullOrEmpty(filter))
+            {
+                model = PostsRepository
+                    .GetMany(m => m.Name.ToLower()
+                    .Contains(filter.ToLower().Trim()) &&
+                    m.Status==StatusEnum.Publish.ToString())
+                    .OrderBy(m => m.ID)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+
+                totalRow = PostsRepository
+                    .GetMany(m => m.Name.ToLower()
+                    .Contains(filter.ToLower().Trim()) &&
+                    m.Status==StatusEnum.Publish.ToString())
+                    .Count();
+            }
+            else
+            {
+                model = PostsRepository
+                    .GetMany(x => x.Status== StatusEnum.Publish.ToString())
+                    .OrderBy(m => m.ID)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+
+                totalRow = PostsRepository.GetMany(x => x.Status==StatusEnum.Publish.ToString()).Count();
+            }
+
+            return model;
         }
 
         public Post GetPost(int id)
@@ -60,6 +91,11 @@ namespace TEDU.Service
         public void SavePost()
         {
             unitOfWork.Commit();
+        }
+
+        public void Delete(Post post)
+        {
+            PostsRepository.Delete(post);
         }
 
         #endregion

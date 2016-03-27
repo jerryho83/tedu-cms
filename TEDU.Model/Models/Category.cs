@@ -31,5 +31,13 @@ namespace TEDU.Model
         public bool Status { set; get; }
 
         public virtual ICollection<Post> Posts { set; get; }
+
+        [Column(TypeName = "nvarchar")]
+        [StringLength(250)]
+        public string MetaKeyword { set; get; }
+
+        [Column(TypeName = "nvarchar")]
+        [StringLength(250)]
+        public string MetaDescription { set; get; }
     }
 }
