@@ -7,19 +7,23 @@
 
     function editPostCtrl($scope, apiService, $stateParams, notificationService, $location, commonService) {
 
-        $scope.category = {};
+        $scope.post = {};
         $scope.CreateAlias = CreateAlias;
         $scope.categories = [];
-
+          // setup editor options
+        $scope.editorOptions = {
+            language: 'vi',
+            height:'200px'
+        };
         function LoadListParents() {
             apiService.get('/api/admin/category', null, function (result) {
                 $scope.categories = result.data;
             });
         }
         function LoadDetail() {
-            apiService.get('/api/admin/category/' + $stateParams.id, null,
+            apiService.get('/api/admin/post/' + $stateParams.id, null,
             function (result) {
-                $scope.category = result.data;
+                $scope.post = result.data;
             },
             function (result) {
                 notificationService.displayError(result.data);
@@ -27,19 +31,19 @@
         }
 
 
-        $scope.UpdateCategory = UpdateCategory;
+        $scope.UpdatePost = UpdatePost;
 
         function CreateAlias() {
-            $scope.category.Alias = commonService.makeSeoTitle($scope.category.Name);
+            $scope.post.Alias = commonService.makeSeoTitle($scope.post.Name);
         }
-        function UpdateCategory() {
-            apiService.put('/api/admin/category/update', $scope.category, addSuccessed, addFailed);
+        function UpdatePost() {
+            apiService.put('/api/admin/post/update', $scope.post, addSuccessed, addFailed);
         }
 
         function addSuccessed() {
-            notificationService.displaySuccess($scope.category.Name + ' đã được cập nhật.');
+            notificationService.displaySuccess($scope.post.Name + ' đã được cập nhật.');
 
-            $location.url('categories');
+            $location.url('posts');
 
         }
         function addFailed() {

@@ -146,7 +146,6 @@ namespace TEDU.Web.Areas.Admin.Controllers
                     Post newPost = new Post();
 
                     newPost.UpdatePost(post);
-
                     postService.CreatePost(newPost);
 
                     postService.SavePost();

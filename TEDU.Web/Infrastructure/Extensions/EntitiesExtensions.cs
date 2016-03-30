@@ -22,7 +22,7 @@ namespace TEDU.Web.Infrastructure.Extensions
 
         }
 
-        public static void UpdatePost(this Post post, PostViewModel postVm)
+        public static void UpdatePost(this Post post, PostViewModel postVm,string action="add")
         {
             post.Name = postVm.Name;
             post.Alias = string.IsNullOrEmpty(postVm.Alias) ? StringHelper.ToUnsignString(postVm.Name) : postVm.Alias;
@@ -31,7 +31,10 @@ namespace TEDU.Web.Infrastructure.Extensions
             post.Image = postVm.Image;
             post.Content = postVm.Content;
             post.PostType = postVm.PostType;
-
+            post.CreatedDate = postVm.CreatedDate;
+            post.CreateBy = postVm.CreateBy;
+            post.LastModifiedBy = postVm.LastModifiedBy;
+            post.LastModifiedDate = postVm.LastModifiedDate;
             post.Source = postVm.Source;
             post.Status = postVm.Status;
             post.Tags = postVm.Tags;
