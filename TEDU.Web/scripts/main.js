@@ -451,6 +451,15 @@ function _init() {
             //The toggle button
             var btn = $(o.toggleBtnSelector);
 
+            var url = window.location.href;
+            var childLink = $('.treeview-menu li a');
+            $.each(childLink, function (i, item) {
+                if (url == $(item).prop('href')) {
+                    $(item).parent().parent().parent().addClass('active');
+                    $(item).parent().addClass('active');
+                }
+            });
+
             //Listen to the click event
             btn.on('click', function (e) {
                 e.preventDefault();
