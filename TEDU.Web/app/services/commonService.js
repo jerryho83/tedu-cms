@@ -15,6 +15,8 @@
         return service;
 
         function makeSeoTitle(input) {
+            if (input == undefined || input == '')
+                return '';
             //Đổi chữ hoa thành chữ thường
             var slug = input.toLowerCase();
 

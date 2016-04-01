@@ -13,38 +13,38 @@
         $stateProvider
             .state('home', {
                 url: "/admin",
-                templateUrl: "/scripts/app/home/index.html",
+                templateUrl: "/app/home/index.html",
                 controller: "homeCtrl"
             })
             //category
              .state('categories', {
                  url: '/categories',
-                 templateUrl: "/scripts/app/categories/listCategories.html",
+                 templateUrl: "/app/categories/listCategories.html",
                  controller: "categoryCtrl"
              })
              .state('edit_category', {
                  url: '/edit_category/:id',
-                 templateUrl: "/scripts/app/categories/editCategory.html",
+                 templateUrl: "/app/categories/editCategory.html",
                  controller: "editCategoryCtrl"
              })
             .state('add_category', {
                 url: '/add_category',
-                templateUrl: "/scripts/app/categories/addCategory.html",
+                templateUrl: "/app/categories/addCategory.html",
                 controller: "addCategoryCtrl"
             })
              .state('posts', {
                  url: '/posts',
-                 templateUrl: "/scripts/app/posts/listPosts.html",
+                 templateUrl: "/app/posts/listPosts.html",
                  controller: "postCtrl"
              })
              .state('edit_post', {
                  url: '/edit_post/:id',
-                 templateUrl: "/scripts/app/posts/editPost.html",
+                 templateUrl: "/app/posts/editPost.html",
                  controller: "editPostCtrl"
              })
             .state('add_post', {
                 url: '/add_post',
-                templateUrl: "/scripts/app/posts/addPost.html",
+                templateUrl: "/app/posts/addPost.html",
                 controller: "addPostCtrl"
             });
     }

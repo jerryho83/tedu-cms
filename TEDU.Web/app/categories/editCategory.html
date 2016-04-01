@@ -20,7 +20,7 @@
         <form class="form-horizontal" role="form" novalidate angular-validator name="updateCategoryForm" angular-validator-submit="UpdateCategory()">
           <div class="box-body">
             <div class="col-md-8">
-              <div class="form-group">
+              <div class="form-group" ng-class="{ 'has-error' : updateCategoryForm.name.$invalid && !updateCategoryForm.name.$pristine }">
                 <label class="col-sm-2 control-label">Tên chuyên mục</label>
                 <div class="col-sm-10">
                   <input type="text" ng-change="CreateAlias()" class="form-control" validate-on="blur"
@@ -33,10 +33,10 @@
                   <input type="text" class="form-control" ng-model="category.Alias">
                 </div>
               </div>
-              <div class="form-group">
+              <div class="form-group" ng-class="{ 'has-error' : updateCategoryForm.categoryID.$invalid && !updateCategoryForm.categoryID.$pristine }">
                 <label class="col-sm-2 control-label">Chuyên mục cha</label>
                 <div class="col-sm-10">
-                  <select type="text" class="form-control" ng-init="category.ParentID=null" ng-model="category.ParentID" ng-options="option.ID as option.Name for option in categories">
+                  <select type="text" class="form-control" name="categoryID" ng-init="category.ParentID" ng-model="category.ParentID" ng-options="option.ID as option.Name for option in categories">
                     <option value="">-- Chọn chuyên mục cha --</option>
                   </select>
                   <input type="hidden" name="ParentID" ng-model="category.ParentID" />
@@ -66,7 +66,7 @@
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <a ui-sref="categories" class="btn btn-default">Hủy bỏ</a>
-                  <input type="submit" class="btn btn-primary" value="Lưu lại" />
+                  <input type="submit" class="btn btn-primary" ng-disabled="updateCategoryForm.$invalid" value="Lưu lại" />
                 </div>
               </div>
             </div>

@@ -13,8 +13,9 @@ namespace TEDU.Web.App_Start
                         "~/scripts/jquery.slimscroll.min.js",
                         "~/scripts/fastclick.js",
                         "~/Scripts/toastr.js",
-                         "~/Scripts/bootbox.min.js",
+                        "~/Scripts/bootbox.min.js",
                         "~/Scripts/ckeditor/ckeditor.js",
+                        "~/Scripts/ckfinder/ckfinder.js",
                         "~/scripts/main.js",
                         "~/Scripts/angular.js",
                         "~/Scripts/angular-route.js",
@@ -22,7 +23,7 @@ namespace TEDU.Web.App_Start
                         "~/Scripts/angular-cookies.js",
                         "~/Scripts/angular-resource.js",
                         "~/Scripts/angular-validator.min.js",
-                         "~/Scripts/ngBootbox.min.js",
+                        "~/Scripts/ngBootbox.min.js",
                         "~/Scripts/angular-ui/ui-bootstrap-tpls.js",
                         "~/Scripts/loading-bar.js",
                         "~/Scripts/jquery.fancybox.js",
@@ -30,22 +31,22 @@ namespace TEDU.Web.App_Start
                           "~/Scripts/ng-ckeditor.min.js"
                         ));
             bundles.Add(new ScriptBundle("~/bundles/spa").Include(
-                       "~/Scripts/app/modules/common.core.js",
-                       "~/Scripts/app/modules/common.ui.js",
-                       "~/Scripts/app/app.js",
-                       "~/Scripts/app/services/notificationService.js",
-                       "~/Scripts/app/services/modalService.js",
-                       "~/Scripts/app/services/apiService.js",
-                       "~/Scripts/app/services/commonService.js",
-                       "~/Scripts/app/layout/customPager.directive.js",
-                       "~/Scripts/app/filters/boolStatus.filter.js",
-                       "~/Scripts/app/home/homeCtrl.js",
-                       "~/Scripts/app/categories/categoryCtrl.js",
-                       "~/Scripts/app/categories/addCategoryCtrl.js",
-                       "~/Scripts/app/categories/editCategoryCtrl.js",
-                       "~/Scripts/app/posts/postCtrl.js",
-                       "~/Scripts/app/posts/addPostCtrl.js",
-                       "~/Scripts/app/posts/editPostCtrl.js"
+                       "~/app/modules/common.core.js",
+                       "~/app/modules/common.ui.js",
+                       "~/app/app.js",
+                       "~/app/services/notificationService.js",
+                       "~/app/services/modalService.js",
+                       "~/app/services/apiService.js",
+                       "~/app/services/commonService.js",
+                       "~/app/layout/customPager.directive.js",
+                       "~/app/filters/boolStatus.filter.js",
+                       "~/app/home/homeCtrl.js",
+                       "~/app/categories/categoryCtrl.js",
+                       "~/app/categories/addCategoryCtrl.js",
+                       "~/app/categories/editCategoryCtrl.js",
+                       "~/app/posts/postCtrl.js",
+                       "~/app/posts/addPostCtrl.js",
+                       "~/app/posts/editPostCtrl.js"
                        ));
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
