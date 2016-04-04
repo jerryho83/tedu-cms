@@ -19,38 +19,12 @@
               <input type="text" id="txtSearch" ng-model="filterExpression" class="form-control" placeholder="Nhập từ khóa..." />
             </div>
             <div class="col-md-6">
-
               <button class="btn btn-success pull-right" ui-sref="add_category"><i class="fa fa-plus"></i> Thêm mới</button>
             </div>
           </div>
         </div><!-- /.box-header -->
         <div class="box-body">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th style="width: 5%">ID</th>
-                <th>Tên</th>
-                <th style="width:10%;">Ngày tạo</th>
-                <th style="width:10%;">Ngày sửa</th>
-                <th style="width: 10%">Trạng thái</th>
-                <th style="width:10%"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="item in data | filter:filterExpression">
-                <td>{{item.ID}}</td>
-                <td><a ui-sref="edit_category({id:item.ID})">{{item.Name}}</a></td>
-                <th>{{item.CreatedDate | date:'yyyy-MM-dd HH:mm'}}</th>
-                <th>{{item.LastModifiedDate}}</th>
-                <td><span ng-class="{'badge bg-red':item.Status==false,'badge bg-green':item.Status==true}">{{item.Status | boolStatus}}</span></td>
-                <td>
-                  <a ui-sref="edit_category({id:item.ID})" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
-                  <button class="btn btn-sm btn-danger" ng-click="deleteItem(item.ID)"><i class="fa fa-trash-o"></i></button>
-                </td>
-              </tr>
-            </tbody>
-
-          </table>
+          <tree-grid tree-data="data" tree-control="my_tree" col-defs="col_defs" expand-level="3" icon-leaf="fa fa-minus"></tree-grid>
           <div ng-if="loading">
             <div class="col-xs-4"></div>
             <div class="col-xs-4">
@@ -60,7 +34,6 @@
           </div>
         </div><!-- /.box-body -->
         <div class="box-footer clearfix">
-          <custom-pager page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="search(page)"></custom-pager>
         </div>
       </div><!-- /.box -->
 

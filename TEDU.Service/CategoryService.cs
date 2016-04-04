@@ -99,7 +99,7 @@ namespace TEDU.Service
             IEnumerable<Category> model;
             model = categorysRepository
                    .GetMany(x => x.Status)
-                   .OrderByDescending(m => m.CreatedDate)
+                   .OrderBy(m => m.ParentID)
                    .ToList();
 
             return model;

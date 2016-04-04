@@ -28,7 +28,8 @@ namespace TEDU.Web.App_Start
                         "~/Scripts/loading-bar.js",
                         "~/Scripts/jquery.fancybox.js",
                         "~/Scripts/jquery.fancybox-media.js",
-                          "~/Scripts/ng-ckeditor.min.js"
+                        "~/Scripts/ng-ckeditor.min.js",
+                        "~/Scripts/tree-grid-directive.js"
                         ));
             bundles.Add(new ScriptBundle("~/bundles/spa").Include(
                        "~/app/modules/common.core.js",
@@ -62,7 +63,8 @@ namespace TEDU.Web.App_Start
                       "~/Content/admin/css/skins/_all-skins.min.css",
                       "~/content/toastr.css",
                       "~/content/jquery.fancybox.css",
-                      "~/content/loading-bar.css"
+                      "~/content/loading-bar.css",
+                       "~/content/treeGrid.css"
                        ));
 
             BundleTable.EnableOptimizations = false;
