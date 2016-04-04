@@ -13,6 +13,7 @@
         $scope.col_defs = [
               { field: "Name", displayName:"Tên chuyên mục" },
               { field: "CreatedDate", displayName: "Ngày tạo" }
+
         ];
 
         $scope.search = search;
