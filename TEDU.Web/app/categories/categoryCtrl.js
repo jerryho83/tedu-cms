@@ -3,20 +3,28 @@
 
     app.controller('categoryCtrl', categoryCtrl);
 
-    categoryCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', 'commonService'];
+    categoryCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', 'commonService', '$state'];
 
-    function categoryCtrl($scope, apiService, notificationService, $ngBootbox, commonService) {
+    function categoryCtrl($scope, apiService, notificationService, $ngBootbox, commonService, $state) {
         var tree;
         $scope.loading = true;
         $scope.data = [];
         $scope.my_tree = tree = {};
         $scope.col_defs = [
-              { field: "Name", displayName:"Tên chuyên mục" },
+              { field: "Name", displayName: "Tên chuyên mục" },
               { field: "CreatedDate", displayName: "Ngày tạo" },
               {
                   field: "ID",
-                  displayName: "#",
-                  cellTemplate: '<a ui-sref="edit_post(row.branch[col.field])" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a><button class="btn btn-sm btn-danger" ng-click="deleteItem(row.branch[col.field])"><i class="fa fa-trash-o"></i></button>'
+                  displayName: "",
+                  cellTemplateScope: {
+                      edit: function (data) {         // this works too: $scope.someMethod;
+                          $state.go('edit_category', { 'id': data });
+                      },
+                      remove: function (data) {
+                          deleteItem(data);
+                      }
+                  },
+                  cellTemplate: "<a ng-click=\"cellTemplateScope.edit(row.branch[col.field])\" class=\"btn btn-sm btn-primary\"><i class=\"fa fa-pencil\"></i></a> <button class=\"btn btn-sm btn-danger\" ng-click=\"cellTemplateScope.remove(row.branch[col.field])\"><i class=\"fa fa-trash-o\"></i></button>"
               }
 
         ];
