@@ -14,10 +14,10 @@
         // setup editor options
         $scope.editorOptions = {
             language: 'vi',
-            height:'200px'
+            height: '200px'
         };
         $scope.CreateAlias = CreateAlias;
-
+        $scope.ChooseImage = ChooseImage;
         $scope.categories = [];
 
         function LoadListParents() {
@@ -32,6 +32,13 @@
 
         function CreateAlias() {
             $scope.post.Alias = commonService.makeSeoTitle($scope.post.Name);
+        }
+        function ChooseImage() {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.post.Image = fileUrl;
+            };
+            finder.popup();
         }
         function AddPost() {
             apiService.post('/api/admin/post/add', $scope.post, addSuccessed, addFailed);

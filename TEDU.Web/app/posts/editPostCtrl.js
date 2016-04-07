@@ -9,12 +9,22 @@
 
         $scope.post = {};
         $scope.CreateAlias = CreateAlias;
+         $scope.ChooseImage = ChooseImage;
         $scope.categories = [];
           // setup editor options
         $scope.editorOptions = {
             language: 'vi',
             height:'200px'
         };
+
+         function ChooseImage() {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.post.Image = fileUrl;
+            };
+            finder.popup();
+        }
+
         function LoadListParents() {
             apiService.get('/api/admin/category', null, function (result) {
                 $scope.categories = result.data;
