@@ -29,7 +29,8 @@ namespace TEDU.Web.App_Start
                         "~/Scripts/jquery.fancybox.js",
                         "~/Scripts/jquery.fancybox-media.js",
                         "~/Scripts/ng-ckeditor.min.js",
-                        "~/Scripts/tree-grid-directive.js"
+                        "~/Scripts/tree-grid-directive.js",
+                        "~/Scripts/bower_components/ng-flow/dist/ng-flow.min.js"
                         ));
             bundles.Add(new ScriptBundle("~/bundles/spa").Include(
                        "~/app/modules/common.core.js",
