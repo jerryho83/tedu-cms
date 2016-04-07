@@ -2,6 +2,6 @@
 	"name": "ASP.NET",
 	"private": true,
   "dependencies": {
-    "angular": "*"
+    "ng-flow": "2.7.1"
   }
 }

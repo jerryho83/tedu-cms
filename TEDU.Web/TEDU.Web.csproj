@@ -291,6 +291,27 @@
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bower_components\angular\angular-csp.css" />
+    <Content Include="Scripts\bower_components\angular\angular.js" />
+    <Content Include="Scripts\bower_components\angular\angular.min.js" />
+    <Content Include="Scripts\bower_components\angular\index.js" />
+    <Content Include="Scripts\bower_components\flow.js\dist\flow.js" />
+    <Content Include="Scripts\bower_components\flow.js\dist\flow.min.js" />
+    <Content Include="Scripts\bower_components\flow.js\package.js" />
+    <Content Include="Scripts\bower_components\ng-flow\dist\ng-flow-standalone.js" />
+    <Content Include="Scripts\bower_components\ng-flow\dist\ng-flow-standalone.min.js" />
+    <Content Include="Scripts\bower_components\ng-flow\dist\ng-flow.js" />
+    <Content Include="Scripts\bower_components\ng-flow\dist\ng-flow.min.js" />
+    <Content Include="Scripts\bower_components\ng-flow\package.js" />
+    <Content Include="Scripts\bower_components\ng-flow\src\angular-flow.js" />
+    <Content Include="Scripts\bower_components\ng-flow\src\directives\btn.js" />
+    <Content Include="Scripts\bower_components\ng-flow\src\directives\drag-events.js" />
+    <Content Include="Scripts\bower_components\ng-flow\src\directives\drop.js" />
+    <Content Include="Scripts\bower_components\ng-flow\src\directives\events.js" />
+    <Content Include="Scripts\bower_components\ng-flow\src\directives\img.js" />
+    <Content Include="Scripts\bower_components\ng-flow\src\directives\init.js" />
+    <Content Include="Scripts\bower_components\ng-flow\src\directives\transfers.js" />
+    <Content Include="Scripts\bower_components\ng-flow\src\provider.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\ckeditor.js" />
     <Content Include="Scripts\ckeditor\config.js" />
@@ -1374,6 +1395,20 @@
     <Content Include="Scripts\ckeditor\CHANGES.md" />
     <Content Include=".bowerrc" />
     <Content Include="bower.json" />
+    <Content Include="Scripts\bower_components\angular\.bower.json" />
+    <Content Include="Scripts\bower_components\angular\angular.min.js.gzip" />
+    <Content Include="Scripts\bower_components\angular\angular.min.js.map" />
+    <Content Include="Scripts\bower_components\angular\bower.json" />
+    <Content Include="Scripts\bower_components\angular\package.json" />
+    <Content Include="Scripts\bower_components\angular\README.md" />
+    <Content Include="Scripts\bower_components\ng-flow\.bower.json" />
+    <Content Include="Scripts\bower_components\ng-flow\bower.json" />
+    <Content Include="Scripts\bower_components\ng-flow\travis.sh" />
+    <Content Include="Scripts\bower_components\flow.js\.bower.json" />
+    <Content Include="Scripts\bower_components\flow.js\bower.json" />
+    <Content Include="Scripts\bower_components\flow.js\LICENSE" />
+    <Content Include="Scripts\bower_components\flow.js\README.md" />
+    <Content Include="Scripts\bower_components\flow.js\travis.sh" />
     <None Include="_references.js" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
@@ -1472,6 +1507,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Scripts\bower_components\flow.js\src\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
