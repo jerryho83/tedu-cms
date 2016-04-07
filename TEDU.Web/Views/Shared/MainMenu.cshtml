@@ -1,0 +1,39 @@
+﻿<nav class="navbar navbar-inverse clearfix nobot">
+  <a id="responsive-menu-button" href="#swipe-menu">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </a>
+  <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+  <div class="nav-collapse" id="swipe-menu-responsive">
+
+    <ul class="nav">
+      <li>
+        <span id="close-menu">
+          <a href="#" class="close-this-menu">Close</a>
+          <script type="text/javascript">
+							jQuery('a.sidr-class-close-this-menu').click(function(){
+								jQuery('div.sidr').css({
+									'right': '-476px'
+								});
+								jQuery('body').css({
+								'right': '0'
+								});
+							});
+          </script>
+
+        </span>
+      </li>
+      <li><a href="/"><img src="/Content/client/images/home.png" alt="TEDU"></a></li>
+      <li><a href="/gioi-thieu.html">Giới thiệu</a></li>
+      <li><a href="/khoa-hoc.html">Khóa học</a></li>
+      <li><a href="/lap-trinh.html">ASP.NET</a></li>
+      <li><a href="/lap-trinh.html">Angular JS</a></li>
+      <li><a href="/lap-trinh.html">Database</a></li>
+      <li><a href="/tin-tuc.html">Tin tức</a></li>
+      <li><a href="/tin-tuc.html">CV Online</a></li>
+      <li><a href="/tin-tuc.html">Liên hệ</a></li>
+    </ul>
+
+  </div><!--/.nav-collapse -->
+</nav><!-- /.navbar -->

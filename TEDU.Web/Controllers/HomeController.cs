@@ -13,5 +13,24 @@ namespace TEDU.Web.Controllers
         {
             return View();
         }
+        public PartialViewResult Footer()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult MainMenu()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult NewsTab()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult BreakingNews()
+        {
+            return PartialView();
+        }
     }
 }

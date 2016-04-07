@@ -2246,6 +2246,10 @@
     <Content Include="Scripts\ckfinder\userfiles\.htaccess" />
     <Content Include="Views\Shared\_Layouts.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Footer.cshtml" />
+    <Content Include="Views\Shared\MainMenu.cshtml" />
+    <Content Include="Views\Shared\NewsTab.cshtml" />
+    <Content Include="Views\Shared\BreakingNews.cshtml" />
     <None Include="_references.js" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
