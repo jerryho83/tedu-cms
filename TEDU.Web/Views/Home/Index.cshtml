@@ -1,18 +1,293 @@
 ﻿
 @{
-    Layout = null;
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layouts.cshtml";
 }
+<div id="slider" class="clearfix">
+  <div id="slide-left" class="flexslider span8">
+    <ul class="slides">
+      <li data-thumb="http://placehold.it/546x291">
+        <a href="#" title="Permalink to Morbi est est lectus non rutrum commodo felis quis tortor" rel="bookmark">
+          <img width="546" height="291" src="http://placehold.it/546x291" alt="" />
+        </a>
+        <div class="entry">
+          <h4>Morbi est est lectus non rutrum commodo felis quis tortor...</h4>
+          <p>Fusce aliquet non ipsum vitae scelerisque. Nullam ultricies adipiscing erat, qui...</p>
+        </div>
+      </li>
 
-<!DOCTYPE html>
+      <li data-thumb="http://placehold.it/546x291">
+        <a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">
+          <img width="546" height="291" src="http://placehold.it/546x291" alt="" />
+        </a>
+        <div class="entry">
+          <h4>Donec consectetuer ligula vulputate sem tristique cursus...</h4>
+          <p>Nam nibh arcu, tristique eget pretium sed, porta id quam. Praesent dignissim ant...</p>
+        </div>
+      </li>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div> 
-        Home controller
+      <li data-thumb="http://placehold.it/546x291">
+        <a href="#" title="Permalink to Quisque sodales viverra ornare vitae libero ac risus" rel="bookmark">
+          <img width="546" height="291" src="http://placehold.it/546x291" alt="" />
+        </a>
+        <div class="entry">
+          <h4>Quisque sodales viverra ornare vitae libero ac risus...</h4>
+          <p>Quisque sodales viverra ornare. Aenean posuere lacus sed facilisis gravida. Morb...</p>
+        </div>
+      </li>
+
+      <li data-thumb="http://placehold.it/546x291">
+        <a href="#" title="Permalink to Vestibulum auctor dapibus neque pulvinar urna leo" rel="bookmark">
+          <img width="546" height="291" src="http://placehold.it/546x291" alt="" />
+        </a>
+        <div class="entry">
+          <h4>Vestibulum auctor dapibus neque pulvinar urna leo...</h4>
+          <p>Fusce aliquet non ipsum vitae scelerisque. Nullam ultricies adipiscing erat, qui...</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div id="slide-right" class="span4">
+    <h3>Most Popular News</h3>
+    <ul>
+      <li><a href="#" title="Permalink to Lectus non rutrum pulvinar urna leo dignissim lorem" rel="bookmark"><h4 class="post-title">Lectus non rutrum pulvinar urna leo dignissim lore...</h4></a></li>
+      <li><a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark"><h4 class="post-title">Donec consectetuer ligula vulputate sem tristique ...</h4></a></li>
+      <li><a href="#" title="Permalink to Quisque sodales viverra ornare vitae libero ac risus" rel="bookmark"><h4 class="post-title">Quisque sodales viverra ornare vitae libero ac ris...</h4></a></li>
+      <li><a href="#" title="Permalink to Nam nibh arcu tristique eget pretium vitae libero ac risus" rel="bookmark"><h4 class="post-title">Nam nibh arcu tristique eget pretium vitae libero ...</h4></a></li>
+    </ul><div class="clear"></div>
+  </div>
+</div>
+
+<div id="home-top">
+  <h3 class="title"><span>Hot Stuff</span></h3>
+  <ul class="bxslider">
+    <li>
+      <a class="image_thumb_zoom" href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">
+        <img width="225" height="136" src="http://placehold.it/225x136" alt="" />
+      </a>
+      <h4 class="post-title clearfix">
+        <img class="post-icon" alt="Text post" src="images/text.png">
+        <a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">Donec consectetuer ligula vulputate...	</a>
+      </h4>
+      <div class="meta clearfix">
+        <span class="date">July 11, 2013</span>
+        <div class="ratings">
+          <input class="star" type="radio" name="home-top-rating-1" value="1" disabled="disabled" />
+          <input class="star" type="radio" name="home-top-rating-1" value="2" disabled="disabled" />
+          <input class="star" type="radio" name="home-top-rating-1" value="3" disabled="disabled" checked="checked" />
+          <input class="star" type="radio" name="home-top-rating-1" value="4" disabled="disabled" />
+          <input class="star" type="radio" name="home-top-rating-1" value="5" disabled="disabled" />
+        </div>
+      </div>
+    </li>
+    <li>
+      <a class="image_thumb_zoom" href="#" title="Permalink to Nam nibh arcu tristique eget pretium vitae libero ac risus" rel="bookmark">
+        <img width="225" height="136" src="http://placehold.it/225x136" alt="" />
+      </a>
+      <h4 class="post-title clearfix">
+        <img class="post-icon" alt="Gallery post" src="images/image.png">
+        <a href="#" title="Permalink to Nam nibh arcu tristique eget pretium vitae libero ac risus" rel="bookmark">Nam nibh arcu tristique eget pretiu...</a>
+      </h4>
+      <div class="meta clearfix">
+        <span class="date">July 2, 2013</span>
+        <div class="ratings">
+          <input class="star" type="radio" name="home-top-rating-2" value="1" disabled="disabled" />
+          <input class="star" type="radio" name="home-top-rating-2" value="2" disabled="disabled" />
+          <input class="star" type="radio" name="home-top-rating-2" value="3" disabled="disabled" checked="checked" />
+          <input class="star" type="radio" name="home-top-rating-2" value="4" disabled="disabled" />
+          <input class="star" type="radio" name="home-top-rating-2" value="5" disabled="disabled" />
+        </div>
+      </div>
+    </li>
+    <li>
+      <a class="image_thumb_zoom" href="#" title="Permalink to Aliquam quam lectus pulvinar urna leo dignissim lorem" rel="bookmark">
+        <img width="225" height="136" src="http://placehold.it/225x136" alt="" />
+      </a>
+      <h4 class="post-title clearfix">
+        <img class="post-icon" alt="Photo" src="images/photo.png">
+        <a href="#" title="Permalink to Aliquam quam lectus pulvinar urna leo dignissim lorem" rel="bookmark">Aliquam quam lectus pulvinar urna l...</a>
+      </h4>
+      <div class="meta clearfix">
+        <span class="date">June 16, 2013</span>
+        <div class="ratings">
+          <input class="star" type="radio" name="home-top-rating-3" value="1" disabled="disabled" />
+          <input class="star" type="radio" name="home-top-rating-3" value="2" disabled="disabled" />
+          <input class="star" type="radio" name="home-top-rating-3" value="3" disabled="disabled" />
+          <input class="star" type="radio" name="home-top-rating-3" value="4" disabled="disabled" checked="checked" />
+          <input class="star" type="radio" name="home-top-rating-3" value="5" disabled="disabled" />
+        </div>
+      </div>
+    </li>
+    <li>
+      <a class="image_thumb_zoom" href="#" title="Permalink to Phasellus scelerisque massa molestie iaculis lectus pulvinar" rel="bookmark">
+        <img width="225" height="136" src="http://placehold.it/225x136" alt="" />
+      </a>
+      <h4 class="post-title clearfix">
+        <img class="post-icon" alt="Video post" src="images/vid.png">
+        <a href="#" title="Permalink to Phasellus scelerisque massa molestie iaculis lectus pulvinar" rel="bookmark">Phasellus scelerisque massa molesti...	</a>
+      </h4>
+      <div class="meta clearfix">
+        <span class="date">June 2, 2013</span>
+        <div class="ratings">
+          <input class="star" type="radio" name="home-top-rating-4" value="1" disabled="disabled" />
+          <input class="star" type="radio" name="home-top-rating-4" value="2" disabled="disabled" />
+          <input class="star" type="radio" name="home-top-rating-4" value="3" disabled="disabled" />
+          <input class="star" type="radio" name="home-top-rating-4" value="4" disabled="disabled" checked="checked" />
+          <input class="star" type="radio" name="home-top-rating-4" value="5" disabled="disabled" />
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div id="home-middle" class="clearfix">
+  <div class="left span6">
+    <h3 class="title"><a href="#" title="Game News"><span>Game News</span></a></h3>
+    <div class="row-fluid">
+      <article class="post">
+        <a class="image_thumb_zoom" href="#" title="Permalink to Integer vitae libero ac risus egestas placerat urna" rel="bookmark">
+          <img width="371" height="177" src="http://placehold.it/371x177" alt="" />
+        </a>
+        <h4 class="post-title">
+          <a href="#" title="Permalink to Integer vitae libero ac risus egestas placerat urna" rel="bookmark">Integer vitae libero ac risus egest...</a>
+          <span class="date">July 11, 2013</span>
+        </h4>
+        <p>Fusce aliquet non ipsum vitae scelerisque. Nullam ultricies adipiscing erat, quis bibendum enim congue porttitor. E...</p>
+      </article>
+
+      <article class="post">
+        <div class="entry clearfix">
+          <a href="#" title="Permalink to Morbi est est lectus non rutrum commodo felis quis tortor" rel="bookmark">
+            <img width="225" height="136" src="http://placehold.it/225x136" class="thumb" alt="" />
+            <h4 class="post-title">Morbi est est lectus non rutrum com...</h4>
+          </a>
+          <p>Fusce aliquet non ipsum vitae scelerisqu...</p>
+          <div class="meta">
+            <span class="date">July 11, 2013</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="entry clearfix">
+          <a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">
+            <img width="225" height="136" src="http://placehold.it/225x136" class="thumb" alt="" />
+            <h4 class="post-title">Donec consectetuer ligula vulputate...</h4>
+          </a>
+          <p>Nam nibh arcu, tristique eget pretium se...</p>
+          <div class="meta">
+            <span class="date">July 11, 2013</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="clearfix"></div>
     </div>
-</body>
-</html>
+  </div>
+
+  <div class="right span6">
+    <h3 class="title"><a href="#" title="Sport News"><span>Sport News</span></a></h3>
+    <div class="row-fluid">
+      <article class="post">
+        <a class="image_thumb_zoom" href="#" title="Permalink to Quisque sodales viverra ornare vitae libero ac risus" rel="bookmark">
+          <img width="371" height="177" src="http://placehold.it/371x177" alt="" />
+        </a>
+        <h4 class="post-title">
+          <a href="#" title="Permalink to Quisque sodales viverra ornare vitae libero ac risus" rel="bookmark">Quisque sodales viverra ornare vita...</a>
+          <span class="date">July 2, 2013</span>
+        </h4>
+        <p>Quisque sodales viverra ornare. Aenean posuere lacus sed facilisis gravida. Morbi auctor consectetur mauris a ultri...</p>
+      </article>
+
+      <article class="post">
+        <div class="entry clearfix">
+          <a href="#" title="Permalink to Nam nibh arcu tristique eget pretium vitae libero ac risus" rel="bookmark">
+            <img width="225" height="136" src="http://placehold.it/225x136" class="thumb" alt="" />
+            <h4 class="post-title">Nam nibh arcu tristique eget pretiu...</h4>
+          </a>
+          <p>Nam nibh arcu, tristique eget pretium se...</p>
+          <div class="meta">
+            <span class="date">July 2, 2013</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="post">
+        <div class="entry clearfix">
+          <a href="#" title="Permalink to Vestibulum auctor dapibus neque pulvinar urna leo" rel="bookmark">
+            <img width="225" height="136" src="http://placehold.it/225x136" class="thumb" alt="" />
+            <h4 class="post-title">Vestibulum auctor dapibus neque pul...</h4>
+          </a>
+          <p>Fusce aliquet non ipsum vitae scelerisqu...</p>
+          <div class="meta">
+            <span class="date">June 14, 2013</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="clearfix"></div>
+
+    </div>
+  </div>
+
+</div>
+
+<div id="home-bottom" class="clearfix">
+  <h3 class="title"><a href="#" title="Fashion News"><span>Fashion News</span></a></h3>
+  <div class="row-fluid">
+    <div class="span6">
+      <article class="post">
+        <a class="image_thumb_zoom" href="#" title="Permalink to Lectus non rutrum pulvinar urna leo dignissim lorem" rel="bookmark">
+          <img width="371" height="177" src="http://placehold.it/371x177" alt="" />
+        </a>
+        <h4 class="post-title">
+          <a href="#" title="Permalink to Lectus non rutrum pulvinar urna leo dignissim lorem" rel="bookmark">Lectus non rutrum pulvinar urna leo...</a>
+          <span class="date">August 12, 2013</span>
+        </h4>
+        <p>Nam nibh arcu, tristique eget pretium sed, porta id quam. Praesent dignissim ante ac tincidunt molestie. Nunc quis ...</p>
+      </article>
+    </div>
+
+    <div class="span6">
+      <article class="post">
+        <div class="entry clearfix">
+          <a href="#" title="Permalink to Suspen disse auctor dapibus neque pulvinar urna leo" rel="bookmark">
+            <img width="225" height="136" src="http://placehold.it/225x136" class="thumb" alt="" />
+            <h4 class="post-title">Suspen disse auctor dapibus neque p...</h4>
+          </a>
+          <p>Fusce aliquet non ipsum vitae scelerisqu...</p>
+          <div class="meta">
+            <span class="date">August 11, 2013</span>
+          </div>
+        </div>
+      </article>
+      <article class="post">
+        <div class="entry clearfix">
+          <a href="#" title="Permalink to Aenean dignissim dignissim lorem pellentesque felis risus" rel="bookmark">
+            <img width="225" height="136" src="http://placehold.it/225x136" class="thumb" alt="" />
+            <h4 class="post-title">Aenean dignissim dignissim lorem pe...</h4>
+          </a>
+          <p>Fusce aliquet non ipsum vitae scelerisqu...</p>
+          <div class="meta">
+            <span class="date">July 2, 2013</span>
+          </div>
+        </div>
+      </article>
+      <article class="post">
+        <div class="entry clearfix">
+          <a href="#" title="Permalink to Quisque sodales viverra ornare vitae libero ac risus" rel="bookmark">
+            <img width="225" height="136" src="http://placehold.it/225x136" class="thumb" alt="" />
+            <h4 class="post-title">Quisque sodales viverra ornare vita...</h4>
+          </a>
+          <p>Quisque sodales viverra ornare. Aenean p...</p>
+          <div class="meta">
+            <span class="date">July 2, 2013</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
