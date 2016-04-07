@@ -2055,31 +2055,13 @@
     <Content Include="Scripts\ckeditor\package.json" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
-<<<<<<< HEAD
+
     <Content Include="Scripts\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="Scripts\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Scripts\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Scripts\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Scripts\ckfinder\userfiles\.htaccess" />
-=======
-    <Content Include=".bowerrc" />
-    <Content Include="bower.json" />
-    <Content Include="Scripts\bower_components\angular\.bower.json" />
-    <Content Include="Scripts\bower_components\angular\angular.min.js.gzip" />
-    <Content Include="Scripts\bower_components\angular\angular.min.js.map" />
-    <Content Include="Scripts\bower_components\angular\bower.json" />
-    <Content Include="Scripts\bower_components\angular\package.json" />
-    <Content Include="Scripts\bower_components\angular\README.md" />
-    <Content Include="Scripts\bower_components\ng-flow\.bower.json" />
-    <Content Include="Scripts\bower_components\ng-flow\bower.json" />
-    <Content Include="Scripts\bower_components\ng-flow\travis.sh" />
-    <Content Include="Scripts\bower_components\flow.js\.bower.json" />
-    <Content Include="Scripts\bower_components\flow.js\bower.json" />
-    <Content Include="Scripts\bower_components\flow.js\LICENSE" />
-    <Content Include="Scripts\bower_components\flow.js\README.md" />
-    <Content Include="Scripts\bower_components\flow.js\travis.sh" />
->>>>>>> 73b9160dd369b6a04e82e6ea8ad1a17bae8ea97c
     <None Include="_references.js" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
@@ -2178,11 +2160,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
-<<<<<<< HEAD
     <Folder Include="UploadData\" />
-=======
-    <Folder Include="Scripts\bower_components\flow.js\src\" />
->>>>>>> 73b9160dd369b6a04e82e6ea8ad1a17bae8ea97c
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
