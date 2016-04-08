@@ -32,5 +32,25 @@ namespace TEDU.Web.Controllers
         {
             return PartialView();
         }
+
+        public PartialViewResult Gallery()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult VideoGallery()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult RecentPost()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult SpecialBox()
+        {
+            return PartialView();
+        }
     }
 }

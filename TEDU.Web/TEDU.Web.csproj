@@ -2250,6 +2250,10 @@
     <Content Include="Views\Shared\MainMenu.cshtml" />
     <Content Include="Views\Shared\NewsTab.cshtml" />
     <Content Include="Views\Shared\BreakingNews.cshtml" />
+    <Content Include="Views\Shared\Gallery.cshtml" />
+    <Content Include="Views\Shared\VideoGallery.cshtml" />
+    <Content Include="Views\Shared\RecentPost.cshtml" />
+    <Content Include="Views\Shared\SpecialBox.cshtml" />
     <None Include="_references.js" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
