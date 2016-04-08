@@ -29,5 +29,7 @@ namespace TEDU.Web.ViewModels
         public string MetaKeyword { set; get; }
 
         public string MetaDescription { set; get; }
+
+        public DateTime? ShowHome { set; get; }
     }
 }

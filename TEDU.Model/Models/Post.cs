@@ -68,5 +68,7 @@ namespace TEDU.Model
         [Column(TypeName = "nvarchar")]
         [StringLength(250)]
         public string MetaDescription { set; get; }
+
+        public DateTime? HotFlag { set; get; }
     }
 }

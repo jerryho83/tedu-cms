@@ -14,10 +14,19 @@
               { field: "Name", displayName: "Tên chuyên mục" },
               { field: "CreatedDate", displayName: "Ngày tạo" },
               {
-                  field: "ID",
-                  displayName: "",
+                  field: "ID", displayName: "Show trang chủ",
                   cellTemplateScope: {
-                      edit: function (data) {         // this works too: $scope.someMethod;
+                      toggleChange: function (data) {  
+                          showHideOnHome(data);
+                      }
+                  },
+                  cellTemplate: "<input type=\"checkbox\"  />"
+              },
+              {
+                  field: "ID",
+                  displayName: "Thao tác",
+                  cellTemplateScope: {
+                      edit: function (data) {         
                           $state.go('edit_category', { 'id': data });
                       },
                       remove: function (data) {
@@ -34,6 +43,10 @@
         $scope.clearSearch = clearSearch;
 
         $scope.deleteItem = deleteItem;
+
+        function showHideOnHome(id) {
+            notificationService.displaySuccess('Đã xóa thành công.' + id);
+        }
 
         function deleteItem(id) {
             $ngBootbox.confirm('Bạn có chắc muốn xóa?')

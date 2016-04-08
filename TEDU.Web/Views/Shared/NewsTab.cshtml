@@ -1,68 +1,25 @@
 ﻿<div id="tabwidget" class="widget tab-container">
   <ul id="tabnav" class="clearfix">
-    <li><h3><a href="#tab1" class="selected"><img src="/Content/client/images/view-white-bg.png" alt="Popular">Popular</a></h3></li>
-    <li><h3><a href="#tab2"><img src="/Content/client/images/time-white.png" alt="Recent">Recent</a></h3></li>
-    <li><h3><a href="#tab3"><img src="/Content/client/images/komen-putih.png" alt="Comments">Comments</a></h3></li>
+    <li><h3><a href="#tab1" class="selected"><img src="/Content/client/images/view-white-bg.png" alt="Popular">Đọc nhiều</a></h3></li>
+    <li><h3><a href="#tab2"><img src="/Content/client/images/time-white.png" alt="Recent">Mới đăng</a></h3></li>
+    <li><h3><a href="#tab3"><img src="/Content/client/images/komen-putih.png" alt="Comments">Bình luận</a></h3></li>
   </ul>
 
   <div id="tab-content">
 
     <div id="tab1" style="display: block; ">
       <ul id="itemContainer" class="recent-tab">
-        <li>
-          <a href="#"><img width="225" height="136" src="http://placehold.it/225x136" class="thumb" alt="" /></a>
-          <h4 class="post-title"><a href="#">Lectus non rutrum pulvinar urna...</a></h4>
-          <p>Nam nibh arcu, tristique eget pretium sed, porta id quam. Praesent dig...</p>
-          <div class="clearfix"></div>
-        </li>
-        <li>
-          <a href="#"><img width="225" height="136" src="http://placehold.it/225x136" class="thumb" alt="" /></a>
-          <h4 class="post-title"><a href="#">Donec consectetuer ligula vulpu...</a></h4>
-          <p>Nam nibh arcu, tristique eget pretium sed, porta id quam. Praesent dig...</p>
-          <div class="clearfix"></div>
-        </li>
-        <li>
-          <a href="#"><img width="225" height="136" src="http://placehold.it/225x136" class="thumb" alt="" /></a>
-          <h4 class="post-title"><a href="#">Nam nibh arcu tristique eget pr...</a></h4>
-          <p>Nam nibh arcu, tristique eget pretium sed, porta id quam. Praesent dig...</p>
-          <div class="clearfix"></div>
-        </li>
-        <li>
-          <a href="#"><img width="225" height="136" src="http://placehold.it/225x136" class="thumb" alt="" /></a>
-          <h4 class="post-title"><a href="#">Quisque sodales viverra ornare ...</a></h4>
-          <p>Quisque sodales viverra ornare. Aenean posuere lacus sed facilisis gra...</p>
-          <div class="clearfix"></div>
-        </li>
-        <li>
-          <a href="#"><img width="225" height="136" src="/Content/client/images/thumb_225x136.jpg" class="thumb" alt="" /></a>
-          <h4 class="post-title"><a href="#">Morbi est est lectus non rutrum...</a></h4>
-          <p>Fusce aliquet non ipsum vitae scelerisque. Nullam ultricies adipiscing...</p>
-          <div class="clearfix"></div>
-        </li>
-        <li>
-          <a href="#"><img width="225" height="136" src="/Content/client/images/thumb_225x136.jpg" class="thumb" alt="" /></a>
-          <h4 class="post-title"><a href="#">Aliquam quam lectus pulvinar ur...</a></h4>
-          <p>Fusce aliquet non ipsum vitae scelerisque. Nullam ultricies adipiscing...</p>
-          <div class="clearfix"></div>
-        </li>
-        <li>
-          <a href="#"><img width="225" height="136" src="/Content/client/images/thumb_225x136.jpg" class="thumb" alt="" /></a>
-          <h4 class="post-title"><a href="#">Suspen disse auctor dapibus neq...</a></h4>
-          <p>Fusce aliquet non ipsum vitae scelerisque. Nullam ultricies adipiscing...</p>
-          <div class="clearfix"></div>
-        </li>
-        <li>
-          <a href="#"><img width="225" height="136" src="/Content/client/images/thumb_225x136.jpg" class="thumb" alt="" /></a>
-          <h4 class="post-title"><a href="#">Porta lorem ipsum dolor sit ame...</a></h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer place...</p>
-          <div class="clearfix"></div>
-        </li>
-        <li>
-          <a href="#"><img width="225" height="136" src="/Content/client/images/thumb_225x136.jpg" class="thumb" alt="" /></a>
-          <h4 class="post-title"><a href="#">Integer vitae libero ac risus e...</a></h4>
-          <p>Fusce aliquet non ipsum vitae scelerisque. Nullam ultricies adipiscing...</p>
-          <div class="clearfix"></div>
-        </li>
+        @foreach (var item in (IEnumerable<TEDU.Web.ViewModels.PostViewModel>)ViewBag.Popular)
+        {
+          var url = "/" + item.Alias + "-" + item.ID + ".html";
+            <li>
+              <a href="@url"><img width="225" height="136" src="@item.Image" class="thumb" alt="@item.Name" /></a>
+              <h4 class="post-title"><a href="@url">@item.Name</a></h4>
+              <p>@item.Description</p>
+              <div class="clearfix"></div>
+            </li>
+        }
+       
 
         <script type="text/javascript">
                     jQuery(document).ready(function ($) {
@@ -89,33 +46,25 @@
 
     <div id="tab2" style="display: none;">
       <ul id="itemContainer2" class="recent-tab">
-        <li>
-          <a href="#"><img width="225" height="136" src="http://placehold.it/225x136" class="thumb" alt="" /></a>
-          <h4 class="post-title"><a href="#">Lectus non rutrum pulvinar urna...</a></h4>
-          <p>Nam nibh arcu, tristique eget pretium sed, porta id quam. Praesent dig...</p>
-          <div class="clearfix"></div>
-        </li>
-        <li>
-          <a href="#"><img width="225" height="136" src="http://placehold.it/225x136" class="thumb" alt="" /></a>
-          <h4 class="post-title"><a href="#">Suspen disse auctor dapibus neq...</a></h4>
-          <p>Fusce aliquet non ipsum vitae scelerisque. Nullam ultricies adipiscing...</p>
-          <div class="clearfix"></div>
-        </li>
-        <li>
-          <a href="#"><img width="225" height="136" src="http://placehold.it/225x136" class="thumb" alt="" /></a>
-          <h4 class="post-title"><a href="#">Porta lorem ipsum dolor sit ame...</a></h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer place...</p>
-          <div class="clearfix"></div>
-        </li>
+        @foreach (var item in (IEnumerable<TEDU.Web.ViewModels.PostViewModel>)ViewBag.RecentPosts)
+        {
+          var url = "/" + item.Alias + "-" + item.ID + ".html";
+            <li>
+              <a href="@url"><img width="225" height="136" src="@item.Image" class="thumb" alt="@item.Name" /></a>
+              <h4 class="post-title"><a href="@url">@item.Name</a></h4>
+              <p>@item.Description</p>
+              <div class="clearfix"></div>
+            </li>
+        }
       </ul>
     </div><!-- /#tab2 -->
 
     <div id="tab3" style="display: none; ">
       <ul>
-        <li><span class="author">Magazine Author</span> on <a href="#" title=" View comment ">Lorem Ipsum is simply dummy te</a></li>
-        <li><span class="author">Magazine Author</span> on <a href="#" title=" View comment ">Lorem Ipsum is simply dummy te</a></li>
-        <li><span class="author">magazine</span> on <a href="#" title=" View comment ">This is threaded comment level</a></li>
-        <li><span class="author">magazine</span> on <a href="#" title=" View comment ">This is threaded comment syste</a></li>
+        <li><span class="author">Magazine Author</span> on <a href="#" title="View comment">Lorem Ipsum is simply dummy te</a></li>
+        <li><span class="author">Magazine Author</span> on <a href="#" title="View comment">Lorem Ipsum is simply dummy te</a></li>
+        <li><span class="author">magazine</span> on <a href="#" title="View comment">This is threaded comment level</a></li>
+        <li><span class="author">magazine</span> on <a href="#" title="View comment">This is threaded comment syste</a></li>
       </ul>
     </div><!-- /#tab2 -->
 

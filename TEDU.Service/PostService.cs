@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TEDU.Common;
 using TEDU.Data.Infrastructure;
 using TEDU.Data.Repositories;
@@ -14,11 +11,22 @@ namespace TEDU.Service
     public interface IPostService
     {
         IEnumerable<Post> GetPosts();
+
         IEnumerable<Post> GetPosts(int page, int pageSize, out int totalRow, string filter = null);
+
         Post GetPost(int id);
+
         void CreatePost(Post Post);
+
         void Delete(Post post);
+
         void SavePost();
+
+        IEnumerable<Post> GetRecentPosts(int top);
+
+        IEnumerable<Post> GetPopularPosts(int top);
+
+        IEnumerable<Post> GetBreakingNews(int top);
     }
 
     public class PostService : IPostService
@@ -50,7 +58,7 @@ namespace TEDU.Service
                 model = PostsRepository
                     .GetMany(m => m.Name.ToLower()
                     .Contains(filter.ToLower().Trim()) &&
-                    m.Status==StatusEnum.Publish.ToString())
+                    m.Status == StatusEnum.Publish.ToString())
                     .OrderBy(m => m.ID)
                     .Skip(page * pageSize)
                     .Take(pageSize)
@@ -59,19 +67,19 @@ namespace TEDU.Service
                 totalRow = PostsRepository
                     .GetMany(m => m.Name.ToLower()
                     .Contains(filter.ToLower().Trim()) &&
-                    m.Status==StatusEnum.Publish.ToString())
+                    m.Status == StatusEnum.Publish.ToString())
                     .Count();
             }
             else
             {
                 model = PostsRepository
-                    .GetMany(x => x.Status== StatusEnum.Publish.ToString())
+                    .GetMany(x => x.Status == StatusEnum.Publish.ToString())
                     .OrderBy(m => m.ID)
                     .Skip(page * pageSize)
                     .Take(pageSize)
                     .ToList();
 
-                totalRow = PostsRepository.GetMany(x => x.Status==StatusEnum.Publish.ToString()).Count();
+                totalRow = PostsRepository.GetMany(x => x.Status == StatusEnum.Publish.ToString()).Count();
             }
 
             return model;
@@ -98,7 +106,27 @@ namespace TEDU.Service
             PostsRepository.Delete(post);
         }
 
-        #endregion
+        public IEnumerable<Post> GetRecentPosts(int top = 0)
+        {
+            return PostsRepository
+                .GetMany(x => x.Status == StatusEnum.Publish.ToString())
+                .OrderByDescending(x => x.CreatedDate).Take(top);
+        }
 
+        public IEnumerable<Post> GetPopularPosts(int top)
+        {
+            return PostsRepository
+                .GetMany(x => x.Status == StatusEnum.Publish.ToString())
+                .OrderByDescending(x => x.ViewCount).Take(top);
+        }
+
+        public IEnumerable<Post> GetBreakingNews(int top)
+        {
+            return PostsRepository
+               .GetMany(x => x.Status == StatusEnum.Publish.ToString() && x.HotFlag.HasValue)
+               .OrderByDescending(x => x.HotFlag).Take(top);
+        }
+
+        #endregion IPostService Members
     }
 }

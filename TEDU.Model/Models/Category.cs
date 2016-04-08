@@ -40,5 +40,7 @@ namespace TEDU.Model
         [StringLength(250)]
         public string MetaDescription { set; get; }
 
+        public DateTime? ShowHome { set; get; }
+
     }
 }

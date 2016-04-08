@@ -1,11 +1,16 @@
-﻿<div id="intr" class="container">
+﻿@model IEnumerable<TEDU.Web.ViewModels.PostViewModel>
+<div id="intr" class="container">
   <div class="row-fluid">
     <div class="brnews span9">
       <h3>Tiêu điểm</h3>
       <ul id="scroller">
-        <li><p><a href="#" title="Permalink to Lectus non rutrum pulvinar urna leo dignissim lorem" rel="bookmark"><span class="title">Lectus non rutrum pu...</span> Nam nibh arcu, tristique eget pretium sed, porta i...</a></p></li>
-        <li><p><a href="#" title="Permalink to Suspen disse auctor dapibus neque pulvinar urna leo" rel="bookmark"><span class="title">Suspen disse auctor ...</span> Fusce aliquet non ipsum vitae scelerisque. Nullam ...</a></p></li>
-        <li><p><a href="#" title="Permalink to Porta lorem ipsum dolor sit amet, consectetur adipiscing risus" rel="bookmark"><span class="title">Porta lorem ipsum do...</span> Lorem ipsum dolor sit amet, consectetur adipiscing...</a></p></li>
+        @foreach (var item in Model)
+        {
+          var url = "/" + item.Alias + "-" + item.ID + ".html";
+
+            <li><p><a href="@url" title="@item.Name" rel="bookmark"><span class="title">@item.Name</span>@item.Description</a></p></li>
+
+        }
       </ul>
     </div>
 
@@ -13,8 +18,8 @@
       <div class="offset1">
         <form method="get" id="searchform" action="#">
           <p>
-            <input type="text" value="Search here..." onfocus="if ( this.value == 'Search here...' ) { this.value = ''; }" onblur="if ( this.value == '' ) { this.value = 'Search here...'; }" name="s" id="s" />
-            <input type="submit" id="searchsubmit" value="Search" />
+            <input type="text" placeholder="Từ khóa" />
+            <input type="submit" id="searchsubmit" value="Tìm" />
           </p>
         </form>
       </div>

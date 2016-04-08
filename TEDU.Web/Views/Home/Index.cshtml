@@ -49,97 +49,102 @@
   </div>
 
   <div id="slide-right" class="span4">
-    <h3>Most Popular News</h3>
+    <h3>Tin mới nhất</h3>
     <ul>
-      <li><a href="#" title="Permalink to Lectus non rutrum pulvinar urna leo dignissim lorem" rel="bookmark"><h4 class="post-title">Lectus non rutrum pulvinar urna leo dignissim lore...</h4></a></li>
-      <li><a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark"><h4 class="post-title">Donec consectetuer ligula vulputate sem tristique ...</h4></a></li>
-      <li><a href="#" title="Permalink to Quisque sodales viverra ornare vitae libero ac risus" rel="bookmark"><h4 class="post-title">Quisque sodales viverra ornare vitae libero ac ris...</h4></a></li>
-      <li><a href="#" title="Permalink to Nam nibh arcu tristique eget pretium vitae libero ac risus" rel="bookmark"><h4 class="post-title">Nam nibh arcu tristique eget pretium vitae libero ...</h4></a></li>
+      @foreach (var item in (IEnumerable<TEDU.Web.ViewModels.PostViewModel>)ViewBag.FocusNews)
+      {
+        var url = "/" + item.Alias + "-" + item.ID + ".html";
+          <li>
+            <a href="@url" title="@item.Name" rel="bookmark">
+              <h4 class="post-title">@url</h4>
+            </a>
+          </li>
+      }
     </ul><div class="clear"></div>
   </div>
 </div>
 
-<div id="home-top">
-  <h3 class="title"><span>Hot Stuff</span></h3>
-  <ul class="bxslider">
-    <li>
-      <a class="image_thumb_zoom" href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">
-        <img width="225" height="136" src="http://placehold.it/225x136" alt="" />
-      </a>
-      <h4 class="post-title clearfix">
-        <img class="post-icon" alt="Text post" src="/Content/client/images/text.png">
-        <a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">Donec consectetuer ligula vulputate...	</a>
-      </h4>
-      <div class="meta clearfix">
-        <span class="date">July 11, 2013</span>
-        <div class="ratings">
-          <input class="star" type="radio" name="home-top-rating-1" value="1" disabled="disabled" />
-          <input class="star" type="radio" name="home-top-rating-1" value="2" disabled="disabled" />
-          <input class="star" type="radio" name="home-top-rating-1" value="3" disabled="disabled" checked="checked" />
-          <input class="star" type="radio" name="home-top-rating-1" value="4" disabled="disabled" />
-          <input class="star" type="radio" name="home-top-rating-1" value="5" disabled="disabled" />
+@*<div id="home-top">
+    <h3 class="title"><span>Hot Stuff</span></h3>
+    <ul class="bxslider">
+      <li>
+        <a class="image_thumb_zoom" href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">
+          <img width="225" height="136" src="http://placehold.it/225x136" alt="" />
+        </a>
+        <h4 class="post-title clearfix">
+          <img class="post-icon" alt="Text post" src="/Content/client/images/text.png">
+          <a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">Donec consectetuer ligula vulputate...	</a>
+        </h4>
+        <div class="meta clearfix">
+          <span class="date">July 11, 2013</span>
+          <div class="ratings">
+            <input class="star" type="radio" name="home-top-rating-1" value="1" disabled="disabled" />
+            <input class="star" type="radio" name="home-top-rating-1" value="2" disabled="disabled" />
+            <input class="star" type="radio" name="home-top-rating-1" value="3" disabled="disabled" checked="checked" />
+            <input class="star" type="radio" name="home-top-rating-1" value="4" disabled="disabled" />
+            <input class="star" type="radio" name="home-top-rating-1" value="5" disabled="disabled" />
+          </div>
         </div>
-      </div>
-    </li>
-    <li>
-      <a class="image_thumb_zoom" href="#" title="Permalink to Nam nibh arcu tristique eget pretium vitae libero ac risus" rel="bookmark">
-        <img width="225" height="136" src="http://placehold.it/225x136" alt="" />
-      </a>
-      <h4 class="post-title clearfix">
-        <img class="post-icon" alt="Gallery post" src="/Content/client/images/image.png">
-        <a href="#" title="Permalink to Nam nibh arcu tristique eget pretium vitae libero ac risus" rel="bookmark">Nam nibh arcu tristique eget pretiu...</a>
-      </h4>
-      <div class="meta clearfix">
-        <span class="date">July 2, 2013</span>
-        <div class="ratings">
-          <input class="star" type="radio" name="home-top-rating-2" value="1" disabled="disabled" />
-          <input class="star" type="radio" name="home-top-rating-2" value="2" disabled="disabled" />
-          <input class="star" type="radio" name="home-top-rating-2" value="3" disabled="disabled" checked="checked" />
-          <input class="star" type="radio" name="home-top-rating-2" value="4" disabled="disabled" />
-          <input class="star" type="radio" name="home-top-rating-2" value="5" disabled="disabled" />
+      </li>
+      <li>
+        <a class="image_thumb_zoom" href="#" title="Permalink to Nam nibh arcu tristique eget pretium vitae libero ac risus" rel="bookmark">
+          <img width="225" height="136" src="http://placehold.it/225x136" alt="" />
+        </a>
+        <h4 class="post-title clearfix">
+          <img class="post-icon" alt="Gallery post" src="/Content/client/images/image.png">
+          <a href="#" title="Permalink to Nam nibh arcu tristique eget pretium vitae libero ac risus" rel="bookmark">Nam nibh arcu tristique eget pretiu...</a>
+        </h4>
+        <div class="meta clearfix">
+          <span class="date">July 2, 2013</span>
+          <div class="ratings">
+            <input class="star" type="radio" name="home-top-rating-2" value="1" disabled="disabled" />
+            <input class="star" type="radio" name="home-top-rating-2" value="2" disabled="disabled" />
+            <input class="star" type="radio" name="home-top-rating-2" value="3" disabled="disabled" checked="checked" />
+            <input class="star" type="radio" name="home-top-rating-2" value="4" disabled="disabled" />
+            <input class="star" type="radio" name="home-top-rating-2" value="5" disabled="disabled" />
+          </div>
         </div>
-      </div>
-    </li>
-    <li>
-      <a class="image_thumb_zoom" href="#" title="Permalink to Aliquam quam lectus pulvinar urna leo dignissim lorem" rel="bookmark">
-        <img width="225" height="136" src="http://placehold.it/225x136" alt="" />
-      </a>
-      <h4 class="post-title clearfix">
-        <img class="post-icon" alt="Photo" src="/Content/client/images/photo.png">
-        <a href="#" title="Permalink to Aliquam quam lectus pulvinar urna leo dignissim lorem" rel="bookmark">Aliquam quam lectus pulvinar urna l...</a>
-      </h4>
-      <div class="meta clearfix">
-        <span class="date">June 16, 2013</span>
-        <div class="ratings">
-          <input class="star" type="radio" name="home-top-rating-3" value="1" disabled="disabled" />
-          <input class="star" type="radio" name="home-top-rating-3" value="2" disabled="disabled" />
-          <input class="star" type="radio" name="home-top-rating-3" value="3" disabled="disabled" />
-          <input class="star" type="radio" name="home-top-rating-3" value="4" disabled="disabled" checked="checked" />
-          <input class="star" type="radio" name="home-top-rating-3" value="5" disabled="disabled" />
+      </li>
+      <li>
+        <a class="image_thumb_zoom" href="#" title="Permalink to Aliquam quam lectus pulvinar urna leo dignissim lorem" rel="bookmark">
+          <img width="225" height="136" src="http://placehold.it/225x136" alt="" />
+        </a>
+        <h4 class="post-title clearfix">
+          <img class="post-icon" alt="Photo" src="/Content/client/images/photo.png">
+          <a href="#" title="Permalink to Aliquam quam lectus pulvinar urna leo dignissim lorem" rel="bookmark">Aliquam quam lectus pulvinar urna l...</a>
+        </h4>
+        <div class="meta clearfix">
+          <span class="date">June 16, 2013</span>
+          <div class="ratings">
+            <input class="star" type="radio" name="home-top-rating-3" value="1" disabled="disabled" />
+            <input class="star" type="radio" name="home-top-rating-3" value="2" disabled="disabled" />
+            <input class="star" type="radio" name="home-top-rating-3" value="3" disabled="disabled" />
+            <input class="star" type="radio" name="home-top-rating-3" value="4" disabled="disabled" checked="checked" />
+            <input class="star" type="radio" name="home-top-rating-3" value="5" disabled="disabled" />
+          </div>
         </div>
-      </div>
-    </li>
-    <li>
-      <a class="image_thumb_zoom" href="#" title="Permalink to Phasellus scelerisque massa molestie iaculis lectus pulvinar" rel="bookmark">
-        <img width="225" height="136" src="http://placehold.it/225x136" alt="" />
-      </a>
-      <h4 class="post-title clearfix">
-        <img class="post-icon" alt="Video post" src="/Content/client/images/vid.png">
-        <a href="#" title="Permalink to Phasellus scelerisque massa molestie iaculis lectus pulvinar" rel="bookmark">Phasellus scelerisque massa molesti...	</a>
-      </h4>
-      <div class="meta clearfix">
-        <span class="date">June 2, 2013</span>
-        <div class="ratings">
-          <input class="star" type="radio" name="home-top-rating-4" value="1" disabled="disabled" />
-          <input class="star" type="radio" name="home-top-rating-4" value="2" disabled="disabled" />
-          <input class="star" type="radio" name="home-top-rating-4" value="3" disabled="disabled" />
-          <input class="star" type="radio" name="home-top-rating-4" value="4" disabled="disabled" checked="checked" />
-          <input class="star" type="radio" name="home-top-rating-4" value="5" disabled="disabled" />
+      </li>
+      <li>
+        <a class="image_thumb_zoom" href="#" title="Permalink to Phasellus scelerisque massa molestie iaculis lectus pulvinar" rel="bookmark">
+          <img width="225" height="136" src="http://placehold.it/225x136" alt="" />
+        </a>
+        <h4 class="post-title clearfix">
+          <img class="post-icon" alt="Video post" src="/Content/client/images/vid.png">
+          <a href="#" title="Permalink to Phasellus scelerisque massa molestie iaculis lectus pulvinar" rel="bookmark">Phasellus scelerisque massa molesti...	</a>
+        </h4>
+        <div class="meta clearfix">
+          <span class="date">June 2, 2013</span>
+          <div class="ratings">
+            <input class="star" type="radio" name="home-top-rating-4" value="1" disabled="disabled" />
+            <input class="star" type="radio" name="home-top-rating-4" value="2" disabled="disabled" />
+            <input class="star" type="radio" name="home-top-rating-4" value="3" disabled="disabled" />
+            <input class="star" type="radio" name="home-top-rating-4" value="4" disabled="disabled" checked="checked" />
+            <input class="star" type="radio" name="home-top-rating-4" value="5" disabled="disabled" />
+          </div>
         </div>
-      </div>
-    </li>
-  </ul>
-</div>
+      </li>
+    </ul>
+  </div>*@
 
 <div id="home-middle" class="clearfix">
   <div class="left span6">
