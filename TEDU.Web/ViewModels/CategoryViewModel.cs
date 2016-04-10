@@ -30,6 +30,8 @@ namespace TEDU.Web.ViewModels
 
         public string MetaDescription { set; get; }
 
-        public DateTime? ShowHome { set; get; }
+        public bool? ShowHome { set; get; }
+
+        public IList<PostViewModel> Posts { set; get; }
     }
 }

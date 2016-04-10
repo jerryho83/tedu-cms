@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using TEDU.Model.Models;
 
 namespace TEDU.Model
 {
@@ -69,6 +72,10 @@ namespace TEDU.Model
         [StringLength(250)]
         public string MetaDescription { set; get; }
 
-        public DateTime? HotFlag { set; get; }
+        public bool? HotFlag { set; get; }
+
+        public bool? SlideFlag { set; get; }
+
+        public virtual IEnumerable<PostTag> PostTags { set; get; }
     }
 }

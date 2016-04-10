@@ -7,11 +7,14 @@ namespace TEDU.Data.Migrations
     {
         public override void Up()
         {
-            Sql("update dbo.Posts set Status = 'Publish'");
+            AddColumn("Categories", "ShowHome",c=>c.Boolean());
+            AddColumn("Posts", "HotFlag", c => c.Boolean());
         }
         
         public override void Down()
         {
+            DropColumn("Categories", "ShowHome");
+            DropColumn("Posts", "HotFlag");
         }
     }
 }

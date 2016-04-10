@@ -7,9 +7,7 @@
         @foreach (var item in Model)
         {
           var url = "/" + item.Alias + "-" + item.ID + ".html";
-
             <li><p><a href="@url" title="@item.Name" rel="bookmark"><span class="title">@item.Name</span>@item.Description</a></p></li>
-
         }
       </ul>
     </div>

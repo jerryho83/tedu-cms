@@ -13,10 +13,12 @@ namespace TEDU.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IPostService postService;
+        private readonly ICategoryService categoryService;
 
-        public HomeController(IPostService postService)
+        public HomeController(IPostService postService, ICategoryService categoryService)
         {
             this.postService = postService;
+            this.categoryService = categoryService;
         }
 
         // GET: Home
@@ -24,10 +26,25 @@ namespace TEDU.Web.Controllers
         {
             var focusNews = postService.GetBreakingNews(6);
             ViewBag.FocusNews = Mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(focusNews);
+
+            var slideNews = postService.GetPostSlide(6);
+            ViewBag.SlideNews = Mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(slideNews);
+
+            var homeCates = categoryService.GetHomeCategories(3);
+            var homeCatesVM = Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryViewModel>>(homeCates);
+            foreach (var item in homeCatesVM)
+            {
+                var post = postService.GetRecentPostsByCategory(item.ID, 4);
+                item.Posts = Mapper.Map<IList<Post>, IList<PostViewModel>>(post);
+            }
+            ViewBag.HomeCates = homeCatesVM;
             return View();
         }
         public PartialViewResult Footer()
         {
+            var recentNews = postService.GetRecentPosts(6);
+            ViewBag.RecentPosts = Mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(recentNews);
+
             return PartialView();
         }
 
@@ -62,11 +79,11 @@ namespace TEDU.Web.Controllers
             return PartialView();
         }
 
-        
+
         public PartialViewResult RecentPost()
         {
             var model = postService.GetRecentPosts(3);
-            var data = Mapper.Map<IEnumerable<Post>,IEnumerable<PostViewModel>>(model);
+            var data = Mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(model);
 
 
             return PartialView(data);

@@ -3,64 +3,44 @@
     <div class="widget widget_latestpost">
       <h3 class="title"><span>Tin mới nhất</span></h3>
       <div class="latest-posts widget">
-        <div class="latest-post clearfix">
-          <a href="#"><img width="225" height="136" src="http://placehold.it/225x136" class="thumb fl" alt="" title="" /></a>
-          <h4><a href="#" rel="bookmark" title="Lectus non rutrum pulvinar urna leo dignissim lorem">Lectus non rutrum pulvinar urna leo...</a></h4>
-          <div class="post-time">August 12, 2013</div>
-          <div class="ratings" style="float: none">
-            <input class="star" type="radio" name="footer-latest-post-1" value="1" disabled="disabled" />
-            <input class="star" type="radio" name="footer-latest-post-1" value="2" disabled="disabled" />
-            <input class="star" type="radio" name="footer-latest-post-1" value="3" disabled="disabled" />
-            <input class="star" type="radio" name="footer-latest-post-1" value="4" disabled="disabled" checked="checked" />
-            <input class="star" type="radio" name="footer-latest-post-1" value="5" disabled="disabled" />
-          </div>
-        </div>
+        @foreach (var item in (IEnumerable<TEDU.Web.ViewModels.PostViewModel>)ViewBag.RecentPosts)
+        {
+          var url = "/" + item.Alias + "-" + item.ID + ".html";
+            <div class="latest-post clearfix">
+              <a href="@url"><img width="225" height="136" src="@item.Image" class="thumb fl" alt="@item.Name" title="@item.Name" /></a>
+              <h4><a href="@url" rel="bookmark" title="@item.Name">@item.Name</a></h4>
+              <div class="post-time">@(item.CreatedDate.HasValue ? item.CreatedDate.Value.ToString("dd/MM/yyyy") : "")</div>
+              <div class="ratings" style="float: none">
+                <input class="star" type="radio" name="recent-post-1" value="1" disabled="disabled" />
+                <input class="star" type="radio" name="recent-post-1" value="2" disabled="disabled" />
+                <input class="star" type="radio" name="recent-post-1" value="3" disabled="disabled" />
+                <input class="star" type="radio" name="recent-post-1" value="4" disabled="disabled" checked="checked" />
+                <input class="star" type="radio" name="recent-post-1" value="5" disabled="disabled" />
+              </div>
+            </div>
 
-        <div class="latest-post clearfix">
-          <a href="#"><img width="225" height="136" src="http://placehold.it/225x136" class="thumb fl" alt="" title="" /></a>
-          <h4><a href="#" rel="bookmark" title="Suspen disse auctor dapibus neque pulvinar urna leo">Suspen disse auctor dapibus neque p...</a></h4>
-          <div class="post-time">August 11, 2013</div>
-          <div class="ratings" style="float: none">
-            <input class="star" type="radio" name="footer-latest-post-2" value="1" disabled="disabled" />
-            <input class="star" type="radio" name="footer-latest-post-2" value="2" disabled="disabled" />
-            <input class="star" type="radio" name="footer-latest-post-2" value="3" disabled="disabled" />
-            <input class="star" type="radio" name="footer-latest-post-2" value="4" disabled="disabled" checked="checked" />
-            <input class="star" type="radio" name="footer-latest-post-2" value="5" disabled="disabled" />
-          </div>
-        </div>
+        }
 
-        <div class="latest-post clearfix">
-          <a href="#"><img width="225" height="136" src="http://placehold.it/225x136" class="thumb fl" alt="" title="" /></a>
-          <h4><a href="#" rel="bookmark" title="Porta lorem ipsum dolor sit amet, consectetur adipiscing risus">Porta lorem ipsum dolor sit amet, c...</a></h4>
-          <div class="post-time">August 2, 2013</div>
-          <div class="ratings" style="float: none">
-            <input class="star" type="radio" name="footer-latest-post-3" value="1" disabled="disabled" />
-            <input class="star" type="radio" name="footer-latest-post-3" value="2" disabled="disabled" />
-            <input class="star" type="radio" name="footer-latest-post-3" value="3" disabled="disabled" />
-            <input class="star" type="radio" name="footer-latest-post-3" value="4" disabled="disabled" checked="checked" />
-            <input class="star" type="radio" name="footer-latest-post-3" value="5" disabled="disabled" />
-          </div>
-        </div>
       </div>
     </div>
   </div>
 
-  <div class="footer-widget span3 block2">
-    <div class="widget">
-      <h3 class="title"><span>Latest Tweets</span></h3>
-      <div class="magz-twitter-tweet">
-        <a href="https://twitter.com/teduinternatio1"><img class="twit-pic" src="/Content/client/images/envato.png" alt=""></a>
-        <div class="twit-entry">&quot;RT <a href="http://twitter.com/SayersM">SayersM</a> "Envato is here <a href="http://twitter.com/#!/search?q=%23YOW13">#YOW13</a>! http://t.co/FqARi13BlN" <a href="http://twitter.com/#!/search?q=%23lanyardlife">#lanyardlife</a>&quot;<div class="magz-twitter-tweet-time" id="magz-twitter-tweet-time-1">4 hours ago</div></div>
-        <div class="clearfix"></div>
-      </div>
-      <div class="magz-twitter-tweet">
-        <a href="http://twitter.com/envato"><img class="twit-pic" src="/Content/client/images/envato.png" alt=""></a><div class="twit-entry">&quot;RT <a href="http://twitter.com/MicrolancerBeta">MicrolancerBeta</a>: Want a cool t-shirt? Of course you do! We're giving away Microlancer t-shirts while stocks last. Learn more: http://t.…&quot;<div class="magz-twitter-tweet-time" id="magz-twitter-tweet-time-2">4 hours ago</div></div>
-        <div class="clearfix"></div>
-      </div>
+  @*<div class="footer-widget span3 block2">
+      <div class="widget">
+        <h3 class="title"><span>Latest Tweets</span></h3>
+        <div class="magz-twitter-tweet">
+          <a href="https://twitter.com/teduinternatio1"><img class="twit-pic" src="/Content/client/images/envato.png" alt=""></a>
+          <div class="twit-entry">&quot;RT <a href="http://twitter.com/SayersM">SayersM</a> "Envato is here <a href="http://twitter.com/#!/search?q=%23YOW13">#YOW13</a>! http://t.co/FqARi13BlN" <a href="http://twitter.com/#!/search?q=%23lanyardlife">#lanyardlife</a>&quot;<div class="magz-twitter-tweet-time" id="magz-twitter-tweet-time-1">4 hours ago</div></div>
+          <div class="clearfix"></div>
+        </div>
+        <div class="magz-twitter-tweet">
+          <a href="http://twitter.com/envato"><img class="twit-pic" src="/Content/client/images/envato.png" alt=""></a><div class="twit-entry">&quot;RT <a href="http://twitter.com/MicrolancerBeta">MicrolancerBeta</a>: Want a cool t-shirt? Of course you do! We're giving away Microlancer t-shirts while stocks last. Learn more: http://t.…&quot;<div class="magz-twitter-tweet-time" id="magz-twitter-tweet-time-2">4 hours ago</div></div>
+          <div class="clearfix"></div>
+        </div>
 
-      <div id="magz-twitter-follow-link"><a target="_blank" href="http://twitter.com/envato">Follow Twitter</a></div>
-    </div>
-  </div>
+        <div id="magz-twitter-follow-link"><a target="_blank" href="http://twitter.com/envato">Follow Twitter</a></div>
+      </div>
+    </div>*@
 
   <div class="footer-widget span3 block3">
     <div class="widget">
@@ -81,14 +61,9 @@
 
   <div class="footer-widget span3 block4">
     <div class="widget">
-      <h3 class="title"><span>Social Media</span></h3>
+      <h3 class="title"><span>Mạng xã hội</span></h3>
       <div class="socmed clearfix">
         <ul>
-          <li>
-            <a href="#"><img src="/Content/client/images/rss-icon.png" alt=""></a>
-            <h4>RSS</h4>
-            <p>Subscribe</p>
-          </li>
           <li>
             <a href="https://twitter.com/teduinternatio1"><img src="/Content/client/images/twitter-icon.png" alt=""></a>
             <h4>37005</h4>
@@ -119,7 +94,7 @@
 
   <div id="footer-nav" class="fr">
     <ul class="menu">
-      <li><a href="index.html">Home</a></li>
+      <li><a href="/">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="blog.html">Blog</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -127,8 +102,7 @@
   </div>
 
   <div id="credit" class="fl">
-    <p>All Right Reserved by minimalthemes</p>
+    <p>All Right Reserved by TEDU</p>
   </div>
 
 </div><!-- .site-info -->
-

@@ -19,6 +19,8 @@ namespace TEDU.Service
         void CreateCategory(Category category);
         void Delete(Category category);
         void SaveCategory();
+
+        IEnumerable<Category> GetHomeCategories(int top);
     }
 
     public class CategoryService : ICategoryService
@@ -100,6 +102,18 @@ namespace TEDU.Service
             model = categorysRepository
                    .GetMany(x => x.Status)
                    .OrderBy(m => m.ParentID)
+                   .ToList();
+
+            return model;
+        }
+
+        public IEnumerable<Category> GetHomeCategories(int top)
+        {
+            IEnumerable<Category> model;
+            model = categorysRepository
+                   .GetMany(x => x.Status && x.ShowHome.HasValue)
+                   .Take(top)
+                   .OrderByDescending(m => m.ShowHome)
                    .ToList();
 
             return model;

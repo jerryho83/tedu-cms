@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TEDU.Common;
 using TEDU.Data.Infrastructure;
@@ -27,6 +28,9 @@ namespace TEDU.Service
         IEnumerable<Post> GetPopularPosts(int top);
 
         IEnumerable<Post> GetBreakingNews(int top);
+        List<Post> GetRecentPostsByCategory(int categoryId, int top);
+
+        IEnumerable<Post> GetPostSlide(int top);
     }
 
     public class PostService : IPostService
@@ -125,6 +129,19 @@ namespace TEDU.Service
             return PostsRepository
                .GetMany(x => x.Status == StatusEnum.Publish.ToString() && x.HotFlag.HasValue)
                .OrderByDescending(x => x.HotFlag).Take(top);
+        }
+        public IEnumerable<Post> GetPostSlide(int top)
+        {
+            return PostsRepository
+               .GetMany(x => x.Status == StatusEnum.Publish.ToString() && x.SlideFlag.HasValue)
+               .OrderByDescending(x => x.CreatedDate).Take(top);
+        }
+
+        public List<Post> GetRecentPostsByCategory(int categoryId, int top)
+        {
+            return PostsRepository
+                .GetMany(x => x.Status == StatusEnum.Publish.ToString() && x.CategoryID == categoryId)
+                .OrderByDescending(x => x.CreatedDate).Take(top).ToList();
         }
 
         #endregion IPostService Members

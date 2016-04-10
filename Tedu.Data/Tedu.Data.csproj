@@ -52,6 +52,8 @@
     <Compile Include="Configuration\CategoryConfiguration.cs" />
     <Compile Include="Configuration\ErrorConfiguration.cs" />
     <Compile Include="Configuration\PostConfiguration.cs" />
+    <Compile Include="Configuration\PostTagConfiguration.cs" />
+    <Compile Include="Configuration\TagConfiguration.cs" />
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />
     <Compile Include="Infrastructure\IDbFactory.cs" />
@@ -62,6 +64,30 @@
     <Compile Include="Migrations\201603270723490_ChangeDB.cs" />
     <Compile Include="Migrations\201603270723490_ChangeDB.Designer.cs">
       <DependentUpon>201603270723490_ChangeDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604090707427_ChangeDB1.cs" />
+    <Compile Include="Migrations\201604090707427_ChangeDB1.Designer.cs">
+      <DependentUpon>201604090707427_ChangeDB1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604090737312_ChangeDB2.cs" />
+    <Compile Include="Migrations\201604090737312_ChangeDB2.Designer.cs">
+      <DependentUpon>201604090737312_ChangeDB2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604090740096_changedb3.cs" />
+    <Compile Include="Migrations\201604090740096_changedb3.Designer.cs">
+      <DependentUpon>201604090740096_changedb3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604091354228_changedb4.cs" />
+    <Compile Include="Migrations\201604091354228_changedb4.Designer.cs">
+      <DependentUpon>201604091354228_changedb4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604091516110_changedb5.cs" />
+    <Compile Include="Migrations\201604091516110_changedb5.Designer.cs">
+      <DependentUpon>201604091516110_changedb5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604100942387_changedb6.cs" />
+    <Compile Include="Migrations\201604100942387_changedb6.Designer.cs">
+      <DependentUpon>201604100942387_changedb6.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +113,24 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603270723490_ChangeDB.resx">
       <DependentUpon>201603270723490_ChangeDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604090707427_ChangeDB1.resx">
+      <DependentUpon>201604090707427_ChangeDB1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604090737312_ChangeDB2.resx">
+      <DependentUpon>201604090737312_ChangeDB2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604090740096_changedb3.resx">
+      <DependentUpon>201604090740096_changedb3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604091354228_changedb4.resx">
+      <DependentUpon>201604091354228_changedb4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604091516110_changedb5.resx">
+      <DependentUpon>201604091516110_changedb5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604100942387_changedb6.resx">
+      <DependentUpon>201604100942387_changedb6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

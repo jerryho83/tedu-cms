@@ -15,7 +15,8 @@
         $scope.clearSearch = clearSearch;
 
         $scope.deleteItem = deleteItem;
-
+        $scope.showOnSlide = showOnSlide;
+        $scope.showHot = showHot;
         function deleteItem(id) {
             $ngBootbox.confirm('Bạn có chắc muốn xóa?')
                 .then(function () {
@@ -48,7 +49,12 @@
             apiService.get('/api/admin/post/getlistpaging', config, dataLoadCompleted, dataLoadFailed);
 
         }
-
+        function showOnSlide(id) {
+            notificationService.displayError('Xóa không thành công.'  + id);
+       }
+       function showHot(id) {
+           notificationService.displayError('Xóa không thành công.');
+       }
         function dataLoadCompleted(result) {
             $scope.data = result.data.Items;
             $scope.page = result.data.Page;

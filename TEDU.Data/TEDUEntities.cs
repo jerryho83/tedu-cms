@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TEDU.Data.Configuration;
 using TEDU.Model;
+using TEDU.Model.Models;
 
 namespace TEDU.Data
 {
@@ -19,6 +20,9 @@ namespace TEDU.Data
         public DbSet<Post> Posts { set; get; }
         public DbSet<Error> Errors { set; get; }
 
+        public DbSet<Tag> Tags { set; get; }
+        public DbSet<PostTag> PostTags { set; get; }
+
         public virtual void Commit()
         {
             base.SaveChanges();
@@ -29,6 +33,9 @@ namespace TEDU.Data
             modelBuilder.Configurations.Add(new CategoryConfiguration());
             modelBuilder.Configurations.Add(new PostConfiguration());
             modelBuilder.Configurations.Add(new ErrorConfiguration());
+
+            modelBuilder.Configurations.Add(new TagConfiguration());
+            modelBuilder.Configurations.Add(new PostTagConfiguration());
         }
     }
 }

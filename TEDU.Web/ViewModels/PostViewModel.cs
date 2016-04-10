@@ -32,5 +32,9 @@ namespace TEDU.Web.ViewModels
         public string MetaKeyword { set; get; }
 
         public string MetaDescription { set; get; }
+
+        public bool? HotFlag { set; get; }
+
+        public bool? SlideFlag { set; get; }
     }
 }
