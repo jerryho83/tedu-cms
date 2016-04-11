@@ -13,15 +13,7 @@
         $scope.col_defs = [
               { field: "Name", displayName: "Tên chuyên mục" },
               { field: "CreatedDate", displayName: "Ngày tạo" },
-              {
-                  field: "ID", displayName: "Show trang chủ",
-                  cellTemplateScope: {
-                      toggleChange: function (data) {  
-                          showHideOnHome(data);
-                      }
-                  },
-                  cellTemplate: "<input type=\"checkbox\"  />"
-              },
+              { field: "ShowHome", displayName: "Show trang chủ" },
               {
                   field: "ID",
                   displayName: "Thao tác",

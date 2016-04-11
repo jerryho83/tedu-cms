@@ -336,6 +336,7 @@
 /// <reference path="scripts/ckfinder/skins/kama/skin.js" />
 /// <reference path="scripts/ckfinder/skins/v1/skin.js" />
 /// <reference path="Scripts/fastclick.js" />
+/// <reference path="scripts/jquery.domenu-0.95.77.min.js" />
 /// <reference path="Scripts/jquery.fancybox.js" />
 /// <reference path="Scripts/jquery.fancybox.pack.js" />
 /// <reference path="Scripts/jquery.fancybox-buttons.js" />

@@ -114,12 +114,14 @@ namespace TEDU.Web.Areas.Admin.Controllers
                 }
                 else
                 {
-                    var movieDb = postService.GetPost(post.ID);
-                    if (movieDb == null)
+                    var postDb = postService.GetPost(post.ID);
+
+                    if (postDb == null)
                         response = request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid.");
                     else
                     {
-                        movieDb.UpdatePost(post);
+                        postDb.UpdatePost(post);
+                        postService.UpdatePost(postDb);
                         postService.SavePost();
                         response = request.CreateResponse<PostViewModel>(HttpStatusCode.OK, post);
                     }

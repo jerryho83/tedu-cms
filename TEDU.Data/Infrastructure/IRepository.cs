@@ -24,5 +24,7 @@ namespace TEDU.Data.Infrastructure
         IEnumerable<T> GetAll();
         // Gets entities using delegate
         IEnumerable<T> GetMany(Expression<Func<T, bool>> where);
+
+        int Count(Expression<Func<T, bool>> where);
     }
 }

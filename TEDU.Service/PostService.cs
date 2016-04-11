@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using TEDU.Common;
+using TEDU.Common.Helper;
 using TEDU.Data.Infrastructure;
 using TEDU.Data.Repositories;
 using TEDU.Model;
+using TEDU.Model.Models;
 
 namespace TEDU.Service
 {
@@ -18,6 +20,8 @@ namespace TEDU.Service
         Post GetPost(int id);
 
         void CreatePost(Post Post);
+        void UpdatePost(Post Post);
+
 
         void Delete(Post post);
 
@@ -28,6 +32,7 @@ namespace TEDU.Service
         IEnumerable<Post> GetPopularPosts(int top);
 
         IEnumerable<Post> GetBreakingNews(int top);
+
         List<Post> GetRecentPostsByCategory(int categoryId, int top);
 
         IEnumerable<Post> GetPostSlide(int top);
@@ -37,12 +42,16 @@ namespace TEDU.Service
     {
         private readonly IPostRepository PostsRepository;
         private readonly ICategoryRepository categoryRepository;
+        private readonly IPostTagRepository postTagRepository;
+        private readonly ITagRepository tagRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public PostService(IPostRepository PostsRepository, ICategoryRepository categoryRepository, IUnitOfWork unitOfWork)
+        public PostService(IPostRepository PostsRepository, ICategoryRepository categoryRepository,IPostTagRepository postTagRepository,ITagRepository tagRepository,  IUnitOfWork unitOfWork)
         {
             this.PostsRepository = PostsRepository;
             this.categoryRepository = categoryRepository;
+            this.postTagRepository = postTagRepository;
+            this.tagRepository = tagRepository;
             this.unitOfWork = unitOfWork;
         }
 
@@ -98,8 +107,54 @@ namespace TEDU.Service
         public void CreatePost(Post Post)
         {
             PostsRepository.Add(Post);
-        }
 
+            if (!string.IsNullOrEmpty(Post.Tags))
+            {
+                string[] tags = Post.Tags.Split(',');
+                foreach (var item in tags)
+                {
+                    string alias = StringHelper.ToUnsignString(item);
+                    if (tagRepository.Count(x => x.ID == alias) == 0)
+                    {
+                        Tag tag = new Tag();
+                        tag.ID = alias;
+                        tag.Name = item;
+                        tagRepository.Add(tag);
+                    }
+
+                    PostTag postTag = new PostTag();
+                    postTag.PostID = Post.ID;
+                    postTag.TagID = alias;
+                    postTagRepository.Add(postTag);
+                }
+            }
+        }
+        public void UpdatePost(Post postEntity)
+        {
+            PostsRepository.Update(postEntity);
+
+            if (!string.IsNullOrEmpty(postEntity.Tags))
+            {
+                string[] tags = postEntity.Tags.Split(',');
+                foreach (var item in tags)
+                {
+                    string alias = StringHelper.ToUnsignString(item);
+                    if (tagRepository.Count(x => x.ID == alias) == 0)
+                    {
+                        Tag tag = new Tag();
+                        tag.ID = alias;
+                        tag.Name = item;
+                        tagRepository.Add(tag);
+                    }
+                    postTagRepository.Delete(x => x.PostID == postEntity.ID);
+
+                    PostTag postTag = new PostTag();
+                    postTag.PostID = postEntity.ID;
+                    postTag.TagID = alias;
+                    postTagRepository.Add(postTag);
+                }
+            }
+        }
         public void SavePost()
         {
             unitOfWork.Commit();

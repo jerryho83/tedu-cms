@@ -12,27 +12,43 @@
         <span id="close-menu">
           <a href="#" class="close-this-menu">Close</a>
           <script type="text/javascript">
-							jQuery('a.sidr-class-close-this-menu').click(function(){
-								jQuery('div.sidr').css({
-									'right': '-476px'
-								});
-								jQuery('body').css({
-								'right': '0'
-								});
-							});
+            jQuery('a.sidr-class-close-this-menu').click(function () {
+              jQuery('div.sidr').css({
+                'right': '-476px'
+              });
+              jQuery('body').css({
+                'right': '0'
+              });
+            });
           </script>
 
         </span>
       </li>
       <li><a href="/"><img src="/Content/client/images/home.png" alt="TEDU"></a></li>
       <li><a href="/gioi-thieu.html">Giới thiệu</a></li>
+
       <li><a href="/khoa-hoc.html">Khóa học</a></li>
-      <li><a href="/lap-trinh.html">ASP.NET</a></li>
-      <li><a href="/lap-trinh.html">Angular JS</a></li>
-      <li><a href="/lap-trinh.html">Database</a></li>
-      <li><a href="/tin-tuc.html">Tin tức</a></li>
-      <li><a href="/tin-tuc.html">CV Online</a></li>
-      <li><a href="/tin-tuc.html">Liên hệ</a></li>
+      <li>
+        <a href="/tap-chi-lap-trinh.html">Tạp chí lập trình</a>
+        <ul class="sub-menu dropdown-menu">
+          <li><a href="#">Lập trình C#</a></li>
+          <li><a href="#">Lập trình ASP.NET</a></li>
+          <li><a href="#">Lập trình jQuery</a></li>
+          <li><a href="#">Lập trình AngularJS</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/lap-trinh.html">Cơ sở dữ liệu</a>
+        <ul class="sub-menu dropdown-menu">
+          <li><a href="#">SQL Server</a></li>
+          <li><a href="#">MongoDB</a></li>
+        </ul>
+      </li>
+      <li><a href="/tin-tuc.html">Tin công nghệ</a></li>
+      <li><a href="/tin-tuc.html">Tuyển dụng</a></li>
+
+      <li><a href="/it-ebooks.html">IT Ebooks</a></li>
+      <li><a href="/cv-online.html">CV Online</a></li>
     </ul>
 
   </div><!--/.nav-collapse -->

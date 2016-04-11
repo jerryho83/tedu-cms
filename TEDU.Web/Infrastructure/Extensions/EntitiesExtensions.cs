@@ -19,6 +19,7 @@ namespace TEDU.Web.Infrastructure.Extensions
             category.Status = categoryVm.Status;
             category.MetaKeyword = categoryVm.MetaKeyword;
             category.MetaDescription = categoryVm.MetaDescription;
+            category.ShowHome = categoryVm.ShowHome;
 
         }
 
@@ -44,7 +45,8 @@ namespace TEDU.Web.Infrastructure.Extensions
             post.MetaKeyword = postVm.MetaKeyword;
             post.MetaDescription = postVm.MetaDescription;
             post.PostType = PostTypeEnum.Article.ToString();
-
+            post.HotFlag = postVm.HotFlag;
+            post.SlideFlag = postVm.SlideFlag;
         }
     }
 }
