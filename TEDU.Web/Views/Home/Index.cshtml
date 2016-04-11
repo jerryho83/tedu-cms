@@ -45,7 +45,7 @@
 {
   var newsItems = item.Posts;
     <div id="home-bottom" class="clearfix">
-      <h3 class="title"><a href="@item.Alias-@item.ID" title="Fashion News"><span>@item.Name</span></a></h3>
+      <h3 class="title"><a href="@(item.Alias).html" title="Fashion News"><span>@item.Name</span></a></h3>
       <div class="row-fluid">
         @if (item.Posts.Count() > 0)
         {

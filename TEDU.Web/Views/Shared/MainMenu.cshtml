@@ -1,4 +1,5 @@
-﻿<nav class="navbar navbar-inverse clearfix nobot">
+﻿@model IEnumerable<TEDU.Web.ViewModels.CategoryViewModel>
+<nav class="navbar navbar-inverse clearfix nobot">
   <a id="responsive-menu-button" href="#swipe-menu">
     <span class="icon-bar"></span>
     <span class="icon-bar"></span>
@@ -26,27 +27,23 @@
       </li>
       <li><a href="/"><img src="/Content/client/images/home.png" alt="TEDU"></a></li>
       <li><a href="/gioi-thieu.html">Giới thiệu</a></li>
+      @foreach (var item in Model.Where(x => x.ParentID.HasValue == false))
+      {
+        var childItem = Model.Where(x => x.ParentID == item.ID);
+          <li>
+            <a href="/@(item.Alias).html">@item.Name</a>
+            @if (childItem.Count() > 0)
+            {
 
-      <li><a href="/khoa-hoc.html">Khóa học</a></li>
-      <li>
-        <a href="/tap-chi-lap-trinh.html">Tạp chí lập trình</a>
-        <ul class="sub-menu dropdown-menu">
-          <li><a href="#">Lập trình C#</a></li>
-          <li><a href="#">Lập trình ASP.NET</a></li>
-          <li><a href="#">Lập trình jQuery</a></li>
-          <li><a href="#">Lập trình AngularJS</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="/lap-trinh.html">Cơ sở dữ liệu</a>
-        <ul class="sub-menu dropdown-menu">
-          <li><a href="#">SQL Server</a></li>
-          <li><a href="#">MongoDB</a></li>
-        </ul>
-      </li>
-      <li><a href="/tin-tuc.html">Tin công nghệ</a></li>
-      <li><a href="/tin-tuc.html">Tuyển dụng</a></li>
-
+                <ul class="sub-menu dropdown-menu">
+                  @foreach (var child in childItem)
+                  {
+                      <li><a href="@(child.Alias).html">@child.Name</a></li>
+                  }
+                </ul>
+            }
+          </li>
+      }
       <li><a href="/it-ebooks.html">IT Ebooks</a></li>
       <li><a href="/cv-online.html">CV Online</a></li>
     </ul>

@@ -13,7 +13,10 @@ namespace TEDU.Web.Controllers
         {
             return View();
         }
-
+        public ActionResult Category(int id)
+        {
+            return View();
+        }
         public ActionResult Detail(int id)
         {
             return View();

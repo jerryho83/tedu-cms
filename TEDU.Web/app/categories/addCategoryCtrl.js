@@ -9,7 +9,8 @@
 
         $scope.category = {
             CreatedDate: new Date(),
-            Status: true
+            Status: true,
+            ShowHome:false
         }
         $scope.CreateAlias = CreateAlias;
 

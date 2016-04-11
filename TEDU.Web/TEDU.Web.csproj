@@ -2235,6 +2235,7 @@
     <Content Include="Views\Shared\VideoGallery.cshtml" />
     <Content Include="Views\Shared\RecentPost.cshtml" />
     <Content Include="Views\Shared\SpecialBox.cshtml" />
+    <Content Include="Views\Post\Category.cshtml" />
     <Content Include="Views\Post\Detail.cshtml" />
     <None Include="_references.js" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />

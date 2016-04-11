@@ -50,7 +50,9 @@ namespace TEDU.Web.Controllers
 
         public PartialViewResult MainMenu()
         {
-            return PartialView();
+            var data = categoryService.GetCategories();
+            var model = Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryViewModel>>(data);
+            return PartialView(model);
         }
 
         public PartialViewResult NewsTab()
