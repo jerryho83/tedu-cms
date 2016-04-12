@@ -807,12 +807,6 @@
     <Content Include="Scripts\ckfinder\bin-debug\CKFinder_Watermark.dll" />
     <Content Include="Scripts\ckfinder\bin-debug\CKFinder_Watermark.pdb" />
     <Content Include="Scripts\ckfinder\bin\CKFinder.dll" />
-    <Content Include="Scripts\ckfinder\bin\CKFinder_FileEditor.dll" />
-    <Content Include="Scripts\ckfinder\bin\CKFinder_FileEditor.pdb" />
-    <Content Include="Scripts\ckfinder\bin\CKFinder_ImageResize.dll" />
-    <Content Include="Scripts\ckfinder\bin\CKFinder_ImageResize.pdb" />
-    <Content Include="Scripts\ckfinder\bin\CKFinder_Watermark.dll" />
-    <Content Include="Scripts\ckfinder\bin\CKFinder_Watermark.pdb" />
     <Content Include="Scripts\ckfinder\changelog.txt" />
     <Content Include="Scripts\ckfinder\ckfinder.html" />
     <Content Include="Scripts\ckfinder\ckfinder.js" />
@@ -2237,6 +2231,7 @@
     <Content Include="Views\Shared\SpecialBox.cshtml" />
     <Content Include="Views\Post\Category.cshtml" />
     <Content Include="Views\Post\Detail.cshtml" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="_references.js" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
