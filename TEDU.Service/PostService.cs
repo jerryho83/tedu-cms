@@ -20,9 +20,9 @@ namespace TEDU.Service
         Post GetPost(int id);
 
         void CreatePost(Post Post);
+
         void UpdatePost(Post Post);
-
-
+       
         void Delete(Post post);
 
         void SavePost();
@@ -35,6 +35,8 @@ namespace TEDU.Service
 
         List<Post> GetRecentPostsByCategory(int categoryId, int top);
 
+        List<Post> GetListByCategoryAlias(string categoryAlias, int page, int pageSize, out int totalRow);
+
         IEnumerable<Post> GetPostSlide(int top);
     }
 
@@ -46,7 +48,11 @@ namespace TEDU.Service
         private readonly ITagRepository tagRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public PostService(IPostRepository PostsRepository, ICategoryRepository categoryRepository,IPostTagRepository postTagRepository,ITagRepository tagRepository,  IUnitOfWork unitOfWork)
+        public PostService(IPostRepository PostsRepository, 
+            ICategoryRepository categoryRepository, 
+            IPostTagRepository postTagRepository, 
+            ITagRepository tagRepository, 
+            IUnitOfWork unitOfWork)
         {
             this.PostsRepository = PostsRepository;
             this.categoryRepository = categoryRepository;
@@ -129,6 +135,7 @@ namespace TEDU.Service
                 }
             }
         }
+
         public void UpdatePost(Post postEntity)
         {
             PostsRepository.Update(postEntity);
@@ -155,6 +162,7 @@ namespace TEDU.Service
                 }
             }
         }
+
         public void SavePost()
         {
             unitOfWork.Commit();
@@ -185,6 +193,7 @@ namespace TEDU.Service
                .GetMany(x => x.Status == StatusEnum.Publish.ToString() && x.HotFlag.HasValue)
                .OrderByDescending(x => x.HotFlag).Take(top);
         }
+
         public IEnumerable<Post> GetPostSlide(int top)
         {
             return PostsRepository
@@ -197,6 +206,23 @@ namespace TEDU.Service
             return PostsRepository
                 .GetMany(x => x.Status == StatusEnum.Publish.ToString() && x.CategoryID == categoryId)
                 .OrderByDescending(x => x.CreatedDate).Take(top).ToList();
+        }
+
+        public List<Post> GetListByCategoryAlias(string categoryAlias, int page, int pageSize, out int totalRow)
+        {
+            var model = PostsRepository
+                    .GetMany(m => m.Category.Alias == categoryAlias &&
+                    m.Status == StatusEnum.Publish.ToString())
+                    .OrderBy(m => m.ID)
+                    .Skip(page * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+
+            totalRow = PostsRepository
+               .GetMany(m => m.Category.Alias == categoryAlias &&
+                    m.Status == StatusEnum.Publish.ToString())
+                .Count();
+            return model;
         }
 
         #endregion IPostService Members

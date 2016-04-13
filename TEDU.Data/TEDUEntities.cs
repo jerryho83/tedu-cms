@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TEDU.Data.Configuration;
 using TEDU.Model;
 using TEDU.Model.Models;
 
 namespace TEDU.Data
 {
-    public class TEDUEntities : DbContext
+    public class TEDUEntities : IdentityDbContext<AppUser>
     {
-        public TEDUEntities() : base("TEDUConnectionDb") {
+        public TEDUEntities() : base("TEDUConnectionDb")
+        {
             this.Configuration.LazyLoadingEnabled = false;
         }
 
@@ -23,6 +20,7 @@ namespace TEDU.Data
         public DbSet<Tag> Tags { set; get; }
         public DbSet<PostTag> PostTags { set; get; }
         public DbSet<SystemParam> SystemParams { set; get; }
+
 
         public virtual void Commit()
         {
@@ -38,6 +36,10 @@ namespace TEDU.Data
             modelBuilder.Configurations.Add(new TagConfiguration());
             modelBuilder.Configurations.Add(new PostTagConfiguration());
             modelBuilder.Configurations.Add(new SystemParamConfiguraion());
+
+            modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
+            modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
+            modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
         }
     }
 }

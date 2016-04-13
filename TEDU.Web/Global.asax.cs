@@ -31,8 +31,6 @@ namespace TEDU.Web
 
             JsonSerializerSettings jSettings = new Newtonsoft.Json.JsonSerializerSettings();
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings = jSettings;
-            // Autofac and Automapper configurations
-            Bootstrapper.Run();
         }
     }
 }
