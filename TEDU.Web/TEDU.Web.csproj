@@ -2231,7 +2231,10 @@
     <Content Include="Views\Shared\SpecialBox.cshtml" />
     <Content Include="Views\Post\Category.cshtml" />
     <Content Include="Views\Post\Detail.cshtml" />
+    <Content Include="appSettings.config" />
+    <Content Include="connections.config" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
+    <Content Include="Views\About\Index.cshtml" />
     <None Include="_references.js" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
@@ -2292,6 +2295,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\PostController.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Global.asax.cs">

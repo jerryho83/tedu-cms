@@ -53,6 +53,7 @@
     <Compile Include="Configuration\ErrorConfiguration.cs" />
     <Compile Include="Configuration\PostConfiguration.cs" />
     <Compile Include="Configuration\PostTagConfiguration.cs" />
+    <Compile Include="Configuration\SystemParamConfiguraion.cs" />
     <Compile Include="Configuration\TagConfiguration.cs" />
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />
@@ -64,6 +65,10 @@
     <Compile Include="Migrations\201604110658039_Initial.cs" />
     <Compile Include="Migrations\201604110658039_Initial.Designer.cs">
       <DependentUpon>201604110658039_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604130056200_addsystemparam.cs" />
+    <Compile Include="Migrations\201604130056200_addsystemparam.Designer.cs">
+      <DependentUpon>201604130056200_addsystemparam.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,6 +96,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201604110658039_Initial.resx">
       <DependentUpon>201604110658039_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604130056200_addsystemparam.resx">
+      <DependentUpon>201604130056200_addsystemparam.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

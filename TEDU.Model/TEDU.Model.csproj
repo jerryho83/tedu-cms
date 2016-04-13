@@ -53,6 +53,7 @@
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostTag.cs" />
+    <Compile Include="Models\SystemParam.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

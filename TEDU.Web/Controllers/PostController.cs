@@ -13,7 +13,7 @@ namespace TEDU.Web.Controllers
         {
             return View();
         }
-        public ActionResult Category(int id)
+        public ActionResult Category(string alias)
         {
             return View();
         }

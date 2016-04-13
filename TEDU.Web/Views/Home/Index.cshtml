@@ -1,7 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = ViewBag.SystemTitle;
     Layout = "~/Views/Shared/_Layouts.cshtml";
+    ViewBag.MetaKeyword = ViewBag.SystemKeyword;
+    ViewBag.MetaDescription = ViewBag.SystemDescription;
 }
 <div id="slider" class="clearfix">
   <div id="slide-left" class="flexslider span8">

@@ -9,13 +9,13 @@
           <a href="@url"><img width="225" height="136" src="@item.Image" class="thumb fl" alt="@item.Name" title="@item.Name" /></a>
           <h4><a href="@url" rel="bookmark" title="@item.Name">@item.Name</a></h4>
           <div class="post-time">@(item.CreatedDate.HasValue ? item.CreatedDate.Value.ToString("dd/MM/yyyy") : "")</div>
-          <div class="ratings" style="float: none">
+          @*<div class="ratings" style="float: none">
             <input class="star" type="radio" name="recent-post-1" value="1" disabled="disabled" />
             <input class="star" type="radio" name="recent-post-1" value="2" disabled="disabled" />
             <input class="star" type="radio" name="recent-post-1" value="3" disabled="disabled" />
             <input class="star" type="radio" name="recent-post-1" value="4" disabled="disabled" checked="checked" />
             <input class="star" type="radio" name="recent-post-1" value="5" disabled="disabled" />
-          </div>
+          </div>*@
         </div>
 
     }

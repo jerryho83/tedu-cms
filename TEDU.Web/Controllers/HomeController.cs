@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TEDU.Common.Helper;
 using TEDU.Model;
 using TEDU.Service;
 using TEDU.Web.ViewModels;
@@ -38,6 +39,9 @@ namespace TEDU.Web.Controllers
                 item.Posts = Mapper.Map<IList<Post>, IList<PostViewModel>>(post);
             }
             ViewBag.HomeCates = homeCatesVM;
+            ViewBag.SystemTitle = ConfigHelper.GetConfigByKey("SystemTitle");
+            ViewBag.SystemKeyword = ConfigHelper.GetConfigByKey("SystemKeyword");
+            ViewBag.SystemDescription = ConfigHelper.GetConfigByKey("SystemDescription");
             return View();
         }
         public PartialViewResult Footer()
