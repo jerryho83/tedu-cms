@@ -72,7 +72,7 @@ namespace TEDU.Data.Infrastructure
             return dbSet.Where(where).ToList();
         }
 
-        public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where,string includes)
+        public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where, string includes)
         {
             return dbSet.Where(where).ToList();
         }
@@ -82,11 +82,84 @@ namespace TEDU.Data.Infrastructure
             return dbSet.Where(where).FirstOrDefault<T>();
         }
 
-        public virtual int Count(Expression<Func<T,bool>> where)
+        public virtual int Count(Expression<Func<T, bool>> where)
         {
             return dbSet.Count(where);
         }
+        public IQueryable<T> All(string[] includes = null)
+        {
+            //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
+            if (includes != null && includes.Count() > 0)
+            {
+                var query = dataContext.Set<T>().Include(includes.First());
+                foreach (var include in includes.Skip(1))
+                    query = query.Include(include);
+                return query.AsQueryable();
+            }
 
+            return dataContext.Set<T>().AsQueryable();
+        }
+
+        public T Get(Expression<Func<T, bool>> expression, string[] includes = null)
+        {
+            return All(includes).FirstOrDefault(expression);
+        }
+
+        public virtual T Find(Expression<Func<T, bool>> predicate, string[] includes = null)
+        {
+            //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
+            if (includes != null && includes.Count() > 0)
+            {
+                var query = dataContext.Set<T>().Include(includes.First());
+                foreach (var include in includes.Skip(1))
+                    query = query.Include(include);
+                return query.FirstOrDefault<T>(predicate);
+            }
+
+            return dataContext.Set<T>().FirstOrDefault<T>(predicate);
+        }
+
+        public virtual IQueryable<T> Filter(Expression<Func<T, bool>> predicate, string[] includes = null)
+        {
+            //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
+            if (includes != null && includes.Count() > 0)
+            {
+                var query = dataContext.Set<T>().Include(includes.First());
+                foreach (var include in includes.Skip(1))
+                    query = query.Include(include);
+                return query.Where<T>(predicate).AsQueryable<T>();
+            }
+
+            return dataContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
+        }
+
+        public virtual IQueryable<T> Filter(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 20, string[] includes = null)
+        {
+            int skipCount = index * size;
+            IQueryable<T> _resetSet;
+
+            //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
+            if (includes != null && includes.Count() > 0)
+            {
+                var query = dataContext.Set<T>().Include(includes.First());
+                foreach (var include in includes.Skip(1))
+                    query = query.Include(include);
+                _resetSet = predicate != null ? query.Where<T>(predicate).AsQueryable() : query.AsQueryable();
+            }
+            else
+            {
+                _resetSet = predicate != null ? dataContext.Set<T>().Where<T>(predicate).AsQueryable() : dataContext.Set<T>().AsQueryable();
+            }
+
+            _resetSet = skipCount == 0 ? _resetSet.Take(size) : _resetSet.Skip(skipCount).Take(size);
+            total = _resetSet.Count();
+            return _resetSet.AsQueryable();
+        }
+
+        public bool Contains(Expression<Func<T, bool>> predicate)
+        {
+            return dataContext.Set<T>().Count<T>(predicate) > 0;
+        }
         #endregion
 
     }

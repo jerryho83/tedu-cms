@@ -175,8 +175,7 @@ namespace TEDU.Service
 
         public IEnumerable<Post> GetRecentPosts(int top = 0)
         {
-            return PostsRepository
-                .GetMany(x => x.Status == StatusEnum.Publish.ToString())
+            return PostsRepository.Filter(x => x.Status == StatusEnum.Publish.ToString(),new string[] { "Category"})
                 .OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
@@ -197,7 +196,7 @@ namespace TEDU.Service
         public IEnumerable<Post> GetPostSlide(int top)
         {
             return PostsRepository
-               .GetMany(x => x.Status == StatusEnum.Publish.ToString() && x.SlideFlag.HasValue)
+               .Filter(x => x.Status == StatusEnum.Publish.ToString() && x.SlideFlag.HasValue, new string[] { "Category"})
                .OrderByDescending(x => x.CreatedDate).Take(top);
         }
 

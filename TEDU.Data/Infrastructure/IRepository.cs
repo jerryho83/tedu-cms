@@ -24,7 +24,17 @@ namespace TEDU.Data.Infrastructure
         IEnumerable<T> GetAll();
         // Gets entities using delegate
         IEnumerable<T> GetMany(Expression<Func<T, bool>> where);
-
         int Count(Expression<Func<T, bool>> where);
+        IQueryable<T> All(string[] includes = null);
+
+        T Get(Expression<Func<T, bool>> expression, string[] includes = null);
+
+        T Find(Expression<Func<T, bool>> predicate, string[] includes = null);
+
+        IQueryable<T> Filter(Expression<Func<T, bool>> predicate, string[] includes = null);
+
+        IQueryable<T> Filter(Expression<Func<T, bool>> filter, out int total, int index = 0, int size = 50, string[] includes = null);
+
+        bool Contains(Expression<Func<T, bool>> predicate);
     }
 }
