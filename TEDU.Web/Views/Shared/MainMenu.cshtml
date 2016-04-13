@@ -26,7 +26,7 @@
         </span>
       </li>
       <li><a href="/"><img src="/Content/client/images/home.png" alt="TEDU"></a></li>
-      <li><a href="/gioi-thieu">Giới thiệu</a></li>
+      <li><a href="/gioi-thieu.html">Giới thiệu</a></li>
       @foreach (var item in Model.Where(x => x.ParentID.HasValue == false))
       {
         var childItem = Model.Where(x => x.ParentID == item.ID);

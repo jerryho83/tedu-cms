@@ -82,6 +82,10 @@
     <Compile Include="Migrations\201604130925287_Identity.Designer.cs">
       <DependentUpon>201604130925287_Identity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201604131402129_InitUser.cs" />
+    <Compile Include="Migrations\201604131402129_InitUser.Designer.cs">
+      <DependentUpon>201604131402129_InitUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
@@ -115,7 +119,11 @@
     <EmbeddedResource Include="Migrations\201604130925287_Identity.resx">
       <DependentUpon>201604130925287_Identity.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604131402129_InitUser.resx">
+      <DependentUpon>201604131402129_InitUser.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

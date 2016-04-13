@@ -36,5 +36,7 @@ namespace TEDU.Web.ViewModels
         public bool? HotFlag { set; get; }
 
         public bool? SlideFlag { set; get; }
+
+        public CategoryViewModel Category { set; get; }
     }
 }
