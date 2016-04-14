@@ -22,7 +22,7 @@ namespace TEDU.Service
         void CreatePost(Post Post);
 
         void UpdatePost(Post Post);
-       
+
         void Delete(Post post);
 
         void SavePost();
@@ -48,10 +48,10 @@ namespace TEDU.Service
         private readonly ITagRepository tagRepository;
         private readonly IUnitOfWork unitOfWork;
 
-        public PostService(IPostRepository PostsRepository, 
-            ICategoryRepository categoryRepository, 
-            IPostTagRepository postTagRepository, 
-            ITagRepository tagRepository, 
+        public PostService(IPostRepository PostsRepository,
+            ICategoryRepository categoryRepository,
+            IPostTagRepository postTagRepository,
+            ITagRepository tagRepository,
             IUnitOfWork unitOfWork)
         {
             this.PostsRepository = PostsRepository;
@@ -106,7 +106,7 @@ namespace TEDU.Service
 
         public Post GetPost(int id)
         {
-            var Post = PostsRepository.GetById(id);
+            var Post = PostsRepository.Get(x => x.ID == id, new string[] { "Category" });
             return Post;
         }
 
@@ -175,7 +175,7 @@ namespace TEDU.Service
 
         public IEnumerable<Post> GetRecentPosts(int top = 0)
         {
-            return PostsRepository.Filter(x => x.Status == StatusEnum.Publish.ToString(),new string[] { "Category"})
+            return PostsRepository.Filter(x => x.Status == StatusEnum.Publish.ToString(), new string[] { "Category" })
                 .OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
@@ -196,7 +196,7 @@ namespace TEDU.Service
         public IEnumerable<Post> GetPostSlide(int top)
         {
             return PostsRepository
-               .Filter(x => x.Status == StatusEnum.Publish.ToString() && x.SlideFlag.HasValue, new string[] { "Category"})
+               .Filter(x => x.Status == StatusEnum.Publish.ToString() && x.SlideFlag.HasValue, new string[] { "Category" })
                .OrderByDescending(x => x.CreatedDate).Take(top);
         }
 

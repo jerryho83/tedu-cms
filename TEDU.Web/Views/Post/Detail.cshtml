@@ -1,1 +1,38 @@
-﻿
+﻿@model TEDU.Web.ViewModels.PostViewModel
+@{
+    ViewBag.Title = Model.Name;
+    ViewBag.MetaKeyword = Model.MetaKeyword;
+    ViewBag.MetaDescription = Model.MetaDescription;
+    Layout = "~/Views/Shared/_Layouts.cshtml";
+}
+<article class="post">
+  <h2 class="entry-title">
+    <span class="the_title">@Model.Name</span>
+    <span class="entry-cat"><a href="/@(Model.Category.Alias+"-"+@Model.Category.ID).html" title="@Model.Category.Name" rel="category tag">@Model.Category.Name</a></span>
+  </h2>
+  <div class="entry-meta row-fluid">
+    <ul class="clearfix">
+      <li><img alt='@Model.Name' src='@Model.Image' height='15' width='15' /><a href="#" title="Posts by Admin" rel="author">Admin</a></li>
+      <li><img src="/Content/client/images/time.png" alt="">@(Model.CreatedDate.HasValue ? Model.CreatedDate.Value.ToString("dd/MM/yyyy") : "")</li>
+      <li><img src="/Content/client/images/view-bg.png" alt="">@(Model.ViewCount.HasValue ? Model.ViewCount.Value.ToString("N0") : "Chưa có lượt xem nào") </li>
+      <li><img src="/Content/client/images/komen.png" alt=""><a href="#" title="Comment on Donec consectetuer ligula vulputate sem tristique cursus">0 Comment</a></li>
+      <li class="tagz"><img src="images/tags-icon.png" alt=""><a href="#" rel="tag">Blog</a>, <a href="#" rel="tag">Framework</a><br /></li>
+    </ul>
+  </div>
+  <div class="entry-content">
+    @*<p><img width="774" height="320" src="images/thumb_770x364.png" alt="" /></p>*@
+    @Model.Content
+    <div class="ratings" style="float:none;margin-bottom:10px;">
+      <input class="star" type="radio" name="home-top-rating-1" value="1" disabled="disabled" />
+      <input class="star" type="radio" name="home-top-rating-1" value="2" disabled="disabled" />
+      <input class="star" type="radio" name="home-top-rating-1" value="3" disabled="disabled" checked="checked" />
+      <input class="star" type="radio" name="home-top-rating-1" value="4" disabled="disabled" />
+      <input class="star" type="radio" name="home-top-rating-1" value="5" disabled="disabled" />
+    </div>
+    <span class='st_facebook_hcount' displayText='Facebook'></span>
+    <span class='st_twitter_hcount' displayText='Tweet'></span>
+    <span class='st_googleplus_hcount' displayText='Google +'></span>
+    <span class='st_linkedin_hcount' displayText='LinkedIn'></span>
+    <span class='st_pinterest_hcount' displayText='Pinterest'></span>
+  </div>
+</article>
