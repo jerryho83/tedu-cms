@@ -10,7 +10,7 @@
     <ul class="slides">
       @foreach (var item in (IEnumerable<TEDU.Web.ViewModels.PostViewModel>)ViewBag.SlideNews)
       {
-        var url = item.Category.Alias +  "/" + item.Alias + "-" + item.ID + ".html";
+        var url = item.Category.Alias + "/" + item.Alias + "-" + item.ID + ".html";
 
           <li data-thumb="@item.Image">
             <a href="@url" title="@item.Name" rel="bookmark">
@@ -32,7 +32,7 @@
     <ul>
       @foreach (var item in (IEnumerable<TEDU.Web.ViewModels.PostViewModel>)ViewBag.FocusNews)
       {
-        var url = "/" + item.Alias + "-" + item.ID + ".html";
+        var url = item.Category.Alias + "/" + item.Alias + "-" + item.ID + ".html";
           <li>
             <a href="@url" title="@item.Name" rel="bookmark">
               <h4 class="post-title">@item.Name</h4>
@@ -52,7 +52,8 @@
         @if (item.Posts.Count() > 0)
         {
           var firstPost = item.Posts.First();
-          var url = "/" + firstPost.Alias + "-" + firstPost.ID + ".html";
+          var url = firstPost.Category.Alias + "/" + firstPost.Alias + "-" + firstPost.ID + ".html";
+
             <div class="span6">
               <article class="post">
                 <a class="image_thumb_zoom" href="@url" title="@firstPost.Name" rel="bookmark">
@@ -73,12 +74,13 @@
               @for (var i = 1; i < item.Posts.Count(); i++)
               {
                 var post = item.Posts[i];
-                var url = "/" + post.Alias + "-" + post.ID + ".html";
+                var url = post.Category.Alias + "/" + post.Alias + "-" + post.ID + ".html";
+
 
                   <article class="post">
                     <div class="entry clearfix">
                       <a href="@url" title="@post.Name" rel="bookmark">
-                        <img width="225" height="136" src="http://placehold.it/225x136" class="thumb" alt="" />
+                        <img width="225" height="136" src="@post.Image" class="thumb" alt="@post.Name" />
                         <h4 class="post-title">@post.Name</h4>
                       </a>
                       <p>@post.Description</p>

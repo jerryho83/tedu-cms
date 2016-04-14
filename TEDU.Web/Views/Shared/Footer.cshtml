@@ -5,7 +5,7 @@
       <div class="latest-posts widget">
         @foreach (var item in (IEnumerable<TEDU.Web.ViewModels.PostViewModel>)ViewBag.RecentPosts)
         {
-          var url = "/" + item.Alias + "-" + item.ID + ".html";
+          var url = item.Category.Alias + "/" + item.Alias + "-" + item.ID + ".html";
             <div class="latest-post clearfix">
               <a href="@url"><img width="225" height="136" src="@item.Image" class="thumb fl" alt="@item.Name" title="@item.Name" /></a>
               <h4><a href="@url" rel="bookmark" title="@item.Name">@item.Name</a></h4>

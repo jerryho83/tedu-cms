@@ -11,7 +11,7 @@
       <ul id="itemContainer" class="recent-tab">
         @foreach (var item in (IEnumerable<TEDU.Web.ViewModels.PostViewModel>)ViewBag.Popular)
         {
-          var url = "/" + item.Alias + "-" + item.ID + ".html";
+          var url = item.Category.Alias + "/" + item.Alias + "-" + item.ID + ".html";
             <li>
               <a href="@url"><img width="225" height="136" src="@item.Image" class="thumb" alt="@item.Name" /></a>
               <h4 class="post-title"><a href="@url">@item.Name</a></h4>
@@ -48,7 +48,7 @@
       <ul id="itemContainer2" class="recent-tab">
         @foreach (var item in (IEnumerable<TEDU.Web.ViewModels.PostViewModel>)ViewBag.RecentPosts)
         {
-          var url = "/" + item.Alias + "-" + item.ID + ".html";
+          var url = item.Category.Alias + "/" + item.Alias + "-" + item.ID + ".html";
             <li>
               <a href="@url"><img width="225" height="136" src="@item.Image" class="thumb" alt="@item.Name" /></a>
               <h4 class="post-title"><a href="@url">@item.Name</a></h4>

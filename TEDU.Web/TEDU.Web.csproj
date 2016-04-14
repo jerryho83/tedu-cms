@@ -2334,6 +2334,8 @@
     <Compile Include="Areas\Admin\Controllers\PostController.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CVController.cs" />
+    <Compile Include="Controllers\EbookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2377,6 +2379,8 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="UploadData\" />
+    <Folder Include="Views\CV\" />
+    <Folder Include="Views\Ebook\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

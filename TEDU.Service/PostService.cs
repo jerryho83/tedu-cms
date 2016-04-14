@@ -182,14 +182,14 @@ namespace TEDU.Service
         public IEnumerable<Post> GetPopularPosts(int top)
         {
             return PostsRepository
-                .GetMany(x => x.Status == StatusEnum.Publish.ToString())
+                .Filter(x => x.Status == StatusEnum.Publish.ToString(), new string[] { "Category" })
                 .OrderByDescending(x => x.ViewCount).Take(top);
         }
 
         public IEnumerable<Post> GetBreakingNews(int top)
         {
             return PostsRepository
-               .GetMany(x => x.Status == StatusEnum.Publish.ToString() && x.HotFlag.HasValue)
+               .Filter(x => x.Status == StatusEnum.Publish.ToString() && x.HotFlag.HasValue, new string[] { "Category" })
                .OrderByDescending(x => x.HotFlag).Take(top);
         }
 
@@ -210,10 +210,10 @@ namespace TEDU.Service
         public List<Post> GetListByCategoryAlias(string categoryAlias, int page, int pageSize, out int totalRow)
         {
             var model = PostsRepository
-                    .GetMany(m => m.Category.Alias == categoryAlias &&
-                    m.Status == StatusEnum.Publish.ToString())
+                    .Filter(m => m.Category.Alias == categoryAlias &&
+                    m.Status == StatusEnum.Publish.ToString(), new string[] { "Category" })
                     .OrderBy(m => m.ID)
-                    .Skip(page * pageSize)
+                    .Skip((page-1) * pageSize)
                     .Take(pageSize)
                     .ToList();
 

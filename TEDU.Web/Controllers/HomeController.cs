@@ -46,7 +46,7 @@ namespace TEDU.Web.Controllers
         }
         public PartialViewResult Footer()
         {
-            var recentNews = postService.GetRecentPosts(6);
+            var recentNews = postService.GetRecentPosts(3);
             ViewBag.RecentPosts = Mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(recentNews);
 
             return PartialView();

@@ -21,6 +21,8 @@ namespace TEDU.Service
         void SaveCategory();
 
         IEnumerable<Category> GetHomeCategories(int top);
+
+        Category GetCategoryByAlias(string alias);
     }
 
     public class CategoryService : ICategoryService
@@ -117,6 +119,12 @@ namespace TEDU.Service
                    .ToList();
 
             return model;
+        }
+
+        public Category GetCategoryByAlias(string alias)
+        {
+            var category = categorysRepository.Get(x => x.Alias == alias);
+            return category;
         }
 
         #endregion
