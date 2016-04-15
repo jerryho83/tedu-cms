@@ -12,7 +12,7 @@ namespace TEDU.Web.App_Start
             routes.MapRoute(
                name: "CVOnline",
                url: "cv-online.html",
-               defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+               defaults: new { controller = "CV", action = "Index", id = UrlParameter.Optional },
                namespaces: new string[] { "TEDU.Web.Controllers" }
 
                );
@@ -30,6 +30,12 @@ namespace TEDU.Web.App_Start
                 namespaces: new string[] { "TEDU.Web.Controllers" }
                );
 
+            routes.MapRoute(
+                name: "Tags",
+                url: "/tag/{id}.html",
+                defaults: new { controller = "Post", action = "PostByTag", id = UrlParameter.Optional },
+                namespaces: new string[] { "TEDU.Web.Controllers" }
+            );
 
             routes.MapRoute(
                  name: "Category",
