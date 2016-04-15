@@ -12,21 +12,44 @@
   </h2>
   <div class="entry-meta row-fluid">
     <ul class="clearfix">
-      <li><img alt='@Model.Name' src='@Model.Image' height='15' width='15' /><a href="#" title="Posts by Admin" rel="author">Admin</a></li>
+      <li><a href="#" title="Posts by Admin" rel="author">Admin</a></li>
       <li><img src="/Content/client/images/time.png" alt="">@(Model.CreatedDate.HasValue ? Model.CreatedDate.Value.ToString("dd/MM/yyyy") : "")</li>
-      <li><img src="/Content/client/images/view-bg.png" alt="">@(Model.ViewCount.HasValue ? Model.ViewCount.Value.ToString("N0") : "Chưa có lượt xem nào") </li>
-      <li><img src="/Content/client/images/komen.png" alt=""><a href="#" title="Comment on Donec consectetuer ligula vulputate sem tristique cursus">0 Comment</a></li>
-      <li class="tagz"><img src="/Content/client/images/tags-icon.png" alt=""><a href="#" rel="tag">Blog</a>, <a href="#" rel="tag">Framework</a><br /></li>
+      <li><img src="/Content/client/images/view-bg.png" alt="">@(Model.ViewCount.HasValue ? Model.ViewCount.Value.ToString("N0") + " lượt xem" : "Chưa có lượt xem nào") </li>
+      @*<li><img src="/Content/client/images/komen.png" alt=""><a href="#" title="Comment on Donec consectetuer ligula vulputate sem tristique cursus">0 Comment</a></li>*@
+      <li class="tagz">
+        <img src="/Content/client/images/tags-icon.png" alt="">
+        @{
+            var tags = (List<TEDU.Web.ViewModels.TagViewModel>)ViewBag.Tags;
+        }
+        @for (int i = 0; i < tags.Count; i++)
+        {
+            <a href="/tag/@(tags[i].ID).html" rel="tag">@tags[i].Name</a>
+          if (i < tags.Count)
+          {
+                <span>,</span>
+          }
+        }
+        <br />
+      </li>
     </ul>
   </div>
   <div class="entry-content">
     @*<p><img width="774" height="320" src="images/thumb_770x364.png" alt="" /></p>*@
-    @Model.Content
-   
-    <span class='st_facebook_hcount' displayText='Facebook'></span>
-    <span class='st_twitter_hcount' displayText='Tweet'></span>
-    <span class='st_googleplus_hcount' displayText='Google +'></span>
-    <span class='st_linkedin_hcount' displayText='LinkedIn'></span>
-    <span class='st_pinterest_hcount' displayText='Pinterest'></span>
+    @Html.Raw(Model.Content)
+
+    <div class="clear"></div>
+    @if (!string.IsNullOrEmpty(Model.Source))
+    {
+        <p>Trích nguồn từ: (@Model.Source)</p>
+    }
+    <div class="other-posts">
+      Tin liên quan:
+      <ul>
+        @foreach (var item in (List<TEDU.Web.ViewModels.PostViewModel>)ViewBag.RelatedPosts)
+        {
+            <li><a href="/@item.Category.Alias/@item.Alias-@(item.ID).html" title="@item.Name">@item.Name</a></li>
+        }
+      </ul>
+    </div>
   </div>
 </article>

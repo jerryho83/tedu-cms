@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using TEDU.Common.Helper;
 using TEDU.Model;
+using TEDU.Model.Models;
 using TEDU.Service;
 using TEDU.Web.ViewModels;
 
@@ -49,6 +50,8 @@ namespace TEDU.Web.Controllers
             var recentNews = postService.GetRecentPosts(3);
             ViewBag.RecentPosts = Mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(recentNews);
 
+            var cloudTags = postService.GetPopularListTags(10);
+            ViewBag.TagCloud = Mapper.Map<IEnumerable<Tag>, IEnumerable<TagViewModel>>(cloudTags);
             return PartialView();
         }
 

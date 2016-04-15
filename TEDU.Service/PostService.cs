@@ -38,34 +38,42 @@ namespace TEDU.Service
         List<Post> GetListByCategoryAlias(string categoryAlias, int page, int pageSize, out int totalRow);
 
         IEnumerable<Post> GetPostSlide(int top);
+
+        List<Post> GetReleatedPosts(int top, int id);
+
+        void IncreaseViewCount(int id);
+
+        List<Tag> GetListTags(int id);
+
+        List<Tag> GetPopularListTags(int top);
     }
 
     public class PostService : IPostService
     {
-        private readonly IPostRepository PostsRepository;
-        private readonly ICategoryRepository categoryRepository;
-        private readonly IPostTagRepository postTagRepository;
-        private readonly ITagRepository tagRepository;
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IPostRepository _postsRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IPostTagRepository _postTagRepository;
+        private readonly ITagRepository _tagRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public PostService(IPostRepository PostsRepository,
+        public PostService(IPostRepository postsRepository,
             ICategoryRepository categoryRepository,
             IPostTagRepository postTagRepository,
             ITagRepository tagRepository,
             IUnitOfWork unitOfWork)
         {
-            this.PostsRepository = PostsRepository;
-            this.categoryRepository = categoryRepository;
-            this.postTagRepository = postTagRepository;
-            this.tagRepository = tagRepository;
-            this.unitOfWork = unitOfWork;
+            this._postsRepository = postsRepository;
+            this._categoryRepository = categoryRepository;
+            this._postTagRepository = postTagRepository;
+            this._tagRepository = tagRepository;
+            this._unitOfWork = unitOfWork;
         }
 
         #region IPostService Members
 
         public IEnumerable<Post> GetPosts()
         {
-            var Posts = PostsRepository.GetAll();
+            var Posts = _postsRepository.GetAll();
             return Posts;
         }
 
@@ -74,7 +82,7 @@ namespace TEDU.Service
             IEnumerable<Post> model;
             if (!string.IsNullOrEmpty(filter))
             {
-                model = PostsRepository
+                model = _postsRepository
                     .GetMany(m => m.Name.ToLower()
                     .Contains(filter.ToLower().Trim()) &&
                     m.Status == StatusEnum.Publish.ToString())
@@ -83,7 +91,7 @@ namespace TEDU.Service
                     .Take(pageSize)
                     .ToList();
 
-                totalRow = PostsRepository
+                totalRow = _postsRepository
                     .GetMany(m => m.Name.ToLower()
                     .Contains(filter.ToLower().Trim()) &&
                     m.Status == StatusEnum.Publish.ToString())
@@ -91,14 +99,14 @@ namespace TEDU.Service
             }
             else
             {
-                model = PostsRepository
+                model = _postsRepository
                     .GetMany(x => x.Status == StatusEnum.Publish.ToString())
                     .OrderBy(m => m.ID)
                     .Skip(page * pageSize)
                     .Take(pageSize)
                     .ToList();
 
-                totalRow = PostsRepository.GetMany(x => x.Status == StatusEnum.Publish.ToString()).Count();
+                totalRow = _postsRepository.GetMany(x => x.Status == StatusEnum.Publish.ToString()).Count();
             }
 
             return model;
@@ -106,13 +114,13 @@ namespace TEDU.Service
 
         public Post GetPost(int id)
         {
-            var Post = PostsRepository.Get(x => x.ID == id, new string[] { "Category" });
+            var Post = _postsRepository.Get(x => x.ID == id, new string[] { "Category" });
             return Post;
         }
 
         public void CreatePost(Post Post)
         {
-            PostsRepository.Add(Post);
+            _postsRepository.Add(Post);
 
             if (!string.IsNullOrEmpty(Post.Tags))
             {
@@ -120,25 +128,25 @@ namespace TEDU.Service
                 foreach (var item in tags)
                 {
                     string alias = StringHelper.ToUnsignString(item);
-                    if (tagRepository.Count(x => x.ID == alias) == 0)
+                    if (_tagRepository.Count(x => x.ID == alias) == 0)
                     {
                         Tag tag = new Tag();
                         tag.ID = alias;
                         tag.Name = item;
-                        tagRepository.Add(tag);
+                        _tagRepository.Add(tag);
                     }
 
                     PostTag postTag = new PostTag();
                     postTag.PostID = Post.ID;
                     postTag.TagID = alias;
-                    postTagRepository.Add(postTag);
+                    _postTagRepository.Add(postTag);
                 }
             }
         }
 
         public void UpdatePost(Post postEntity)
         {
-            PostsRepository.Update(postEntity);
+            _postsRepository.Update(postEntity);
 
             if (!string.IsNullOrEmpty(postEntity.Tags))
             {
@@ -146,84 +154,118 @@ namespace TEDU.Service
                 foreach (var item in tags)
                 {
                     string alias = StringHelper.ToUnsignString(item);
-                    if (tagRepository.Count(x => x.ID == alias) == 0)
+                    if (_tagRepository.Count(x => x.ID == alias) == 0)
                     {
                         Tag tag = new Tag();
                         tag.ID = alias;
                         tag.Name = item;
-                        tagRepository.Add(tag);
+                        _tagRepository.Add(tag);
                     }
-                    postTagRepository.Delete(x => x.PostID == postEntity.ID);
+                    _postTagRepository.Delete(x => x.PostID == postEntity.ID);
 
                     PostTag postTag = new PostTag();
                     postTag.PostID = postEntity.ID;
                     postTag.TagID = alias;
-                    postTagRepository.Add(postTag);
+                    _postTagRepository.Add(postTag);
                 }
             }
         }
 
         public void SavePost()
         {
-            unitOfWork.Commit();
+            _unitOfWork.Commit();
         }
 
         public void Delete(Post post)
         {
-            PostsRepository.Delete(post);
+            _postsRepository.Delete(post);
         }
 
         public IEnumerable<Post> GetRecentPosts(int top = 0)
         {
-            return PostsRepository.Filter(x => x.Status == StatusEnum.Publish.ToString(), new string[] { "Category" })
+            return _postsRepository.Filter(x => x.Status == StatusEnum.Publish.ToString(), new string[] { "Category" })
                 .OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public IEnumerable<Post> GetPopularPosts(int top)
         {
-            return PostsRepository
+            return _postsRepository
                 .Filter(x => x.Status == StatusEnum.Publish.ToString(), new string[] { "Category" })
                 .OrderByDescending(x => x.ViewCount).Take(top);
         }
 
         public IEnumerable<Post> GetBreakingNews(int top)
         {
-            return PostsRepository
+            return _postsRepository
                .Filter(x => x.Status == StatusEnum.Publish.ToString() && x.HotFlag.HasValue, new string[] { "Category" })
                .OrderByDescending(x => x.HotFlag).Take(top);
         }
 
         public IEnumerable<Post> GetPostSlide(int top)
         {
-            return PostsRepository
+            return _postsRepository
                .Filter(x => x.Status == StatusEnum.Publish.ToString() && x.SlideFlag.HasValue, new string[] { "Category" })
                .OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public List<Post> GetRecentPostsByCategory(int categoryId, int top)
         {
-            return PostsRepository
+            return _postsRepository
                 .GetMany(x => x.Status == StatusEnum.Publish.ToString() && x.CategoryID == categoryId)
                 .OrderByDescending(x => x.CreatedDate).Take(top).ToList();
         }
 
         public List<Post> GetListByCategoryAlias(string categoryAlias, int page, int pageSize, out int totalRow)
         {
-            var model = PostsRepository
+            var model = _postsRepository
                     .Filter(m => m.Category.Alias == categoryAlias &&
                     m.Status == StatusEnum.Publish.ToString(), new string[] { "Category" })
                     .OrderBy(m => m.ID)
-                    .Skip((page-1) * pageSize)
+                    .Skip((page - 1) * pageSize)
                     .Take(pageSize)
                     .ToList();
 
-            totalRow = PostsRepository
+            totalRow = _postsRepository
                .GetMany(m => m.Category.Alias == categoryAlias &&
                     m.Status == StatusEnum.Publish.ToString())
                 .Count();
             return model;
         }
 
+        public void IncreaseViewCount(int id)
+        {
+            var post = _postsRepository.GetById(id);
+            post.ViewCount += 1;
+            _postsRepository.Update(post);
+
+        }
+
+        public List<Tag> GetListTags(int id)
+        {
+            return _postTagRepository
+                .Filter(x => x.PostID == id, new string[] { "Tag" })
+                .Select(x => x.Tag).ToList();
+        }
+
+        public List<Post> GetReleatedPosts(int top, int id)
+        {
+            var post = _postsRepository.GetById(id);
+            return _postsRepository
+             .Filter(x => x.Status == StatusEnum.Publish.ToString() && x.ID != id && x.CategoryID == post.ID, new string[] { "Category" })
+             .OrderByDescending(x => x.CreatedDate).Take(top).ToList();
+        }
+
+        public List<Tag> GetPopularListTags(int top)
+        {
+            var list = _tagRepository.All(new string[] { "PostTags" });
+
+            var list1 =    list.Select(x => new { ID = x.ID, Name = x.Name, Count = x.PostTags.Count() })
+                .GroupBy(a => new { a.ID, a.Name })
+                .SelectMany(g => g.OrderByDescending(grp => grp.Count))
+                .Take(top)
+                .Select(y => new Tag { ID = y.ID, Name = y.Name });
+            return list.ToList();
+        }
         #endregion IPostService Members
     }
 }

@@ -26,11 +26,16 @@
             </ul>
           </div>
           <div class="entry-content">
-            <a href="@url" title="@item.Name" rel="bookmark">
-              <img width="100" height="100" src="@item.Image" alt="@item.Name" />
-            </a>
-            <p>@item.Description
-            <p class="moretag"><a href="@url"> Đọc thêm</a></p>
+            <div class="span3">
+              <a href="@url" title="@item.Name" rel="bookmark">
+                <img width="100" height="100" src="@item.Image" alt="@item.Name" />
+              </a>
+            </div>
+            <div class="span9">
+              <p>@item.Description
+              <p class="moretag"><a href="@url"> Đọc thêm</a></p>
+            </div>
+                      
           </div>
         </article>
   }

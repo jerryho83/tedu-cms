@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using TEDU.Model;
+using TEDU.Model.Models;
 using TEDU.Service;
-using TEDU.Web.Mappings;
 using TEDU.Web.ViewModels;
 
 namespace TEDU.Web.Controllers
@@ -61,6 +61,15 @@ namespace TEDU.Web.Controllers
         {
             var postDb = _postService.GetPost(id);
             var model = Mapper.Map<Post, PostViewModel>(postDb);
+
+            _postService.IncreaseViewCount(id);
+            _postService.SavePost();
+
+            var tags = _postService.GetListTags(id);
+            ViewBag.Tags = Mapper.Map<List<Tag>, List<TagViewModel>>(tags);
+
+            var relatedPosts = _postService.GetReleatedPosts(10, id);
+            ViewBag.RelatedPosts = Mapper.Map<List<Post>, List<PostViewModel>>(relatedPosts);
             return View(model);
         }
     }

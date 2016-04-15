@@ -15,6 +15,6 @@ namespace TEDU.Model.Models
         [StringLength(250)]
         public string Name { set; get; }
 
-        public virtual IEnumerable<PostTag> PostTags { set; get; }
+        public virtual ICollection<PostTag> PostTags { set; get; }
     }
 }

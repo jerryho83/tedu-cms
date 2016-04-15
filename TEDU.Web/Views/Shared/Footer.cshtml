@@ -40,15 +40,11 @@
     <div class="widget">
       <h3 class="title"><span>Tag Cloud</span></h3>
       <div class="tagcloud">
-        <a href='#'>Blog</a>
-        <a href='#'>Framework</a>
-        <a href='#'>Grid</a>
-        <a href='#'>Magazine</a>
-        <a href='#'>Mobile</a>
-        <a href='#'>Responsive</a>
-        <a href='#'>Sidebar</a>
-        <a href='#'>Themes</a>
-        <a href='#'>WordPress</a>
+        @foreach (var item in (List<TEDU.Web.ViewModels.TagViewModel>)ViewBag.TagCloud)
+        {
+            <a href='/tag/@item.ID'>@item.Name</a>
+        }
+        
       </div>
     </div>
   </div>
@@ -60,13 +56,13 @@
         <ul>
           <li>
             <a href="https://twitter.com/teduinternatio1"><img src="/Content/client/images/twitter-icon.png" alt=""></a>
-            <h4>37005</h4>
-            <p>Followers</p>
+            @*<h4>37005</h4>
+            <p>Followers</p>*@
           </li>
           <li>
             <a href="http://facebook.com/teduchannel"><img src="/Content/client/images/fb-icon.png" alt=""></a>
-            <h4>109</h4>
-            <p>Fans</p>
+            @*<h4>109</h4>
+            <p>Fans</p>*@
           </li>
         </ul>
       </div>
@@ -76,8 +72,8 @@
   <div class="footer-widget span6 block5">
     <img class="footer-logo" src="/Content/client/images/footer-logo.png" alt="Magazine">
     <div class="footer-text">
-      <h4>About Magazine</h4>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius mod tempor incididu... </p>
+      <h4>TEDU - Technology Education</h4>
+      <p>Là một kênh đào tạo lập trình trực tuyến, tạp chí công nghệ dành cho mọi người... </p>
     </div><div class="clearfix"></div>
   </div>
 
@@ -88,10 +84,8 @@
 
   <div id="footer-nav" class="fr">
     <ul class="menu">
-      <li><a href="/">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="/">Trang chủ</a></li>
+      <li><a href="/gioi-thieu.html">Giới thiệu</a></li>
     </ul>
   </div>
 

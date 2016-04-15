@@ -2355,8 +2355,10 @@
     <Compile Include="ViewModels\ChangeProfileViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PostFormViewModel.cs" />
+    <Compile Include="ViewModels\PostTagViewModel.cs" />
     <Compile Include="ViewModels\PostViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\TagViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TEDU.Common\TEDU.Common.csproj">

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TEDU.Web.ViewModels
 {
@@ -38,5 +39,6 @@ namespace TEDU.Web.ViewModels
         public bool? SlideFlag { set; get; }
 
         public CategoryViewModel Category { set; get; }
+
     }
 }

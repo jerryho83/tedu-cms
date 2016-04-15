@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using TEDU.Model;
+using TEDU.Model.Models;
 using TEDU.Web.ViewModels;
 
 namespace TEDU.Web.Mappings
@@ -19,6 +16,7 @@ namespace TEDU.Web.Mappings
         {
             Mapper.CreateMap<Category, CategoryViewModel>();
             Mapper.CreateMap<Post, PostViewModel>();
+            Mapper.CreateMap<Tag, TagViewModel>();
         }
     }
 }
