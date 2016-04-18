@@ -5,6 +5,9 @@
     ViewBag.MetaDescription = Model.MetaDescription;
     Layout = "~/Views/Shared/_Layouts.cshtml";
 }
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e2ee2522e0da3e0"></script>
+
 <article class="post">
   <h2 class="entry-title">
     <span class="the_title">@Model.Name</span>
@@ -38,10 +41,24 @@
     @Html.Raw(Model.Content)
 
     <div class="clear"></div>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <div class="addthis_native_toolbox"></div>
+
+    <div class="clear"></div>
     @if (!string.IsNullOrEmpty(Model.Source))
     {
         <p>Trích nguồn từ: (@Model.Source)</p>
     }
+    <div id="fb-root"></div>
+    <script>
+      (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=500141453482575";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    <div class="fb-comments" data-href="@Request.Url.AbsoluteUri" data-width="770" data-numposts="5"></div>
     <div class="other-posts">
       Tin liên quan:
       <ul>

@@ -2272,6 +2272,7 @@
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Post\PostByTag.cshtml" />
     <None Include="_references.js" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />

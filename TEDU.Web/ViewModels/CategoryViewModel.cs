@@ -32,6 +32,6 @@ namespace TEDU.Web.ViewModels
 
         public bool? ShowHome { set; get; }
 
-        public IList<PostViewModel> Posts { set; get; }
+        public List<PostViewModel> Posts { set; get; }
     }
 }

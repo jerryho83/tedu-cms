@@ -30,6 +30,8 @@ namespace TEDU.Web
             GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
 
             JsonSerializerSettings jSettings = new Newtonsoft.Json.JsonSerializerSettings();
+            jSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings = jSettings;
         }
     }

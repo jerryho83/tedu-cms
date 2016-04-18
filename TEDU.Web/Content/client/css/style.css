@@ -12,8 +12,8 @@ Tags:white,two-columns,flexible-width,custom-background,threaded-comments
 body {
   background-color:#09151f;
   background: url("../images/background-new.jpg") no-repeat top center fixed;
-  color: #939ead;
-  font-family: Roboto, sans-serif;
+  color: #000000;
+  font-family: sans-serif;
   font-weight: normal;
   font-size: 13px;
 }

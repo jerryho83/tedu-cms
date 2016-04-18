@@ -32,7 +32,7 @@ namespace TEDU.Web.App_Start
 
             routes.MapRoute(
                 name: "Tags",
-                url: "/tag/{id}.html",
+                url: "tag/{id}.html",
                 defaults: new { controller = "Post", action = "PostByTag", id = UrlParameter.Optional },
                 namespaces: new string[] { "TEDU.Web.Controllers" }
             );

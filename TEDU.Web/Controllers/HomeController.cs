@@ -29,7 +29,7 @@ namespace TEDU.Web.Controllers
             var focusNews = postService.GetBreakingNews(6);
             ViewBag.FocusNews = Mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(focusNews);
 
-            var slideNews = postService.GetPostSlide(6);
+            var slideNews = postService.GetPostSlide(4);
             ViewBag.SlideNews = Mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(slideNews);
 
             var homeCates = categoryService.GetHomeCategories(3);
@@ -37,7 +37,7 @@ namespace TEDU.Web.Controllers
             foreach (var item in homeCatesVM)
             {
                 var post = postService.GetRecentPostsByCategory(item.ID, 4);
-                item.Posts = Mapper.Map<IList<Post>, IList<PostViewModel>>(post);
+                item.Posts = Mapper.Map<List<Post>, List<PostViewModel>>(post);
             }
             ViewBag.HomeCates = homeCatesVM;
             ViewBag.SystemTitle = ConfigHelper.GetConfigByKey("SystemTitle");

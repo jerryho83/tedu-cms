@@ -1,0 +1,87 @@
+﻿@model IEnumerable<TEDU.Web.ViewModels.PostViewModel>
+@{
+    var tag = (TEDU.Web.ViewModels.TagViewModel)ViewBag.Tag;
+
+
+    int currentPage = ((int)ViewBag.Page);
+
+    ViewBag.Title = tag.Name + (currentPage > 1 ? " - Trang " + currentPage : "");
+
+    ViewBag.MetaKeyword = "Tag " + tag.Name + (currentPage > 1 ? " - Trang " + currentPage : ""); ;
+    ViewBag.MetaDescription = "Danh sách các bài viết cho tag " + tag.Name + (currentPage > 1 ? " - Trang " + currentPage : ""); ;
+    Layout = "~/Views/Shared/_Layouts.cshtml";
+}
+@if (Model.Count() > 0)
+{
+  foreach (var item in Model)
+  {
+    var url = item.Category.Alias + "/" + item.Alias + "-" + item.ID + ".html";
+        <article class="post">
+          <h2 class="entry-title">
+            <a href="@url" title="@item.Name" rel="bookmark">@item.Name</a>
+            <span class="entry-cat"><a href="@url" title="@item.Category.Name" rel="category tag">@item.Category.Name</a></span>
+          </h2>
+          <div class="entry-meta row-fluid">
+            <ul class="clearfix">
+              <li><img alt='' src='/Content/client/images/avatar.png' height='15' width='15' /><a href="#" title="Posts by Admin" rel="author">Admin</a></li>
+              <li><img src="/Content/client/images/time.png" alt="">@(item.CreatedDate.HasValue ? item.CreatedDate.Value.ToString("dd/MM/yyyy") : "")</li>
+              <li><img src="/Content/client/images/view-bg.png" alt="">@(item.ViewCount.HasValue ? item.ViewCount.Value.ToString("N0") : "Chưa có lượt xem nào") </li>
+              <li><img src="/Content/client/images/komen.png" alt=""><a href="#" title="Comment on Lectus non rutrum pulvinar urna leo dignissim lorem">0 Comment</a></li>
+              <li class="tagz"><img src="/Content/client/images/tags-icon.png" alt=""><a href="#" rel="tag">Grid</a><br /></li>
+            </ul>
+          </div>
+          <div class="entry-content">
+            <div class="span3">
+              <a href="@url" title="@item.Name" rel="bookmark">
+                <img width="100" height="100" src="@item.Image" alt="@item.Name" />
+              </a>
+            </div>
+            <div class="span9">
+              <p>@item.Description
+              <p class="moretag"><a href="@url"> Đọc thêm</a></p>
+            </div>
+
+          </div>
+        </article>
+  }
+
+  if (ViewBag.TotalPage > 1)
+  {
+
+    var pageDisplay = int.Parse(TEDU.Common.Helper.ConfigHelper.GetConfigByKey("pageDisplay"));
+    int totalPage = (int)ViewBag.TotalPage;
+    // Create numeric links
+    var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);
+    var endPageIndex = Math.Min(totalPage, currentPage + pageDisplay / 2);
+
+        <div class="pagination magz-pagination">
+          @if (currentPage > ViewBag.First)
+          {
+              <a href="?page=@ViewBag.First" title="Trang đầu" class="page-numbers"><i class="fa fa-angle-double-left"></i></a>
+              <a href="?page=@ViewBag.Prev" title="Trang trước" class="page-numbers"><i class="fa fa-angle-left"></i></a>
+
+          }
+          @for (int i = startPageIndex; i <= endPageIndex; i++)
+          {
+            if (currentPage == i)
+            {
+
+                  <a href="?page=@i" class="page-numbers current" title="Trang @i">@i</a>
+            }
+            else
+            {
+                  <a href="?page=@i" title="Trang @i" class="page-numbers">@i</a>
+            }
+          }
+          @if (currentPage < totalPage)
+          {
+              <a href="?page=@ViewBag.Next" class="page-numbers" title="Trang sau"><i class="fa fa-angle-right"></i></a>
+              <a href="?page=@ViewBag.Last" class="page-numbers" title="Trang cuối"><i class="fa fa-angle-double-right"></i></a>
+          }
+        </div>
+  }
+}
+else
+{
+    <div style="text-align: center;color:#ff0000;"><p>Dữ liệu đang cập nhật...</p></div>
+}

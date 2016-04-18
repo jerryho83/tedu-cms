@@ -46,6 +46,10 @@ namespace TEDU.Service
         List<Tag> GetListTags(int id);
 
         List<Tag> GetPopularListTags(int top);
+
+        Tag GetTag(string id);
+
+        List<Post> GetListByTagId(string tagId, int page, int pageSize, out int totalRow);
     }
 
     public class PostService : IPostService
@@ -210,11 +214,16 @@ namespace TEDU.Service
 
         public List<Post> GetRecentPostsByCategory(int categoryId, int top)
         {
+            
             return _postsRepository
-                .GetMany(x => x.Status == StatusEnum.Publish.ToString() && x.CategoryID == categoryId)
+                .Filter(x => x.Status == StatusEnum.Publish.ToString() 
+                && (x.CategoryID == categoryId || x.Category.ParentID==categoryId),new string[] { "Category"})
                 .OrderByDescending(x => x.CreatedDate).Take(top).ToList();
         }
-
+        private List<int> GetChildCategory(int parentId)
+        {
+            return _categoryRepository.Filter(x => x.ParentID == parentId).Select(x=>x.ID).ToList();
+        }
         public List<Post> GetListByCategoryAlias(string categoryAlias, int page, int pageSize, out int totalRow)
         {
             var model = _postsRepository
@@ -251,7 +260,7 @@ namespace TEDU.Service
         {
             var post = _postsRepository.GetById(id);
             return _postsRepository
-             .Filter(x => x.Status == StatusEnum.Publish.ToString() && x.ID != id && x.CategoryID == post.ID, new string[] { "Category" })
+             .Filter(x => x.Status == StatusEnum.Publish.ToString() && x.ID != id && x.CategoryID == post.CategoryID, new string[] { "Category" })
              .OrderByDescending(x => x.CreatedDate).Take(top).ToList();
         }
 
@@ -259,12 +268,34 @@ namespace TEDU.Service
         {
             var list = _tagRepository.All(new string[] { "PostTags" });
 
-            var list1 =    list.Select(x => new { ID = x.ID, Name = x.Name, Count = x.PostTags.Count() })
+            var list1 = list.Select(x => new { ID = x.ID, Name = x.Name, Count = x.PostTags.Count() })
                 .GroupBy(a => new { a.ID, a.Name })
                 .SelectMany(g => g.OrderByDescending(grp => grp.Count))
                 .Take(top)
                 .Select(y => new Tag { ID = y.ID, Name = y.Name });
             return list.ToList();
+        }
+
+        public Tag GetTag(string id)
+        {
+            return _tagRepository.Get(x => x.ID == id);
+        }
+
+        public List<Post> GetListByTagId(string tagId, int page, int pageSize, out int totalRow)
+        {
+            var model = _postsRepository
+                   .Filter(m => m.Status == StatusEnum.Publish.ToString() && m.PostTags.Count(x => x.TagID == tagId) > 0, new string[] { "Category", "PostTags" })
+                   .OrderByDescending(m => m.CreatedDate)
+                   .Skip((page - 1) * pageSize)
+                   .Take(pageSize)
+                   .ToList();
+
+            totalRow = _postsRepository
+                                 .Filter(m => m.Status == StatusEnum.Publish.ToString()
+                                 && m.PostTags.Count(x => x.TagID == tagId) > 0, new string[] { "Category", "PostTags" })
+
+                .Count();
+            return model;
         }
         #endregion IPostService Members
     }
