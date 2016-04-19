@@ -64,7 +64,7 @@
       <ul>
         @foreach (var item in (List<TEDU.Web.ViewModels.PostViewModel>)ViewBag.RelatedPosts)
         {
-            <li><a href="/@item.Category.Alias/@item.Alias-@(item.ID).html" title="@item.Name">@item.Name</a></li>
+            <li><a href="/@item.Category.Alias/@item.Alias-@(item.ID).html" title="@item.Name">@item.Name</a> (@(item.CreatedDate.HasValue ? Model.CreatedDate.Value.ToString("dd/MM/yyyy") : ""))</li>
         }
       </ul>
     </div>

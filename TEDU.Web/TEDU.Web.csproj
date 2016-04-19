@@ -329,6 +329,7 @@
     <Content Include="Content\client\images\favicon.ico" />
     <Content Include="Content\client\images\favicon.png" />
     <Content Include="Content\client\images\fb-icon.png" />
+    <Content Include="Content\client\images\footer-logo.jpg" />
     <Content Include="Content\client\images\footer-logo.png" />
     <Content Include="Content\client\images\glyphicons-halflings-white.png" />
     <Content Include="Content\client\images\glyphicons-halflings.png" />

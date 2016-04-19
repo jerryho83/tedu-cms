@@ -214,20 +214,21 @@ namespace TEDU.Service
 
         public List<Post> GetRecentPostsByCategory(int categoryId, int top)
         {
-            
+
             return _postsRepository
-                .Filter(x => x.Status == StatusEnum.Publish.ToString() 
-                && (x.CategoryID == categoryId || x.Category.ParentID==categoryId),new string[] { "Category"})
+                .Filter(x => x.Status == StatusEnum.Publish.ToString()
+                && (x.CategoryID == categoryId || x.Category.ParentID == categoryId), new string[] { "Category" })
                 .OrderByDescending(x => x.CreatedDate).Take(top).ToList();
         }
         private List<int> GetChildCategory(int parentId)
         {
-            return _categoryRepository.Filter(x => x.ParentID == parentId).Select(x=>x.ID).ToList();
+            return _categoryRepository.Filter(x => x.ParentID == parentId).Select(x => x.ID).ToList();
         }
         public List<Post> GetListByCategoryAlias(string categoryAlias, int page, int pageSize, out int totalRow)
         {
+            var category = _categoryRepository.Get(x => x.Alias == categoryAlias);
             var model = _postsRepository
-                    .Filter(m => m.Category.Alias == categoryAlias &&
+                    .Filter(m => (m.Category.Alias == categoryAlias || m.Category.ParentID == category.ID) &&
                     m.Status == StatusEnum.Publish.ToString(), new string[] { "Category" })
                     .OrderBy(m => m.ID)
                     .Skip((page - 1) * pageSize)
