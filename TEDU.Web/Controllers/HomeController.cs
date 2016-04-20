@@ -12,6 +12,7 @@ using TEDU.Web.ViewModels;
 
 namespace TEDU.Web.Controllers
 {
+
     public class HomeController : Controller
     {
         private readonly IPostService postService;

@@ -195,13 +195,14 @@ ul.author-social {
 }
 
 #logo {
-    padding: 14px 0;
+    padding: 17px 0px 11px 0px;
+    line-height: 15px;
 }
 
     #logo a {
         color: black;
         font-weight:900;
-        font-size:26px;
+        font-size:36px;
         font-family:'Times New Roman', Times, serif
     }
     #logo a:hover{

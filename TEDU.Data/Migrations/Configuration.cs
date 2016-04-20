@@ -1,3 +1,9 @@
+using System;
+using System.Linq;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using TEDU.Model.Models;
+
 namespace TEDU.Data.Migrations
 {
     using System.Data.Entity.Migrations;
@@ -12,25 +18,35 @@ namespace TEDU.Data.Migrations
 
         protected override void Seed(TEDU.Data.TEDUEntities context)
         {
-            //var UserManager = new UserManager<AppUser>(new UserStore<AppUser>(context));
-            //var RoleManager = new RoleManager<IdentityRole>(new
-            //                             RoleStore<IdentityRole>(context));
-            //string name = "admin";
-            //string password = "123456";
-            //if (!RoleManager.RoleExists(name))
-            //{
-            //    var roleresult = RoleManager.Create(new IdentityRole(name));
-            //}
+             //  This method will be called after migrating to the latest version.
 
-            //var user = new AppUser();
-            //user.UserName = name;
-            //user.BirthDate = DateTime.Now;
-            //var adminresult = UserManager.Create(user, password);
-            //if (adminresult.Succeeded)
-            //{
-            //    var result = UserManager.AddToRole(user.Id, name);
-            //}
-            //base.Seed(context);
+            var manager = new UserManager<AppUser>(new UserStore<AppUser>(new TEDUEntities()));
+            
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new TEDUEntities()));
+
+            var user = new AppUser()
+            {
+                UserName = "tedu",
+                Email = "tedu.international@gmail.com",
+                EmailConfirmed = true,
+                BirthDate = DateTime.Now,
+                Bio = "Demo",
+                FullName = "Technology Education"
+                
+            };
+
+            manager.Create(user, "123654$");
+
+            if (!roleManager.Roles.Any())
+            {
+                roleManager.Create(new IdentityRole { Name = "Admin"});
+                roleManager.Create(new IdentityRole { Name = "User"});
+            }
+
+            var adminUser = manager.FindByName("SuperPowerUser");
+
+            manager.AddToRoles(adminUser.Id, new string[] { "Admin","User" });
+          
         }
     }
 }

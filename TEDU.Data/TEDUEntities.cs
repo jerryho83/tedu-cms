@@ -41,5 +41,10 @@ namespace TEDU.Data
             modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
             modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
         }
+
+        public static TEDUEntities Create()
+        {
+            return new TEDUEntities();
+        }
     }
 }
