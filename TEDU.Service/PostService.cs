@@ -90,7 +90,7 @@ namespace TEDU.Service
                     .GetMany(m => m.Name.ToLower()
                     .Contains(filter.ToLower().Trim()) &&
                     m.Status == StatusEnum.Publish.ToString())
-                    .OrderBy(m => m.ID)
+                    .OrderByDescending(m => m.CreatedDate)
                     .Skip(page * pageSize)
                     .Take(pageSize)
                     .ToList();
@@ -202,7 +202,7 @@ namespace TEDU.Service
         {
             return _postsRepository
                .Filter(x => x.Status == StatusEnum.Publish.ToString() && x.HotFlag.HasValue, new string[] { "Category" })
-               .OrderByDescending(x => x.HotFlag).Take(top);
+               .OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public IEnumerable<Post> GetPostSlide(int top)
@@ -230,7 +230,7 @@ namespace TEDU.Service
             var model = _postsRepository
                     .Filter(m => (m.Category.Alias == categoryAlias || m.Category.ParentID == category.ID) &&
                     m.Status == StatusEnum.Publish.ToString(), new string[] { "Category" })
-                    .OrderBy(m => m.ID)
+                    .OrderByDescending(m => m.CreatedDate)
                     .Skip((page - 1) * pageSize)
                     .Take(pageSize)
                     .ToList();
