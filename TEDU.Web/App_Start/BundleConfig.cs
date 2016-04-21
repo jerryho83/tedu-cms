@@ -7,30 +7,24 @@ namespace TEDU.Web.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-               "~/Scripts/jquery-{version}.js"));
+               "~/Scripts/plugins/jquery/dist/jquery.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/vendors").Include(
-                        "~/scripts/jquery.slimscroll.min.js",
-                        "~/scripts/fastclick.js",
-                        "~/Scripts/toastr.js",
-                        "~/Scripts/bootbox.min.js",
-                        "~/Scripts/ckeditor/ckeditor.js",
-                        "~/Scripts/ckfinder/ckfinder.js",
+            bundles.Add(new ScriptBundle("~/bundles/plugins").Include(
+                        "~/Scripts/plugins/toastr/toastr.js",
+                        "~/Scripts/plugins/bootbox/bootbox.min.js",
+                        "~/Scripts/plugins/ckeditor/ckeditor.js",
+                        "~/Scripts/plugins/ckfinder/ckfinder.js",
                         "~/scripts/main.js",
-                        "~/Scripts/angular.js",
-                        "~/Scripts/angular-route.js",
-                        "~/Scripts/angular-ui-router.js",
-                        "~/Scripts/angular-cookies.js",
-                        "~/Scripts/angular-resource.js",
-                        "~/Scripts/angular-validator.min.js",
-                        "~/Scripts/ngBootbox.min.js",
-                        "~/Scripts/angular-ui/ui-bootstrap-tpls.js",
-                        "~/Scripts/loading-bar.js",
-                        "~/Scripts/jquery.fancybox.js",
-                        "~/Scripts/jquery.fancybox-media.js",
-                        "~/Scripts/ng-ckeditor.min.js",
-                        "~/Scripts/tree-grid-directive.js",
-                        "~/Scripts/jquery.domenu-0.95.77.min.js"
+                        "~/Scripts/plugins/angular/angular.js",
+                        "~/Scripts/plugins/angular-route/angular-route.js",
+                        "~/Scripts/plugins/angular-ui-router/release/angular-ui-router.js",
+                        "~/Scripts/plugins/angular-cookies/angular-cookies.js",
+                        "~/Scripts/plugins/angular-resource/angular-resource.js",
+                        "~/Scripts/plugins/angular-validator/dist/angular-validator.js",
+                        "~/Scripts/plugins/ngBootbox/ngBootbox.js",
+                        "~/Scripts/plugins/angular-loading-bar/build/loading-bar.js",
+                        "~/Scripts/plugins/ngckeditor/ng-ckeditor.js",
+                        "~/Scripts/plugins/jquery-treegrid/js/jquery.treegrid.js"
                         ));
             bundles.Add(new ScriptBundle("~/bundles/spa").Include(
                        "~/app/modules/common.core.js",
@@ -41,6 +35,7 @@ namespace TEDU.Web.App_Start
                        "~/app/services/apiService.js",
                        "~/app/services/commonService.js",
                        "~/app/layout/customPager.directive.js",
+                       "~/app/layout/treegrid.directive.js",
                        "~/app/filters/boolStatus.filter.js",
                        "~/app/home/homeCtrl.js",
                        "~/app/categories/categoryCtrl.js",
@@ -53,20 +48,18 @@ namespace TEDU.Web.App_Start
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+                        "~/Scripts/plugins/modernizr/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/scripts/bootstrap.min.js"));
+                      "~/scripts/plugins/bootstrap/dist/js/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/admin/css/bootstrap/bootstrap.min.css",
+                      "~/Scripts/plugins/bootstrap/dist/css/bootstrap.css",
                       "~/Content/admin/css/AdminLTE.min.css",
                       "~/Content/admin/css/skins/_all-skins.min.css",
-                      "~/content/toastr.css",
-                      "~/content/jquery.fancybox.css",
-                      "~/content/loading-bar.css",
-                      "~/content/treeGrid.css",
-                      "~/content/jquery.domenu-0.95.77.css"
+                      "~/Scripts/plugins/toastr/toastr.css",
+                      "~/Scripts/plugins/angular-loading-bar/build/loading-bar.css",
+                      "~/Scripts/plugins/jquery-treegrid/css/jquery.treegrid.css"
                        ));
 
             BundleTable.EnableOptimizations = false;

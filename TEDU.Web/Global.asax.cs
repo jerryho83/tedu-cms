@@ -7,6 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using TEDU.Web.App_Start;
 using TEDU.Web.Infrastructure.Dispatcher;
+using TEDU.Web.Mappings;
 
 namespace TEDU.Web
 {
@@ -17,14 +18,13 @@ namespace TEDU.Web
             // Init database
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-
+            AutoMapperConfiguration.Configure();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             //Config routing for WebAPI in area
             GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerSelector), new AreaHttpControllerSelector(GlobalConfiguration.Configuration));
-
-
+            
             //fix bug serialize for web API
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize;
             GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);

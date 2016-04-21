@@ -51,19 +51,6 @@
 
     function run() {
         $(document).ready(function () {
-            $(".fancybox").fancybox({
-                openEffect: 'none',
-                closeEffect: 'none'
-            });
-
-            $('.fancybox-media').fancybox({
-                openEffect: 'none',
-                closeEffect: 'none',
-                helpers: {
-                    media: {}
-                }
-            });
-
             $('[data-toggle=offcanvas]').click(function () {
                 $('.row-offcanvas').toggleClass('active');
             });
