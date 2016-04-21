@@ -24,7 +24,27 @@
           </div>
         </div><!-- /.box-header -->
         <div class="box-body">
-          <tree-grid tree-data="data" expand-on="Name" tree-control="my_tree" col-defs="col_defs" expand-level="3" icon-leaf="fa fa-minus"></tree-grid>
+          <table treegrid class="table table-bordered tree">
+            <thead>
+              <tr>
+                <td>Tiêu đề</td>
+                <td>Trạng thái</td>
+                <td>#</td>
+              </tr>
+            </thead>
+            <tr ng-repeat="item in data" ng-class="getClassForRow(item.ID,item.ParentID)">
+              <td>{{item.Name}}</td>
+              <td><span ng-class="{'badge bg-red':item.Status==false,'badge bg-green':item.Status==true}">{{item.Status | boolStatus}}</span></td>
+
+              <td>
+                <a ui-sref="edit_post({id:item.ID})" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+                <button class="btn btn-sm btn-danger" ng-click="deleteItem(item.ID)"><i class="fa fa-trash-o"></i></button>
+              </td>
+
+            </tr>
+
+          </table>
+
           <div ng-if="loading">
             <div class="col-xs-4"></div>
             <div class="col-xs-4">
@@ -36,7 +56,6 @@
         <div class="box-footer clearfix">
         </div>
       </div><!-- /.box -->
-
     </div><!-- /.col -->
   </div><!-- /.row -->
 </section><!-- /.content -->

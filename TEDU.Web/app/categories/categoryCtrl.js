@@ -1,34 +1,14 @@
 ﻿(function (app) {
-    'use strict'
+        'use strict';
 
     app.controller('categoryCtrl', categoryCtrl);
 
     categoryCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', 'commonService', '$state'];
 
     function categoryCtrl($scope, apiService, notificationService, $ngBootbox, commonService, $state) {
-        var tree;
         $scope.loading = true;
         $scope.data = [];
-        $scope.my_tree = tree = {};
-        $scope.col_defs = [
-              { field: "Name", displayName: "Tên chuyên mục" },
-              { field: "CreatedDate", displayName: "Ngày tạo" },
-              { field: "ShowHome", displayName: "Show trang chủ" },
-              {
-                  field: "ID",
-                  displayName: "Thao tác",
-                  cellTemplateScope: {
-                      edit: function (data) {         
-                          $state.go('edit_category', { 'id': data });
-                      },
-                      remove: function (data) {
-                          deleteItem(data);
-                      }
-                  },
-                  cellTemplate: "<a ng-click=\"cellTemplateScope.edit(row.branch[col.field])\" class=\"btn btn-sm btn-primary\"><i class=\"fa fa-pencil\"></i></a> <button class=\"btn btn-sm btn-danger\" ng-click=\"cellTemplateScope.remove(row.branch[col.field])\"><i class=\"fa fa-trash-o\"></i></button>"
-              }
 
-        ];
 
         $scope.search = search;
 
@@ -36,8 +16,14 @@
 
         $scope.deleteItem = deleteItem;
 
-        function showHideOnHome(id) {
-            notificationService.displaySuccess('Đã xóa thành công.' + id);
+        $scope.getClassForRow = getClassForRow;
+
+        function getClassForRow(id, parentId) {
+            if (parentId == null)
+                return 'treegrid-' + id;
+            else {
+                return 'treegrid-' + id + ' treegrid-parent-' + parentId;
+            }
         }
 
         function deleteItem(id) {
@@ -65,9 +51,7 @@
         }
 
         function dataLoadCompleted(result) {
-            var myTreeData = commonService.getTree(result.data, 'ID', 'ParentID');
-
-            $scope.data = myTreeData;
+            $scope.data = result.data;
             $scope.loading = false;
             if ($scope.filterExpression && $scope.filterExpression.length) {
                 notificationService.displayInfo(result.data.length + ' items found');
@@ -84,6 +68,8 @@
         }
 
         $scope.search();
+
+        //$('.tree').treegrid();
     }
 
 }

@@ -1,6 +1,6 @@
 ﻿(function () {
 	'use strict';
 
-	angular.module('common.core', ['ngRoute', 'ngCookies', 'angularValidator','ui.router', 'ngBootbox','ngCkeditor', 'treeGrid']);
+	angular.module('common.core', ['ngRoute', 'ngCookies', 'ui.router', 'ngBootbox', 'ngCkeditor']);
 
 })();
