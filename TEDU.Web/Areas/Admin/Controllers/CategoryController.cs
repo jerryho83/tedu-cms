@@ -13,6 +13,8 @@ using TEDU.Web.ViewModels;
 
 namespace TEDU.Web.Areas.Admin.Controllers
 {
+    [Authorize]
+    [RoutePrefix("api/admin/Category")]
     public class CategoryController : ApiControllerBase
     {
         private readonly ICategoryService categoryService;

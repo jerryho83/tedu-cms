@@ -13,6 +13,8 @@ using TEDU.Web.ViewModels;
 
 namespace TEDU.Web.Areas.Admin.Controllers
 {
+    [RoutePrefix("api/admin/Account")]
+    [Authorize]
     public class AccountController : ApiController
     {
         private ApplicationSignInManager _signInManager;
@@ -54,14 +56,14 @@ namespace TEDU.Web.Areas.Admin.Controllers
         [System.Web.Mvc.AllowAnonymous]
         [System.Web.Mvc.Route("authenticate")]
         [System.Web.Mvc.HttpPost]
-        public async Task<HttpResponseMessage> Login(HttpRequestMessage request, LoginViewModel model)
+        public async Task<HttpResponseMessage> Login(HttpRequestMessage request, LoginViewModel user)
         {
             if (!ModelState.IsValid)
             {
                 return request.CreateResponse(HttpStatusCode.OK, new { success = false });
             }
 
-            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(user.UserName, user.Password, user.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:

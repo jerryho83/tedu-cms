@@ -189,7 +189,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\layout\treeGrid.directive.js" />
+    <Content Include="app\home\rootCtrl.js" />
+    <Content Include="app\login\loginCtrl.js" />
+    <Content Include="app\services\membershipService.js" />
     <Content Include="Content\admin\css\AdminLTE.css" />
     <Content Include="Content\admin\css\AdminLTE.min.css" />
     <Content Include="Content\admin\css\bootstrap\bootstrap.css" />
