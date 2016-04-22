@@ -27,7 +27,7 @@ namespace TEDU.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var focusNews = postService.GetBreakingNews(6);
+            var focusNews = postService.GetBreakingNews(5);
             ViewBag.FocusNews = Mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(focusNews);
 
             var slideNews = postService.GetPostSlide(4);

@@ -189,7 +189,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\layout\treegrid.directive.js" />
+    <Content Include="app\layout\treeGrid.directive.js" />
     <Content Include="Content\admin\css\AdminLTE.css" />
     <Content Include="Content\admin\css\AdminLTE.min.css" />
     <Content Include="Content\admin\css\bootstrap\bootstrap.css" />
@@ -434,6 +434,7 @@
     <Content Include="Content\client\js\jquery.touchSwipe.min.js" />
     <Content Include="Content\jquery.domenu-0.95.77.css" />
     <Content Include="Content\treeGrid.css" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
