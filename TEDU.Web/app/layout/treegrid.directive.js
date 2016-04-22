@@ -1,17 +1,25 @@
-﻿(function (app) {
+﻿(function() {
     'use strict';
-    app.directive('treegrid', treegrid);
 
-    function treegrid() {
+    angular
+        .module('common.ui')
+        .directive('treeGrid', treeGrid);
+    function treeGrid () {
+        // Usage:
+        //     <treeGrid></treeGrid>
+        // Creates:
+        // 
         var directive = {
             link: link,
-            restrict: 'A'
+            restrict: 'E'
         };
         return directive;
 
         function link(scope, element, attrs) {
-           $(element).treegrid();
+            angular.element(document).ready(function () {
+                $(element).treegrid();
+            });
         }
     }
 
-})(angular.module('common.ui'));
+})();
