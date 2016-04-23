@@ -12,6 +12,8 @@ using TEDU.Web.ViewModels;
 
 namespace TEDU.Web.Areas.Admin.Controllers
 {
+    [Authorize]
+    [RoutePrefix("api/admin/Post")]
     public class PostController : ApiControllerBase
     {
         private readonly IPostService postService;

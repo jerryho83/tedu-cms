@@ -3,6 +3,7 @@ using TEDU.Service;
 
 namespace TEDU.Web.Areas.Admin.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ICategoryService _categoryService;

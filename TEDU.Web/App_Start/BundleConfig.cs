@@ -17,6 +17,7 @@ namespace TEDU.Web.App_Start
                         "~/scripts/main.js",
                         "~/Scripts/plugins/angular/angular.js",
                         "~/Scripts/plugins/angular-route/angular-route.js",
+                         "~/Scripts/plugins/angular-base64/angular-base64.js",
                         "~/Scripts/plugins/angular-ui-router/release/angular-ui-router.js",
                         "~/Scripts/plugins/angular-cookies/angular-cookies.js",
                         "~/Scripts/plugins/angular-resource/angular-resource.js",
@@ -34,16 +35,19 @@ namespace TEDU.Web.App_Start
                        "~/app/services/modalService.js",
                        "~/app/services/apiService.js",
                        "~/app/services/commonService.js",
+                        "~/app/services/membershipService.js",
                        "~/app/layout/customPager.directive.js",
                        "~/app/layout/treegrid.directive.js",
                        "~/app/filters/boolStatus.filter.js",
+                        "~/app/home/rootCtrl.js",
                        "~/app/home/homeCtrl.js",
                        "~/app/categories/categoryCtrl.js",
                        "~/app/categories/addCategoryCtrl.js",
                        "~/app/categories/editCategoryCtrl.js",
                        "~/app/posts/postCtrl.js",
                        "~/app/posts/addPostCtrl.js",
-                       "~/app/posts/editPostCtrl.js"
+                       "~/app/posts/editPostCtrl.js",
+                       "~/app/login/loginCtrl.js"
                        ));
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

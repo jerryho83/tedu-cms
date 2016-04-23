@@ -1,5 +1,5 @@
 ﻿(function () {
-    'use strict'
+    'use strict';
     angular.module('TEDU', ['common.core', 'common.ui'])
     .config(config)
     .run(run);
@@ -48,12 +48,26 @@
                 controller: "addPostCtrl"
             });
     }
+    run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
+    function run($rootScope, $location, $cookieStore, $http) {
+        $rootScope.repository = $cookieStore.get('repository') || {};
+        if ($rootScope.repository.loggedUser) {
+            $http.defaults.headers.common['Authorization'] = $rootScope.repository.loggedUser.authdata;
+        }
 
-    function run() {
         $(document).ready(function () {
             $('[data-toggle=offcanvas]').click(function () {
                 $('.row-offcanvas').toggleClass('active');
             });
         });
+    }
+
+    isAuthenticated.$inject = ['membershipService', '$rootScope', '$location'];
+
+    function isAuthenticated(membershipService, $rootScope, $location) {
+        if (!membershipService.isUserLoggedIn()) {
+            $rootScope.previousState = $location.path();
+            window.location.href = '/admin/login';
+        }
     }
 })();
