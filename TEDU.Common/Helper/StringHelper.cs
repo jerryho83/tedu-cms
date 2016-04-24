@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace TEDU.Common.Helper
 {
-    public class StringHelper
+    public static class StringHelper
     {
         public static string ToUnsignString(string input)
         {
@@ -30,6 +30,32 @@ namespace TEDU.Common.Helper
                 str2 = str2.Replace("--", "-").ToLower();
             }
             return str2;
+        }
+
+        public static string OptimizeLength(this string input, int lenght = 40)
+        {
+            if (!string.IsNullOrEmpty(input) && input.Length > lenght)
+            {
+                string[] parts = input.Split(' ');
+                StringBuilder sb = new StringBuilder();
+
+                for (int i = 0; i < parts.Length; i++)
+                {
+                    if (sb.Length + parts[i].Length > lenght)
+                        break;
+
+                    sb.Append(' ');
+                    sb.Append(parts[i]);
+                }
+
+                sb.Append("...");
+
+                return sb.ToString();
+            }
+            else
+            {
+                return input;
+            }
         }
     }
 }

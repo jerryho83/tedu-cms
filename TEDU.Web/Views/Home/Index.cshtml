@@ -1,4 +1,4 @@
-﻿
+﻿@using TEDU.Common.Helper;
 @{
     ViewBag.Title = ViewBag.SystemTitle;
     Layout = "~/Views/Shared/_Layouts.cshtml";
@@ -35,7 +35,7 @@
         var url = item.Category.Alias + "/" + item.Alias + "-" + item.ID + ".html";
           <li>
             <a href="@url" title="@item.Name" rel="bookmark">
-              <h4 class="post-title">@item.Name</h4>
+              <h4 class="post-title">@item.Name.OptimizeLength()</h4>
             </a>
           </li>
       }
@@ -60,7 +60,7 @@
                   <img width="371" height="177" src="@firstPost.Image" alt="" />
                 </a>
                 <h4 class="post-title">
-                  <a href="@url" title="@firstPost.Name" rel="bookmark">@firstPost.Name</a>
+                  <a href="@url" title="@firstPost.Name" rel="bookmark">@firstPost.Name.OptimizeLength()</a>
                   <span class="date">@(firstPost.CreatedDate.HasValue ? firstPost.CreatedDate.Value.ToString("dd/MM/yyyy") : "")</span>
                 </h4>
                 <p>@firstPost.Description</p>
@@ -81,7 +81,7 @@
                     <div class="entry clearfix">
                       <a href="@url" title="@post.Name" rel="bookmark">
                         <img width="225" height="136" src="@post.Image" class="thumb" alt="@post.Name" />
-                        <h4 class="post-title">@post.Name</h4>
+                        <h4 class="post-title">@post.Name.OptimizeLength()</h4>
                       </a>
                       <p>@post.Description</p>
                       <div class="meta">

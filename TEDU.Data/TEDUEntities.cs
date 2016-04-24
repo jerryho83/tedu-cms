@@ -20,6 +20,8 @@ namespace TEDU.Data
         public DbSet<Tag> Tags { set; get; }
         public DbSet<PostTag> PostTags { set; get; }
         public DbSet<SystemParam> SystemParams { set; get; }
+        public DbSet<Page> Pages { set; get; }
+        public DbSet<Ebook> Ebooks { set; get; }
 
 
         public virtual void Commit()
@@ -36,6 +38,9 @@ namespace TEDU.Data
             modelBuilder.Configurations.Add(new TagConfiguration());
             modelBuilder.Configurations.Add(new PostTagConfiguration());
             modelBuilder.Configurations.Add(new SystemParamConfiguraion());
+            modelBuilder.Configurations.Add(new PageConfiguration());
+            modelBuilder.Configurations.Add(new EbookConfiguration());
+
 
             modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
             modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);

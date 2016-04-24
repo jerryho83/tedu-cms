@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CategoryService.cs" />
+    <Compile Include="EbookService.cs" />
     <Compile Include="ErrorService.cs" />
+    <Compile Include="PageService.cs" />
     <Compile Include="PostService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

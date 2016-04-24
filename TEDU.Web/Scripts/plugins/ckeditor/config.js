@@ -7,7 +7,6 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here.
 	// For complete reference see:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
-
 	// The toolbar groups arrangement, optimized for two toolbar rows.
 	config.toolbarGroups = [
 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
@@ -35,4 +34,11 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+
+	config.filebrowserBrowseUrl = '/Scripts/plugins/ckfinder/ckfinder.html';
+	config.filebrowserImageBrowseUrl = '/Scripts/plugins/ckfinder/ckfinder.html?type=Images';
+	config.filebrowserFlashBrowseUrl = '/Scripts/plugins/ckfinder/ckfinder.html?type=Flash';
+	config.filebrowserUploadUrl = '/Scripts/plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files';
+	config.filebrowserImageUploadUrl = '/Scripts/plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images';
+	config.filebrowserFlashUploadUrl = '/Scripts/plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash';
 };
