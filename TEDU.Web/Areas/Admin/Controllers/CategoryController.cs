@@ -56,36 +56,7 @@ namespace TEDU.Web.Areas.Admin.Controllers
             });
         }
 
-        [Route("getlistpaging")]
-        public HttpResponseMessage GetListPaging(HttpRequestMessage request, int? page, int? pageSize, string filter = null)
-        {
-            int currentPage = page.Value;
-
-            int currentPageSize = pageSize.Value;
-
-            return CreateHttpResponse(request, () =>
-            {
-                HttpResponseMessage response = null;
-                int totalRow;
-                IEnumerable<Category> model = categoryService.GetCategories(currentPage, currentPageSize, out totalRow, filter);
-
-
-                IEnumerable<CategoryViewModel> modelVM = Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryViewModel>>(model);
-
-                PaginationSet<CategoryViewModel> pagedSet = new PaginationSet<CategoryViewModel>()
-                {
-                    Page = currentPage,
-                    TotalCount = totalRow,
-                    TotalPages = (int)Math.Ceiling((decimal)totalRow / currentPageSize),
-                    Items = modelVM
-                };
-
-                response = request.CreateResponse(HttpStatusCode.OK, pagedSet);
-
-                return response;
-            });
-        }
-
+     
         [HttpGet]
         [Route("getlistparent")]
         public HttpResponseMessage GetListParent(HttpRequestMessage request)

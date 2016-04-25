@@ -37,7 +37,7 @@
               <td><span ng-class="{'badge bg-red':item.Status==false,'badge bg-green':item.Status==true}">{{item.Status | boolStatus}}</span></td>
 
               <td>
-                <a ui-sref="edit_post({id:item.ID})" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+                <a ui-sref="edit_category({id:item.ID})" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
                 <button class="btn btn-sm btn-danger" ng-click="deleteItem(item.ID)"><i class="fa fa-trash-o"></i></button>
               </td>
 

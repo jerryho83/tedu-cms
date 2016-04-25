@@ -22,6 +22,7 @@ namespace TEDU.Web.App_Start
                         "~/Scripts/plugins/angular-cookies/angular-cookies.js",
                         "~/Scripts/plugins/angular-resource/angular-resource.js",
                         "~/Scripts/plugins/angular-validator/dist/angular-validator.js",
+                        "~/Scripts/plugins/bootbox/bootbox.js",
                         "~/Scripts/plugins/ngBootbox/ngBootbox.js",
                         "~/Scripts/plugins/angular-loading-bar/build/loading-bar.js",
                         "~/Scripts/plugins/ng-ckeditor/ng-ckeditor.js",

@@ -12,12 +12,12 @@
         $scope.categories = [];
 
         function LoadListParents() {
-            apiService.get('/api/admin/category', null, function (result) {
+            apiService.get('/api/admin/category/getlistparent', null, function (result) {
                 $scope.categories = result.data;
             });
         }
         function LoadDetail() {
-            apiService.get('/api/admin/category/' + $stateParams.id, null,
+            apiService.get('/api/admin/category/GetDetails/' + $stateParams.id, null,
             function (result) {
                 $scope.category = result.data;
             },

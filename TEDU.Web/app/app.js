@@ -54,7 +54,7 @@
             })
             .state('edit_page', {
                 url: '/edit_page/:id',
-                templateUrl: "/app/page/editPage.html",
+                templateUrl: "/app/pages/editPage.html",
                 controller: "editPageCtrl"
             })
            .state('add_page', {

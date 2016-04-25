@@ -3,9 +3,9 @@
 
     app.controller('categoryCtrl', categoryCtrl);
 
-    categoryCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox', 'commonService', '$state'];
+    categoryCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox'];
 
-    function categoryCtrl($scope, apiService, notificationService, $ngBootbox, commonService, $state) {
+    function categoryCtrl($scope, apiService, notificationService, $ngBootbox) {
         $scope.loading = true;
         $scope.data = [];
 
@@ -34,7 +34,7 @@
                             id: id
                         }
                     }
-                    apiService.del('/api/admin/category', config, function () {
+                    apiService.del('/api/admin/category/delete', config, function () {
                         notificationService.displaySuccess('Đã xóa thành công.');
                         search();
                     },
@@ -44,9 +44,9 @@
                 });
         }
 
-        function search(page) {
+        function search() {
             $scope.loading = true;
-            apiService.get('/api/admin/category', null, dataLoadCompleted, dataLoadFailed);
+            apiService.get('/api/admin/category/getlistparent', null, dataLoadCompleted, dataLoadFailed);
 
         }
 

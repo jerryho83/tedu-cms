@@ -17,7 +17,7 @@
           <h3 class="box-title">{{post.Name}}</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
-        <form class="form-horizontal" role="form" novalidate angular-validator name="editPageForm" angular-validator-submit="UpdatePage()">
+        <form class="form-horizontal" role="form" novalidate name="editPageForm"  ng-submit="UpdatePage()">
           <div class="box-body">
             <div class="col-md-8">
               <div class="form-group" ng-class="{'has-error':editPageForm.name.$invalid && !editPageForm.name.$pristine}">

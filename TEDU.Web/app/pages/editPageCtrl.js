@@ -1,39 +1,25 @@
 ﻿(function (app) {
-    'use strict'
+    'use strict';
 
-    app.controller('editPostCtrl', editPostCtrl);
+    app.controller('editPageCtrl', editPageCtrl);
 
-    editPostCtrl.$inject = ['$scope', 'apiService', '$stateParams', 'notificationService', '$location', 'commonService'];
+    editPageCtrl.$inject = ['$scope', 'apiService', '$stateParams', 'notificationService', '$location', 'commonService'];
 
-    function editPostCtrl($scope, apiService, $stateParams, notificationService, $location, commonService) {
+    function editPageCtrl($scope, apiService, $stateParams, notificationService, $location, commonService) {
 
-        $scope.post = {};
+        $scope.page = {};
         $scope.CreateAlias = CreateAlias;
-         $scope.ChooseImage = ChooseImage;
-        $scope.categories = [];
           // setup editor options
         $scope.editorOptions = {
             language: 'vi',
             height:'200px'
         };
 
-         function ChooseImage() {
-            var finder = new CKFinder();
-            finder.selectActionFunction = function (fileUrl) {
-                $scope.post.Image = fileUrl;
-            };
-            finder.popup();
-        }
 
-        function LoadListParents() {
-            apiService.get('/api/admin/category', null, function (result) {
-                $scope.categories = result.data;
-            });
-        }
         function LoadDetail() {
-            apiService.get('/api/admin/post/' + $stateParams.id, null,
+            apiService.get('/api/admin/page/GetDetails/' + $stateParams.id, null,
             function (result) {
-                $scope.post = result.data;
+                $scope.page = result.data;
             },
             function (result) {
                 notificationService.displayError(result.data);
@@ -41,27 +27,25 @@
         }
 
 
-        $scope.UpdatePost = UpdatePost;
+        $scope.UpdatePage = UpdatePage;
 
         function CreateAlias() {
-            $scope.post.Alias = commonService.makeSeoTitle($scope.post.Name);
+            $scope.post.Alias = commonService.makeSeoTitle($scope.page.Name);
         }
-        function UpdatePost() {
-            apiService.put('/api/admin/post/update', $scope.post, addSuccessed, addFailed);
+        function UpdatePage() {
+            apiService.put('/api/admin/page/update', $scope.page, addSuccessed, addFailed);
         }
 
         function addSuccessed() {
-            notificationService.displaySuccess($scope.post.Name + ' đã được cập nhật.');
+            notificationService.displaySuccess($scope.page.Name + ' đã được cập nhật.');
 
-            $location.url('posts');
+            $location.url('pages');
 
         }
         function addFailed() {
             notificationService.displayError(response.statusText);
 
         }
-
-        LoadListParents();
         LoadDetail();
     }
 

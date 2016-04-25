@@ -12,6 +12,7 @@ using TEDU.Web.ViewModels;
 
 namespace TEDU.Web.Areas.Admin.Controllers
 {
+    [Authorize]
     [RoutePrefix("api/admin/page")]
     public class PageController : ApiControllerBase
     {
@@ -100,8 +101,8 @@ namespace TEDU.Web.Areas.Admin.Controllers
             });
         }
 
-        [Route("update")]
         [HttpPut]
+        [Route("update")]
         public HttpResponseMessage Update(HttpRequestMessage request, PageViewModel entity)
         {
             return CreateHttpResponse(request, () =>

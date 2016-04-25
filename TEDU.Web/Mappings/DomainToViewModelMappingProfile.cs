@@ -17,6 +17,9 @@ namespace TEDU.Web.Mappings
             Mapper.CreateMap<Category, CategoryViewModel>();
             Mapper.CreateMap<Post, PostViewModel>();
             Mapper.CreateMap<Tag, TagViewModel>();
+
+            Mapper.CreateMap<Ebook, EbookViewModel>();
+            Mapper.CreateMap<Page, PageViewModel>();
         }
     }
 }

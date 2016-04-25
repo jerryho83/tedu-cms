@@ -3,9 +3,9 @@
 
     app.controller('loginCtrl', loginCtrl);
 
-    loginCtrl.$inject = ['$scope', 'membershipService', 'notificationService', '$rootScope', '$location'];
+    loginCtrl.$inject = ['$scope', 'membershipService', 'notificationService', '$rootScope'];
 
-    function loginCtrl($scope, membershipService, notificationService, $rootScope, $location) {
+    function loginCtrl($scope, membershipService, notificationService, $rootScope) {
         $scope.pageClass = 'page-login';
         $scope.login = login;
         $scope.user = {};

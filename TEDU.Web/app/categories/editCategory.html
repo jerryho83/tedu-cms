@@ -17,7 +17,7 @@
           <h3 class="box-title">{{category.Name}}</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
-        <form class="form-horizontal" role="form" novalidate angular-validator name="updateCategoryForm" angular-validator-submit="UpdateCategory()">
+        <form class="form-horizontal" role="form" novalidate name="updateCategoryForm" ng-submit="UpdateCategory()">
           <div class="box-body">
             <div class="col-md-8">
               <div class="form-group" ng-class="{ 'has-error' : updateCategoryForm.name.$invalid && !updateCategoryForm.name.$pristine }">

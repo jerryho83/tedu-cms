@@ -6,13 +6,7 @@ namespace TEDU.Web.Areas.Admin
 {
     public class AdminAreaRegistration : AreaRegistration
     {
-        public override string AreaName
-        {
-            get
-            {
-                return "Admin";
-            }
-        }
+        public override string AreaName => "Admin";
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
@@ -23,7 +17,7 @@ namespace TEDU.Web.Areas.Admin
             );
             context.MapHttpRoute(
                  name: "Administration_DefaultApi",
-                 routeTemplate: "api/Admin/{controller}/{id}",
+                 routeTemplate: "api/Admin/{controller}/{action}/{id}",
                  defaults: new {id = RouteParameter.Optional }
             );
            
