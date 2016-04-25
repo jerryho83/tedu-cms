@@ -24,7 +24,7 @@ namespace TEDU.Web.App_Start
                         "~/Scripts/plugins/angular-validator/dist/angular-validator.js",
                         "~/Scripts/plugins/ngBootbox/ngBootbox.js",
                         "~/Scripts/plugins/angular-loading-bar/build/loading-bar.js",
-                        "~/Scripts/plugins/ngckeditor/ng-ckeditor.js",
+                        "~/Scripts/plugins/ng-ckeditor/ng-ckeditor.js",
                         "~/Scripts/plugins/jquery-treegrid/js/jquery.treegrid.js"
                         ));
             bundles.Add(new ScriptBundle("~/bundles/spa").Include(
@@ -37,7 +37,7 @@ namespace TEDU.Web.App_Start
                        "~/app/services/commonService.js",
                         "~/app/services/membershipService.js",
                        "~/app/layout/customPager.directive.js",
-                       "~/app/layout/treegrid.directive.js",
+                        "~/app/layout/topBar.directive.js",
                        "~/app/filters/boolStatus.filter.js",
                         "~/app/home/rootCtrl.js",
                        "~/app/home/homeCtrl.js",
@@ -47,6 +47,9 @@ namespace TEDU.Web.App_Start
                        "~/app/posts/postCtrl.js",
                        "~/app/posts/addPostCtrl.js",
                        "~/app/posts/editPostCtrl.js",
+                        "~/app/pages/pageCtrl.js",
+                       "~/app/pages/addPageCtrl.js",
+                       "~/app/pages/editPageCtrl.js",
                        "~/app/login/loginCtrl.js"
                        ));
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

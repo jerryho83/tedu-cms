@@ -1209,6 +1209,7 @@ h3.kontak {
     background: #23323f;
     font-size: 12px;
     padding: 15px 40px;
+    color:white;
 }
 
     #site-info p {
@@ -1233,7 +1234,7 @@ ul#menu-footer {
     }
 
     #footer-nav li a {
-        color: #555e6b;
+        color: #f8f8f8;
         padding: 0 0.5em;
         transition: all 0.8s linear 0s;
         -webkit-transition: all 0.8s linear 0s;

@@ -17,7 +17,7 @@
         function loginCompleted(result) {
             if (result.data.success) {
                 membershipService.saveCredentials($scope.user);
-                notificationService.displaySuccess('Hello ' + $scope.user.UserName);
+                notificationService.displaySuccess('Chào mừng ' + $scope.user.UserName);
                 //$scope.userData.displayUserInfo();
                 if ($rootScope.previousState)
                     window.location.href = $rootScope.previousState;

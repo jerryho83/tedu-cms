@@ -14,7 +14,7 @@
             },
             replace: true,
             restrict: 'E',
-            templateUrl: '/scripts/app/layout/pager.html',
+            templateUrl: '/app/layout/pager.html',
             controller: [
                 '$scope', function ($scope) {
                     $scope.search = function (i) {

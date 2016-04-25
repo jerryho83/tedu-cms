@@ -46,7 +46,22 @@
                 url: '/add_post',
                 templateUrl: "/app/posts/addPost.html",
                 controller: "addPostCtrl"
-            });
+            })
+            .state('pages', {
+                url: '/pages',
+                templateUrl: "/app/pages/listPages.html",
+                controller: "pageCtrl"
+            })
+            .state('edit_page', {
+                url: '/edit_page/:id',
+                templateUrl: "/app/page/editPage.html",
+                controller: "editPageCtrl"
+            })
+           .state('add_page', {
+               url: '/add_page',
+               templateUrl: "/app/pages/addPage.html",
+               controller: "addPageCtrl"
+           });
     }
     run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
     function run($rootScope, $location, $cookieStore, $http) {
