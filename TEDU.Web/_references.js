@@ -53,7 +53,6 @@
 /// <reference path="Scripts/plugins/bootstrap/dist/js/bootstrap.js" />
 /// <reference path="scripts/plugins/ckeditor/ckeditor.js" />
 /// <reference path="scripts/plugins/jquery.cookie/jquery.cookie.js" />
-/// <reference path="Scripts/plugins/jQuery/dist/jquery.js" />
 /// <reference path="scripts/plugins/ngbootbox/dist/ngbootbox.js" />
 /// <reference path="scripts/plugins/ng-ckeditor/ng-ckeditor.js" />
 /// <reference path="scripts/plugins/toastr/toastr.js" />
