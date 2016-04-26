@@ -13,7 +13,7 @@
         }
 
         function login(user, completed) {
-            apiService.post('/api/admin/account/authenticate', user,
+            apiService.post('/api/admin/account/Login', user,
             completed,
             loginFailed);
         }

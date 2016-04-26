@@ -21,7 +21,7 @@
         $scope.categories = [];
 
         function LoadListParents() {
-            apiService.get('/api/admin/category', null, function (result) {
+            apiService.get('/api/admin/category/getlistparent', null, function (result) {
                 $scope.categories = result.data;
             });
         }

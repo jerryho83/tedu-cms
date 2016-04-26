@@ -17,7 +17,7 @@
           <h3 class="box-title">{{post.Name}}</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
-        <form class="form-horizontal" role="form" novalidate angular-validator name="addPostForm" angular-validator-submit="UpdatePost()">
+        <form class="form-horizontal" role="form" novalidate name="addPostForm" ng-submit="UpdatePost()">
           <div class="box-body">
             <div class="col-md-8">
               <div class="form-group" ng-class="{'has-error':addPostForm.name.$invalid && !addPostForm.name.$pristine}">

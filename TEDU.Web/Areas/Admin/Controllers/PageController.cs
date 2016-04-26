@@ -55,6 +55,7 @@ namespace TEDU.Web.Areas.Admin.Controllers
             });
         }
 
+        [HttpGet]
         [Route("getlistpaging")]
         public HttpResponseMessage GetListPaging(HttpRequestMessage request, int? page, int? pageSize, string filter = null)
         {

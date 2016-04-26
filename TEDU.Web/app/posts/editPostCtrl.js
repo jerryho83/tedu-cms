@@ -26,12 +26,12 @@
         }
 
         function LoadListParents() {
-            apiService.get('/api/admin/category', null, function (result) {
+            apiService.get('/api/admin/category/getlistparent', null, function (result) {
                 $scope.categories = result.data;
             });
         }
         function LoadDetail() {
-            apiService.get('/api/admin/post/' + $stateParams.id, null,
+            apiService.get('/api/admin/post/GetDetails/' + $stateParams.id, null,
             function (result) {
                 $scope.post = result.data;
             },
