@@ -3,6 +3,50 @@
     ViewBag.Title = "Giới thiệu về TEDU";
     Layout = "~/Views/Shared/_Layouts.cshtml";
 }
+<article class="post">
+  <h2 class="entry-title">
+    <span class="the_title">Đôi nét giới thiệu về TEDU</span>
+  </h2>
+  <div class="entry-content">
+    <h2>
+      Nguồn gốc
+    </h2>
+    <p>TEDU là từ viết tắt của Technology Education, là một thương hiệu được xây dựng bắt đầu từ kênh dào tạo trực tuyến trên Youtube dưới dạng vBlog chia sẻ các video về thủ thuật và khóa học công nghệ miễn phí cho mọi người.</p>
+    <p>Được thành lập và bắt đầu chia sẻ từ cuối năm 2013 dưới tên MySkills tuy nhiên sau gần 2 năm không phát triển thêm gì. Đến tháng 04/2015, tôi Bạch Ngọc Toàn quyết định đổi tên kênh thành TEDU với ý nghĩa và tầm nhìn mới nhằm xây dựng một cộng đồng chia sẻ kiến thức và kỹ năng lập trình cho tất cả mọi người.</p>
+    <h2>
+      Mục tiêu
+    </h2>
+    <p>Mục tiêu của TEDU là đưa đến cho các bạn có niềm đam mê học lập trình một nơi để học tập, và trao đổi về các chủ đề công nghệ. Giúp xây dựng một cộng đồng TEDU lớn mạnh mang lại thật nhiều giá trị cho xã hội. Giúp các bạn lập trình viên mới vào nghề rút ngắn thời gian tiếp cận với công việc thực tế tạo ra giá trị cho doanh nghiệp và cho đất nước.</p>
+    <p>
+      Để phát triển được một nền CNTT cái quan trọng nhất là con người. Vậy chúng tôi tập trung vào con người vì mục tiêu 1 triệu lập trình viên cho Việt Nam vào năm 2020.
+    </p>
+    <h2>
+      Giá trị cốt lõi
+    </h2>
+    <p>Giá trị cốt lõi của TEDU chính là giá trị kiến thức và kỹ năng mang lại cho mỗi thành viên của mình làm điều kiện tiên quyết trong tất cả các hoạt động của TEDU. TEDU sẽ luôn lao động không ngừng nghỉ để nâng cao giá trị đó.</p>
+    <h2>
+      Chiến lược phát triển
+    </h2>
+    <p>Định hướng phát triển là trở thành một kênh đào tạo trực tuyến có uy tín là cầu nối cho doanh nghiệp và các bạn làm nghề. Giúp tăng khả năng cạnh tranh cho các bạn lập trình viên và điều cuối cùng là hỗ trợ xây dựng một nền CNTT phát triển tốt cho Việt Nam.</p>
+    <p style="text-align: right">
+      Hà Nội, ngày 26 tháng 04 năm 2016<br/>
+      Sáng lập TEDU: Bạch Ngọc Toàn
+    </p>
+    <div class="clear"></div>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <div class="addthis_native_toolbox"></div>
 
-<h2>Index</h2>
-
+    <div class="clear"></div>
+    <div id="fb-root"></div>
+    <script>
+      (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=500141453482575";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    <div class="fb-comments" data-href="@Request.Url.AbsoluteUri" data-width="770" data-numposts="5"></div>
+   
+  </div>
+</article>

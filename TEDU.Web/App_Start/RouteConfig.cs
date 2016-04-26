@@ -11,8 +11,8 @@ namespace TEDU.Web.App_Start
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
                name: "CVOnline",
-               url: "cv-online.html",
-               defaults: new { controller = "CV", action = "Index", id = UrlParameter.Optional },
+               url: "tim-kiem.html",
+               defaults: new { controller = "Post", action = "Search", id = UrlParameter.Optional },
                namespaces: new string[] { "TEDU.Web.Controllers" }
 
                );
@@ -49,7 +49,7 @@ namespace TEDU.Web.App_Start
               defaults: new { controller = "Post", action = "Detail", id = UrlParameter.Optional },
               namespaces: new string[] { "TEDU.Web.Controllers" }
              );
-           
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

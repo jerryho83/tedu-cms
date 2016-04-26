@@ -4785,6 +4785,7 @@
     <Content Include="Scripts\plugins\ng-ckeditor\package.json" />
     <Content Include="Scripts\plugins\ng-ckeditor\README.md" />
     <Content Include="Scripts\plugins\ng-ckeditor\src\styles\ng-ckeditor.less" />
+    <Content Include="Views\Post\Search.cshtml" />
     <None Include="_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Content\admin\css\bootstrap\bootstrap.css.map" />

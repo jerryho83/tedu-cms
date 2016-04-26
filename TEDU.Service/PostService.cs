@@ -50,6 +50,8 @@ namespace TEDU.Service
         Tag GetTag(string id);
 
         List<Post> GetListByTagId(string tagId, int page, int pageSize, out int totalRow);
+
+        List<Post> Search(string keyword, int page, int pageSize, out int totalRow);
     }
 
     public class PostService : IPostService
@@ -220,10 +222,7 @@ namespace TEDU.Service
                 && (x.CategoryID == categoryId || x.Category.ParentID == categoryId), new string[] { "Category" })
                 .OrderByDescending(x => x.CreatedDate).Take(top).ToList();
         }
-        private List<int> GetChildCategory(int parentId)
-        {
-            return _categoryRepository.Filter(x => x.ParentID == parentId).Select(x => x.ID).ToList();
-        }
+
         public List<Post> GetListByCategoryAlias(string categoryAlias, int page, int pageSize, out int totalRow)
         {
             var category = _categoryRepository.Get(x => x.Alias == categoryAlias);
@@ -296,6 +295,21 @@ namespace TEDU.Service
                                  && m.PostTags.Count(x => x.TagID == tagId) > 0, new string[] { "Category", "PostTags" })
 
                 .Count();
+            return model;
+        }
+
+        public List<Post> Search(string keyword, int page, int pageSize, out int totalRow)
+        {
+            var model = _postsRepository
+                   .Filter(m => m.Status == StatusEnum.Publish.ToString() && m.Name.Contains(keyword), new string[] { "Category"})
+                   .OrderByDescending(m => m.CreatedDate)
+                   .Skip((page - 1) * pageSize)
+                   .Take(pageSize)
+                   .ToList();
+
+            totalRow = _postsRepository
+                                 .Filter(m => m.Status == StatusEnum.Publish.ToString()
+                                 && m.Name.Contains(keyword)).Count();
             return model;
         }
         #endregion IPostService Members

@@ -86,6 +86,36 @@ namespace TEDU.Web.Controllers
 
             return View(model);
         }
+
+        public ActionResult Search(string s, int page = 1, int pageSize = 10)
+        {
+            int totalRow;
+            var posts = _postService.Search(s, page, pageSize, out totalRow);
+            var model = Mapper.Map<List<Post>, List<PostViewModel>>(posts);
+
+            ViewBag.Keyword = s;
+
+            ViewBag.Total = totalRow;
+            ViewBag.Page = page;
+            var totalPage = 0;
+            const int maxpage = 5;
+            try
+            {
+                totalPage = (int)Math.Ceiling((double)totalRow / pageSize);
+            }
+            catch (Exception)
+            {
+            }
+            ViewBag.TotalPage = totalPage;
+            ViewBag.MaxPage = maxpage;
+            ViewBag.Next = page + 1;
+            ViewBag.Prev = page - 1;
+            if (page == 1) ViewBag.Prev = totalPage;
+            ViewBag.First = 1;
+            ViewBag.Last = totalPage;
+
+            return View(model);
+        }
         public ActionResult Detail(int id)
         {
             var postDb = _postService.GetPost(id);
