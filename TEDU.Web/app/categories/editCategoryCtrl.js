@@ -8,15 +8,15 @@
     function editCategoryCtrl($scope, apiService, $stateParams, notificationService, $location, commonService) {
 
         $scope.category = {};
-        $scope.CreateAlias = CreateAlias;
+        $scope.CreateAlias = createAlias;
         $scope.categories = [];
 
-        function LoadListParents() {
+        function loadListParents() {
             apiService.get('/api/admin/category/getlistparent', null, function (result) {
                 $scope.categories = result.data;
             });
         }
-        function LoadDetail() {
+        function loadDetail() {
             apiService.get('/api/admin/category/GetDetails/' + $stateParams.id, null,
             function (result) {
                 $scope.category = result.data;
@@ -27,12 +27,12 @@
         }
 
 
-        $scope.UpdateCategory = UpdateCategory;
+        $scope.UpdateCategory = updateCategory;
 
-        function CreateAlias() {
+        function createAlias() {
             $scope.category.Alias = commonService.makeSeoTitle($scope.category.Name);
         }
-        function UpdateCategory() {
+        function updateCategory() {
             apiService.put('/api/admin/category/update', $scope.category, addSuccessed, addFailed);
         }
 
@@ -47,8 +47,8 @@
 
         }
 
-        LoadListParents();
-        LoadDetail();
+        loadListParents();
+        loadDetail();
     }
 
 })(angular.module('TEDU'));

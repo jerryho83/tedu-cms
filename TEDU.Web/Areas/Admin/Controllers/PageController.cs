@@ -102,9 +102,9 @@ namespace TEDU.Web.Areas.Admin.Controllers
             });
         }
 
-        [HttpPut]
         [Route("update")]
-        public HttpResponseMessage Update(HttpRequestMessage request, PageViewModel entity)
+        [HttpPut]
+        public HttpResponseMessage Update(HttpRequestMessage request, PageViewModel page)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -116,14 +116,14 @@ namespace TEDU.Web.Areas.Admin.Controllers
                 }
                 else
                 {
-                    var pageDb = pageService.GetPage(entity.ID);
+                    var pageDb = pageService.GetPage(page.ID);
                     if (pageDb == null)
                         response = request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid.");
                     else
                     {
-                        pageDb.UpdatePage(entity);
+                        pageDb.UpdatePage(page);
                         pageService.Save();
-                        response = request.CreateResponse<PageViewModel>(HttpStatusCode.OK, entity);
+                        response = request.CreateResponse<PageViewModel>(HttpStatusCode.OK, page);
                     }
                 }
 

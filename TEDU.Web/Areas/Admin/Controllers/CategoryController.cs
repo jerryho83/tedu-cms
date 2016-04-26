@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -17,12 +15,12 @@ namespace TEDU.Web.Areas.Admin.Controllers
     [RoutePrefix("api/admin/Category")]
     public class CategoryController : ApiControllerBase
     {
-        private readonly ICategoryService categoryService;
+        private readonly ICategoryService _categoryService;
 
         public CategoryController(ICategoryService categoryService, IErrorService errorService) :
            base(errorService)
         {
-            this.categoryService = categoryService;
+            this._categoryService = categoryService;
         }
 
         [HttpDelete]
@@ -39,14 +37,14 @@ namespace TEDU.Web.Areas.Admin.Controllers
                 }
                 else
                 {
-                    var categoryDb = categoryService.GetCategory(id);
+                    var categoryDb = _categoryService.GetCategory(id);
                     if (categoryDb == null)
                         response = request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid Id.");
                     else
                     {
-                        categoryService.Delete(categoryDb);
+                        _categoryService.Delete(categoryDb);
 
-                        categoryService.SaveCategory();
+                        _categoryService.SaveCategory();
 
                         response = request.CreateResponse<bool>(HttpStatusCode.OK, true);
                     }
@@ -56,7 +54,6 @@ namespace TEDU.Web.Areas.Admin.Controllers
             });
         }
 
-     
         [HttpGet]
         [Route("getlistparent")]
         public HttpResponseMessage GetListParent(HttpRequestMessage request)
@@ -64,7 +61,7 @@ namespace TEDU.Web.Areas.Admin.Controllers
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                IEnumerable<Category> model = categoryService.GetCategories();
+                IEnumerable<Category> model = _categoryService.GetCategories();
                 IEnumerable<CategoryViewModel> modelVM = Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryViewModel>>(model);
 
                 response = request.CreateResponse(HttpStatusCode.OK, modelVM);
@@ -80,7 +77,7 @@ namespace TEDU.Web.Areas.Admin.Controllers
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                var category = categoryService.GetCategory(id);
+                var category = _categoryService.GetCategory(id);
 
                 var categoryVM = Mapper.Map<Category, CategoryViewModel>(category);
 
@@ -104,13 +101,13 @@ namespace TEDU.Web.Areas.Admin.Controllers
                 }
                 else
                 {
-                    var movieDb = categoryService.GetCategory(category.ID);
+                    var movieDb = _categoryService.GetCategory(category.ID);
                     if (movieDb == null)
                         response = request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid.");
                     else
                     {
                         movieDb.UpdateCategory(category);
-                        categoryService.SaveCategory();
+                        _categoryService.SaveCategory();
                         response = request.CreateResponse<CategoryViewModel>(HttpStatusCode.OK, category);
                     }
                 }
@@ -137,9 +134,9 @@ namespace TEDU.Web.Areas.Admin.Controllers
 
                     newCategory.UpdateCategory(category);
 
-                    categoryService.CreateCategory(newCategory);
+                    _categoryService.CreateCategory(newCategory);
 
-                    categoryService.SaveCategory();
+                    _categoryService.SaveCategory();
 
                     // Update view model
                     category = Mapper.Map<Category, CategoryViewModel>(newCategory);
@@ -149,6 +146,5 @@ namespace TEDU.Web.Areas.Admin.Controllers
                 return response;
             });
         }
-
     }
 }

@@ -8,7 +8,7 @@
     function editPageCtrl($scope, apiService, $stateParams, notificationService, $location, commonService) {
 
         $scope.page = {};
-        $scope.CreateAlias = CreateAlias;
+        $scope.CreateAlias = createAlias;
           // setup editor options
         $scope.editorOptions = {
             language: 'vi',
@@ -16,7 +16,7 @@
         };
 
 
-        function LoadDetail() {
+        function loadDetail() {
             apiService.get('/api/admin/page/GetDetails/' + $stateParams.id, null,
             function (result) {
                 $scope.page = result.data;
@@ -27,12 +27,12 @@
         }
 
 
-        $scope.UpdatePage = UpdatePage;
+        $scope.UpdatePage = updatePage;
 
-        function CreateAlias() {
-            $scope.post.Alias = commonService.makeSeoTitle($scope.page.Name);
+        function createAlias() {
+            $scope.page.Alias = commonService.makeSeoTitle($scope.page.Name);
         }
-        function UpdatePage() {
+        function updatePage() {
             apiService.put('/api/admin/page/update', $scope.page, addSuccessed, addFailed);
         }
 
@@ -44,9 +44,9 @@
         }
         function addFailed() {
             notificationService.displayError(response.statusText);
-
+            
         }
-        LoadDetail();
+        loadDetail();
     }
 
 })(angular.module('TEDU'));
