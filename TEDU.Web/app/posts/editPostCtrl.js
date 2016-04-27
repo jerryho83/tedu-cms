@@ -1,23 +1,22 @@
 ﻿(function (app) {
-    'use strict'
+    'use strict';
 
     app.controller('editPostCtrl', editPostCtrl);
 
     editPostCtrl.$inject = ['$scope', 'apiService', '$stateParams', 'notificationService', '$location', 'commonService'];
 
     function editPostCtrl($scope, apiService, $stateParams, notificationService, $location, commonService) {
-
         $scope.post = {};
-        $scope.CreateAlias = CreateAlias;
-         $scope.ChooseImage = ChooseImage;
+        $scope.CreateAlias = createAlias;
+        $scope.ChooseImage = chooseImage;
         $scope.categories = [];
-          // setup editor options
+        // setup editor options
         $scope.editorOptions = {
             language: 'vi',
-            height:'200px'
+            height: '200px'
         };
 
-         function ChooseImage() {
+        function chooseImage() {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
                 $scope.post.Image = fileUrl;
@@ -25,12 +24,12 @@
             finder.popup();
         }
 
-        function LoadListParents() {
+        function loadListParents() {
             apiService.get('/api/admin/category/getlistparent', null, function (result) {
                 $scope.categories = result.data;
             });
         }
-        function LoadDetail() {
+        function loadDetail() {
             apiService.get('/api/admin/post/GetDetails/' + $stateParams.id, null,
             function (result) {
                 $scope.post = result.data;
@@ -40,13 +39,12 @@
             });
         }
 
+        $scope.UpdatePost = updatePost;
 
-        $scope.UpdatePost = UpdatePost;
-
-        function CreateAlias() {
+        function createAlias() {
             $scope.post.Alias = commonService.makeSeoTitle($scope.post.Name);
         }
-        function UpdatePost() {
+        function updatePost() {
             apiService.put('/api/admin/post/update', $scope.post, addSuccessed, addFailed);
         }
 
@@ -54,15 +52,12 @@
             notificationService.displaySuccess($scope.post.Name + ' đã được cập nhật.');
 
             $location.url('posts');
-
         }
         function addFailed() {
             notificationService.displayError(response.statusText);
-
         }
 
-        LoadListParents();
-        LoadDetail();
+        loadListParents();
+        loadDetail();
     }
-
 })(angular.module('TEDU'));

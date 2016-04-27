@@ -16,14 +16,14 @@
             language: 'vi',
             height: '200px'
         };
-        $scope.CreateAlias = CreateAlias;
+        $scope.CreateAlias = createAlias;
 
-        $scope.AddPage = AddPage;
+        $scope.AddPage = addPage;
 
-        function CreateAlias() {
+        function createAlias() {
             $scope.page.Alias = commonService.makeSeoTitle($scope.page.Name);
         }
-        function AddPage() {
+        function addPage() {
             apiService.post('/api/admin/page/add', $scope.page, addSuccessed, addFailed);
         }
 
