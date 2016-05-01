@@ -7,9 +7,12 @@ using TEDU.Model.Models;
 
 namespace TEDU.Model
 {
+    [Table("Posts")]
     public class Post
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int ID { set; get; }
 
         [Column(TypeName = "nvarchar")]

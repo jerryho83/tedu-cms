@@ -86,34 +86,10 @@ namespace TEDU.Service
         public IEnumerable<Post> GetPosts(int page, int pageSize, out int totalRow, string filter = null)
         {
             IEnumerable<Post> model;
-            if (!string.IsNullOrEmpty(filter))
-            {
-                model = _postsRepository
-                    .GetMany(m => m.Name.ToLower()
-                    .Contains(filter.ToLower().Trim()) &&
-                    m.Status == StatusEnum.Publish.ToString())
-                    .OrderByDescending(m => m.CreatedDate)
-                    .Skip(page * pageSize)
-                    .Take(pageSize)
-                    .ToList();
-
-                totalRow = _postsRepository
-                    .GetMany(m => m.Name.ToLower()
-                    .Contains(filter.ToLower().Trim()) &&
-                    m.Status == StatusEnum.Publish.ToString())
-                    .Count();
-            }
+            if (filter == null)
+                model = _postsRepository.Filter(x => x.Status == StatusEnum.Publish.ToString(), out totalRow, page, pageSize).ToList();
             else
-            {
-                model = _postsRepository
-                    .GetMany(x => x.Status == StatusEnum.Publish.ToString())
-                    .OrderBy(m => m.ID)
-                    .Skip(page * pageSize)
-                    .Take(pageSize)
-                    .ToList();
-
-                totalRow = _postsRepository.GetMany(x => x.Status == StatusEnum.Publish.ToString()).Count();
-            }
+                model = _postsRepository.Filter(x => x.Status == StatusEnum.Publish.ToString() && x.Name.Contains(filter), out totalRow, page, pageSize).ToList();
 
             return model;
         }
@@ -127,7 +103,6 @@ namespace TEDU.Service
         public void CreatePost(Post Post)
         {
             _postsRepository.Add(Post);
-
             if (!string.IsNullOrEmpty(Post.Tags))
             {
                 string[] tags = Post.Tags.Split(',');
@@ -301,7 +276,7 @@ namespace TEDU.Service
         public List<Post> Search(string keyword, int page, int pageSize, out int totalRow)
         {
             var model = _postsRepository
-                   .Filter(m => m.Status == StatusEnum.Publish.ToString() && m.Name.Contains(keyword), new string[] { "Category"})
+                   .Filter(m => m.Status == StatusEnum.Publish.ToString() && m.Name.Contains(keyword), new string[] { "Category" })
                    .OrderByDescending(m => m.CreatedDate)
                    .Skip((page - 1) * pageSize)
                    .Take(pageSize)

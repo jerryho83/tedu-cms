@@ -189,6 +189,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\accounts\accountCtrl.js" />
+    <Content Include="app\accounts\accounts.html" />
+    <Content Include="app\accounts\addAccount.html" />
+    <Content Include="app\accounts\addAccountCtrl.js" />
+    <Content Include="app\accounts\editAccount.html" />
+    <Content Include="app\accounts\editAccountCtrl.js" />
     <Content Include="app\home\rootCtrl.js" />
     <Content Include="app\layout\topBar.directive.js" />
     <Content Include="app\layout\topBar.html" />
@@ -199,6 +205,7 @@
     <Content Include="app\pages\editPageCtrl.js" />
     <Content Include="app\pages\listPages.html" />
     <Content Include="app\pages\pageCtrl.js" />
+    <Content Include="app\roles\roleCtrl.js" />
     <Content Include="app\services\membershipService.js" />
     <Content Include="Content\admin\css\AdminLTE.css" />
     <Content Include="Content\admin\css\AdminLTE.min.css" />
@@ -245,6 +252,7 @@
     <Content Include="Content\admin\img\credit\paypal2.png" />
     <Content Include="Content\admin\img\credit\visa.png" />
     <Content Include="Content\admin\img\default-50x50.gif" />
+    <Content Include="Content\admin\img\footer-logo.jpg" />
     <Content Include="Content\admin\img\icons.png" />
     <Content Include="Content\admin\img\photo1.png" />
     <Content Include="Content\admin\img\photo2.png" />
@@ -4168,10 +4176,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\ebooks\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Account\" />
-    <Folder Include="Areas\Admin\Views\Ebook\" />
     <Folder Include="UploadData\" />
     <Folder Include="Views\CV\" />
     <Folder Include="Views\Ebook\" />

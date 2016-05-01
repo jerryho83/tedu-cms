@@ -40,36 +40,9 @@ namespace TEDU.Service
 
         public IEnumerable<Category> GetCategories(int page, int pageSize, out int totalRow, string filter = null)
         {
-            IEnumerable<Category> model;
-            if (!string.IsNullOrEmpty(filter))
-            {
-                model = categorysRepository
-                    .GetMany(m => m.Name.ToLower()
-                    .Contains(filter.ToLower().Trim()) &&
-                    m.Status)
-                    .OrderBy(m => m.ID)
-                    .Skip(page * pageSize)
-                    .Take(pageSize)
-                    .ToList();
-
-                totalRow = categorysRepository
-                    .GetMany(m => m.Name.ToLower()
-                    .Contains(filter.ToLower().Trim()) &&
-                    m.Status)
-                    .Count();
-            }
-            else
-            {
-                model = categorysRepository
-                    .GetMany(x => x.Status)
-                    .OrderBy(m => m.ID)
-                    .Skip(page * pageSize)
-                    .Take(pageSize)
-                    .ToList();
-
-                totalRow = categorysRepository.GetMany(x => x.Status).Count();
-            }
-
+            IEnumerable<Category> model =
+                categorysRepository.Filter(x => x.Name.Contains(filter), out totalRow, page, pageSize);
+            
             return model;
         }
 

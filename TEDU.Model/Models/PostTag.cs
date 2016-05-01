@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TEDU.Model.Models
 {
+    [Table("PostTags")]
     public class PostTag
     {
         [Key]

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace TEDU.Model
 {
+    [Table("Errors")]
     public class Error
     {
         [Key]

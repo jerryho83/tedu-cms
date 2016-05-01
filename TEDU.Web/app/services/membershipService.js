@@ -1,4 +1,4 @@
-﻿(function(app) {
+﻿(function (app) {
     'use strict';
     app.factory('membershipService', membershipService);
 
@@ -34,9 +34,12 @@
         }
 
         function removeCredentials() {
-            $rootScope.repository = {};
-            $cookieStore.remove('repository');
-            $http.defaults.headers.common.Authorization = '';
+            apiService.post('/api/admin/account/LogOut', null, function () {
+                $rootScope.repository = {};
+                $cookieStore.remove('repository');
+                $http.defaults.headers.common.Authorization = '';
+            }, null);
+
         };
 
         function loginFailed(response) {

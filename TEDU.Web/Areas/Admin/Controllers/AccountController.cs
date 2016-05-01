@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -72,6 +73,15 @@ namespace TEDU.Web.Areas.Admin.Controllers
                 default:
                     return request.CreateResponse(HttpStatusCode.OK, new { success = false });
             }
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<HttpResponseMessage> LogOut(HttpRequestMessage request)
+        {
+            IAuthenticationManager authenticationManager =  HttpContext.Current.GetOwinContext().Authentication;
+            authenticationManager.SignOut();
+            return request.CreateResponse(HttpStatusCode.OK, new { success = true });
         }
     }
 }

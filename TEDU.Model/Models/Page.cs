@@ -4,9 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TEDU.Model.Models
 {
+    [Table("Pages")]
     public class Page
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int ID { set; get; }
 
         [Column(TypeName = "nvarchar")]

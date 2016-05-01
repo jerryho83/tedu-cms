@@ -57,15 +57,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\CategoryConfiguration.cs" />
-    <Compile Include="Configuration\EbookConfiguration.cs" />
-    <Compile Include="Configuration\ErrorConfiguration.cs" />
-    <Compile Include="Configuration\PageConfiguration.cs" />
-    <Compile Include="Configuration\PostConfiguration.cs" />
-    <Compile Include="Configuration\PostTagConfiguration.cs" />
-    <Compile Include="Configuration\SystemParamConfiguraion.cs" />
-    <Compile Include="Configuration\TagConfiguration.cs" />
-    <Compile Include="Configuration\UserConfiguration.cs" />
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />
     <Compile Include="Infrastructure\IDbFactory.cs" />
@@ -108,6 +99,10 @@
     <Compile Include="Migrations\201604240618589_addcolumnforebook2.cs" />
     <Compile Include="Migrations\201604240618589_addcolumnforebook2.Designer.cs">
       <DependentUpon>201604240618589_addcolumnforebook2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201605010051263_changecode.cs" />
+    <Compile Include="Migrations\201605010051263_changecode.Designer.cs">
+      <DependentUpon>201605010051263_changecode.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -161,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201604240618589_addcolumnforebook2.resx">
       <DependentUpon>201604240618589_addcolumnforebook2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605010051263_changecode.resx">
+      <DependentUpon>201605010051263_changecode.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

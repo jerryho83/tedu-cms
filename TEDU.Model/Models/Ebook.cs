@@ -4,9 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TEDU.Model.Models
 {
+    [Table("Ebooks")]
     public class Ebook
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int ID { set; get; }
 
         [Column(TypeName = "nvarchar")]

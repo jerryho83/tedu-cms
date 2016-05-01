@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TEDU.Model.Models
 {
+    [Table("Tags")]
     public class Tag
     {
         [Key]

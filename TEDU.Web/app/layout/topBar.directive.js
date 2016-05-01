@@ -1,14 +1,9 @@
 ﻿(function (app) {
     'use strict';
 
-    app.directive('topBar', topBar);
-
-    function topBar() {
+    app.directive('topBar', function() {
         return {
-            restrict: 'E',
-            replace: true,
             templateUrl: '/app/layout/topBar.html'
         }
-    }
-
+    });
 })(angular.module('common.ui'));

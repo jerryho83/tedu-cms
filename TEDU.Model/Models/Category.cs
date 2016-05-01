@@ -5,9 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TEDU.Model
 {
+    [Table("Categories")]
     public class Category
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+
         public int ID { set; get; }
 
         [Column(TypeName = "nvarchar")]

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
-using TEDU.Data.Configuration;
 using TEDU.Model;
 using TEDU.Model.Models;
 
@@ -31,16 +30,6 @@ namespace TEDU.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new CategoryConfiguration());
-            modelBuilder.Configurations.Add(new PostConfiguration());
-            modelBuilder.Configurations.Add(new ErrorConfiguration());
-
-            modelBuilder.Configurations.Add(new TagConfiguration());
-            modelBuilder.Configurations.Add(new PostTagConfiguration());
-            modelBuilder.Configurations.Add(new SystemParamConfiguraion());
-            modelBuilder.Configurations.Add(new PageConfiguration());
-            modelBuilder.Configurations.Add(new EbookConfiguration());
-
 
             modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
             modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);

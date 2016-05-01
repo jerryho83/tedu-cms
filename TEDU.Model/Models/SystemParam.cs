@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace TEDU.Model.Models
 {
+    [Table("SystemParams")]
     public class SystemParam
     {
         [Key]
