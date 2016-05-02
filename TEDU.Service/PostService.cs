@@ -103,6 +103,7 @@ namespace TEDU.Service
         public void CreatePost(Post Post)
         {
             _postsRepository.Add(Post);
+            SavePost();
             if (!string.IsNullOrEmpty(Post.Tags))
             {
                 string[] tags = Post.Tags.Split(',');

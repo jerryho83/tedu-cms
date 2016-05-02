@@ -13,7 +13,7 @@ namespace TEDU.Web.App_Start
                         "~/Scripts/plugins/toastr/toastr.js",
                         "~/Scripts/plugins/bootbox/bootbox.min.js",
                         "~/Scripts/plugins/ckeditor/ckeditor.js",
-                        "~/Scripts/plugins/ckfinder/ckfinder.js",
+                        "~/Scripts/vendors/ckfinder/ckfinder.js",
                         "~/scripts/main.js",
                         "~/Scripts/plugins/angular/angular.js",
                         "~/Scripts/plugins/angular-route/angular-route.js",
@@ -26,7 +26,8 @@ namespace TEDU.Web.App_Start
                         "~/Scripts/plugins/ngBootbox/ngBootbox.js",
                         "~/Scripts/plugins/angular-loading-bar/build/loading-bar.js",
                         "~/Scripts/plugins/ng-ckeditor/ng-ckeditor.js",
-                        "~/Scripts/plugins/jquery-treegrid/js/jquery.treegrid.js"
+                        "~/Scripts/plugins/jquery-treegrid/js/jquery.treegrid.js",
+                        "~/Scripts/vendors/ng-nested-combobox/dist/ng-nested-combobox.js"
                         ));
             bundles.Add(new ScriptBundle("~/bundles/spa").Include(
                        "~/app/modules/common.core.js",
@@ -67,7 +68,8 @@ namespace TEDU.Web.App_Start
                       "~/Content/admin/css/skins/_all-skins.min.css",
                       "~/Scripts/plugins/toastr/toastr.css",
                       "~/Scripts/plugins/angular-loading-bar/build/loading-bar.css",
-                      "~/Scripts/plugins/jquery-treegrid/css/jquery.treegrid.css"
+                      "~/Scripts/plugins/jquery-treegrid/css/jquery.treegrid.css",
+                      "~/Scripts/vendors/ng-nested-combobox/dist/nestedCombobox.css"
                        ));
 
             BundleTable.EnableOptimizations = false;

@@ -104,6 +104,10 @@
     <Compile Include="Migrations\201605010051263_changecode.Designer.cs">
       <DependentUpon>201605010051263_changecode.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605011126092_allow-null.cs" />
+    <Compile Include="Migrations\201605011126092_allow-null.Designer.cs">
+      <DependentUpon>201605011126092_allow-null.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
@@ -159,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605010051263_changecode.resx">
       <DependentUpon>201605010051263_changecode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605011126092_allow-null.resx">
+      <DependentUpon>201605011126092_allow-null.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
