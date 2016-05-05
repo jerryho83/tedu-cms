@@ -2,6 +2,7 @@
 
 namespace TEDU.Web.ViewModels
 {
+    [Serializable]
     public class PageViewModel
     {
         public int ID { set; get; }

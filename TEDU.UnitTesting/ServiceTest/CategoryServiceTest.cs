@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Collections.Generic;
+using System.Linq;
 using TEDU.Data.Infrastructure;
 using TEDU.Data.Repositories;
 using TEDU.Model;
@@ -33,7 +34,7 @@ namespace TEDU.UnitTesting.ServiceTest
         public void Category_Get_All()
         {
             //Arrange
-            _mockRepository.Setup(x => x.GetMany(c => c.Status)).Returns(_listCategory);
+            _mockRepository.Setup(x => x.GetMulti(c => c.Status, null).ToList()).Returns(_listCategory);
 
             //Act
             List<Category> results = _service.GetCategories() as List<Category>;

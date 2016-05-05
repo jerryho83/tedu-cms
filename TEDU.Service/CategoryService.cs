@@ -41,14 +41,14 @@ namespace TEDU.Service
         public IEnumerable<Category> GetCategories(int page, int pageSize, out int totalRow, string filter = null)
         {
             IEnumerable<Category> model =
-                categorysRepository.Filter(x => x.Name.Contains(filter), out totalRow, page, pageSize);
+                categorysRepository.GetMultiPaging(x => x.Name.Contains(filter), out totalRow, page, pageSize);
             
             return model;
         }
 
         public Category GetCategory(int id)
         {
-            var category = categorysRepository.GetById(id);
+            var category = categorysRepository.GetSingleById(id);
             return category;
         }
 
@@ -75,7 +75,7 @@ namespace TEDU.Service
         {
             IEnumerable<Category> model;
             model = categorysRepository
-                   .GetMany(x => x.Status)
+                   .GetMulti(x => x.Status)
                    .OrderBy(m => m.ParentID)
                    .ToList();
 
@@ -86,7 +86,7 @@ namespace TEDU.Service
         {
             IEnumerable<Category> model;
             model = categorysRepository
-                   .GetMany(x => x.Status && x.ShowHome.HasValue)
+                   .GetMulti(x => x.Status && x.ShowHome.HasValue)
                    .Take(top)
                    .OrderByDescending(m => m.ShowHome)
                    .ToList();
@@ -96,7 +96,7 @@ namespace TEDU.Service
 
         public Category GetCategoryByAlias(string alias)
         {
-            var category = categorysRepository.Get(x => x.Alias == alias);
+            var category = categorysRepository.GetSingleByCondition(x => x.Alias == alias);
             return category;
         }
 

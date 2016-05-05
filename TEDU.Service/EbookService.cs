@@ -45,7 +45,7 @@ namespace TEDU.Service
 
         public Ebook GetEbook(int id)
         {
-            var ebook = ebookRepository.GetById(id);
+            var ebook = ebookRepository.GetSingleById(id);
             return ebook;
         }
 
@@ -55,7 +55,7 @@ namespace TEDU.Service
             if (!string.IsNullOrEmpty(filter))
             {
                 model = ebookRepository
-                    .GetMany(m => m.Name.ToLower()
+                    .GetMulti(m => m.Name.ToLower()
                     .Contains(filter.ToLower().Trim()) &&
                     m.Status)
                     .OrderBy(m => m.ID)
@@ -64,7 +64,7 @@ namespace TEDU.Service
                     .ToList();
 
                 totalRow = ebookRepository
-                    .GetMany(m => m.Name.ToLower()
+                    .GetMulti(m => m.Name.ToLower()
                     .Contains(filter.ToLower().Trim()) &&
                     m.Status)
                     .Count();
@@ -72,13 +72,13 @@ namespace TEDU.Service
             else
             {
                 model = ebookRepository
-                    .GetMany(x => x.Status)
+                    .GetMulti(x => x.Status)
                     .OrderBy(m => m.ID)
                     .Skip(page * pageSize)
                     .Take(pageSize)
                     .ToList();
 
-                totalRow = ebookRepository.GetMany(x => x.Status).Count();
+                totalRow = ebookRepository.GetMulti(x => x.Status).Count();
             }
 
             return model;

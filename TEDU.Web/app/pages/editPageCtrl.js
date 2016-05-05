@@ -43,7 +43,7 @@
 
         }
         function addFailed() {
-            notificationService.displayError(response.statusText);
+            notificationService.displayError("Cập nhật không thành công.");
             
         }
         loadDetail();

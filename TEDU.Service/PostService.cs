@@ -87,16 +87,16 @@ namespace TEDU.Service
         {
             IEnumerable<Post> model;
             if (filter == null)
-                model = _postsRepository.Filter(x => x.Status == StatusEnum.Publish.ToString(), out totalRow, page, pageSize).ToList();
+                model = _postsRepository.GetMultiPaging(x => x.Status == StatusEnum.Publish.ToString(), out totalRow, page, pageSize).ToList();
             else
-                model = _postsRepository.Filter(x => x.Status == StatusEnum.Publish.ToString() && x.Name.Contains(filter), out totalRow, page, pageSize).ToList();
+                model = _postsRepository.GetMultiPaging(x => x.Status == StatusEnum.Publish.ToString() && x.Name.Contains(filter), out totalRow, page, pageSize).ToList();
 
             return model;
         }
 
         public Post GetPost(int id)
         {
-            var Post = _postsRepository.Get(x => x.ID == id, new string[] { "Category" });
+            var Post = _postsRepository.GetSingleByCondition(x => x.ID == id, new string[] { "Category" });
             return Post;
         }
 
@@ -143,7 +143,7 @@ namespace TEDU.Service
                         tag.Name = item;
                         _tagRepository.Add(tag);
                     }
-                    _postTagRepository.Delete(x => x.PostID == postEntity.ID);
+                    _postTagRepository.DeleteMulti(x => x.PostID == postEntity.ID);
 
                     PostTag postTag = new PostTag();
                     postTag.PostID = postEntity.ID;
@@ -165,28 +165,28 @@ namespace TEDU.Service
 
         public IEnumerable<Post> GetRecentPosts(int top = 0)
         {
-            return _postsRepository.Filter(x => x.Status == StatusEnum.Publish.ToString(), new string[] { "Category" })
+            return _postsRepository.GetMulti(x => x.Status == StatusEnum.Publish.ToString(), new string[] { "Category" })
                 .OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public IEnumerable<Post> GetPopularPosts(int top)
         {
             return _postsRepository
-                .Filter(x => x.Status == StatusEnum.Publish.ToString(), new string[] { "Category" })
+                .GetMulti(x => x.Status == StatusEnum.Publish.ToString(), new string[] { "Category" })
                 .OrderByDescending(x => x.ViewCount).Take(top);
         }
 
         public IEnumerable<Post> GetBreakingNews(int top)
         {
             return _postsRepository
-               .Filter(x => x.Status == StatusEnum.Publish.ToString() && x.HotFlag.HasValue, new string[] { "Category" })
+               .GetMulti(x => x.Status == StatusEnum.Publish.ToString() && x.HotFlag.HasValue, new string[] { "Category" })
                .OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
         public IEnumerable<Post> GetPostSlide(int top)
         {
             return _postsRepository
-               .Filter(x => x.Status == StatusEnum.Publish.ToString() && x.SlideFlag.HasValue, new string[] { "Category" })
+               .GetMulti(x => x.Status == StatusEnum.Publish.ToString() && x.SlideFlag.HasValue, new string[] { "Category" })
                .OrderByDescending(x => x.CreatedDate).Take(top);
         }
 
@@ -194,16 +194,16 @@ namespace TEDU.Service
         {
 
             return _postsRepository
-                .Filter(x => x.Status == StatusEnum.Publish.ToString()
+                .GetMulti(x => x.Status == StatusEnum.Publish.ToString()
                 && (x.CategoryID == categoryId || x.Category.ParentID == categoryId), new string[] { "Category" })
                 .OrderByDescending(x => x.CreatedDate).Take(top).ToList();
         }
 
         public List<Post> GetListByCategoryAlias(string categoryAlias, int page, int pageSize, out int totalRow)
         {
-            var category = _categoryRepository.Get(x => x.Alias == categoryAlias);
+            var category = _categoryRepository.GetSingleByCondition(x => x.Alias == categoryAlias);
             var model = _postsRepository
-                    .Filter(m => (m.Category.Alias == categoryAlias || m.Category.ParentID == category.ID) &&
+                    .GetMulti(m => (m.Category.Alias == categoryAlias || m.Category.ParentID == category.ID) &&
                     m.Status == StatusEnum.Publish.ToString(), new string[] { "Category" })
                     .OrderByDescending(m => m.CreatedDate)
                     .Skip((page - 1) * pageSize)
@@ -211,7 +211,7 @@ namespace TEDU.Service
                     .ToList();
 
             totalRow = _postsRepository
-               .GetMany(m => m.Category.Alias == categoryAlias &&
+               .GetMulti(m => m.Category.Alias == categoryAlias &&
                     m.Status == StatusEnum.Publish.ToString())
                 .Count();
             return model;
@@ -219,7 +219,7 @@ namespace TEDU.Service
 
         public void IncreaseViewCount(int id)
         {
-            var post = _postsRepository.GetById(id);
+            var post = _postsRepository.GetSingleById(id);
             post.ViewCount += 1;
             _postsRepository.Update(post);
 
@@ -228,21 +228,21 @@ namespace TEDU.Service
         public List<Tag> GetListTags(int id)
         {
             return _postTagRepository
-                .Filter(x => x.PostID == id, new string[] { "Tag" })
+                .GetMulti(x => x.PostID == id, new string[] { "Tag" })
                 .Select(x => x.Tag).ToList();
         }
 
         public List<Post> GetReleatedPosts(int top, int id)
         {
-            var post = _postsRepository.GetById(id);
+            var post = _postsRepository.GetSingleById(id);
             return _postsRepository
-             .Filter(x => x.Status == StatusEnum.Publish.ToString() && x.ID != id && x.CategoryID == post.CategoryID, new string[] { "Category" })
+             .GetMulti(x => x.Status == StatusEnum.Publish.ToString() && x.ID != id && x.CategoryID == post.CategoryID, new string[] { "Category" })
              .OrderByDescending(x => x.CreatedDate).Take(top).ToList();
         }
 
         public List<Tag> GetPopularListTags(int top)
         {
-            var list = _tagRepository.All(new string[] { "PostTags" });
+            var list = _tagRepository.GetAll(new string[] { "PostTags" });
 
             var list1 = list.Select(x => new { ID = x.ID, Name = x.Name, Count = x.PostTags.Count() })
                 .GroupBy(a => new { a.ID, a.Name })
@@ -254,20 +254,20 @@ namespace TEDU.Service
 
         public Tag GetTag(string id)
         {
-            return _tagRepository.Get(x => x.ID == id);
+            return _tagRepository.GetSingleByCondition(x => x.ID == id);
         }
 
         public List<Post> GetListByTagId(string tagId, int page, int pageSize, out int totalRow)
         {
             var model = _postsRepository
-                   .Filter(m => m.Status == StatusEnum.Publish.ToString() && m.PostTags.Count(x => x.TagID == tagId) > 0, new string[] { "Category", "PostTags" })
+                   .GetMulti(m => m.Status == StatusEnum.Publish.ToString() && m.PostTags.Count(x => x.TagID == tagId) > 0, new string[] { "Category", "PostTags" })
                    .OrderByDescending(m => m.CreatedDate)
                    .Skip((page - 1) * pageSize)
                    .Take(pageSize)
                    .ToList();
 
             totalRow = _postsRepository
-                                 .Filter(m => m.Status == StatusEnum.Publish.ToString()
+                                 .GetMulti(m => m.Status == StatusEnum.Publish.ToString()
                                  && m.PostTags.Count(x => x.TagID == tagId) > 0, new string[] { "Category", "PostTags" })
 
                 .Count();
@@ -277,14 +277,14 @@ namespace TEDU.Service
         public List<Post> Search(string keyword, int page, int pageSize, out int totalRow)
         {
             var model = _postsRepository
-                   .Filter(m => m.Status == StatusEnum.Publish.ToString() && m.Name.Contains(keyword), new string[] { "Category" })
+                   .GetMulti(m => m.Status == StatusEnum.Publish.ToString() && m.Name.Contains(keyword), new string[] { "Category" })
                    .OrderByDescending(m => m.CreatedDate)
                    .Skip((page - 1) * pageSize)
                    .Take(pageSize)
                    .ToList();
 
             totalRow = _postsRepository
-                                 .Filter(m => m.Status == StatusEnum.Publish.ToString()
+                                 .GetMulti(m => m.Status == StatusEnum.Publish.ToString()
                                  && m.Name.Contains(keyword)).Count();
             return model;
         }

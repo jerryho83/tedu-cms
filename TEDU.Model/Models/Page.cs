@@ -9,7 +9,6 @@ namespace TEDU.Model.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
         public int ID { set; get; }
 
         [Column(TypeName = "nvarchar")]
