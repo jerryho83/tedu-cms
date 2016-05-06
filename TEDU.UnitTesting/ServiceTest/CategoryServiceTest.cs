@@ -31,10 +31,10 @@ namespace TEDU.UnitTesting.ServiceTest
         }
 
         [TestMethod]
-        public void Category_Get_All()
+        public void Category_Service_Get_All()
         {
             //Arrange
-            _mockRepository.Setup(x => x.GetMulti(c => c.Status, null).ToList()).Returns(_listCategory);
+            _mockRepository.Setup(x => x.GetMulti(c => c.Status, null)).Returns(_listCategory);
 
             //Act
             List<Category> results = _service.GetCategories() as List<Category>;
@@ -44,6 +44,22 @@ namespace TEDU.UnitTesting.ServiceTest
             Assert.AreEqual(3, results.Count);
         }
 
+        [TestMethod]
+        public void Category_Service_Create()
+         {
+            //Arrange
+            Category category = new Category() { Name = "abc" };
+            int id = 1;
+            _mockRepository.Setup(x => x.Add(category)).Returns((Category c)=> {
+                c.ID = id;
+                return c;
+            }).Verifiable();
 
+            _service.CreateCategory(category);
+
+            Assert.AreEqual(id, category.ID);
+
+            _mockUnitWork.Verify(m => m.Commit(), Times.Once);
+        }
     }
 }
