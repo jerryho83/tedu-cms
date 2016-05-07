@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using TEDU.Model;
+using TEDU.Model.Models;
+using TEDU.Web.ViewModels;
 
 namespace TEDU.Web.Mappings
 {
@@ -10,11 +9,12 @@ namespace TEDU.Web.Mappings
     {
         public static void Configure()
         {
-            Mapper.Initialize(x =>
-            {
-                x.AddProfile<DomainToViewModelMappingProfile>();
-                x.AddProfile<ViewModelToDomainMappingProfile>();
-            });
+            Mapper.CreateMap<Category, CategoryViewModel>();
+            Mapper.CreateMap<Post, PostViewModel>();
+            Mapper.CreateMap<Tag, TagViewModel>();
+
+            Mapper.CreateMap<Ebook, EbookViewModel>();
+            Mapper.CreateMap<Page, PageViewModel>();
         }
     }
 }
