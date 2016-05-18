@@ -189,24 +189,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\accounts\accountCtrl.js" />
-    <Content Include="app\accounts\accounts.html" />
-    <Content Include="app\accounts\addAccount.html" />
-    <Content Include="app\accounts\addAccountCtrl.js" />
-    <Content Include="app\accounts\editAccount.html" />
-    <Content Include="app\accounts\editAccountCtrl.js" />
-    <Content Include="app\home\rootCtrl.js" />
-    <Content Include="app\layout\topBar.directive.js" />
-    <Content Include="app\layout\topBar.html" />
-    <Content Include="app\login\loginCtrl.js" />
-    <Content Include="app\pages\addPage.html" />
-    <Content Include="app\pages\addPageCtrl.js" />
-    <Content Include="app\pages\editPage.html" />
-    <Content Include="app\pages\editPageCtrl.js" />
-    <Content Include="app\pages\listPages.html" />
-    <Content Include="app\pages\pageCtrl.js" />
-    <Content Include="app\roles\roleCtrl.js" />
-    <Content Include="app\services\membershipService.js" />
+    <Content Include="app\components\accounts\accountCtrl.js" />
+    <Content Include="app\components\accounts\accounts.html" />
+    <Content Include="app\components\accounts\addAccount.html" />
+    <Content Include="app\components\accounts\addAccountCtrl.js" />
+    <Content Include="app\components\accounts\editAccount.html" />
+    <Content Include="app\components\accounts\editAccountCtrl.js" />
+    <Content Include="app\components\home\rootCtrl.js" />
+    <Content Include="app\shared\directives\topBar.directive.js" />
+    <Content Include="app\shared\directives\topBar.html" />
+    <Content Include="app\components\login\login.html" />
+    <Content Include="app\components\login\loginCtrl.js" />
+    <Content Include="app\components\pages\addPage.html" />
+    <Content Include="app\components\pages\addPageCtrl.js" />
+    <Content Include="app\components\pages\editPage.html" />
+    <Content Include="app\components\pages\editPageCtrl.js" />
+    <Content Include="app\components\pages\listPages.html" />
+    <Content Include="app\components\pages\pageCtrl.js" />
+    <Content Include="app\components\roles\roleCtrl.js" />
+    <Content Include="app\shared\services\membershipService.js" />
+    <Content Include="app\shared\views\base.html" />
     <Content Include="Content\admin\css\AdminLTE.css" />
     <Content Include="Content\admin\css\AdminLTE.min.css" />
     <Content Include="Content\admin\css\bootstrap\bootstrap.css" />
@@ -457,31 +459,28 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Areas\Admin\Views\web.config" />
-    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="app\app.js" />
-    <Content Include="app\categories\addCategory.html" />
-    <Content Include="app\categories\addCategoryCtrl.js" />
-    <Content Include="app\categories\categoryCtrl.js" />
-    <Content Include="app\categories\editCategory.html" />
-    <Content Include="app\categories\editCategoryCtrl.js" />
-    <Content Include="app\categories\listCategories.html" />
-    <Content Include="app\filters\boolStatus.filter.js" />
-    <Content Include="app\home\index.html" />
-    <Content Include="app\home\homeCtrl.js" />
-    <Content Include="app\layout\customPager.directive.js" />
-    <Content Include="app\layout\pager.html" />
-    <Content Include="app\modules\common.ui.js" />
-    <Content Include="app\posts\addPost.html" />
-    <Content Include="app\posts\addPostCtrl.js" />
-    <Content Include="app\posts\editPost.html" />
-    <Content Include="app\posts\editPostCtrl.js" />
-    <Content Include="app\posts\listPosts.html" />
-    <Content Include="app\posts\postCtrl.js" />
-    <Content Include="app\services\apiService.js" />
-    <Content Include="app\services\commonService.js" />
-    <Content Include="app\services\modalService.js" />
-    <Content Include="app\services\notificationService.js" />
+    <Content Include="app\components\categories\addCategory.html" />
+    <Content Include="app\components\categories\addCategoryCtrl.js" />
+    <Content Include="app\components\categories\categoryCtrl.js" />
+    <Content Include="app\components\categories\editCategory.html" />
+    <Content Include="app\components\categories\editCategoryCtrl.js" />
+    <Content Include="app\components\categories\listCategories.html" />
+    <Content Include="app\shared\filters\boolStatus.filter.js" />
+    <Content Include="app\components\home\index.html" />
+    <Content Include="app\components\home\homeCtrl.js" />
+    <Content Include="app\shared\directives\customPager.directive.js" />
+    <Content Include="app\shared\directives\pager.html" />
+    <Content Include="app\shared\modules\common.ui.js" />
+    <Content Include="app\components\posts\addPost.html" />
+    <Content Include="app\components\posts\addPostCtrl.js" />
+    <Content Include="app\components\posts\editPost.html" />
+    <Content Include="app\components\posts\editPostCtrl.js" />
+    <Content Include="app\components\posts\listPosts.html" />
+    <Content Include="app\components\posts\postCtrl.js" />
+    <Content Include="app\shared\services\apiService.js" />
+    <Content Include="app\shared\services\commonService.js" />
+    <Content Include="app\shared\services\notificationService.js" />
     <Content Include="Scripts\plugins\angular-base64\angular-base64.js" />
     <Content Include="Scripts\plugins\angular-base64\angular-base64.min.js" />
     <Content Include="Scripts\plugins\angular-cookies\angular-cookies.js" />
@@ -549,6 +548,9 @@
     <Content Include="Scripts\plugins\bootstrap\js\tab.js" />
     <Content Include="Scripts\plugins\bootstrap\js\tooltip.js" />
     <Content Include="Scripts\plugins\bootstrap\js\transition.js" />
+    <Content Include="Scripts\plugins\ng-ckeditor\ng-ckeditor.css" />
+    <Content Include="Scripts\plugins\ng-ckeditor\ng-ckeditor.js" />
+    <Content Include="Scripts\plugins\ng-ckeditor\ng-ckeditor.min.js" />
     <Content Include="Scripts\vendors\ckfinder\bin-debug\CKFinder.dll" />
     <Content Include="Scripts\vendors\ckfinder\bin-debug\CKFinder.pdb" />
     <Content Include="Scripts\vendors\ckfinder\bin-debug\CKFinder_FileEditor.dll" />
@@ -1201,7 +1203,6 @@
     <Content Include="Scripts\vendors\ckfinder\_samples\skin_v1.html" />
     <Content Include="Scripts\vendors\ckfinder\_samples\standalone.html" />
     <Content Include="Scripts\vendors\ckfinder\_samples\standalone_v1.html" />
-    <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
     <Content Include="Scripts\vendors\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
     <Content Include="Scripts\vendors\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\vendors\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
@@ -3899,9 +3900,6 @@
     <Content Include="Scripts\plugins\ng-ckeditor\libs\ckeditor\plugins\a11yhelp\dialogs\lang\km.js" />
     <Content Include="Scripts\plugins\ng-ckeditor\libs\ckeditor\plugins\a11yhelp\dialogs\lang\ko.js" />
     <Content Include="Scripts\plugins\ng-ckeditor\libs\ckeditor\plugins\a11yhelp\dialogs\lang\_translationstatus.txt" />
-    <Content Include="Scripts\vendors\ng-nested-combobox\dist\icn.png" />
-    <Content Include="Scripts\vendors\ng-nested-combobox\dist\nestedCombobox.css" />
-    <Content Include="Scripts\vendors\ng-nested-combobox\dist\ng-nested-combobox.js" />
     <Content Include="Scripts\plugins\ngBootbox\dist\ngBootbox.js" />
     <Content Include="Scripts\plugins\ngBootbox\dist\ngBootbox.min.js" />
     <Content Include="Scripts\plugins\ngBootbox\examples\example-1\app.js" />
@@ -4100,10 +4098,13 @@
     <Content Include="Scripts\plugins\jquery\bower.json" />
     <Content Include="Scripts\plugins\jquery\dist\jquery.min.map" />
     <Content Include="Scripts\plugins\jquery\src\sizzle\dist\sizzle.min.map" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Scripts\plugins\ng-ckeditor\ng-ckeditor.min.map" />
+    <Content Include="Scripts\plugins\ng-ckeditor\package.json" />
     <None Include="_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Content\admin\css\bootstrap\bootstrap.css.map" />
-    <Content Include="app\modules\common.core.js" />
+    <Content Include="app\shared\modules\common.core.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4122,16 +4123,14 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
-    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
-    <Compile Include="Areas\Admin\Controllers\EbookController.cs" />
-    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
-    <Compile Include="Areas\Admin\Controllers\PageController.cs" />
-    <Compile Include="Areas\Admin\Controllers\PostController.cs" />
+    <Compile Include="Api\AccountController.cs" />
+    <Compile Include="Api\CategoryController.cs" />
+    <Compile Include="Api\EbookController.cs" />
+    <Compile Include="Api\PageController.cs" />
+    <Compile Include="Api\PostController.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CVController.cs" />
     <Compile Include="Controllers\EbookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -4141,7 +4140,6 @@
     </Compile>
     <Compile Include="Infrastructure\Core\ApiControllerBase.cs" />
     <Compile Include="Infrastructure\Core\PaginationSet.cs" />
-    <Compile Include="Infrastructure\Dispatcher\AreaHttpControllerSelector.cs" />
     <Compile Include="Infrastructure\Extensions\EntitiesExtensions.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -4177,7 +4175,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="UploadData\" />
     <Folder Include="Views\CV\" />
     <Folder Include="Views\Ebook\" />

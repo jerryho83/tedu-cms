@@ -8,58 +8,78 @@
 
     function config($stateProvider, $urlRouterProvider) {
 
-        $urlRouterProvider.otherwise("/admin");
+        $urlRouterProvider.otherwise("login");
 
         $stateProvider
+              .state('base', {
+                  url: "",
+                  templateUrl: "/app/shared/views/base.html",
+                  abstract: true
+              })
+              .state('login', {
+                  url: "/login",
+                  templateUrl: "/app/components/login/login.html",
+                  controller: "loginCtrl"
+              })
             .state('home', {
                 url: "/admin",
-                templateUrl: "/app/home/index.html",
+                parent: 'base',
+                templateUrl: "/app/components/home/index.html",
                 controller: "homeCtrl"
             })
             //category
              .state('categories', {
                  url: '/categories',
-                 templateUrl: "/app/categories/listCategories.html",
+                 parent: 'base',
+                 templateUrl: "/app/components/categories/listCategories.html",
                  controller: "categoryCtrl"
              })
              .state('edit_category', {
                  url: '/edit_category/:id',
-                 templateUrl: "/app/categories/editCategory.html",
+                 parent: 'base',
+                 templateUrl: "/app/components/categories/editCategory.html",
                  controller: "editCategoryCtrl"
              })
             .state('add_category', {
                 url: '/add_category',
-                templateUrl: "/app/categories/addCategory.html",
+                parent: 'base',
+                templateUrl: "/app/components/categories/addCategory.html",
                 controller: "addCategoryCtrl"
             })
              .state('posts', {
                  url: '/posts',
-                 templateUrl: "/app/posts/listPosts.html",
+                 parent: 'base',
+                 templateUrl: "/app/components/posts/listPosts.html",
                  controller: "postCtrl"
              })
              .state('edit_post', {
                  url: '/edit_post/:id',
-                 templateUrl: "/app/posts/editPost.html",
+                 parent: 'base',
+                 templateUrl: "/app/components/posts/editPost.html",
                  controller: "editPostCtrl"
              })
             .state('add_post', {
                 url: '/add_post',
-                templateUrl: "/app/posts/addPost.html",
+                parent: 'base',
+                templateUrl: "/app/components/posts/addPost.html",
                 controller: "addPostCtrl"
             })
             .state('pages', {
                 url: '/pages',
-                templateUrl: "/app/pages/listPages.html",
+                parent: 'base',
+                templateUrl: "/app/components/pages/listPages.html",
                 controller: "pageCtrl"
             })
             .state('edit_page', {
                 url: '/edit_page/:id',
-                templateUrl: "/app/pages/editPage.html",
+                parent: 'base',
+                templateUrl: "/app/components/pages/editPage.html",
                 controller: "editPageCtrl"
             })
            .state('add_page', {
                url: '/add_page',
-               templateUrl: "/app/pages/addPage.html",
+               parent: 'base',
+               templateUrl: "/app/components/pages/addPage.html",
                controller: "addPageCtrl"
            });
     }
@@ -77,12 +97,12 @@
         });
     }
 
-    isAuthenticated.$inject = ['membershipService', '$rootScope', '$location'];
+    isAuthenticated.$inject = ['membershipService', '$rootScope', '$location', '$state'];
 
-    function isAuthenticated(membershipService, $rootScope, $location) {
+    function isAuthenticated(membershipService, $rootScope, $location, $state) {
         if (!membershipService.isUserLoggedIn()) {
             $rootScope.previousState = $location.path();
-            window.location.href = '/admin/login';
+            $state.go('login');
         }
     }
 })();

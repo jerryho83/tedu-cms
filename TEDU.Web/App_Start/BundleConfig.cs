@@ -34,7 +34,6 @@ namespace TEDU.Web.App_Start
                        "~/app/modules/common.ui.js",
                        "~/app/app.js",
                        "~/app/services/notificationService.js",
-                       "~/app/services/modalService.js",
                        "~/app/services/apiService.js",
                        "~/app/services/commonService.js",
                         "~/app/services/membershipService.js",
