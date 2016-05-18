@@ -2,7 +2,6 @@
 @{
     var tag = (TEDU.Web.ViewModels.TagViewModel)ViewBag.Tag;
 
-
     int currentPage = ((int)ViewBag.Page);
 
     ViewBag.Title = tag.Name + (currentPage > 1 ? " - Trang " + currentPage : "");
@@ -40,7 +39,6 @@
               <p>@item.Description
               <p class="moretag"><a href="@url"> Đọc thêm</a></p>
             </div>
-
           </div>
         </article>
         <div class="clearfix"></div>

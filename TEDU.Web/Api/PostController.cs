@@ -1,9 +1,9 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using AutoMapper;
 using TEDU.Model;
 using TEDU.Service;
 using TEDU.Web.Infrastructure.Core;
@@ -67,7 +67,6 @@ namespace TEDU.Web.Api
                 HttpResponseMessage response = null;
                 int totalRow;
                 IEnumerable<Post> model = _postService.GetPosts(currentPage, currentPageSize, out totalRow, filter);
-
 
                 IEnumerable<PostViewModel> modelVM = Mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(model);
 

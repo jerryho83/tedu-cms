@@ -46,7 +46,6 @@
             return slug;
         }
 
-
         function getTree(data, primaryIdName, parentIdName) {
             if (!data || data.length == 0 || !primaryIdName || !parentIdName)
                 return [];

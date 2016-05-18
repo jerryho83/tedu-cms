@@ -13,7 +13,7 @@ namespace TEDU.Web.App_Start
 {
     public class ApplicationUserStore : UserStore<AppUser>
     {
-        public ApplicationUserStore(TEDUEntities context)
+        public ApplicationUserStore(TeduDbContext context)
             : base(context)
         {
         }
@@ -48,7 +48,7 @@ namespace TEDU.Web.App_Start
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options,
             IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<AppUser>(context.Get<TEDUEntities>()));
+            var manager = new ApplicationUserManager(new UserStore<AppUser>(context.Get<TeduDbContext>()));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<AppUser>(manager)
             {

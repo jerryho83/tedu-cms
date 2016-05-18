@@ -21,7 +21,7 @@
 
         function loadListParents() {
             apiService.get('/api/category/getlistparent', null, function (result) {
-                $scope.categories = commonService.getTree(result.data,'ID','ParentID');
+                $scope.categories = commonService.getTree(result.data, 'ID', 'ParentID');
             });
         }
         this.collection1 = [
@@ -72,7 +72,6 @@
                                                     name: 'item2_2_2_1_2',
                                                     children: [
 
-
                                                     ]
                                                 }
                                             ]
@@ -83,15 +82,12 @@
                             ]
                         }
                     ]
-
                 }
         ];
 
         this.isDisabled = false;
 
-
         this.collection = this.collection1;
-
 
         this.changeItem = function (value) {
             that.selectedItem = value;

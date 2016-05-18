@@ -13,7 +13,7 @@ namespace TEDU.Model.Models
         [Column(TypeName = "varchar", Order = 2)]
         [StringLength(250)]
         [Key]
-        public string TagID { set; get; } 
+        public string TagID { set; get; }
 
         public virtual Post Post { set; get; }
 

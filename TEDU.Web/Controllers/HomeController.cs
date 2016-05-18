@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using TEDU.Common.Helper;
 using TEDU.Model;
@@ -12,7 +9,6 @@ using TEDU.Web.ViewModels;
 
 namespace TEDU.Web.Controllers
 {
-
     public class HomeController : Controller
     {
         private readonly IPostService postService;
@@ -46,6 +42,7 @@ namespace TEDU.Web.Controllers
             ViewBag.SystemDescription = ConfigHelper.GetConfigByKey("SystemDescription");
             return View();
         }
+
         public PartialViewResult Footer()
         {
             var recentNews = postService.GetRecentPosts(3);
@@ -89,12 +86,10 @@ namespace TEDU.Web.Controllers
             return PartialView();
         }
 
-
         public PartialViewResult RecentPost()
         {
             var model = postService.GetRecentPosts(3);
             var data = Mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(model);
-
 
             return PartialView(data);
         }

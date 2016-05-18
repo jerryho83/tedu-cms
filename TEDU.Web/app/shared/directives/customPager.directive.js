@@ -42,9 +42,7 @@
                     $scope.pagePlus = function (count) {
                         return +$scope.page + count;
                     }
-
                 }]
         }
     }
-
 })(angular.module('common.ui'));

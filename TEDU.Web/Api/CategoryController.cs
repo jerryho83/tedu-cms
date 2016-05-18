@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using AutoMapper;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using AutoMapper;
 using TEDU.Model;
 using TEDU.Service;
 using TEDU.Web.Infrastructure.Core;

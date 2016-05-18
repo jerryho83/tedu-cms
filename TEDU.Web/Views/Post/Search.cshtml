@@ -2,7 +2,6 @@
 @{
     var keyword = (string)ViewBag.Keyword;
 
-
     int currentPage = ((int)ViewBag.Page);
 
     ViewBag.Title = "Kết quả tìm kiếm từ khóa: "  + keyword + (currentPage > 1 ? " - Trang " + currentPage : "");
@@ -23,7 +22,7 @@
       </h2>
       <div class="entry-meta row-fluid">
         <ul class="clearfix">
-          <li><img alt='' src='/Content/client/images/avatar.png' height='15' width='15'/><a href="#" title="Posts by Admin" rel="author">Admin</a></li>
+          <li><img alt='' src='/Content/client/images/avatar.png' height='15' width='15' /><a href="#" title="Posts by Admin" rel="author">Admin</a></li>
           <li><img src="/Content/client/images/time.png" alt="">@(item.CreatedDate.HasValue ? item.CreatedDate.Value.ToString("dd/MM/yyyy") : "")</li>
           <li><img src="/Content/client/images/view-bg.png" alt="">@(item.ViewCount.HasValue ? item.ViewCount.Value.ToString("N0") : "Chưa có lượt xem nào") </li>
         </ul>
@@ -31,7 +30,7 @@
       <div class="entry-content">
         <div class="span3">
           <a href="@url" title="@item.Name" rel="bookmark">
-            <img width="100" height="100" src="@item.Image" alt="@item.Name"/>
+            <img width="100" height="100" src="@item.Image" alt="@item.Name" />
           </a>
         </div>
         <div class="span9">
@@ -39,7 +38,6 @@
           <p class="moretag"><a href="@url"> Đọc thêm</a>
           </p>
         </div>
-
       </div>
     </article>
 

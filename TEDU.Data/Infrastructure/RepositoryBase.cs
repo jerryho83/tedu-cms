@@ -10,7 +10,7 @@ namespace TEDU.Data.Infrastructure
     {
         #region Properties
 
-        private TEDUEntities dataContext;
+        private TeduDbContext dataContext;
         private readonly IDbSet<T> dbSet;
 
         protected IDbFactory DbFactory
@@ -19,7 +19,7 @@ namespace TEDU.Data.Infrastructure
             private set;
         }
 
-        protected TEDUEntities DbContext
+        protected TeduDbContext DbContext
         {
             get { return dataContext ?? (dataContext = DbFactory.Init()); }
         }
@@ -36,7 +36,7 @@ namespace TEDU.Data.Infrastructure
 
         public virtual T Add(T entity)
         {
-           return dbSet.Add(entity);
+            return dbSet.Add(entity);
         }
 
         public virtual void Update(T entity)
@@ -47,7 +47,7 @@ namespace TEDU.Data.Infrastructure
 
         public virtual T Delete(T entity)
         {
-           return dbSet.Remove(entity);
+            return dbSet.Remove(entity);
         }
 
         public virtual void DeleteMulti(Expression<Func<T, bool>> where)

@@ -6,7 +6,6 @@
     editPageCtrl.$inject = ['$scope', 'apiService', '$stateParams', 'notificationService', '$location', 'commonService'];
 
     function editPageCtrl($scope, apiService, $stateParams, notificationService, $location, commonService) {
-
         $scope.page = {};
         $scope.CreateAlias = createAlias;
           // setup editor options
@@ -14,7 +13,6 @@
             language: 'vi',
             height:'200px'
         };
-
 
         function loadDetail() {
             apiService.get('/api/page/GetDetails/' + $stateParams.id, null,
@@ -25,7 +23,6 @@
                 notificationService.displayError(result.data);
             });
         }
-
 
         $scope.UpdatePage = updatePage;
 
@@ -40,13 +37,10 @@
             notificationService.displaySuccess($scope.page.Name + ' đã được cập nhật.');
 
             $location.url('pages');
-
         }
         function addFailed() {
             notificationService.displayError("Cập nhật không thành công.");
-            
         }
         loadDetail();
     }
-
 })(angular.module('TEDU'));

@@ -6,11 +6,10 @@
     addCategoryCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$location', 'commonService'];
 
     function addCategoryCtrl($scope, apiService, notificationService, $location, commonService) {
-
         $scope.category = {
             CreatedDate: new Date(),
             Status: true,
-            ShowHome:false
+            ShowHome: false
         }
         $scope.CreateAlias = CreateAlias;
 
@@ -21,8 +20,6 @@
                 $scope.categories = result.data;
             });
         }
-
-
 
         $scope.AddCategory = AddCategory;
 
@@ -37,14 +34,11 @@
             notificationService.displaySuccess($scope.category.Name + ' đã được thêm mới.');
 
             $location.url('categories');
-
         }
         function addFailed() {
             notificationService.displayError(response.statusText);
-
         }
 
         LoadListParents();
     }
-
 })(angular.module('TEDU'));

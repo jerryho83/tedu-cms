@@ -78,5 +78,4 @@
 
         return service;
     }
-
 })(angular.module('common.core'));

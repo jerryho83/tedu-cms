@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TEDU.Data.Infrastructure
+﻿namespace TEDU.Data.Infrastructure
 {
     public class DbFactory : Disposable, IDbFactory
     {
-        TEDUEntities dbContext;
+        private TeduDbContext dbContext;
 
-        public TEDUEntities Init()
+        public TeduDbContext Init()
         {
-            return dbContext ?? (dbContext = new TEDUEntities());
+            return dbContext ?? (dbContext = new TeduDbContext());
         }
 
         protected override void DisposeCore()

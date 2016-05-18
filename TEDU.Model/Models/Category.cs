@@ -10,7 +10,6 @@ namespace TEDU.Model
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-
         public int ID { set; get; }
 
         [Column(TypeName = "nvarchar")]
@@ -44,6 +43,5 @@ namespace TEDU.Model
         public string MetaDescription { set; get; }
 
         public bool? ShowHome { set; get; }
-
     }
 }

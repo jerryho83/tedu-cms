@@ -1,5 +1,5 @@
 ﻿(function (app) {
-        'use strict';
+    'use strict';
 
     app.controller('categoryCtrl', categoryCtrl);
 
@@ -8,7 +8,6 @@
     function categoryCtrl($scope, apiService, notificationService, $ngBootbox) {
         $scope.loading = true;
         $scope.data = [];
-
 
         $scope.search = search;
 
@@ -47,7 +46,6 @@
         function search() {
             $scope.loading = true;
             apiService.get('/api/category/getlistparent', null, dataLoadCompleted, dataLoadFailed);
-
         }
 
         function dataLoadCompleted(result) {
@@ -71,6 +69,5 @@
 
         //$('.tree').treegrid();
     }
-
 }
 )(angular.module('TEDU'));

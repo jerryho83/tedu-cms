@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TEDU.Data.Infrastructure
+﻿namespace TEDU.Data.Infrastructure
 {
     public class UnitOfWork : IUnitOfWork
     {
         private readonly IDbFactory dbFactory;
-        private TEDUEntities dbContext;
+        private TeduDbContext dbContext;
 
         public UnitOfWork(IDbFactory dbFactory)
         {
             this.dbFactory = dbFactory;
         }
 
-        public TEDUEntities DbContext
+        public TeduDbContext DbContext
         {
             get { return dbContext ?? (dbContext = dbFactory.Init()); }
         }

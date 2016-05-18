@@ -18,7 +18,6 @@
             loginFailed);
         }
 
-
         function saveCredentials(user) {
             var membershipData = $base64.encode(user.UserName + ':' + user.Password);
 
@@ -39,13 +38,11 @@
                 $cookieStore.remove('repository');
                 $http.defaults.headers.common.Authorization = '';
             }, null);
-
         };
 
         function loginFailed(response) {
             notificationService.displayError(response.data);
         }
-
 
         function isUserLoggedIn() {
             return $rootScope.repository.loggedUser != null;
@@ -53,5 +50,4 @@
 
         return service;
     }
-
 })(angular.module('common.core'));

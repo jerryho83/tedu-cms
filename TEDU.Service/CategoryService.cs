@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TEDU.Common;
 using TEDU.Data.Infrastructure;
 using TEDU.Data.Repositories;
 using TEDU.Model;
@@ -13,11 +9,17 @@ namespace TEDU.Service
     public interface ICategoryService
     {
         IEnumerable<Category> GetCategories(int page, int pageSize, out int totalRow, string filter = null);
+
         IEnumerable<Category> GetCategories();
+
         Category GetCategory(int id);
+
         Category GetCategory(string name);
+
         void CreateCategory(Category category);
+
         void Delete(Category category);
+
         void SaveCategory();
 
         IEnumerable<Category> GetHomeCategories(int top);
@@ -42,7 +44,7 @@ namespace TEDU.Service
         {
             IEnumerable<Category> model =
                 categorysRepository.GetMultiPaging(x => x.Name.Contains(filter), out totalRow, page, pageSize);
-            
+
             return model;
         }
 
@@ -62,10 +64,12 @@ namespace TEDU.Service
         {
             categorysRepository.Add(category);
         }
+
         public void Delete(Category category)
         {
             categorysRepository.Delete(category);
         }
+
         public void SaveCategory()
         {
             unitOfWork.Commit();
@@ -100,6 +104,6 @@ namespace TEDU.Service
             return category;
         }
 
-        #endregion
+        #endregion ICategoryService Members
     }
 }

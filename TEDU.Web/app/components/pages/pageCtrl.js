@@ -1,5 +1,5 @@
 ﻿(function (app) {
-        'use strict';
+    'use strict';
 
     app.controller('pageCtrl', pageCtrl);
 
@@ -47,14 +47,13 @@
             }
 
             apiService.get('/api/page/getlistpaging', config, dataLoadCompleted, dataLoadFailed);
-
         }
         function showOnSlide(id) {
-            notificationService.displayError('Xóa không thành công.'  + id);
-       }
-       function showHot(id) {
-           notificationService.displayError('Xóa không thành công.');
-       }
+            notificationService.displayError('Xóa không thành công.' + id);
+        }
+        function showHot(id) {
+            notificationService.displayError('Xóa không thành công.');
+        }
         function dataLoadCompleted(result) {
             $scope.data = result.data.Items;
             $scope.page = result.data.Page;
@@ -77,6 +76,5 @@
 
         $scope.search();
     }
-
 }
 )(angular.module('TEDU'));

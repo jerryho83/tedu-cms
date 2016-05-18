@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TEDU.Data.Infrastructure;
+﻿using TEDU.Data.Infrastructure;
 using TEDU.Data.Repositories;
 using TEDU.Model;
 
@@ -12,6 +7,7 @@ namespace TEDU.Service
     public interface IErrorService
     {
         void Create(Error error);
+
         void Save();
     }
 

@@ -4,7 +4,6 @@
     app.factory('notificationService', notificationService);
 
     function notificationService() {
-
         toastr.options = {
             "debug": false,
             "positionClass": "toast-top-right",
@@ -45,7 +44,5 @@
         function displayInfo(message) {
             toastr.info(message);
         }
-
     }
-
 })(angular.module('common.core'));

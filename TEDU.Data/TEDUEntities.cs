@@ -5,9 +5,9 @@ using TEDU.Model.Models;
 
 namespace TEDU.Data
 {
-    public class TEDUEntities : IdentityDbContext<AppUser>
+    public class TeduDbContext : IdentityDbContext<AppUser>
     {
-        public TEDUEntities() : base("TEDUConnectionDb")
+        public TeduDbContext() : base("TEDUConnectionDb")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
@@ -22,7 +22,6 @@ namespace TEDU.Data
         public DbSet<Page> Pages { set; get; }
         public DbSet<Ebook> Ebooks { set; get; }
 
-
         public virtual void Commit()
         {
             base.SaveChanges();
@@ -30,15 +29,14 @@ namespace TEDU.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
             modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
             modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
         }
 
-        public static TEDUEntities Create()
+        public static TeduDbContext Create()
         {
-            return new TEDUEntities();
+            return new TeduDbContext();
         }
     }
 }

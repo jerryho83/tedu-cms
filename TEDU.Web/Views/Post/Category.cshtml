@@ -36,7 +36,6 @@
               <p>@item.Description
               <p class="moretag"><a href="@url"> Đọc thêm</a></p>
             </div>
-
           </div>
         </article>
         <div class="clearfix"></div>
@@ -47,7 +46,6 @@
 
     var pageDisplay = int.Parse(TEDU.Common.Helper.ConfigHelper.GetConfigByKey("pageDisplay"));
     int totalPage = (int)ViewBag.TotalPage;
-
 
     // Create numeric links
     var startPageIndex = Math.Max(1, currentPage - pageDisplay / 2);

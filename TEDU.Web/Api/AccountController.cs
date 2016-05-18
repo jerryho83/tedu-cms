@@ -1,10 +1,10 @@
-﻿using System.Net;
+﻿using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 using TEDU.Web.App_Start;
 using TEDU.Web.ViewModels;
 
@@ -76,7 +76,7 @@ namespace TEDU.Web.Api
         [Route("logout")]
         public HttpResponseMessage LogOut(HttpRequestMessage request)
         {
-            IAuthenticationManager authenticationManager =  HttpContext.Current.GetOwinContext().Authentication;
+            IAuthenticationManager authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
             authenticationManager.SignOut();
             return request.CreateResponse(HttpStatusCode.OK, new { success = true });
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using TEDU.Common;
 using TEDU.Common.Helper;
@@ -192,7 +191,6 @@ namespace TEDU.Service
 
         public List<Post> GetRecentPostsByCategory(int categoryId, int top)
         {
-
             return _postsRepository
                 .GetMulti(x => x.Status == StatusEnum.Publish.ToString()
                 && (x.CategoryID == categoryId || x.Category.ParentID == categoryId), new string[] { "Category" })
@@ -222,7 +220,6 @@ namespace TEDU.Service
             var post = _postsRepository.GetSingleById(id);
             post.ViewCount += 1;
             _postsRepository.Update(post);
-
         }
 
         public List<Tag> GetListTags(int id)
@@ -288,6 +285,7 @@ namespace TEDU.Service
                                  && m.Name.Contains(keyword)).Count();
             return model;
         }
+
         #endregion IPostService Members
     }
 }

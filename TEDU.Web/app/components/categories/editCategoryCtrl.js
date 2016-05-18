@@ -6,7 +6,6 @@
     editCategoryCtrl.$inject = ['$scope', 'apiService', '$stateParams', 'notificationService', '$location', 'commonService'];
 
     function editCategoryCtrl($scope, apiService, $stateParams, notificationService, $location, commonService) {
-
         $scope.category = {};
         $scope.CreateAlias = createAlias;
         $scope.categories = [];
@@ -26,7 +25,6 @@
             });
         }
 
-
         $scope.UpdateCategory = updateCategory;
 
         function createAlias() {
@@ -40,15 +38,12 @@
             notificationService.displaySuccess($scope.category.Name + ' đã được cập nhật.');
 
             $location.url('categories');
-
         }
         function addFailed() {
             notificationService.displayError(response.statusText);
-
         }
 
         loadListParents();
         loadDetail();
     }
-
 })(angular.module('TEDU'));

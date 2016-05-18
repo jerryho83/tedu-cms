@@ -1,16 +1,11 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using TEDU.Model.Models;
 using TEDU.Web.App_Start;
 using TEDU.Web.ViewModels;
-
 
 namespace TEDU.Web.Controllers
 {
@@ -19,13 +14,14 @@ namespace TEDU.Web.Controllers
         private readonly ApplicationUserManager _userManager;
         private readonly ApplicationSignInManager _signInManager;
         private readonly IAuthenticationManager _authManager;
+
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IAuthenticationManager authManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _authManager = authManager;
         }
-       
+
         public ActionResult Register()
         {
             return View();
@@ -72,7 +68,6 @@ namespace TEDU.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 AppUser user = _userManager.Find(model.UserName, model.Password);
                 if (user != null)
                 {
@@ -98,6 +93,7 @@ namespace TEDU.Web.Controllers
             }
             return View(model);
         }
+
         [Authorize]
         public ActionResult ChangePassword()
         {
@@ -161,6 +157,7 @@ namespace TEDU.Web.Controllers
             }
             return View(model);
         }
+
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
@@ -170,7 +167,5 @@ namespace TEDU.Web.Controllers
             authenticationManager.SignOut();
             return RedirectToAction("Login", "Account");
         }
-
-
     }
 }

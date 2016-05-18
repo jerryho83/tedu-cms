@@ -1,14 +1,8 @@
-using System;
-using System.Linq;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using TEDU.Model.Models;
-
 namespace TEDU.Data.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<TEDU.Data.TEDUEntities>
+    internal sealed class Configuration : DbMigrationsConfiguration<TEDU.Data.TeduDbContext>
     {
         public Configuration()
         {
@@ -16,12 +10,12 @@ namespace TEDU.Data.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(TEDU.Data.TEDUEntities context)
+        protected override void Seed(TEDU.Data.TeduDbContext context)
         {
-             //  This method will be called after migrating to the latest version.
+            //  This method will be called after migrating to the latest version.
 
             //var manager = new UserManager<AppUser>(new UserStore<AppUser>(new TEDUEntities()));
-            
+
             //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new TEDUEntities()));
 
             //var user = new AppUser()
@@ -32,7 +26,7 @@ namespace TEDU.Data.Migrations
             //    BirthDate = DateTime.Now,
             //    Bio = "Demo",
             //    FullName = "Technology Education"
-                
+
             //};
 
             //manager.Create(user, "123654$");
@@ -46,7 +40,6 @@ namespace TEDU.Data.Migrations
             //var adminUser = manager.FindByName("SuperPowerUser");
 
             //manager.AddToRoles(adminUser.Id, new string[] { "Admin","User" });
-          
         }
     }
 }

@@ -6,7 +6,6 @@
     addPageCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$location', 'commonService'];
 
     function addPageCtrl($scope, apiService, notificationService, $location, commonService) {
-
         $scope.page = {
             CreatedDate: new Date(),
             Status: true
@@ -31,12 +30,9 @@
             notificationService.displaySuccess($scope.page.Name + ' đã được thêm mới.');
 
             $location.url('pages');
-
         }
         function addFailed() {
             notificationService.displayError(response.statusText);
-
         }
     }
-
 })(angular.module('TEDU'));

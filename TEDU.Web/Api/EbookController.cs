@@ -1,9 +1,9 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Mvc;
-using AutoMapper;
 using TEDU.Model.Models;
 using TEDU.Service;
 using TEDU.Web.Infrastructure.Core;

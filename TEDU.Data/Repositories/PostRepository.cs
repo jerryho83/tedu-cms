@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TEDU.Data.Infrastructure;
+﻿using TEDU.Data.Infrastructure;
 using TEDU.Model;
 
 namespace TEDU.Data.Repositories
@@ -17,6 +12,5 @@ namespace TEDU.Data.Repositories
 
     public interface IPostRepository : IRepository<Post>
     {
-
     }
 }

@@ -50,7 +50,7 @@ namespace TEDU.Web
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
 
             // REGISTER DEPENDENCIES
-            builder.RegisterType<TEDUEntities>().AsSelf().InstancePerRequest();
+            builder.RegisterType<TeduDbContext>().AsSelf().InstancePerRequest();
             builder.RegisterType<ApplicationUserStore>().As<IUserStore<AppUser>>().InstancePerRequest();
             builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
             builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
@@ -77,7 +77,7 @@ namespace TEDU.Web
         private void ConfigAuthentication(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
-            app.CreatePerOwinContext(TEDUEntities.Create);
+            app.CreatePerOwinContext(TeduDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
@@ -87,7 +87,7 @@ namespace TEDU.Web
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Admin/Login"),
+                LoginPath = new PathString("/login"),
                 Provider = new CookieAuthenticationProvider
                 {
                     // Enables the application to validate the security stamp when the user logs in.
@@ -129,9 +129,9 @@ namespace TEDU.Web
 
         private void CreateSampleData()
         {
-            var manager = new UserManager<AppUser>(new UserStore<AppUser>(new TEDUEntities()));
+            var manager = new UserManager<AppUser>(new UserStore<AppUser>(new TeduDbContext()));
 
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new TEDUEntities()));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new TeduDbContext()));
 
             var user = new AppUser()
             {

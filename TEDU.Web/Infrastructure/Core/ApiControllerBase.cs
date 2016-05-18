@@ -17,6 +17,7 @@ namespace TEDU.Web.Infrastructure.Core
         {
             _errorService = errorService;
         }
+
         protected HttpResponseMessage CreateHttpResponse(HttpRequestMessage request, Func<HttpResponseMessage> function)
         {
             HttpResponseMessage response = null;
@@ -39,7 +40,6 @@ namespace TEDU.Web.Infrastructure.Core
                 }
                 LogError(ex);
                 response = request.CreateResponse(HttpStatusCode.BadRequest, ex.InnerException.Message);
-
             }
             catch (DbUpdateException ex)
             {

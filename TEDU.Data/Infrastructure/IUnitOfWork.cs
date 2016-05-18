@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TEDU.Data.Infrastructure
+﻿namespace TEDU.Data.Infrastructure
 {
     public interface IUnitOfWork
     {

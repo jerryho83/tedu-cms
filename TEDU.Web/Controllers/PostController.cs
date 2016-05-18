@@ -56,6 +56,7 @@ namespace TEDU.Web.Controllers
 
             return View(model);
         }
+
         public ActionResult PostByTag(string id, int page = 1, int pageSize = 10)
         {
             int totalRow = 0;
@@ -116,6 +117,7 @@ namespace TEDU.Web.Controllers
 
             return View(model);
         }
+
         public ActionResult Detail(int id)
         {
             var postDb = _postService.GetPost(id);

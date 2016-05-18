@@ -1,7 +1,6 @@
 ﻿<section class="content-header">
   <h1>
     Thêm mới
-
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
@@ -48,7 +47,6 @@
                       <button class="btn btn-default" type="button" ng-click="ChooseImage()">Chọn ảnh</button>
                     </span>
                   </div>
-                  
                 </div>
               </div>
               <div class="form-group" ng-class="{'has-error':addPostForm.categoryID.$invalid && !addPostForm.categoryID.$pristine}">
@@ -57,7 +55,6 @@
                   <select type="text" required class="form-control" name="categoryID" ng-model="post.CategoryID" ng-options="option.ID as option.Name for option in categories">
                     <option value="">-- Chọn chuyên mục  --</option>
                   </select>
-
 
                   <input type="hidden" name="CategoryID" ng-model="post.CategoryID" />
                 </div>
@@ -114,7 +111,6 @@
                 </div>
               </div>
             </div>
-
           </div><!-- /.box-body -->
         </form>
       </div><!-- /.box -->
