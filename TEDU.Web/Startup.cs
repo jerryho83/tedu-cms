@@ -11,10 +11,13 @@ using Owin;
 using System;
 using System.Linq;
 using System.Reflection;
+using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security.OAuth;
 using TEDU.Data;
 using TEDU.Data.Infrastructure;
 using TEDU.Data.Repositories;
@@ -28,13 +31,12 @@ namespace TEDU.Web
 {
     public class Startup
     {
+
         public void Configuration(IAppBuilder app)
         {
             ConfigAutofac(app);
 
             ConfigAuthentication(app);
-
-            CreateSampleData();
         }
 
         private void ConfigAutofac(IAppBuilder app)
@@ -79,33 +81,17 @@ namespace TEDU.Web
             // Configure the db context, user manager and signin manager to use a single instance per request
             app.CreatePerOwinContext(TeduDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 
-            // Enable the application to use a cookie to store information for the signed in user
-            // and to use a cookie to temporarily store information about a user logging in with a third party login provider
-            // Configure the sign in cookie
-            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            app.CreatePerOwinContext<UserManager<AppUser>>(CreateManager);
+            app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions
             {
-                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/login"),
-                Provider = new CookieAuthenticationProvider
-                {
-                    // Enables the application to validate the security stamp when the user logs in.
-                    // This is a security feature which is used when you change a password or add an external login to your account.
-                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, AppUser>(
-                        validateInterval: TimeSpan.FromMinutes(30),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
-                }
+                TokenEndpointPath = new PathString("/oauth/token"),
+                Provider = new AuthorizationServerProvider(),
+                AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(30),
+                AllowInsecureHttp = true,
+
             });
-            app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
-
-            // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
-            app.UseTwoFactorSignInCookie(DefaultAuthenticationTypes.TwoFactorCookie, TimeSpan.FromMinutes(5));
-
-            // Enables the application to remember the second login verification factor such as phone or email.
-            // Once you check this option, your second step of verification during the login process will be remembered on the device where you logged in from.
-            // This is similar to the RememberMe option when you log in.
-            app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
 
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
@@ -127,34 +113,50 @@ namespace TEDU.Web
             //});
         }
 
-        private void CreateSampleData()
+        public class AuthorizationServerProvider : OAuthAuthorizationServerProvider
         {
-            var manager = new UserManager<AppUser>(new UserStore<AppUser>(new TeduDbContext()));
-
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new TeduDbContext()));
-
-            var user = new AppUser()
+            public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
             {
-                UserName = "tedu",
-                Email = "tedu.international@gmail.com",
-                EmailConfirmed = true,
-                BirthDate = DateTime.Now,
-                Bio = "Demo",
-                FullName = "Technology Education"
-
-            };
-
-            manager.Create(user, "123654$");
-
-            if (!roleManager.Roles.Any())
-            {
-                roleManager.Create(new IdentityRole { Name = "Admin" });
-                roleManager.Create(new IdentityRole { Name = "User" });
+                context.Validated();
             }
-
-            var adminUser = manager.FindByName("tedu");
-
-            manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+            public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
+            {
+                UserManager<IdentityUser> userManager = context.OwinContext.GetUserManager<UserManager<IdentityUser>>();
+                IdentityUser user;
+                try
+                {
+                    user = await userManager.FindAsync(context.UserName, context.Password);
+                }
+                catch
+                {
+                    // Could not retrieve the user due to error.
+                    context.SetError("server_error");
+                    context.Rejected();
+                    return;
+                }
+                if (user != null)
+                {
+                    ClaimsIdentity identity = await userManager.CreateIdentityAsync(
+                                                            user,
+                                                            DefaultAuthenticationTypes.ExternalBearer);
+                    context.Validated(identity);
+                }
+                else
+                {
+                    context.SetError("invalid_grant", "Invalid UserId or password'");
+                    context.Rejected();
+                }
+            }
         }
+
+
+
+        private static UserManager<AppUser> CreateManager(IdentityFactoryOptions<UserManager<AppUser>> options, IOwinContext context)
+        {
+            var userStore = new UserStore<AppUser>(context.Get<TeduDbContext>());
+            var owinManager = new UserManager<AppUser>(userStore);
+            return owinManager;
+        }
+
     }
 }

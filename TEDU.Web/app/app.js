@@ -4,9 +4,9 @@
     .config(config)
     .run(run);
 
-    config.$inject = ['$stateProvider', '$urlRouterProvider'];
+    config.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider'];
 
-    function config($stateProvider, $urlRouterProvider) {
+    function config($stateProvider, $urlRouterProvider, $httpProvider) {
         $urlRouterProvider.otherwise("login");
 
         $stateProvider
@@ -81,13 +81,36 @@
                templateUrl: "/app/components/pages/addPage.html",
                controller: "addPageCtrl"
            });
+
+        $httpProvider.interceptors.push(function ($q, $rootScope, $window, $location,$state) {
+
+            return {
+                request: function (config) {
+
+                    return config;
+                },
+                requestError: function (rejection) {
+
+                    return $q.reject(rejection);
+                },
+                response: function (response) {
+                    if (response.status == "401") {
+                        $state.go('login');
+                    }
+                    //the same response/modified/or a new one need to be returned.
+                    return response;
+                },
+                responseError: function (rejection) {
+
+                    if (rejection.status == "401") {
+                        $state.go('login');
+                    }
+                    return $q.reject(rejection);
+                }
+            };
+        });
     }
-    run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
-    function run($rootScope, $location, $cookieStore, $http) {
-        $rootScope.repository = $cookieStore.get('repository') || {};
-        if ($rootScope.repository.loggedUser) {
-            $http.defaults.headers.common['Authorization'] = $rootScope.repository.loggedUser.authdata;
-        }
+    function run() {
 
         $(document).ready(function () {
             $('[data-toggle=offcanvas]').click(function () {
@@ -96,12 +119,4 @@
         });
     }
 
-    isAuthenticated.$inject = ['membershipService', '$rootScope', '$location', '$state'];
-
-    function isAuthenticated(membershipService, $rootScope, $location, $state) {
-        if (!membershipService.isUserLoggedIn()) {
-            $rootScope.previousState = $location.path();
-            $state.go('login');
-        }
-    }
 })();

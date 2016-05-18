@@ -1,31 +1,21 @@
-﻿(function (app) {
+﻿(function () {
     'use strict';
+    app.controller('loginCtrl', ['$scope', 'loginService', '$location', function ($scope, loginService, $state) {
 
-    app.controller('loginCtrl', loginCtrl);
+        $scope.loginData = {
+            userName: "",
+            password: ""
+        };
 
-    loginCtrl.$inject = ['$scope', 'membershipService', 'notificationService', '$rootScope', '$state'];
-
-    function loginCtrl($scope, membershipService, notificationService, $rootScope, $state) {
-        $scope.pageClass = 'page-login';
-        $scope.login = login;
-        $scope.user = {};
-        $scope.message = "toanbn";
-        function login() {
-            membershipService.login($scope.user, loginCompleted);
-        }
-
-        function loginCompleted(result) {
-            if (result.data.success) {
-                membershipService.saveCredentials($scope.user);
-                notificationService.displaySuccess('Chào mừng ' + $scope.user.UserName);
-                if ($rootScope.previousState)
-                    $state.go($rootScope.previousState);
-                else
+        $scope.login = function () {
+            loginService.login($scope.loginData.userName, $scope.loginData.password).then(function (response) {
+                if (response != null && response.error != undefined) {
+                    $scope.message = response.error_description;
+                }
+                else {
                     $state.go('home');
-            }
-            else {
-                notificationService.displayError('Đăng nhập không thành công. Vui lòng thử lại.');
-            }
+                }
+            });
         }
-    }
-})(angular.module('TEDU'));
+    }]);
+})();
