@@ -9,6 +9,7 @@ using TEDU.Service;
 
 namespace TEDU.Web.Infrastructure.Core
 {
+    [Authorize]
     public class ApiControllerBase : ApiController
     {
         protected readonly IErrorService _errorService;

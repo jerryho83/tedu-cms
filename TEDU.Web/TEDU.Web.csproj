@@ -4139,6 +4139,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\HomeController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />

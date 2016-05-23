@@ -24,6 +24,7 @@ using TEDU.Data.Repositories;
 using TEDU.Model.Models;
 using TEDU.Service;
 using TEDU.Web.App_Start;
+using System.Collections.Generic;
 
 [assembly: OwinStartup(typeof(TEDU.Web.Startup))]
 
@@ -121,8 +122,14 @@ namespace TEDU.Web
             }
             public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
             {
-                UserManager<IdentityUser> userManager = context.OwinContext.GetUserManager<UserManager<IdentityUser>>();
-                IdentityUser user;
+                var allowedOrigin = context.OwinContext.Get<string>("as:clientAllowedOrigin");
+
+                if (allowedOrigin == null) allowedOrigin = "*";
+
+                context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { allowedOrigin });
+
+                UserManager<AppUser> userManager = context.OwinContext.GetUserManager<UserManager<AppUser>>();
+                AppUser user;
                 try
                 {
                     user = await userManager.FindAsync(context.UserName, context.Password);
@@ -137,8 +144,8 @@ namespace TEDU.Web
                 if (user != null)
                 {
                     ClaimsIdentity identity = await userManager.CreateIdentityAsync(
-                                                            user,
-                                                            DefaultAuthenticationTypes.ExternalBearer);
+                                                           user,
+                                                           DefaultAuthenticationTypes.ExternalBearer);
                     context.Validated(identity);
                 }
                 else

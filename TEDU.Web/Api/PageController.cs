@@ -13,7 +13,7 @@ using TEDU.Web.ViewModels;
 namespace TEDU.Web.Api
 {
     [Authorize]
-    [RoutePrefix("api/admin/page")]
+    [RoutePrefix("api/page")]
     public class PageController : ApiControllerBase
     {
         private readonly IPageService pageService;

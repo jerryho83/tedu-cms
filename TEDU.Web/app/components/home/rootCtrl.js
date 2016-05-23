@@ -3,30 +3,14 @@
 
     app.controller('rootCtrl', rootCtrl);
 
-    rootCtrl.$inject = ['$scope', '$location', 'membershipService', '$rootScope', '$state'];
-    function rootCtrl($scope, $location, membershipService, $rootScope, $state) {
-        $scope.userData = {};
-
-        $scope.userData.displayUserInfo = displayUserInfo;
-        $scope.logout = logout;
-
-        function displayUserInfo() {
-            $scope.userData.isUserLoggedIn = membershipService.isUserLoggedIn();
-
-            if ($scope.userData.isUserLoggedIn) {
-                $scope.username = $rootScope.repository.loggedUser.username;
-            }
-            else {
-                $state.go('login');
-            }
-        }
-
-        function logout() {
-            membershipService.removeCredentials();
+    rootCtrl.$inject = ['$state', 'authData', 'loginService', '$scope','authenticationService'];
+    function rootCtrl($state, authData, loginService, $scope, authenticationService) {
+        $scope.logOut = function () {
+            loginService.logOut();
             $state.go('login');
-            $scope.userData.displayUserInfo();
         }
+        $scope.authentication = authData.authenticationData;
 
-        $scope.userData.displayUserInfo();
+        authenticationService.validateRequest();
     }
 })(angular.module('TEDU'));

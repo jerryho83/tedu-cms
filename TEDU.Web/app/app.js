@@ -1,12 +1,10 @@
 ﻿(function () {
     'use strict';
     angular.module('TEDU', ['common.core', 'common.ui'])
-    .config(config)
+    .config(configRoute)
+    .config(configSecurity)
     .run(run);
-
-    config.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider'];
-
-    function config($stateProvider, $urlRouterProvider, $httpProvider) {
+    function configRoute($stateProvider, $urlRouterProvider, $httpProvider) {
         $urlRouterProvider.otherwise("login");
 
         $stateProvider
@@ -82,8 +80,11 @@
                controller: "addPageCtrl"
            });
 
-        $httpProvider.interceptors.push(function ($q, $rootScope, $window, $location,$state) {
+       
+    }
 
+    function configSecurity($httpProvider) {
+        $httpProvider.interceptors.push(function ($q, $location) {
             return {
                 request: function (config) {
 
@@ -95,7 +96,7 @@
                 },
                 response: function (response) {
                     if (response.status == "401") {
-                        $state.go('login');
+                        $location.path('/login');
                     }
                     //the same response/modified/or a new one need to be returned.
                     return response;
@@ -103,7 +104,7 @@
                 responseError: function (rejection) {
 
                     if (rejection.status == "401") {
-                        $state.go('login');
+                        $location.path('/login');
                     }
                     return $q.reject(rejection);
                 }
@@ -111,7 +112,6 @@
         });
     }
     function run() {
-
         $(document).ready(function () {
             $('[data-toggle=offcanvas]').click(function () {
                 $('.row-offcanvas').toggleClass('active');

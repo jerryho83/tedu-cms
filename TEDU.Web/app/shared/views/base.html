@@ -24,14 +24,14 @@
           <li class="dropdown user user-menu">
             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
               <img src="/Content/admin/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">{{username}}</span>
+              <span class="hidden-xs">{{authentication.userName}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <img src="/Content/admin/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 <p>
-                  {{username}}
+                  {{authentication.userName}}
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -50,7 +50,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-right">
-                  <button class="btn btn-default btn-flat" ng-click="logout();">Sign out</button>
+                  <button class="btn btn-default btn-flat" ng-click="logOut();">Sign out</button>
                 </div>
               </li>
             </ul>

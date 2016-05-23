@@ -1,10 +1,9 @@
 ﻿(function (app) {
     'use strict';
-
     app.controller('homeCtrl', homeCtrl);
-    homeCtrl.$inject = ['$scope'];
-    function homeCtrl($scope) {
-        $scope.data = 1;
+    function homeCtrl(authenticationService) {
+        authenticationService.setHeader();
+        authenticationService.validateRequest();
     }
 }
 )(angular.module('TEDU'));

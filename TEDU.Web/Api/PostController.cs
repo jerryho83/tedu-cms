@@ -85,7 +85,7 @@ namespace TEDU.Web.Api
         }
 
         [HttpGet]
-        [Route("api/category/{id:int}")]
+        [Route("GetDetails/{id:int}")]
         public HttpResponseMessage GetDetails(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -122,6 +122,8 @@ namespace TEDU.Web.Api
                     else
                     {
                         postDb.UpdatePost(post);
+                        postDb.LastModifiedDate = DateTime.Now;
+                        postDb.LastModifiedBy = User.Identity.Name;
                         _postService.UpdatePost(postDb);
                         _postService.SavePost();
                         response = request.CreateResponse<PostViewModel>(HttpStatusCode.OK, post);
@@ -149,6 +151,8 @@ namespace TEDU.Web.Api
                     Post newPost = new Post();
 
                     newPost.UpdatePost(post);
+                    newPost.CreatedDate = DateTime.Now;
+                    newPost.CreateBy = User.Identity.Name;
                     _postService.CreatePost(newPost);
 
                     _postService.SavePost();

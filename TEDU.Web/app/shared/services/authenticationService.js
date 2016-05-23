@@ -24,16 +24,16 @@
                 }
             }
 
-            this.setHeader = function (http) {
-                delete http.defaults.headers.common['X-Requested-With'];
+            this.setHeader = function () {
+                delete $http.defaults.headers.common['X-Requested-With'];
                 if ((tokenInfo != undefined) && (tokenInfo.accessToken != undefined) && (tokenInfo.accessToken != null) && (tokenInfo.accessToken != "")) {
-                    http.defaults.headers.common['Authorization'] = 'Bearer ' + tokenInfo.accessToken;
-                    http.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+                    $http.defaults.headers.common['Authorization'] = 'Bearer ' + tokenInfo.accessToken;
+                    $http.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
                 }
             }
 
             this.validateRequest = function () {
-                var url =  'api/home';
+                var url =  'api/home/TestMethod';
                 var deferred = $q.defer();
                 $http.get(url).then(function () {
                     deferred.resolve(null);
