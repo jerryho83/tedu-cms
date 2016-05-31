@@ -1,5 +1,5 @@
 ﻿(function (app) {
-    'use strict'
+    'use strict';
 
     app.controller('addCategoryCtrl', addCategoryCtrl);
 
@@ -16,7 +16,7 @@
         $scope.categories = [];
 
         function LoadListParents() {
-            apiService.get('/api/admin/category/getlistparent', null, function (result) {
+            apiService.get('/api/category/getlistparent', null, function (result) {
                 $scope.categories = result.data;
             });
         }
@@ -27,7 +27,7 @@
             $scope.category.Alias = commonService.makeSeoTitle($scope.category.Name);
         }
         function AddCategory() {
-            apiService.post('/api/admin/category/add', $scope.category, addSuccessed, addFailed);
+            apiService.post('/api/category/add', $scope.category, addSuccessed, addFailed);
         }
 
         function addSuccessed() {
@@ -35,8 +35,9 @@
 
             $location.url('categories');
         }
-        function addFailed() {
+        function addFailed(response) {
             notificationService.displayError(response.statusText);
+            notificationService.displayErrorValidation(response);
         }
 
         LoadListParents();

@@ -39,8 +39,9 @@
 
             $location.url('categories');
         }
-        function addFailed() {
+        function addFailed(response) {
             notificationService.displayError(response.statusText);
+             notificationService.displayErrorValidation(response);
         }
 
         loadListParents();
