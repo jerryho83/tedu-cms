@@ -111,6 +111,7 @@
             };
         });
     }
+
     function run() {
         $(document).ready(function () {
             $('[data-toggle=offcanvas]').click(function () {

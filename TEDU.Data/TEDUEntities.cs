@@ -7,7 +7,12 @@ namespace TEDU.Data
 {
     public class TeduDbContext : IdentityDbContext<AppUser>
     {
-        public TeduDbContext() : base("TEDUConnectionDb")
+#if DEBUG
+        private static string ConnectString = "TEDUConnectionDbDev";
+#else
+              private static string ConnectString = "TEDUConnectionDbPro";
+#endif
+        public TeduDbContext() : base(ConnectString)
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
