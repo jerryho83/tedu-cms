@@ -15,7 +15,7 @@
         };
 
         function loadDetail() {
-            apiService.get('/api/page/GetDetails/' + $stateParams.id, null,
+            apiService.get('/api/page/detail/' + $stateParams.id, null,
             function (result) {
                 $scope.page = result.data;
             },
