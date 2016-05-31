@@ -71,7 +71,7 @@ namespace TEDU.Web.Api
         }
 
         [HttpGet]
-        [Route("api/category/{id:int}")]
+        [Route("api/category/GetDetails/{id:int}")]
         public HttpResponseMessage GetDetails(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
