@@ -18,7 +18,8 @@
             displaySuccess: displaySuccess,
             displayError: displayError,
             displayWarning: displayWarning,
-            displayInfo: displayInfo
+            displayInfo: displayInfo,
+            displayErrorValidation: displayErrorValidation
         };
 
         return service;
@@ -35,6 +36,16 @@
             } else {
                 toastr.error(error);
             }
+        }
+
+        function displayErrorValidation(response) {
+            var errors = [];
+            for (var key in response.data.ModelState) {
+                for (var i = 0; i < response.data.ModelState[key].length; i++) {
+                    toastr.error(response.data.ModelState[key][i]);
+                }
+            }
+            return errors;
         }
 
         function displayWarning(message) {

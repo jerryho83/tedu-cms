@@ -24,78 +24,7 @@
                 $scope.categories = commonService.getTree(result.data, 'ID', 'ParentID');
             });
         }
-        this.collection1 = [
-                {
-                    id: 1,
-                    name: 'item1',
-                    children: [
-                        {
-                            id: 2,
-                            name: 'item1_1'
-                        },
-                        {
-                            id: 3,
-                            name: 'item2_2'
-                        }
-                    ]
-                },
-                {
-                    id: 4,
-                    name: 'item2',
-                    children: [
-                        {
-                            id: 5,
-                            name: 'item2_1'
-                        },
-                        {
-                            id: 6,
-                            name: 'item2_2',
-                            children: [
-                                {
-                                    id: 7,
-                                    name: 'item2_2_1'
-                                },
-                                {
-                                    id: 8,
-                                    name: 'item2_2_2',
-                                    children: [
-                                        {
-                                            id: 9,
-                                            name: 'item2_2_2_1',
-                                            children: [
-                                                {
-                                                    id: 10,
-                                                    name: 'item2_2_2_1_1'
-                                                },
-                                                {
-                                                    id: 11,
-                                                    name: 'item2_2_2_1_2',
-                                                    children: [
 
-                                                    ]
-                                                }
-                                            ]
-                                        }
-
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }
-        ];
-
-        this.isDisabled = false;
-
-        this.collection = this.collection1;
-
-        this.changeItem = function (value) {
-            that.selectedItem = value;
-        }
-
-        this.activeItem = {
-            id: 8
-        }
         $scope.AddPost = addPost;
 
         function createAlias() {
@@ -112,12 +41,11 @@
             apiService.post('/api/post/add', $scope.post, addSuccessed, addFailed);
         }
 
-        function addSuccessed() {
+        function addSuccessed(response) {
             notificationService.displaySuccess($scope.post.Name + ' đã được thêm mới.');
-
             $location.url('posts');
         }
-        function addFailed() {
+        function addFailed(response) {
             notificationService.displayError(response.statusText);
         }
 

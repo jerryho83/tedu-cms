@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace TEDU.Web.ViewModels
 {
@@ -10,8 +9,10 @@ namespace TEDU.Web.ViewModels
     {
         public int ID { set; get; }
 
+        [MaxLength(250, ErrorMessage = "Tên không được vượt quá 250 ký tự.")]
         public string Name { set; get; }
 
+        [MaxLength(250, ErrorMessage = "Alias không được vượt quá 250 ký tự.")]
         public string Alias { set; get; }
 
         public int? ParentID { set; get; }
@@ -26,8 +27,10 @@ namespace TEDU.Web.ViewModels
 
         public bool Status { set; get; }
 
+        [MaxLength(250, ErrorMessage = "MetaKeyword được vượt quá 250 ký tự.")]
         public string MetaKeyword { set; get; }
 
+        [MaxLength(250, ErrorMessage = "MetaDescription được vượt quá 250 ký tự.")]
         public string MetaDescription { set; get; }
 
         public bool? ShowHome { set; get; }
