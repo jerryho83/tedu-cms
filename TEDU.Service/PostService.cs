@@ -218,7 +218,10 @@ namespace TEDU.Service
         public void IncreaseViewCount(int id)
         {
             var post = _postsRepository.GetSingleById(id);
-            post.ViewCount += 1;
+            if (post.ViewCount.HasValue)
+                post.ViewCount += 1;
+            else
+                post.ViewCount = 1;
             _postsRepository.Update(post);
         }
 

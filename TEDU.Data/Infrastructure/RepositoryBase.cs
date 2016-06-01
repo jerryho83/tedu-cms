@@ -88,10 +88,15 @@ namespace TEDU.Data.Infrastructure
 
         public T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null)
         {
-            var query = dataContext.Set<T>().Include(includes.First());
-            foreach (var include in includes.Skip(1))
-                query = query.Include(include);
-            return query.FirstOrDefault(expression);
+            if (includes != null && includes.Count() > 0)
+            {
+                var query = dataContext.Set<T>().Include(includes.First());
+                foreach (var include in includes.Skip(1))
+                    query = query.Include(include);
+                return query.FirstOrDefault(expression);
+            }
+            return dataContext.Set<T>().FirstOrDefault(expression);
+
         }
 
         public virtual IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
