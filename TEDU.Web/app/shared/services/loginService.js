@@ -1,7 +1,7 @@
 ﻿(function (app) {
     'use strict';
     app.service('loginService',
-    function ($http, $q, authenticationService, authData) {
+    ['$http', '$q', 'authenticationService', 'authData', function ($http, $q, authenticationService, authData) {
         var userInfo;
         var deferred;
 
@@ -34,5 +34,5 @@
             authData.authenticationData.IsAuthenticated = false;
             authData.authenticationData.userName = "";
         }
-    });
+    }]);
 })(angular.module('common.core'));

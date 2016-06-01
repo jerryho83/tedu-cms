@@ -84,19 +84,18 @@ namespace TEDU.Service
 
         public IEnumerable<Post> GetPosts(int page, int pageSize, out int totalRow, string filter = null)
         {
-            IEnumerable<Post> model;
-            if (filter == null)
-                model = _postsRepository.GetMultiPaging(x => x.Status == StatusEnum.Publish.ToString(), out totalRow, page, pageSize).ToList();
-            else
-                model = _postsRepository.GetMultiPaging(x => x.Status == StatusEnum.Publish.ToString() && x.Name.Contains(filter), out totalRow, page, pageSize).ToList();
+            IEnumerable<Post> model = _postsRepository.GetMulti(x => x.Status == StatusEnum.Publish.ToString());
+            if (!string.IsNullOrEmpty(filter))
+                model = model.Where(x => x.Name.Contains(filter));
+            totalRow = model.OrderByDescending(x=>x.CreatedDate).Count();
 
-            return model;
+            return model.Skip(page * pageSize).Take(pageSize);
         }
 
         public Post GetPost(int id)
         {
-            var Post = _postsRepository.GetSingleByCondition(x => x.ID == id, new string[] { "Category" });
-            return Post;
+            var post = _postsRepository.GetSingleByCondition(x => x.ID == id, new string[] { "Category" });
+            return post;
         }
 
         public void CreatePost(Post Post)

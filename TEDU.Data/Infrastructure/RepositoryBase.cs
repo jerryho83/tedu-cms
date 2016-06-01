@@ -72,7 +72,7 @@ namespace TEDU.Data.Infrastructure
             return dbSet.Count(where);
         }
 
-        public IEnumerable<T> GetAll(string[] includes = null)
+        public IQueryable<T> GetAll(string[] includes = null)
         {
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
             if (includes != null && includes.Count() > 0)
@@ -83,7 +83,7 @@ namespace TEDU.Data.Infrastructure
                 return query.AsQueryable();
             }
 
-            return dataContext.Set<T>().AsQueryable();
+            return dataContext.Set<T>();
         }
 
         public T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null)
@@ -94,7 +94,7 @@ namespace TEDU.Data.Infrastructure
             return query.FirstOrDefault(expression);
         }
 
-        public virtual IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
+        public virtual IQueryable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
         {
             //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
             if (includes != null && includes.Count() > 0)
@@ -105,30 +105,7 @@ namespace TEDU.Data.Infrastructure
                 return query.Where<T>(predicate).AsQueryable<T>();
             }
 
-            return dataContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
-        }
-
-        public virtual IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 20, string[] includes = null)
-        {
-            int skipCount = index * size;
-            IQueryable<T> _resetSet;
-
-            //HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
-            if (includes != null && includes.Count() > 0)
-            {
-                var query = dataContext.Set<T>().Include(includes.First());
-                foreach (var include in includes.Skip(1))
-                    query = query.Include(include);
-                _resetSet = predicate != null ? query.Where<T>(predicate).AsQueryable() : query.AsQueryable();
-            }
-            else
-            {
-                _resetSet = predicate != null ? dataContext.Set<T>().Where<T>(predicate).AsQueryable() : dataContext.Set<T>().AsQueryable();
-            }
-
-            _resetSet = skipCount == 0 ? _resetSet.Take(size) : _resetSet.Skip(skipCount).Take(size);
-            total = _resetSet.Count();
-            return _resetSet.AsQueryable();
+            return dataContext.Set<T>().Where<T>(predicate);
         }
 
         public bool CheckContains(Expression<Func<T, bool>> predicate)

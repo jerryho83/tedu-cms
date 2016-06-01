@@ -24,7 +24,7 @@ namespace TEDU.Web.Api
         }
 
         [HttpDelete]
-        [Route("delete/{id:int}")]
+        [Route("delete")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -71,7 +71,7 @@ namespace TEDU.Web.Api
         }
 
         [HttpGet]
-        [Route("api/category/GetDetails/{id:int}")]
+        [Route("GetDetails/{id:int}")]
         public HttpResponseMessage GetDetails(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>

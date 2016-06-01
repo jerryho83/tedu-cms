@@ -2,7 +2,7 @@
 <div class="wrapper">
   <header class="main-header">
     <!-- Logo -->
-    <a href="/admin" class="logo">
+    <a ui-sref="home" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>TEDU</b></span>
       <!-- logo for regular state and mobile devices -->
@@ -81,18 +81,74 @@
       <ul class="sidebar-menu">
         <li class="treeview">
           <a ui-sref="home">
-            <i class="fa fa-dashboard"></i> <span>Home</span>
+            <i class="fa fa-dashboard"></i> <span>Trang chủ</span>
           </a>
         </li>
         <li class="treeview">
           <a href="javascript:void(0)">
-            <i class="fa fa-files-o"></i><i class="fa fa-angle-left pull-right"></i>
-            <span>CMS</span>
+            <i class="fa fa-gears"></i><i class="fa fa-angle-left pull-right"></i>
+            <span>Hệ thống</span>
           </a>
           <ul class="treeview-menu">
-            <li><a ui-sref="pages" ui-sref-active="active"><i class="fa fa-circle-o"></i>Trang</a></li>
-
-            <li><a ui-sref="categories" ui-sref-active="active"><i class="fa fa-circle-o"></i>Chuyên mục</a></li>
+            <li><a ui-sref="usergroups" ui-sref-active="active"><i class="fa fa-circle-o"></i>Nhóm</a></li>
+            <li><a ui-sref="users" ui-sref-active="active"><i class="fa fa-circle-o"></i>Người dùng</a></li>
+            <li><a ui-sref="configs" ui-sref-active="active"><i class="fa fa-circle-o"></i>Cấu hình</a></li>
+          </ul>
+        </li>
+        <li class="treeview" ui-sref-active="active">
+          <a href="javascript:void(0)">
+            <i class="fa fa-files-o"></i><i class="fa fa-angle-left pull-right"></i>
+            <span>Nội dung</span>
+          </a>
+          <ul class="treeview-menu">
+            <li ui-sref-active="active"><a ui-sref="pages"><i class="fa fa-circle-o"></i>Trang</a></li>
+            <li ui-sref-active="active"><a ui-sref="categories"><i class="fa fa-circle-o"></i>Chuyên mục</a></li>
+            <li ui-sref-active="active"><a ui-sref="posts"><i class="fa fa-circle-o"></i>Tin tức</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="javascript:void(0)">
+            <i class="fa fa-headphones"></i><i class="fa fa-angle-left pull-right"></i>
+            <span>Khóa học</span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a ui-sref="pages" ui-sref-active="active"><i class="fa fa-circle-o"></i>Danh mục</a></li>
+            <li><a ui-sref="categories" ui-sref-active="active"><i class="fa fa-circle-o"></i>Khóa học</a></li>
+            <li><a ui-sref="posts" ui-sref-active="active"><i class="fa fa-circle-o"></i>Video</a></li>
+            <li><a ui-sref="posts" ui-sref-active="active"><i class="fa fa-circle-o"></i>Giảng viên</a></li>
+            <li><a ui-sref="posts" ui-sref-active="active"><i class="fa fa-circle-o"></i>Học viên tham gia</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="javascript:void(0)">
+            <i class="fa fa-leaf"></i><i class="fa fa-angle-left pull-right"></i>
+            <span>Tiện ích</span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a ui-sref="pages" ui-sref-active="active"><i class="fa fa-circle-o"></i>Menu</a></li>
+            <li><a ui-sref="categories" ui-sref-active="active"><i class="fa fa-circle-o"></i>Footer</a></li>
+            <li><a ui-sref="posts" ui-sref-active="active"><i class="fa fa-circle-o"></i>Phản hồi</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="javascript:void(0)">
+            <i class="fa fa-gift"></i><i class="fa fa-angle-left pull-right"></i>
+            <span>Sản phẩm</span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a ui-sref="pages" ui-sref-active="active"><i class="fa fa-circle-o"></i>Danh mục</a></li>
+            <li><a ui-sref="categories" ui-sref-active="active"><i class="fa fa-circle-o"></i>Sản phẩm</a></li>
+            <li><a ui-sref="posts" ui-sref-active="active"><i class="fa fa-circle-o"></i>Đơn hàng</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="javascript:void(0)">
+            <i class="fa fa-bar-chart"></i><i class="fa fa-angle-left pull-right"></i>
+            <span>Thống kê</span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a ui-sref="pages" ui-sref-active="active"><i class="fa fa-circle-o"></i>Truy cập</a></li>
+            <li><a ui-sref="categories" ui-sref-active="active"><i class="fa fa-circle-o"></i>Học viên</a></li>
             <li><a ui-sref="posts" ui-sref-active="active"><i class="fa fa-circle-o"></i>Tin tức</a></li>
           </ul>
         </li>

@@ -25,7 +25,7 @@ namespace TEDU.Web.Api
         }
 
         [HttpDelete]
-        [Route("delete/{id:int}")]
+        [Route("delete")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
@@ -68,14 +68,14 @@ namespace TEDU.Web.Api
                 int totalRow;
                 IEnumerable<Post> model = _postService.GetPosts(currentPage, currentPageSize, out totalRow, filter);
 
-                IEnumerable<PostViewModel> modelVM = Mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(model);
+                IEnumerable<PostViewModel> modelVm = Mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(model);
 
                 PaginationSet<PostViewModel> pagedSet = new PaginationSet<PostViewModel>()
                 {
                     Page = currentPage,
                     TotalCount = totalRow,
                     TotalPages = (int)Math.Ceiling((decimal)totalRow / currentPageSize),
-                    Items = modelVM
+                    Items = modelVm
                 };
 
                 response = request.CreateResponse(HttpStatusCode.OK, pagedSet);

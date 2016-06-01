@@ -33,7 +33,10 @@
         function chooseImage() {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
-                $scope.post.Image = fileUrl;
+                $scope.$apply(function() {
+                    $scope.post.Image = fileUrl;
+                });
+
             };
             finder.popup();
         }

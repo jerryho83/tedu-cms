@@ -11,6 +11,5 @@
         }
         $scope.authentication = authData.authenticationData;
         authenticationService.setHeader();
-        authenticationService.validateRequest();
     }
 })(angular.module('TEDU'));

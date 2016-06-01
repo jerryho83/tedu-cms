@@ -43,9 +43,11 @@ namespace TEDU.Service
         public IEnumerable<Category> GetCategories(int page, int pageSize, out int totalRow, string filter = null)
         {
             IEnumerable<Category> model =
-                categorysRepository.GetMultiPaging(x => x.Name.Contains(filter), out totalRow, page, pageSize);
+                categorysRepository.GetMulti(x => x.Name.Contains(filter));
 
-            return model;
+            totalRow = model.Count();
+
+            return model.Skip(page * pageSize).Take(pageSize);
         }
 
         public Category GetCategory(int id)

@@ -34,7 +34,7 @@ namespace TEDU.UnitTesting.ServiceTest
         public void Category_Service_Get_All()
         {
             //Arrange
-            _mockRepository.Setup(x => x.GetMulti(c => c.Status, null)).Returns(_listCategory);
+            _mockRepository.Setup(x => x.GetMulti(c => c.Status, null)).Returns(_listCategory.AsQueryable());
 
             //Act
             List<Category> results = _service.GetCategories() as List<Category>;

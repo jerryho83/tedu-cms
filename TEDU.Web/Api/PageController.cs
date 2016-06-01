@@ -25,7 +25,7 @@ namespace TEDU.Web.Api
         }
 
         [HttpDelete]
-        [Route("delete/{id:int}")]
+        [Route("delete")]
         public HttpResponseMessage Delete(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, () =>
