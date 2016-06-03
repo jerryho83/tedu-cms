@@ -60,13 +60,23 @@
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\CourseCategory.cs" />
+    <Compile Include="Models\CourseReview.cs" />
+    <Compile Include="Models\CourseTechLine.cs" />
+    <Compile Include="Models\CourseUser.cs" />
+    <Compile Include="Models\CourseVideo.cs" />
     <Compile Include="Models\Ebook.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\Page.cs" />
+    <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostTag.cs" />
     <Compile Include="Models\SystemParam.cs" />
     <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\TechLine.cs" />
+    <Compile Include="Models\Trainer.cs" />
+    <Compile Include="Models\VideoComment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
