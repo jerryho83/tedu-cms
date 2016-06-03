@@ -258,19 +258,8 @@ namespace TEDU.Service
 
         public List<Post> GetListByTagId(string tagId, int page, int pageSize, out int totalRow)
         {
-            var model = _postsRepository
-                   .GetMulti(m => m.Status == StatusEnum.Publish.ToString() && m.PostTags.Count(x => x.TagID == tagId) > 0, new string[] { "Category", "PostTags" })
-                   .OrderByDescending(m => m.CreatedDate)
-                   .Skip((page - 1) * pageSize)
-                   .Take(pageSize)
-                   .ToList();
-
-            totalRow = _postsRepository
-                                 .GetMulti(m => m.Status == StatusEnum.Publish.ToString()
-                                 && m.PostTags.Count(x => x.TagID == tagId) > 0, new string[] { "Category", "PostTags" })
-
-                .Count();
-            return model;
+            var model = _postsRepository.GetListPostByTag(tagId, page, pageSize, out totalRow);
+            return model.ToList() ;
         }
 
         public List<Post> Search(string keyword, int page, int pageSize, out int totalRow)
