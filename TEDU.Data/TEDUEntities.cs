@@ -27,6 +27,18 @@ namespace TEDU.Data
         public DbSet<Page> Pages { set; get; }
         public DbSet<Ebook> Ebooks { set; get; }
 
+        public DbSet<Course> Courses { set; get; }
+
+        public DbSet<CourseCategory> CourseCategories { set; get; }
+        public DbSet<CourseReview> CourseReviews { set; get; }
+        public DbSet<CourseTechLine> CourseTechLines { set; get; }
+        public DbSet<CourseUser> CourseUsers { set; get; }
+        public DbSet<CourseVideo> CourseVideos { set; get; }
+        public DbSet<TechLine> TechLines { set; get; }
+        public DbSet<PaymentMethod> PaymentMethods { set; get; }
+        public DbSet<Trainer> Trainer { set; get; }
+        public DbSet<VideoComment> VideoComments { set; get; }
+
         public virtual void Commit()
         {
             base.SaveChanges();

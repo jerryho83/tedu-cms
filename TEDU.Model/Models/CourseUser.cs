@@ -16,8 +16,10 @@ namespace TEDU.Model.Models
         [Column(Order = 2)]
         public int CourseId { set; get; }
 
+        [Required]
         public int Price { set; get; }
 
+        [Required]
         public int PaymentMethodId { set; get; }
 
         public DateTime CreatedDate { set; get; }

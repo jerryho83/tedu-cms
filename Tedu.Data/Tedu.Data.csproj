@@ -108,6 +108,18 @@
     <Compile Include="Migrations\201605011126092_allow-null.Designer.cs">
       <DependentUpon>201605011126092_allow-null.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606031258461_addcoursemodule.cs" />
+    <Compile Include="Migrations\201606031258461_addcoursemodule.Designer.cs">
+      <DependentUpon>201606031258461_addcoursemodule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606031308351_videocomment.cs" />
+    <Compile Include="Migrations\201606031308351_videocomment.Designer.cs">
+      <DependentUpon>201606031308351_videocomment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606031311259_foregintechline.cs" />
+    <Compile Include="Migrations\201606031311259_foregintechline.Designer.cs">
+      <DependentUpon>201606031311259_foregintechline.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
@@ -166,6 +178,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605011126092_allow-null.resx">
       <DependentUpon>201605011126092_allow-null.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606031258461_addcoursemodule.resx">
+      <DependentUpon>201606031258461_addcoursemodule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606031308351_videocomment.resx">
+      <DependentUpon>201606031308351_videocomment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606031311259_foregintechline.resx">
+      <DependentUpon>201606031311259_foregintechline.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

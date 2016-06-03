@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -33,29 +34,36 @@ namespace TEDU.Model.Models
         [Column(TypeName = "nvarchar")]
         public string Image { set; get; }
 
+        [DefaultValue(0)]
         public int? Duration { set; get; }
 
+        [Required]
+        [DefaultValue(0)]
         public int Price { set; get; }
 
         public int? PromotionPrice { set; get; }
 
         public string Content { set; get; }
 
+        [Required]
+        [DefaultValue(0)]
         public int Level { set; get; }
 
+        [Required]
         public int DisplayOrder { set; get; }
 
         [StringLength(10)]
         [Column(TypeName = "varchar")]
         public string Status { set; get; }
 
+        [DefaultValue(0)]
         public int? ViewCount { set; get; }
 
         [Column(TypeName = "nvarchar")]
         [StringLength(128)]
         public string TrainerId { set; get; }
 
-        public DateTime? CreatedDate { set; get; }
+        public DateTime CreatedDate { set; get; }
 
         [StringLength(50)]
         public string CreateBy { set; get; }
@@ -84,6 +92,6 @@ namespace TEDU.Model.Models
         public virtual Trainer Trainer { set; get; }
 
         public virtual IEnumerable<CourseUser> CourseUsers { set; get; }
-
+        public virtual IEnumerable<CourseTechLine> CourseTechLines { set; get; }
     }
 }

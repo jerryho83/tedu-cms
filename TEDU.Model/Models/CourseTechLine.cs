@@ -10,8 +10,13 @@ namespace TEDU.Model.Models
         [Column(Order = 1)]
         public int CourseId { set; get; }
 
-        [StringLength(50)]
-        [Column(TypeName = "varchar", Order = 2)]
-        public string TechLineId { set; get; }
+        [Key]
+        [Column(Order = 2)]
+        public int TechLineId { set; get; }
+
+        [ForeignKey("CourseId")]
+        public virtual Course Course { set; get; }
+        [ForeignKey("TechLineId")]
+        public virtual TechLine TechLine { set; get; }
     }
 }
