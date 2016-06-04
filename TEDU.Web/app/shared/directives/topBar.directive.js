@@ -6,4 +6,4 @@
             templateUrl: '/app/shared/directives/topBar.html'
         }
     });
-})(angular.module('common.ui'));
+})(angular.module('tedu.common'));

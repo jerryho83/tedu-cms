@@ -46,4 +46,4 @@
             this.init();
         }
     ]);
-})(angular.module('common.core'));
+})(angular.module('tedu.common'));

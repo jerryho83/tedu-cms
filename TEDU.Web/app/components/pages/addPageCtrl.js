@@ -35,4 +35,4 @@
             notificationService.displayError(response.statusText);
         }
     }
-})(angular.module('TEDU'));
+})(angular.module('tedu.pages'));

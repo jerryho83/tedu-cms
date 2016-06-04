@@ -19,4 +19,4 @@
             });
         }
     });
-})(angular.module('TEDU'));
+})(angular.module('tedu'));

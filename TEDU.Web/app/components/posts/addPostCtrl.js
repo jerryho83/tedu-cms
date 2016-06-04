@@ -54,4 +54,4 @@
 
         loadListParents();
     }
-})(angular.module('TEDU'));
+})(angular.module('tedu.posts'));

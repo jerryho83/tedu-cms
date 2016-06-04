@@ -45,4 +45,4 @@
                 }]
         }
     }
-})(angular.module('common.ui'));
+})(angular.module('tedu.common'));

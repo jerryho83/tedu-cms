@@ -13,4 +13,4 @@
             return authDataFactory;
         }
     ]);
-})(angular.module('common.core'));
+})(angular.module('tedu.common'));
