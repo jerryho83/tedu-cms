@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('tedu.common')
+        .module('common.core')
         .factory('commonService', commonService);
 
     //commonService.$inject = ['$http'];
@@ -86,4 +86,4 @@
             return tree;
         }
     }
-})(angular.module('tedu.common'));
+})(angular.module('common.core'));

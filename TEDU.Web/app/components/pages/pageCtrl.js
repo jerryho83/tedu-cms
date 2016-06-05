@@ -77,4 +77,4 @@
         $scope.search();
     }
 }
-)(angular.module('tedu.pages'));
+)(angular.module('TEDU'));

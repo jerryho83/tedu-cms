@@ -56,4 +56,4 @@
             toastr.info(message);
         }
     }
-})(angular.module('tedu.common'));
+})(angular.module('common.core'));

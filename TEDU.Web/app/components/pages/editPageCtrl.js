@@ -43,4 +43,4 @@
         }
         loadDetail();
     }
-})(angular.module('tedu.pages'));
+})(angular.module('TEDU'));

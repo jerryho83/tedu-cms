@@ -5,4 +5,4 @@
         authenticationService.setHeader();
     }
 }
-)(angular.module('tedu'));
+)(angular.module('TEDU'));

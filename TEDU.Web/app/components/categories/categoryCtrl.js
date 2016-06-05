@@ -70,4 +70,4 @@
         //$('.tree').treegrid();
     }
 }
-)(angular.module('tedu.categories'));
+)(angular.module('TEDU'));

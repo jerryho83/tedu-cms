@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('tedu.common', []).filter('boolStatus',function(){
+    angular.module('common.ui', []).filter('boolStatus',function(){
         return function (input) {
              return input ? 'Kích hoạt' : 'Khóa';
         }

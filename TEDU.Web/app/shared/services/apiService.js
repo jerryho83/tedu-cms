@@ -82,4 +82,4 @@
 
         return service;
     }
-})(angular.module('tedu.common'));
+})(angular.module('common.core'));

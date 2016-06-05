@@ -12,4 +12,4 @@
         $scope.authentication = authData.authenticationData;
         authenticationService.setHeader();
     }
-})(angular.module('tedu'));
+})(angular.module('TEDU'));

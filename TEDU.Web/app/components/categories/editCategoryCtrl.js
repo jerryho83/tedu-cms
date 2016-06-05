@@ -47,4 +47,4 @@
         loadListParents();
         loadDetail();
     }
-})(angular.module('tedu.categories'));
+})(angular.module('TEDU'));
