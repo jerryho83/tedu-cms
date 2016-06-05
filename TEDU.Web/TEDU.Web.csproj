@@ -148,6 +148,10 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
@@ -4121,6 +4125,8 @@
     <Content Include="Scripts\plugins\angular-local-storage\LICENSE" />
     <Content Include="Scripts\plugins\angular-local-storage\package.json" />
     <Content Include="Scripts\plugins\angular-local-storage\README.md" />
+    <Content Include="Views\Ebook\Index.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
     <None Include="_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Content\admin\css\bootstrap\bootstrap.css.map" />
@@ -4196,9 +4202,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\components\courses\" />
+    <Folder Include="app\components\course_categories\" />
+    <Folder Include="app\components\course_videos\" />
+    <Folder Include="app\components\trainers\" />
     <Folder Include="UploadData\" />
     <Folder Include="Views\CV\" />
-    <Folder Include="Views\Ebook\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

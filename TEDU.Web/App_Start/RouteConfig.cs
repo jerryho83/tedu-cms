@@ -9,26 +9,38 @@ namespace TEDU.Web.App_Start
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                 name: "Login",
+                 url: "dang-nhap.html",
+                 defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional },
+                 namespaces: new string[] { "TEDU.Web.Controllers" }
+             );
+            routes.MapRoute(
+                 name: "Register",
+                 url: "dang-ky.html",
+                 defaults: new { controller = "Account", action = "Register", id = UrlParameter.Optional },
+                 namespaces: new string[] { "TEDU.Web.Controllers" }
+             );
             routes.MapRoute(
                name: "CVOnline",
                url: "tim-kiem.html",
                defaults: new { controller = "Post", action = "Search", id = UrlParameter.Optional },
                namespaces: new string[] { "TEDU.Web.Controllers" }
-
-               );
+             );
             routes.MapRoute(
                name: "About",
                url: "gioi-thieu.html",
                defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional },
                namespaces: new string[] { "TEDU.Web.Controllers" }
-               );
+            );
 
             routes.MapRoute(
                 name: "Ebooks",
                 url: "it-ebooks.html",
                 defaults: new { controller = "Ebook", action = "Index", id = UrlParameter.Optional },
                 namespaces: new string[] { "TEDU.Web.Controllers" }
-               );
+            );
 
             routes.MapRoute(
                 name: "Tags",
@@ -44,10 +56,10 @@ namespace TEDU.Web.App_Start
                  namespaces: new string[] { "TEDU.Web.Controllers" }
              );
             routes.MapRoute(
-              name: "Posts",
-              url: "{categoryAlias}/{alias}-{id}.html",
-              defaults: new { controller = "Post", action = "Detail", id = UrlParameter.Optional },
-              namespaces: new string[] { "TEDU.Web.Controllers" }
+                  name: "Posts",
+                  url: "{categoryAlias}/{alias}-{id}.html",
+                  defaults: new { controller = "Post", action = "Detail", id = UrlParameter.Optional },
+                  namespaces: new string[] { "TEDU.Web.Controllers" }
              );
 
             routes.MapRoute(

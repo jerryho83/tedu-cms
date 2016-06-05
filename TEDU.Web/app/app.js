@@ -8,23 +8,23 @@
         $urlRouterProvider.otherwise("login");
 
         $stateProvider
-              .state('base', {
+             .state('base', {
                   url: "",
                   templateUrl: "/app/shared/views/base.html",
                   abstract: true
               })
-              .state('login', {
+             .state('login', {
                   url: "/login",
                   templateUrl: "/app/components/login/login.html",
                   controller: "loginCtrl"
               })
-            .state('home', {
+             .state('home', {
                 url: "/admin",
                 parent: 'base',
                 templateUrl: "/app/components/home/index.html",
                 controller: "homeCtrl"
-            })
-            //category
+             })
+             //category
              .state('categories', {
                  url: '/categories',
                  parent: 'base',
@@ -37,12 +37,12 @@
                  templateUrl: "/app/components/categories/editCategory.html",
                  controller: "editCategoryCtrl"
              })
-            .state('add_category', {
-                url: '/add_category',
-                parent: 'base',
-                templateUrl: "/app/components/categories/addCategory.html",
-                controller: "addCategoryCtrl"
-            })
+             .state('add_category', {
+                 url: '/add_category',
+                 parent: 'base',
+                 templateUrl: "/app/components/categories/addCategory.html",
+                 controller: "addCategoryCtrl"
+             })
              .state('posts', {
                  url: '/posts',
                  parent: 'base',
@@ -55,32 +55,30 @@
                  templateUrl: "/app/components/posts/editPost.html",
                  controller: "editPostCtrl"
              })
-            .state('add_post', {
+             .state('add_post', {
                 url: '/add_post',
                 parent: 'base',
                 templateUrl: "/app/components/posts/addPost.html",
                 controller: "addPostCtrl"
             })
-            .state('pages', {
+             .state('pages', {
                 url: '/pages',
                 parent: 'base',
                 templateUrl: "/app/components/pages/listPages.html",
                 controller: "pageCtrl"
             })
-            .state('edit_page', {
+             .state('edit_page', {
                 url: '/edit_page/:id',
                 parent: 'base',
                 templateUrl: "/app/components/pages/editPage.html",
                 controller: "editPageCtrl"
             })
-           .state('add_page', {
+             .state('add_page', {
                url: '/add_page',
                parent: 'base',
                templateUrl: "/app/components/pages/addPage.html",
                controller: "addPageCtrl"
            });
-
-       
     }
 
     function configSecurity($httpProvider) {

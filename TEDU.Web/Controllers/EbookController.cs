@@ -2,6 +2,7 @@
 
 namespace TEDU.Web.Controllers
 {
+    [Authorize]
     public class EbookController : Controller
     {
         // GET: Ebook
