@@ -9,20 +9,20 @@
 
         $stateProvider
              .state('base', {
-                  url: "",
-                  templateUrl: "/app/shared/views/base.html",
-                  abstract: true
-              })
+                 url: "",
+                 templateUrl: "/app/shared/views/base.html",
+                 abstract: true
+             })
              .state('login', {
-                  url: "/login",
-                  templateUrl: "/app/components/login/login.html",
-                  controller: "loginCtrl"
-              })
+                 url: "/login",
+                 templateUrl: "/app/components/login/login.html",
+                 controller: "loginCtrl"
+             })
              .state('home', {
-                url: "/admin",
-                parent: 'base',
-                templateUrl: "/app/components/home/index.html",
-                controller: "homeCtrl"
+                 url: "/admin",
+                 parent: 'base',
+                 templateUrl: "/app/components/home/index.html",
+                 controller: "homeCtrl"
              })
              //category
              .state('categories', {
@@ -56,29 +56,48 @@
                  controller: "editPostCtrl"
              })
              .state('add_post', {
-                url: '/add_post',
-                parent: 'base',
-                templateUrl: "/app/components/posts/addPost.html",
-                controller: "addPostCtrl"
-            })
+                 url: '/add_post',
+                 parent: 'base',
+                 templateUrl: "/app/components/posts/addPost.html",
+                 controller: "addPostCtrl"
+             })
              .state('pages', {
-                url: '/pages',
-                parent: 'base',
-                templateUrl: "/app/components/pages/listPages.html",
-                controller: "pageCtrl"
-            })
+                 url: '/pages',
+                 parent: 'base',
+                 templateUrl: "/app/components/pages/listPages.html",
+                 controller: "pageCtrl"
+             })
              .state('edit_page', {
-                url: '/edit_page/:id',
-                parent: 'base',
-                templateUrl: "/app/components/pages/editPage.html",
-                controller: "editPageCtrl"
-            })
+                 url: '/edit_page/:id',
+                 parent: 'base',
+                 templateUrl: "/app/components/pages/editPage.html",
+                 controller: "editPageCtrl"
+             })
              .state('add_page', {
-               url: '/add_page',
-               parent: 'base',
-               templateUrl: "/app/components/pages/addPage.html",
-               controller: "addPageCtrl"
-           });
+                 url: '/add_page',
+                 parent: 'base',
+                 templateUrl: "/app/components/pages/addPage.html",
+                 controller: "addPageCtrl"
+             })
+           //category
+             .state('course_categories', {
+                 url: '/course_categories',
+                 parent: 'base',
+                 templateUrl: "/app/components/course_categories/listCourseCategories.html",
+                 controller: "courseCategoryCtrl"
+             })
+             .state('edit_course_category', {
+                 url: '/edit_course_category/:id',
+                 parent: 'base',
+                 templateUrl: "/app/components/course_categories/editCourseCategory.html",
+                 controller: "editCourseCategoryCtrl"
+             })
+             .state('add_course_category', {
+                 url: '/add_course_category',
+                 parent: 'base',
+                 templateUrl: "/app/components/course_categories/addCourseCategory.html",
+                 controller: "addCourseCategoryCtrl"
+             });
     }
 
     function configSecurity($httpProvider) {

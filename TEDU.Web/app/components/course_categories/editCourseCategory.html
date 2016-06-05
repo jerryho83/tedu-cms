@@ -1,0 +1,77 @@
+﻿<section class="content-header">
+  <h1>
+    Cập nhật danh mục khóa học
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+    <li><a ui-sref="course_categories">Danh mục khóa học</a></li>
+    <li class="active"><a href="#">Cập nhật chuyên mục</a></li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">{{category.Name}}</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" role="form" novalidate name="updateCategoryForm" ng-submit="UpdateCategory()">
+          <div class="box-body">
+            <div class="col-md-8">
+              <div class="form-group" ng-class="{ 'has-error' : updateCategoryForm.name.$invalid && !updateCategoryForm.name.$pristine }">
+                <label class="col-sm-2 control-label">Tên chuyên mục</label>
+                <div class="col-sm-10">
+                  <input type="text" ng-change="CreateAlias()" class="form-control" validate-on="blur"
+                         required reqired-message="Tên danh mục bắt buộc." ng-model="category.Name">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Alias</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="category.Alias">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Thứ tự</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" ng-model="category.DisplayOrder">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Meta keyword</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="category.MetaKeyword">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Meta description</label>
+                <div class="col-sm-10">
+                  <textarea type="text" class="form-control" ng-model="category.MetaDescription"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" ng-model="category.Status" ng-checked="category.Status"> Kích hoạt
+                    </label>
+                    <label>
+                      <input type="checkbox" ng-model="category.ShowHome" ng-checked="category.ShowHome"> Show trang chủ
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <a ui-sref="categories" class="btn btn-default">Hủy bỏ</a>
+                  <input type="submit" class="btn btn-primary" ng-disabled="updateCategoryForm.$invalid" value="Lưu lại" />
+                </div>
+              </div>
+            </div>
+          </div><!-- /.box-body -->
+        </form>
+      </div><!-- /.box -->
+    </div>
+  </div>
+</section>

@@ -53,6 +53,16 @@ namespace TEDU.Web.Infrastructure.Extensions
             category.MetaDescription = categoryVm.MetaDescription;
             category.ShowHome = categoryVm.ShowHome;
         }
+        public static void UpdateCourseCategory(this CourseCategory category, CourseCategoryViewModel categoryVm)
+        {
+            category.Name = categoryVm.Name;
+            category.Alias = string.IsNullOrEmpty(categoryVm.Alias) ? StringHelper.ToUnsignString(categoryVm.Name) : categoryVm.Alias;
+            category.DisplayOrder = categoryVm.DisplayOrder;
+            category.Status = categoryVm.Status;
+            category.MetaKeyword = categoryVm.MetaKeyword;
+            category.MetaDescription = categoryVm.MetaDescription;
+            category.ShowHome = categoryVm.ShowHome;
+        }
 
         public static void UpdatePost(this Post post, PostViewModel postVm, string action = "add")
         {
