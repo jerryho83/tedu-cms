@@ -1,25 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace TEDU.Web.ViewModels
 {
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Bạn phải nhập tài khoản")]
         public string UserName { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Bạn phải nhập mật khẩu")]
         public string Password { get; set; }
-        [Required]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+
+        [Required(ErrorMessage = "Bạn phải nhập xác nhận mật khẩu")]
+        [Compare("Password", ErrorMessage = "Xác nhận mật khẩu không đúng.")]
         public string ConfirmPassword { get; set; }
-        [Required]
-        [EmailAddress]
+
+        [Required(ErrorMessage = "Bạn phải nhập địa chỉ email")]
+        [EmailAddress(ErrorMessage = "Địa chỉ email không đúng định dạng.")]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "Bạn phải nhập họ tên")]
         public string FullName { get; set; }
-        public DateTime BirthDate { get; set; }
-        public string Bio { get; set; }
+
+        public string PhoneNumber { get; set; }
+
     }
 }

@@ -12,16 +12,6 @@
       <li>
         <span id="close-menu">
           <a href="#" class="close-this-menu">Close</a>
-          <script type="text/javascript">
-            jQuery('a.sidr-class-close-this-menu').click(function () {
-              jQuery('div.sidr').css({
-                'right': '-476px'
-              });
-              jQuery('body').css({
-                'right': '0'
-              });
-            });
-          </script>
         </span>
       </li>
       <li><a href="/"><img src="/Content/client/images/home.png" alt="TEDU"></a></li>
@@ -31,7 +21,7 @@
         var childItem = Model.Where(x => x.ParentID == item.ID);
           <li>
             <a href="/@(item.Alias).html">@item.Name</a>
-            @if (childItem.Count() > 0)
+            @if (childItem.Any())
             {
 
                 <ul class="sub-menu dropdown-menu">
@@ -44,7 +34,8 @@
           </li>
       }
       @*<li><a href="/it-ebooks.html">IT Ebooks</a></li>*@
-      <li><a href="https://www.youtube.com/user/myskillscenter" target="_blank"><i class="fa fa-youtube"></i>Youtube Channel</a></li>
+
+      <li><a href="https://www.youtube.com/user/myskillscenter" target="_blank"><i class="fa fa-youtube"></i> Kênh Youtube</a></li>
     </ul>
   </div><!--/.nav-collapse -->
 </nav><!-- /.navbar -->

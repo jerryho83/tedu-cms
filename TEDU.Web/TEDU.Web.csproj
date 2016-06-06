@@ -65,6 +65,14 @@
       <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="BotDetect, Version=4.0.0.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.0.1\lib\net45\BotDetect.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="BotDetect.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.0.1\lib\net45\BotDetect.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="CKFinder, Version=2.6.0.2792, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Scripts\vendors\ckfinder\bin\CKFinder.dll</HintPath>
@@ -212,6 +220,10 @@
     <Content Include="app\components\course_categories\editCourseCategoryCtrl.js" />
     <Content Include="app\components\course_categories\listCourseCategories.html" />
     <Content Include="app\components\home\rootCtrl.js" />
+    <Content Include="app\components\trainers\trainerCtrl.js" />
+    <Content Include="app\components\trainers\editTrainer.html" />
+    <Content Include="app\components\trainers\editTrainerCtrl.js" />
+    <Content Include="app\components\trainers\listTrainers.html" />
     <Content Include="app\shared\directives\topBar.directive.js" />
     <Content Include="app\shared\directives\topBar.html" />
     <Content Include="app\components\login\login.html" />
@@ -288,7 +300,10 @@
     <Content Include="Content\admin\img\user8-128x128.jpg" />
     <Content Include="Content\client\css\bootstrap-responsive.css" />
     <Content Include="Content\client\css\bootstrap.css" />
+    <Content Include="Content\client\css\custom.css" />
     <Content Include="Content\client\css\flexslider.css" />
+    <Content Include="Content\client\css\font-awesome.min.css" />
+    <Content Include="Content\client\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\client\css\ie.css" />
     <Content Include="Content\client\css\images\bg_direction_nav.png" />
     <Content Include="Content\client\css\images\cart-bg.png" />
@@ -3958,6 +3973,11 @@
     </Content>
     <Content Include=".bowerrc" />
     <Content Include="bower.json" />
+    <Content Include="Content\client\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\client\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\client\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\client\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\client\fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -4160,6 +4180,7 @@
     <Compile Include="Api\CourseCategoryController.cs" />
     <Compile Include="Api\CourseController.cs" />
     <Compile Include="Api\HomeController.cs" />
+    <Compile Include="Api\TrainerController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -4219,7 +4240,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\components\course_videos\" />
-    <Folder Include="app\components\trainers\" />
     <Folder Include="UploadData\" />
     <Folder Include="Views\CV\" />
   </ItemGroup>
