@@ -199,6 +199,12 @@
     <Content Include="app\components\accounts\addAccountCtrl.js" />
     <Content Include="app\components\accounts\editAccount.html" />
     <Content Include="app\components\accounts\editAccountCtrl.js" />
+    <Content Include="app\components\courses\addCourse.html" />
+    <Content Include="app\components\courses\addCourseCtrl.js" />
+    <Content Include="app\components\courses\editCourse.html" />
+    <Content Include="app\components\courses\editCourseCtrl.js" />
+    <Content Include="app\components\courses\listCourses.html" />
+    <Content Include="app\components\courses\courseCtrl.js" />
     <Content Include="app\components\course_categories\addCourseCategory.html" />
     <Content Include="app\components\course_categories\addCourseCategoryCtrl.js" />
     <Content Include="app\components\course_categories\courseCategoryCtrl.js" />
@@ -4152,6 +4158,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\CourseCategoryController.cs" />
+    <Compile Include="Api\CourseController.cs" />
     <Compile Include="Api\HomeController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -4182,6 +4189,7 @@
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\ChangeProfileViewModel.cs" />
     <Compile Include="ViewModels\CourseCategoryViewModel.cs" />
+    <Compile Include="ViewModels\CourseViewModel.cs" />
     <Compile Include="ViewModels\EbookViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\PageViewModel.cs" />
@@ -4210,7 +4218,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\components\courses\" />
     <Folder Include="app\components\course_videos\" />
     <Folder Include="app\components\trainers\" />
     <Folder Include="UploadData\" />

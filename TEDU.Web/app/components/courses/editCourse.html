@@ -1,0 +1,118 @@
+﻿<section class="content-header">
+  <h1>
+    Cập nhật
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+    <li><a ui-sref="courses">Danh sách khóa học</a></li>
+    <li class="active"><a href="#">Cập nhật</a></li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">{{post.Name}}</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" role="form" novalidate name="addPostForm" ng-submit="UpdatePost()">
+          <div class="box-body">
+            <div class="col-md-8">
+              <div class="form-group" ng-class="{'has-error':addPostForm.name.$invalid && !addPostForm.name.$pristine}">
+                <label class="col-sm-2 control-label">Tiêu đề</label>
+                <div class="col-sm-10">
+                  <input type="text" ng-change="CreateAlias()" name="name" class="form-control" validate-on="blur"
+                         required reqired-message="Tên danh mục bắt buộc." ng-model="post.Name">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Alias</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="post.Alias">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Mô tả</label>
+                <div class="col-sm-10">
+                  <textarea class="form-control" ng-model="post.Description"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Hình ảnh</label>
+                <div class="col-sm-10">
+                  <div class="input-group">
+                    <input type="text" class="form-control" ng-model="post.Image" />
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" ng-click="ChooseImage()">Chọn ảnh</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" ng-class="{'has-error':addPostForm.categoryID.$invalid && !addPostForm.categoryID.$pristine}">
+                <label class="col-sm-2 control-label">Danh mục</label>
+                <div class="col-sm-10">
+                  <select type="text" required class="form-control" name="categoryID" ng-model="post.CategoryID" ng-options="option.ID as option.Name for option in categories">
+                    <option value="">-- Chọn chuyên mục  --</option>
+                  </select>
+                  <input type="hidden" name="CategoryID" ng-model="post.CategoryID" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Nội dung</label>
+                <div class="col-sm-10">
+                  <textarea ng-model="post.Content" ckeditor="editorOptions"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Meta keyword</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="post.MetaKeyword">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Meta description</label>
+                <div class="col-sm-10">
+                  <textarea type="text" class="form-control" ng-model="post.MetaDescription"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Tags</label>
+                <div class="col-sm-10">
+                  <textarea type="text" class="form-control" ng-model="post.Tags"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Nguồn</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="post.Source">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" ng-model="post.Status" ng-checked="post.Status='Publish'"> Kích hoạt
+                    </label>
+                    <label>
+                      <input type="checkbox" ng-model="post.HotFlag" ng-checked="post.HotFlag"> Tin hot
+                    </label>
+                    <label>
+                      <input type="checkbox" ng-model="post.SlideFlag" ng-checked="post.SlideFlag"> Slide
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <a ui-sref="posts" class="btn btn-default">Hủy bỏ</a>
+                  <input type="submit" class="btn btn-primary" ng-disabled="addPostForm.$invalid" value="Lưu lại" />
+                </div>
+              </div>
+            </div>
+          </div><!-- /.box-body -->
+        </form>
+      </div><!-- /.box -->
+    </div>
+  </div>
+</section>

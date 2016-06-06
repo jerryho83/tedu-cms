@@ -89,5 +89,36 @@ namespace TEDU.Web.Infrastructure.Extensions
             post.HotFlag = postVm.HotFlag;
             post.SlideFlag = postVm.SlideFlag;
         }
+
+        public static void UpdateCourse(this Course course, CourseViewModel courseVm, string action = "add")
+        {
+            course.Name = courseVm.Name;
+
+            course.Alias = string.IsNullOrEmpty(courseVm.Alias) 
+                ? StringHelper.ToUnsignString(courseVm.Name) : courseVm.Alias;
+
+            course.Description = courseVm.Description;
+            course.CategoryId = courseVm.CategoryId;
+            course.Image = courseVm.Image;
+            course.Duration = courseVm.Duration;
+            course.Price = courseVm.Price;
+            course.PromotionPrice = courseVm.PromotionPrice;
+            course.Content = courseVm.Content;
+            course.Level = courseVm.Level;
+            course.DisplayOrder = courseVm.DisplayOrder;
+            course.ViewCount = courseVm.ViewCount;
+            course.TrainerId = courseVm.TrainerId;
+            course.CreatedDate = courseVm.CreatedDate;
+            course.CreateBy = courseVm.CreateBy;
+            course.LastModifiedBy = courseVm.LastModifiedBy;
+            course.LastModifiedDate = courseVm.LastModifiedDate;
+            course.Status = courseVm.Status;
+
+            course.Status = courseVm.Status;
+            course.MetaKeyword = courseVm.MetaKeyword;
+            course.MetaDescription = courseVm.MetaDescription;
+            course.HotFlag = courseVm.HotFlag;
+            course.SlideFlag = courseVm.SlideFlag;
+        }
     }
 }
