@@ -117,9 +117,9 @@ namespace TEDU.Web
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "500141453482575",
+               appSecret: "0f00d528183076ce33cb4576d6f4cbd9");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

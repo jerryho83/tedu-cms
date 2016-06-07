@@ -2,6 +2,8 @@
 using TEDU.Data.Infrastructure;
 using TEDU.Model;
 using System.Linq;
+using System.Data.Entity;
+using TEDU.Model.Models;
 
 namespace TEDU.Data.Repositories
 {
@@ -12,10 +14,7 @@ namespace TEDU.Data.Repositories
         { }
         public IEnumerable<Post> GetListPostByTag(string tagId, int page, int pageSize, out int totalRow)
         {
-            var query = from p in DbContext.Posts
-                        join pt in DbContext.PostTags
-                        on p.ID equals pt.PostID
-                        where pt.TagID == tagId
+            var query = from p in DbContext.Posts.Where(x => x.PostTags.Count(y => y.TagID == tagId) > 0)
                         select p;
             totalRow = query.Count();
 
@@ -26,6 +25,6 @@ namespace TEDU.Data.Repositories
     public interface IPostRepository : IRepository<Post>
     {
         IEnumerable<Post> GetListPostByTag(string tagId, int page, int pageSize, out int totalRow);
-        
+
     }
 }

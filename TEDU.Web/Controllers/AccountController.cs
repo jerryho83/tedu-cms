@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using BotDetect.Web.Mvc;
+using Microsoft.AspNet.Identity.Owin;
 using TEDU.Model.Models;
 using TEDU.Web.App_Start;
 using TEDU.Web.ViewModels;
@@ -14,13 +17,11 @@ namespace TEDU.Web.Controllers
     {
         private readonly ApplicationUserManager _userManager;
         private readonly ApplicationSignInManager _signInManager;
-        private readonly IAuthenticationManager _authManager;
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IAuthenticationManager authManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _authManager = authManager;
         }
 
         public ActionResult Register()
@@ -40,7 +41,7 @@ namespace TEDU.Web.Controllers
                 user.UserName = model.UserName;
                 user.Email = model.Email;
                 user.FullName = model.FullName;
-               
+
                 IdentityResult result = _userManager.Create(user, model.Password);
 
                 if (result.Succeeded)
@@ -167,5 +168,141 @@ namespace TEDU.Web.Controllers
             authenticationManager.SignOut();
             return RedirectToAction("Login", "Account");
         }
+
+        //
+        // POST: /Account/ExternalLogin
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult ExternalLogin(string provider, string returnUrl)
+        {
+            // Request a redirect to the external login provider
+            return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
+        }
+        //
+        // GET: /Account/ExternalLoginCallback
+        [AllowAnonymous]
+        public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
+        {
+            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
+            if (loginInfo == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            // Sign in the user with this external login provider if the user already has a login
+            var result = await _signInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
+            switch (result)
+            {
+                case SignInStatus.Success:
+                    return RedirectToLocal(returnUrl);
+                default:
+                    // If the user does not have an account, then prompt the user to create an account
+                    ViewBag.ReturnUrl = returnUrl;
+                    ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
+                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = loginInfo.Email });
+            }
+        }
+        //
+        // POST: /Account/ExternalLoginConfirmation
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                return Redirect("/");
+            }
+
+            if (ModelState.IsValid)
+            {
+                // Get the information about the user from the external login provider
+                var info = await AuthenticationManager.GetExternalLoginInfoAsync();
+                if (info == null)
+                {
+                    return View("Login");
+                }
+                var user = new AppUser()
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    BirthDate = DateTime.Now,
+                   
+                };
+                var result = await _userManager.CreateAsync(user);
+                if (result.Succeeded)
+                {
+                    result = await _userManager.AddLoginAsync(user.Id, info.Login);
+                    if (result.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        return RedirectToLocal(returnUrl);
+                    }
+                }
+                AddErrors(result);
+            }
+
+            ViewBag.ReturnUrl = returnUrl;
+            return View(model);
+        }
+        #region Helpers
+        // Used for XSRF protection when adding external logins
+        private const string XsrfKey = "XsrfId";
+
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+        }
+
+        private ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        internal class ChallengeResult : HttpUnauthorizedResult
+        {
+            public ChallengeResult(string provider, string redirectUri)
+                : this(provider, redirectUri, null)
+            {
+            }
+
+            public ChallengeResult(string provider, string redirectUri, string userId)
+            {
+                LoginProvider = provider;
+                RedirectUri = redirectUri;
+                UserId = userId;
+            }
+
+            public string LoginProvider { get; set; }
+            public string RedirectUri { get; set; }
+            public string UserId { get; set; }
+
+            public override void ExecuteResult(ControllerContext context)
+            {
+                var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
+                if (UserId != null)
+                {
+                    properties.Dictionary[XsrfKey] = UserId;
+                }
+                context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
+            }
+        }
+        #endregion
     }
 }

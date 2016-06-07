@@ -62,7 +62,8 @@ namespace TEDU.Model
 
         [StringLength(50)]
         public string OtherStatus { set; get; }
-
+        
+        [ForeignKey("CategoryID")]
         public virtual Category Category { set; get; }
 
         [Column(TypeName = "nvarchar")]

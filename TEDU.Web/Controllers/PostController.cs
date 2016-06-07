@@ -60,6 +60,7 @@ namespace TEDU.Web.Controllers
         public ActionResult PostByTag(string id, int page = 1, int pageSize = 10)
         {
             int totalRow = 0;
+
             var posts = _postService.GetListByTagId(id, page, pageSize, out totalRow);
             var model = Mapper.Map<List<Post>, List<PostViewModel>>(posts);
 
