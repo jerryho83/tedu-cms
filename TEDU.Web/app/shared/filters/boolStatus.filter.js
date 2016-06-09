@@ -1,9 +1,9 @@
-﻿(function () {
+﻿(function (app) {
     'use strict';
 
-    angular.module('common.ui', []).filter('boolStatus',function(){
+    app.filter('boolStatus',function(){
         return function (input) {
              return input ? 'Kích hoạt' : 'Khóa';
         }
     });
-})();
+})(angular.module('common.ui'));

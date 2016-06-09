@@ -84,7 +84,7 @@ namespace TEDU.Service
 
         public IEnumerable<Post> GetPosts(int page, int pageSize, out int totalRow, string filter = null)
         {
-            IEnumerable<Post> model = _postsRepository.GetMulti(x => x.Status == StatusEnum.Publish.ToString());
+            IEnumerable<Post> model = _postsRepository.GetAll(new string[] {"Category"});
             if (!string.IsNullOrEmpty(filter))
                 model = model.Where(x => x.Name.Contains(filter));
             totalRow = model.OrderByDescending(x=>x.CreatedDate).Count();
