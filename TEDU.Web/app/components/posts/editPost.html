@@ -18,7 +18,7 @@
         <!-- form start -->
         <form class="form-horizontal" role="form" novalidate name="addPostForm" ng-submit="UpdatePost()">
           <div class="box-body">
-            <div class="col-md-8">
+            <div class="col-md-6">
               <div class="form-group" ng-class="{'has-error':addPostForm.name.$invalid && !addPostForm.name.$pristine}">
                 <label class="col-sm-2 control-label">Tiêu đề</label>
                 <div class="col-sm-10">
@@ -53,29 +53,12 @@
                 <label class="col-sm-2 control-label">Danh mục</label>
                 <div class="col-sm-10">
                   <select type="text" required class="form-control" name="categoryID" ng-model="post.CategoryID" ng-options="option.ID as option.Name for option in categories">
-                    <option value="">-- Chọn chuyên mục  --</option>
+                    <option value="">-- Chọn chuyên mục --</option>
                   </select>
                   <input type="hidden" name="CategoryID" ng-model="post.CategoryID" />
                 </div>
               </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Nội dung</label>
-                <div class="col-sm-10">
-                  <textarea ng-model="post.Content" ckeditor="editorOptions"></textarea>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Meta keyword</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" ng-model="post.MetaKeyword">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Meta description</label>
-                <div class="col-sm-10">
-                  <textarea type="text" class="form-control" ng-model="post.MetaDescription"></textarea>
-                </div>
-              </div>
+
               <div class="form-group">
                 <label class="col-sm-2 control-label">Tags</label>
                 <div class="col-sm-10">
@@ -107,6 +90,26 @@
                 <div class="col-sm-offset-2 col-sm-10">
                   <a ui-sref="posts" class="btn btn-default">Hủy bỏ</a>
                   <input type="submit" class="btn btn-primary" ng-disabled="addPostForm.$invalid" value="Lưu lại" />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Nội dung</label>
+                <div class="col-sm-10">
+                  <textarea ng-model="post.Content" ckeditor="editorOptions"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Meta keyword</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="post.MetaKeyword">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Meta description</label>
+                <div class="col-sm-10">
+                  <textarea type="text" class="form-control" ng-model="post.MetaDescription"></textarea>
                 </div>
               </div>
             </div>

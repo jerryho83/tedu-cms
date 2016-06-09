@@ -8,6 +8,8 @@
     function courseCategoryCtrl($scope, apiService, notificationService, $ngBootbox) {
         $scope.loading = true;
         $scope.data = [];
+        $scope.page = 0;
+        $scope.pageCount = 0;
 
         $scope.search = search;
 
@@ -15,15 +17,6 @@
 
         $scope.deleteItem = deleteItem;
 
-        $scope.getClassForRow = getClassForRow;
-
-        function getClassForRow(id, parentId) {
-            if (parentId == null)
-                return 'treegrid-' + id;
-            else {
-                return 'treegrid-' + id + ' treegrid-parent-' + parentId;
-            }
-        }
 
         function deleteItem(id) {
             $ngBootbox.confirm('Bạn có chắc muốn xóa?')
@@ -43,13 +36,26 @@
                 });
         }
 
-        function search() {
+        function search(page) {
+            page = page || 0;
+
             $scope.loading = true;
-            apiService.get('/api/coursecategory/getlistparent', null, dataLoadCompleted, dataLoadFailed);
+            var config = {
+                params: {
+                    page: page,
+                    pageSize: 10,
+                    filter: $scope.filterExpression
+                }
+            }
+
+            apiService.get('/api/courseCategory/getlistpaging', config, dataLoadCompleted, dataLoadFailed);
         }
 
         function dataLoadCompleted(result) {
-            $scope.data = result.data;
+            $scope.data = result.data.Items;
+            $scope.page = result.data.Page;
+            $scope.pagesCount = result.data.TotalPages;
+            $scope.totalCount = result.data.TotalCount;
             $scope.loading = false;
             if ($scope.filterExpression && $scope.filterExpression.length) {
                 notificationService.displayInfo(result.data.length + ' items found');
@@ -66,8 +72,6 @@
         }
 
         $scope.search();
-
-        //$('.tree').treegrid();
     }
 }
 )(angular.module('TEDU'));

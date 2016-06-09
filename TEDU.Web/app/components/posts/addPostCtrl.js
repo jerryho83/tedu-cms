@@ -21,7 +21,7 @@
 
         function loadListParents() {
             apiService.get('/api/category/getlistparent', null, function (result) {
-                $scope.categories = commonService.getTree(result.data, 'ID', 'ParentID');
+                $scope.categories = result.data;
             });
         }
 

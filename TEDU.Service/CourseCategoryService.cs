@@ -45,12 +45,13 @@ namespace TEDU.Service
 
         public IEnumerable<CourseCategory> GetCategories(int page, int pageSize, out int totalRow, string filter = null)
         {
-            IEnumerable<CourseCategory> model =
-                courseCategorysRepository.GetMulti(x => x.Name.Contains(filter));
+            var model = courseCategorysRepository.GetAll();
+            if (!string.IsNullOrEmpty(filter))
+                model = model.Where(x => x.Name.Contains(filter));
 
             totalRow = model.Count();
 
-            return model.Skip(page * pageSize).Take(pageSize);
+            return model.OrderBy(x=>x.DisplayOrder).Skip(page * pageSize).Take(pageSize);
         }
 
         public CourseCategory GetCategory(int id)

@@ -1,4 +1,5 @@
 ﻿
+using System;
 using AutoMapper;
 using System.Collections.Generic;
 using System.Net;
@@ -56,16 +57,28 @@ namespace TEDU.Web.Api
         }
 
         [HttpGet]
-        [Route("getlistparent")]
-        public HttpResponseMessage GetListParent(HttpRequestMessage request)
+        [Route("getlistpaging")]
+        public HttpResponseMessage GetListPaging(HttpRequestMessage request, int page, int pageSize, string filter = null)
         {
+
+
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                IEnumerable<CourseCategory> model = _courseCategoryService.GetCategories();
+                int totalRow;
+                IEnumerable<CourseCategory> model = _courseCategoryService.GetCategories(page, pageSize, out totalRow, filter);
+
                 IEnumerable<CourseCategoryViewModel> modelVM = Mapper.Map<IEnumerable<CourseCategory>, IEnumerable<CourseCategoryViewModel>>(model);
 
-                response = request.CreateResponse(HttpStatusCode.OK, modelVM);
+                PaginationSet<CourseCategoryViewModel> pagedSet = new PaginationSet<CourseCategoryViewModel>()
+                {
+                    Page = page,
+                    TotalCount = totalRow,
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize),
+                    Items = modelVM
+                };
+
+                response = request.CreateResponse(HttpStatusCode.OK, pagedSet);
 
                 return response;
             });

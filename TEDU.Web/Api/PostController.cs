@@ -56,25 +56,21 @@ namespace TEDU.Web.Api
         }
 
         [Route("getlistpaging")]
-        public HttpResponseMessage GetListPaging(HttpRequestMessage request, int? page, int? pageSize, string filter = null)
+        public HttpResponseMessage GetListPaging(HttpRequestMessage request, int page, int pageSize, string filter = null)
         {
-            int currentPage = page.Value;
-
-            int currentPageSize = pageSize.Value;
-
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
                 int totalRow;
-                IEnumerable<Post> model = _postService.GetPosts(currentPage, currentPageSize, out totalRow, filter);
+                IEnumerable<Post> model = _postService.GetPosts(page, pageSize, out totalRow, filter);
 
                 IEnumerable<PostViewModel> modelVm = Mapper.Map<IEnumerable<Post>, IEnumerable<PostViewModel>>(model);
 
                 PaginationSet<PostViewModel> pagedSet = new PaginationSet<PostViewModel>()
                 {
-                    Page = currentPage,
+                    Page = page,
                     TotalCount = totalRow,
-                    TotalPages = (int)Math.Ceiling((decimal)totalRow / currentPageSize),
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize),
                     Items = modelVm
                 };
 

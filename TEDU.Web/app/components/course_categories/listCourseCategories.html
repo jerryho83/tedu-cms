@@ -31,7 +31,7 @@
                 <td>#</td>
               </tr>
             </thead>
-            <tr ng-repeat="item in data" ng-class="getClassForRow(item.ID,item.ParentID)">
+            <tr ng-repeat="item in data">
               <td>{{item.Name}}</td>
               <td><span ng-class="{'badge bg-red':item.Status==false,'badge bg-green':item.Status==true}">{{item.Status | boolStatus}}</span></td>
 
@@ -51,6 +51,8 @@
           </div>
         </div><!-- /.box-body -->
         <div class="box-footer clearfix">
+          <custom-pager page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="search(page)"></custom-pager>
+
         </div>
       </div><!-- /.box -->
     </div><!-- /.col -->

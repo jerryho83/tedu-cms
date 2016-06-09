@@ -67,7 +67,6 @@
 
         $scope.search();
 
-        //$('.tree').treegrid();
     }
 }
 )(angular.module('TEDU'));
