@@ -39,6 +39,12 @@ namespace TEDU.Data
         public DbSet<Trainer> Trainer { set; get; }
         public DbSet<VideoComment> VideoComments { set; get; }
 
+        // Add an instance IDbSet using the 'new' keyword:
+        public IDbSet<AppRole> AppRoles { get; set; }
+
+        // ADD THIS:
+        public IDbSet<AppGroup> AppGroups { get; set; }
+
         public virtual void Commit()
         {
             base.SaveChanges();

@@ -1,9 +1,9 @@
 ﻿(function (app) {
-    'use strict'
+    'use strict';
 
     app.factory('apiService', apiService);
 
-    apiService.$inject = ['$http', '$location', 'notificationService', '$rootScope','authenticationService'];
+    apiService.$inject = ['$http', '$location', 'notificationService', '$rootScope', 'authenticationService'];
 
     function apiService($http, $location, notificationService, $rootScope, authenticationService) {
         var service = {
@@ -18,8 +18,8 @@
                     .then(function (result) {
                         success(result);
                     }, function (error) {
-                        if (error.status == '401') {
-                            notificationService.displayError('Authentication required.');
+                        if (error.status === '401') {
+                            notificationService.displayError('Yêu cầu đăng nhập để tiếp tục.');
                             $rootScope.previousState = $location.path();
                             $location.path('login');
                         }
@@ -35,8 +35,8 @@
                     .then(function (result) {
                         success(result);
                     }, function (error) {
-                        if (error.status == '401') {
-                            notificationService.displayError('Authentication required.');
+                        if (error.status === '401') {
+                            notificationService.displayError('Yêu cầu đăng nhập để tiếp tục.');
                             $rootScope.previousState = $location.path();
                             $location.path('/login');
                         }
@@ -52,8 +52,8 @@
                     .then(function (result) {
                         success(result);
                     }, function (error) {
-                        if (error.status == '401') {
-                            notificationService.displayError('Authentication required.');
+                        if (error.status === '401') {
+                            notificationService.displayError('Yêu cầu đăng nhập để tiếp tục.');
                             $rootScope.previousState = $location.path();
                             $location.path('/login');
                         }
@@ -69,8 +69,8 @@
                     .then(function (result) {
                         success(result);
                     }, function (error) {
-                        if (error.status == '401') {
-                            notificationService.displayError('Authentication required.');
+                        if (error.status === '401') {
+                            notificationService.displayError('Yêu cầu đăng nhập để tiếp tục.');
                             $rootScope.previousState = $location.path();
                             $location.path('/login');
                         }

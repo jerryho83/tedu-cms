@@ -4186,7 +4186,9 @@
   <ItemGroup>
     <Compile Include="Api\CourseCategoryController.cs" />
     <Compile Include="Api\CourseController.cs" />
+    <Compile Include="Api\GroupController.cs" />
     <Compile Include="Api\HomeController.cs" />
+    <Compile Include="Api\RoleController.cs" />
     <Compile Include="Api\TrainerController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -4213,6 +4215,7 @@
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AppGroupViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\ChangeProfileViewModel.cs" />

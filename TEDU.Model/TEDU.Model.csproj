@@ -58,7 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\AppRole.cs" />
+    <Compile Include="Models\AppRoleGroup.cs" />
     <Compile Include="Models\AppUser.cs" />
+    <Compile Include="Models\AppUserGroup.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseCategory.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="Models\CourseVideo.cs" />
     <Compile Include="Models\Ebook.cs" />
     <Compile Include="Models\Error.cs" />
+    <Compile Include="Models\AppGroup.cs" />
     <Compile Include="Models\Page.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\Post.cs" />

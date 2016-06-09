@@ -170,8 +170,6 @@ namespace TEDU.Web
             }
         }
 
-
-
         private static UserManager<AppUser> CreateManager(IdentityFactoryOptions<UserManager<AppUser>> options, IOwinContext context)
         {
             var userStore = new UserStore<AppUser>(context.Get<TeduDbContext>());

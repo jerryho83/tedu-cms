@@ -90,7 +90,7 @@ namespace TEDU.Web.Infrastructure.Extensions
             post.SlideFlag = postVm.SlideFlag;
         }
 
-        public static void UpdateCourse(this Course course, CourseViewModel courseVm, string action = "add")
+        public static void UpdateCourse(this Course course, CourseViewModel courseVm)
         {
             course.Name = courseVm.Name;
 
@@ -119,6 +119,12 @@ namespace TEDU.Web.Infrastructure.Extensions
             course.MetaDescription = courseVm.MetaDescription;
             course.HotFlag = courseVm.HotFlag;
             course.SlideFlag = courseVm.SlideFlag;
+        }
+
+        public static void UpdateAppGroup(this AppGroup appGroup, AppGroupViewModel appGroupViewModel)
+        {
+            appGroup.Id = appGroupViewModel.Id;
+            appGroup.Name = appGroupViewModel.Name;
         }
     }
 }

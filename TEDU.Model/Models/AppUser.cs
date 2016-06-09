@@ -15,6 +15,11 @@ namespace TEDU.Model.Models
         public DateTime BirthDate { get; set; }
         public string Bio { get; set; }
 
+        public AppUser():base()
+        {
+            this.AppUserGroups = new HashSet<AppUserGroup>();
+        }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<AppUser> manager, string authenticationType)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -23,6 +28,7 @@ namespace TEDU.Model.Models
             return userIdentity;
         }
 
-        public virtual IEnumerable<CourseUser> CourseUsers { set; get; } 
+        public virtual IEnumerable<CourseUser> CourseUsers { set; get; }
+        public virtual ICollection<AppUserGroup> AppUserGroups { get; set; }
     }
 }
