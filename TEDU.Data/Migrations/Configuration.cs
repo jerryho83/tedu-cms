@@ -9,7 +9,6 @@ namespace TEDU.Data.Migrations
     using System.Linq;
     internal sealed class Configuration : DbMigrationsConfiguration<TEDU.Data.TeduDbContext>
     {
-        private readonly TeduDbContext _db = new TeduDbContext();
         private readonly string[] _groupAdminRoleNames = { "CanEditUser", "CanEditGroup", "User" };
 
         private readonly string[] _initialGroupNames = { "SuperAdmins", "GroupAdmins", "UserAdmins", "Users" };
@@ -18,6 +17,7 @@ namespace TEDU.Data.Migrations
         private readonly string[] _superAdminRoleNames = { "Admin", "CanEditUser", "CanEditGroup", "CanEditRole", "User" };
         private readonly string[] _userAdminRoleNames = { "CanEditUser", "User" };
         private readonly string[] _userRoleNames = { "User" };
+
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
@@ -26,7 +26,9 @@ namespace TEDU.Data.Migrations
 
         protected override void Seed(TEDU.Data.TeduDbContext context)
         {
-            
+            AddGroups(context);
+            AddRoles(context);
+
         }
 
         public void AddGroups(TeduDbContext context)
@@ -74,32 +76,32 @@ namespace TEDU.Data.Migrations
             context.SaveChanges();
         }
 
-        //private void AddRolesToGroups()
+        //private void AddRolesToGroups(TeduDbContext context)
         //{
         //    // Add the Super-Admin Roles to the Super-Admin Group:
-        //    IDbSet<AppGroup> allGroups = _db.AppGroups;
+        //    IDbSet<AppGroup> allGroups = context.AppGroups;
         //    AppGroup superAdmins = allGroups.First(g => g.Name == "SuperAdmins");
         //    foreach (string name in _superAdminRoleNames)
         //    {
-        //        _idManager.AddRoleToGroup(superAdmins.Id, name);
+        //        _ro.AddRoleToGroup(superAdmins.Id, name);
         //    }
 
         //    // Add the Group-Admin Roles to the Group-Admin Group:
-        //    AppGroup groupAdmins = _db.AppGroups.First(g => g.Name == "GroupAdmins");
+        //    AppGroup groupAdmins = context.AppGroups.First(g => g.Name == "GroupAdmins");
         //    foreach (string name in _groupAdminRoleNames)
         //    {
         //        _idManager.AddRoleToGroup(groupAdmins.Id, name);
         //    }
 
         //    // Add the User-Admin Roles to the User-Admin Group:
-        //    AppGroup userAdmins = _db.AppGroups.First(g => g.Name == "UserAdmins");
+        //    AppGroup userAdmins = context.AppGroups.First(g => g.Name == "UserAdmins");
         //    foreach (string name in _userAdminRoleNames)
         //    {
         //        _idManager.AddRoleToGroup(userAdmins.Id, name);
         //    }
 
         //    // Add the User Roles to the Users Group:
-        //    AppGroup users = _db.AppGroups.First(g => g.Name == "Users");
+        //    AppGroup users = context.AppGroups.First(g => g.Name == "Users");
         //    foreach (string name in _userRoleNames)
         //    {
         //        _idManager.AddRoleToGroup(users.Id, name);

@@ -159,6 +159,10 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AppGroupRepository.cs" />
+    <Compile Include="Repositories\AppRoleGroupRepository.cs" />
+    <Compile Include="Repositories\AppRoleRepository.cs" />
+    <Compile Include="Repositories\AppUserGroupRepository.cs" />
+    <Compile Include="Repositories\AppUserRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
     <Compile Include="Repositories\CourseCategoryRepository.cs" />
     <Compile Include="Repositories\CourseRepository.cs" />
@@ -171,7 +175,6 @@
     <Compile Include="Repositories\PaymentMethodRepository.cs" />
     <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Repositories\PostTagRepository.cs" />
-    <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\TagRepository.cs" />
     <Compile Include="Repositories\TechLineRepository.cs" />
     <Compile Include="Repositories\TrainerRepository.cs" />

@@ -18,13 +18,11 @@ namespace TEDU.Web.Controllers
     {
         private readonly ApplicationUserManager _userManager;
         private readonly ApplicationSignInManager _signInManager;
-        private IUserService _userService;
 
-        public AccountController(IUserService userService,ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            this._userService = userService;
         }
 
         public ActionResult Register()
@@ -72,7 +70,7 @@ namespace TEDU.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                AppUser user = _userService.Find(model.UserName, model.Password);
+                AppUser user = _userManager.Find(model.UserName, model.Password);
                 if (user != null)
                 {
                     IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;

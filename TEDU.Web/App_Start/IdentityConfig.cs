@@ -18,6 +18,13 @@ namespace TEDU.Web.App_Start
         {
         }
     }
+    public class ApplicationRoleManager : RoleManager<AppRole>
+    {
+        public ApplicationRoleManager(IRoleStore<AppRole> store)
+            : base(store)
+        {
+        }
+    }
 
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
     public class ApplicationUserManager : UserManager<AppUser>
