@@ -43,7 +43,8 @@ namespace TEDU.Web.Api
         {
             if (ModelState.IsValid)
             {
-                var newAppGroup = new AppGroup(appGroupViewModel.Name);
+                var newAppGroup = new AppGroup();
+                newAppGroup.Name = appGroupViewModel.Name;
                 _appGroupService.Add(newAppGroup);
                 _appGroupService.Save();
                 return request.CreateResponse(HttpStatusCode.OK, appGroupViewModel);

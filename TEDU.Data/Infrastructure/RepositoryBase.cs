@@ -49,7 +49,6 @@ namespace TEDU.Data.Infrastructure
         {
             return dbSet.Remove(entity);
         }
-
         public virtual void DeleteMulti(Expression<Func<T, bool>> where)
         {
             IEnumerable<T> objects = dbSet.Where<T>(where).AsEnumerable();

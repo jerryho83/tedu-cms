@@ -120,6 +120,42 @@
     <Compile Include="Migrations\201606031311259_foregintechline.Designer.cs">
       <DependentUpon>201606031311259_foregintechline.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606091453451_permission.cs" />
+    <Compile Include="Migrations\201606091453451_permission.Designer.cs">
+      <DependentUpon>201606091453451_permission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606091501056_appRoleGroup.cs" />
+    <Compile Include="Migrations\201606091501056_appRoleGroup.Designer.cs">
+      <DependentUpon>201606091501056_appRoleGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606091510084_changetablename.cs" />
+    <Compile Include="Migrations\201606091510084_changetablename.Designer.cs">
+      <DependentUpon>201606091510084_changetablename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606092352142_repairidentity.cs" />
+    <Compile Include="Migrations\201606092352142_repairidentity.Designer.cs">
+      <DependentUpon>201606092352142_repairidentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606100000067_repairidentity1.cs" />
+    <Compile Include="Migrations\201606100000067_repairidentity1.Designer.cs">
+      <DependentUpon>201606100000067_repairidentity1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606100017356_repair2.cs" />
+    <Compile Include="Migrations\201606100017356_repair2.Designer.cs">
+      <DependentUpon>201606100017356_repair2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606100028506_repair3.cs" />
+    <Compile Include="Migrations\201606100028506_repair3.Designer.cs">
+      <DependentUpon>201606100028506_repair3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606100032078_repair4.cs" />
+    <Compile Include="Migrations\201606100032078_repair4.Designer.cs">
+      <DependentUpon>201606100032078_repair4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606100033208_repair5.cs" />
+    <Compile Include="Migrations\201606100033208_repair5.Designer.cs">
+      <DependentUpon>201606100033208_repair5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AppGroupRepository.cs" />
@@ -135,6 +171,7 @@
     <Compile Include="Repositories\PaymentMethodRepository.cs" />
     <Compile Include="Repositories\PostRepository.cs" />
     <Compile Include="Repositories\PostTagRepository.cs" />
+    <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\TagRepository.cs" />
     <Compile Include="Repositories\TechLineRepository.cs" />
     <Compile Include="Repositories\TrainerRepository.cs" />
@@ -198,6 +235,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606031311259_foregintechline.resx">
       <DependentUpon>201606031311259_foregintechline.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606091453451_permission.resx">
+      <DependentUpon>201606091453451_permission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606091501056_appRoleGroup.resx">
+      <DependentUpon>201606091501056_appRoleGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606091510084_changetablename.resx">
+      <DependentUpon>201606091510084_changetablename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606092352142_repairidentity.resx">
+      <DependentUpon>201606092352142_repairidentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606100000067_repairidentity1.resx">
+      <DependentUpon>201606100000067_repairidentity1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606100017356_repair2.resx">
+      <DependentUpon>201606100017356_repair2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606100028506_repair3.resx">
+      <DependentUpon>201606100028506_repair3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606100032078_repair4.resx">
+      <DependentUpon>201606100032078_repair4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606100033208_repair5.resx">
+      <DependentUpon>201606100033208_repair5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

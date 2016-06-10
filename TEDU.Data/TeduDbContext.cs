@@ -39,11 +39,9 @@ namespace TEDU.Data
         public DbSet<Trainer> Trainer { set; get; }
         public DbSet<VideoComment> VideoComments { set; get; }
 
-        // Add an instance IDbSet using the 'new' keyword:
-        public IDbSet<AppRole> AppRoles { get; set; }
-
         // ADD THIS:
         public IDbSet<AppGroup> AppGroups { get; set; }
+        public IDbSet<AppRoleGroup> AppRoleGroups { get; set; }
 
         public virtual void Commit()
         {
@@ -52,9 +50,12 @@ namespace TEDU.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId);
-            modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id);
-            modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId });
+            modelBuilder.Entity<IdentityUserLogin>().HasKey<string>(l => l.UserId).ToTable("AppUserLogins");
+            modelBuilder.Entity<IdentityRole>().HasKey<string>(r => r.Id).ToTable("AppRoles");
+            modelBuilder.Entity<IdentityUserRole>().HasKey(r => new { r.RoleId, r.UserId }).ToTable("AppUserRoles");
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("AppUserClaims");
+
+
         }
 
         public static TeduDbContext Create()
