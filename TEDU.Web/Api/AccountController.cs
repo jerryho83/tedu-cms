@@ -113,6 +113,8 @@ namespace TEDU.Web.Api
                         }
                         _appGroupService.AddUserToGroups(userGroups, newAppUser.Id);
                         _appGroupService.Save();
+
+
                         return request.CreateResponse(HttpStatusCode.OK, appUserViewModel);
 
                     }

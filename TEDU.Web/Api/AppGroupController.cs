@@ -19,12 +19,15 @@ namespace TEDU.Web.Api
     public class AppGroupController : ApiControllerBase
     {
         private IAppGroupService _appGroupService;
+        private IAppRoleService _appRoleService;
         private IUnitOfWork _unitOfWork;
 
-        public AppGroupController(IErrorService errorService, 
+        public AppGroupController(IErrorService errorService,
+            IAppRoleService appRoleService,
             IAppGroupService appGroupService, IUnitOfWork unitOfWork) : base(errorService)
         {
             _appGroupService = appGroupService;
+            _appRoleService = appRoleService;
             _unitOfWork = unitOfWork;
         }
         [Route("getlistpaging")]
@@ -76,11 +79,14 @@ namespace TEDU.Web.Api
                 return request.CreateErrorResponse(HttpStatusCode.BadRequest, nameof(id) + " is required.");
             }
             AppGroup appGroup = _appGroupService.GetDetail(id);
+            var appGroupViewModel = Mapper.Map<AppGroup, AppGroupViewModel>(appGroup);
+            appGroupViewModel.Roles = Mapper.Map<IEnumerable<AppRole>, IEnumerable<AppRoleViewModel>>(_appRoleService.GetListRoleByGroupId(id));
+
             if (appGroup == null)
             {
                 return request.CreateErrorResponse(HttpStatusCode.NoContent, "No group");
             }
-            return request.CreateResponse(HttpStatusCode.OK, appGroup);
+            return request.CreateResponse(HttpStatusCode.OK, appGroupViewModel);
         }
 
         [HttpPost]
@@ -93,9 +99,26 @@ namespace TEDU.Web.Api
                 newAppGroup.Name = appGroupViewModel.Name;
                 try
                 {
-                    _appGroupService.Add(newAppGroup);
-                    _appGroupService.Save();
+                    var appGroup = _appGroupService.Add(newAppGroup);
+
+                    //save group
+                    var listRoleGroup = new List<AppRoleGroup>();
+                    foreach(var role  in appGroupViewModel.Roles)
+                    {
+                        listRoleGroup.Add(new AppRoleGroup()
+                        {
+                            GroupId = appGroup.Id,
+                            RoleId = role.Id
+                        });
+                    }
+                    _appRoleService.AddRolesToGroup(listRoleGroup, appGroup.Id);
+                    _appRoleService.Save();
+
+                   
+
                     return request.CreateResponse(HttpStatusCode.OK, appGroupViewModel);
+
+
                 }
                 catch (NameDuplicatedException dex)
                 {
@@ -120,7 +143,18 @@ namespace TEDU.Web.Api
                 {
                     appGroup.UpdateAppGroup(appGroupViewModel);
                     _appGroupService.Update(appGroup);
-                    _appGroupService.Save();
+
+                    var listRoleGroup = new List<AppRoleGroup>();
+                    foreach (var role in appGroupViewModel.Roles)
+                    {
+                        listRoleGroup.Add(new AppRoleGroup()
+                        {
+                            GroupId = appGroup.Id,
+                            RoleId = role.Id
+                        });
+                    }
+                    _appRoleService.AddRolesToGroup(listRoleGroup, appGroup.Id);
+                    _appRoleService.Save();
                     return request.CreateResponse(HttpStatusCode.OK, appGroup);
                 }
                 catch (NameDuplicatedException dex)

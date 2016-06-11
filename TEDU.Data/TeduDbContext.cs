@@ -40,9 +40,10 @@ namespace TEDU.Data
         public DbSet<VideoComment> VideoComments { set; get; }
 
         // ADD THIS:
-        public IDbSet<AppGroup> AppGroups { get; set; }
-        public IDbSet<AppRoleGroup> AppRoleGroups { get; set; }
-        public IDbSet<AppUserGroup> AppUserGroups { get; set; }
+        public DbSet<AppGroup> AppGroups { get; set; }
+        public DbSet<AppRole> AppRoles { get; set; }
+        public DbSet<AppRoleGroup> AppRoleGroups { get; set; }
+        public DbSet<AppUserGroup> AppUserGroups { get; set; }
         public virtual void Commit()
         {
             base.SaveChanges();

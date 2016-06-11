@@ -22,17 +22,24 @@ namespace TEDU.Service
 
         void Delete(string id);
 
+        bool AddRolesToGroup(IEnumerable<AppRoleGroup> roleGroups, int groupId);
+
+        IEnumerable<AppRole> GetListRoleByGroupId(int groupId);
+
         void Save();
     }
 
     public class AppRoleService : IAppRoleService
     {
         private IAppRoleRepository _appRoleRepository;
+        private IAppRoleGroupRepository _appRoleGroupRepository;
         private IUnitOfWork _unitOfWork;
 
-        public AppRoleService(IUnitOfWork unitOfWork, IAppRoleRepository AppRoleRepository)
+        public AppRoleService(IUnitOfWork unitOfWork,
+            IAppRoleRepository appRoleRepository, IAppRoleGroupRepository appRoleGroupRepository)
         {
-            this._appRoleRepository = AppRoleRepository;
+            this._appRoleRepository = appRoleRepository;
+            this._appRoleGroupRepository = appRoleGroupRepository;
             this._unitOfWork = unitOfWork;
         }
 
@@ -43,9 +50,19 @@ namespace TEDU.Service
             return _appRoleRepository.Add(AppRole);
         }
 
+        public bool AddRolesToGroup(IEnumerable<AppRoleGroup> roleGroups, int groupId)
+        {
+            _appRoleGroupRepository.DeleteMulti(x => x.GroupId == groupId);
+            foreach (var roleGroup in roleGroups)
+            {
+                _appRoleGroupRepository.Add(roleGroup);
+            }
+            return true;
+        }
+
         public void Delete(string id)
         {
-            _appRoleRepository.DeleteMulti(x=>x.Id==id);
+            _appRoleRepository.DeleteMulti(x => x.Id == id);
         }
 
         public IEnumerable<AppRole> GetAll()
@@ -78,6 +95,11 @@ namespace TEDU.Service
             if (_appRoleRepository.CheckContains(x => x.Name == AppRole.Name && x.Id != AppRole.Id))
                 throw new NameDuplicatedException("Tên không được trùng");
             _appRoleRepository.Update(AppRole);
+        }
+
+        public IEnumerable<AppRole> GetListRoleByGroupId(int groupId)
+        {
+            return _appRoleRepository.GetListRoleByGroupId(groupId);
         }
     }
 }

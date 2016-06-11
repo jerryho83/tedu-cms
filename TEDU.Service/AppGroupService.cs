@@ -26,6 +26,7 @@ namespace TEDU.Service
 
         IEnumerable<AppGroup> GetListGroupByUserId(string userId);
 
+
         void Save();
     }
 
@@ -103,5 +104,6 @@ namespace TEDU.Service
         {
             return _appGroupRepository.GetListGroupByUserId(userId);
         }
+
     }
 }
