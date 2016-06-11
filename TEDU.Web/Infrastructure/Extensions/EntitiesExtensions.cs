@@ -136,5 +136,16 @@ namespace TEDU.Web.Infrastructure.Extensions
             appRole.Name = appRoleViewModel.Name;
             appRole.Description = appRoleViewModel.Description;
         }
+        public static void UpdateUser(this AppUser appUser, AppUserViewModel appUserViewModel, string action = "add")
+        {
+
+            appUser.Id = appUserViewModel.Id;
+            appUser.FullName = appUserViewModel.FullName;
+            appUser.BirthDate = appUserViewModel.BirthDate;
+            appUser.Bio = appUserViewModel.Bio;
+            appUser.Email = appUserViewModel.Email;
+            appUser.UserName = appUserViewModel.UserName;
+            appUser.PhoneNumber = appUserViewModel.PhoneNumber;
+        }
     }
 }

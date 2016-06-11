@@ -30,6 +30,7 @@
 /// <reference path="app/components/roles/rolectrl.js" />
 /// <reference path="app/components/trainers/edittrainerctrl.js" />
 /// <reference path="app/components/trainers/trainerctrl.js" />
+/// <reference path="app/shared/directives/asdate.js" />
 /// <reference path="app/shared/directives/custompager.directive.js" />
 /// <reference path="app/shared/directives/topbar.directive.js" />
 /// <reference path="app/shared/filters/boolstatus.filter.js" />

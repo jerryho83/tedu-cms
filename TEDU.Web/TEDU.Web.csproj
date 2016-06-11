@@ -241,6 +241,7 @@
     <Content Include="app\components\trainers\editTrainer.html" />
     <Content Include="app\components\trainers\editTrainerCtrl.js" />
     <Content Include="app\components\trainers\listTrainers.html" />
+    <Content Include="app\shared\directives\asDate.js" />
     <Content Include="app\shared\directives\topBar.directive.js" />
     <Content Include="app\shared\directives\topBar.html" />
     <Content Include="app\components\login\login.html" />
@@ -4229,6 +4230,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AppGroupViewModel.cs" />
     <Compile Include="ViewModels\AppRoleViewModel.cs" />
+    <Compile Include="ViewModels\AppUserViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\ChangeProfileViewModel.cs" />
