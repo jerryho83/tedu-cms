@@ -17,7 +17,7 @@
         function loadDetail() {
             apiService.get('/api/account/detail/' + $stateParams.id, null,
             function (result) {
-                $scope.account = result.data.Result;
+                $scope.account = result.data;
             },
             function (result) {
                 notificationService.displayError(result.data);
@@ -25,7 +25,7 @@
         }
 
         function addSuccessed() {
-            notificationService.displaySuccess($scope.account.Name + ' đã được cập nhật thành công.');
+            notificationService.displaySuccess($scope.account.FullName + ' đã được cập nhật thành công.');
 
             $location.url('accounts');
         }
@@ -33,6 +33,18 @@
             notificationService.displayError(response.data.Message);
             notificationService.displayErrorValidation(response);
         }
+        function loadGroups() {
+            apiService.get('/api/appGroup/getlistall',
+                null,
+                function (response) {
+                    $scope.groups = response.data;
+                }, function (response) {
+                    notificationService.displayError('Không tải được danh sách nhóm.');
+                });
+
+        }
+
+        loadGroups();
         loadDetail();
     }
 })(angular.module('TEDU'));

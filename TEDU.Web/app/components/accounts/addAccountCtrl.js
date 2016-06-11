@@ -7,6 +7,7 @@
 
     function addAccountCtrl($scope, apiService, notificationService, $location, commonService) {
         $scope.account = {
+            AppGroups: []
         }
 
         $scope.addAccount = addAccount;
@@ -24,5 +25,18 @@
             notificationService.displayError(response.data.Message);
             notificationService.displayErrorValidation(response);
         }
+
+        function loadGroups() {
+            apiService.get('/api/appGroup/getlistall',
+                null,
+                function (response) {
+                    $scope.groups = response.data;
+                }, function (response) {
+                    notificationService.displayError('Không tải được danh sách nhóm.');
+                });
+
+        }
+
+        loadGroups();
     }
 })(angular.module('TEDU'));

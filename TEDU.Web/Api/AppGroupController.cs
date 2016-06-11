@@ -52,6 +52,21 @@ namespace TEDU.Web.Api
                 return response;
             });
         }
+        [Route("getlistall")]
+        [HttpGet]
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                var model = _appGroupService.GetAll();
+                IEnumerable<AppGroupViewModel> modelVm = Mapper.Map<IEnumerable<AppGroup>, IEnumerable<AppGroupViewModel>>(model);
+
+                response = request.CreateResponse(HttpStatusCode.OK, modelVm);
+
+                return response;
+            });
+        }
         [Route("detail/{id:int}")]
         [HttpGet]
         public HttpResponseMessage Details(HttpRequestMessage request, int id)

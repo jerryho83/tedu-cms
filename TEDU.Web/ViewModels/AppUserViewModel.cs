@@ -16,5 +16,7 @@ namespace TEDU.Web.ViewModels
         public string UserName { set; get; }
 
         public string PhoneNumber { set; get; }
+
+        public IEnumerable<AppGroupViewModel> AppGroups { set; get; }
     }
 }

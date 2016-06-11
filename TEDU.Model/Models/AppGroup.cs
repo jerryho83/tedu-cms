@@ -17,5 +17,7 @@ namespace TEDU.Model.Models
         public string Name { get; set; }
 
         public virtual IEnumerable<AppRoleGroup> RoleGroups { get; set; }
+
+        public virtual IEnumerable<AppUserGroup> UserGroups { get; set; }
     }
 }

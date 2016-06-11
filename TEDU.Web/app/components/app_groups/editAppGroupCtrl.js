@@ -33,6 +33,18 @@
             notificationService.displayError(response.data.Message);
             notificationService.displayErrorValidation(response);
         }
+        function loadRoles() {
+            apiService.get('/api/appRole/getlistall',
+                null,
+                function (response) {
+                    $scope.roles = response.data;
+                }, function (response) {
+                    notificationService.displayError('Không tải được danh sách quyền.');
+                });
+
+        }
+
+        loadRoles();
         loadDetail();
     }
 })(angular.module('TEDU'));

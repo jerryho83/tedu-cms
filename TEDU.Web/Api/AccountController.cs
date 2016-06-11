@@ -25,14 +25,17 @@ namespace TEDU.Web.Api
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IAppGroupService _appGroupService;
 
         public AccountController(
             ApplicationUserManager userManager,
             ApplicationSignInManager signInManager,
+            IAppGroupService appGroupService,
             IErrorService errorService)
             : base(errorService)
         {
             _userManager = userManager;
+            _appGroupService = appGroupService;
             _signInManager = signInManager;
         }
 
@@ -74,7 +77,15 @@ namespace TEDU.Web.Api
             {
                 return request.CreateErrorResponse(HttpStatusCode.NoContent, "Không có dữ liệu");
             }
-            return request.CreateResponse(HttpStatusCode.OK, user);
+            else
+            {
+                var appUserViewModel = Mapper.Map<AppUser, AppUserViewModel>(user.Result);
+                var groups = _appGroupService.GetListGroupByUserId(appUserViewModel.Id);
+
+                appUserViewModel.AppGroups = Mapper.Map<IEnumerable<AppGroup>, IEnumerable<AppGroupViewModel>>(groups);
+                return request.CreateResponse(HttpStatusCode.OK, appUserViewModel);
+            }
+           
         }
 
         [HttpPost]
@@ -90,7 +101,21 @@ namespace TEDU.Web.Api
                     newAppUser.Id = Guid.NewGuid().ToString();
                     var result = await _userManager.CreateAsync(newAppUser, appUserViewModel.Password);
                     if (result.Succeeded)
+                    {
+                        List<AppUserGroup> userGroups = new List<AppUserGroup>();
+                        foreach(var group in appUserViewModel.AppGroups)
+                        {
+                            userGroups.Add(new AppUserGroup()
+                            {
+                                UserId = newAppUser.Id,
+                                GroupId = group.Id
+                            });
+                        }
+                        _appGroupService.AddUserToGroups(userGroups, newAppUser.Id);
+                        _appGroupService.Save();
                         return request.CreateResponse(HttpStatusCode.OK, appUserViewModel);
+
+                    }
                     else
                         return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
                 }
@@ -121,7 +146,22 @@ namespace TEDU.Web.Api
                     appUser.UpdateUser(appUserViewModel);
                     var result = await _userManager.UpdateAsync(appUser);
                     if (result.Succeeded)
-                        return request.CreateResponse(HttpStatusCode.OK, appUser);
+                    {
+
+                        List<AppUserGroup> userGroups = new List<AppUserGroup>();
+                        foreach (var group in appUserViewModel.AppGroups)
+                        {
+                            userGroups.Add(new AppUserGroup()
+                            {
+                                UserId = appUser.Id,
+                                GroupId = group.Id
+                            });
+                        }
+                        _appGroupService.AddUserToGroups(userGroups, appUser.Id);
+                        _appGroupService.Save();
+                        return request.CreateResponse(HttpStatusCode.OK, appUserViewModel);
+
+                    }
                     else
                         return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
                 }

@@ -72,6 +72,7 @@
 /// <reference path="scripts/plugins/angular-ui-router/release/angular-ui-router.js" />
 /// <reference path="scripts/plugins/bootbox/bootbox.js" />
 /// <reference path="Scripts/plugins/bootstrap/dist/js/bootstrap.js" />
+/// <reference path="scripts/plugins/checklist-model/checklist-model.js" />
 /// <reference path="scripts/plugins/ckeditor/ckeditor.js" />
 /// <reference path="scripts/plugins/jquery.cookie/jquery.cookie.js" />
 /// <reference path="scripts/plugins/jquery/dist/jquery.js" />

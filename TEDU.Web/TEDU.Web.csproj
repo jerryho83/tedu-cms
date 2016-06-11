@@ -605,6 +605,8 @@
     <Content Include="Scripts\plugins\bootstrap\js\tab.js" />
     <Content Include="Scripts\plugins\bootstrap\js\tooltip.js" />
     <Content Include="Scripts\plugins\bootstrap\js\transition.js" />
+    <Content Include="Scripts\plugins\checklist-model\checklist-model.js" />
+    <Content Include="Scripts\plugins\checklist-model\LICENSE.txt" />
     <Content Include="Scripts\plugins\ng-ckeditor\ng-ckeditor.css" />
     <Content Include="Scripts\plugins\ng-ckeditor\ng-ckeditor.js" />
     <Content Include="Scripts\plugins\ng-ckeditor\ng-ckeditor.min.js" />
@@ -4179,6 +4181,9 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Scripts\plugins\checklist-model\.bower.json" />
+    <Content Include="Scripts\plugins\checklist-model\bower.json" />
+    <Content Include="Scripts\plugins\checklist-model\readme.md" />
     <None Include="_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Content\admin\css\bootstrap\bootstrap.css.map" />
@@ -4230,6 +4235,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AppGroupViewModel.cs" />
     <Compile Include="ViewModels\AppRoleViewModel.cs" />
+    <Compile Include="ViewModels\AppUserGroupViewModel.cs" />
     <Compile Include="ViewModels\AppUserViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
@@ -4266,6 +4272,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\components\course_videos\" />
+    <Folder Include="Scripts\plugins\checklist-model\test\" />
     <Folder Include="UploadData\" />
     <Folder Include="Views\CV\" />
   </ItemGroup>

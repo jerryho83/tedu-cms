@@ -14,11 +14,17 @@ namespace TEDU.Service
 
         IEnumerable<AppGroup> GetAll(int page, int pageSize, out int totalRow, string filter);
 
+        IEnumerable<AppGroup> GetAll();
+
         AppGroup Add(AppGroup appGroup);
 
         void Update(AppGroup appGroup);
 
         AppGroup Delete(int id);
+
+        bool AddUserToGroups(IEnumerable<AppUserGroup> groups, string userId);
+
+        IEnumerable<AppGroup> GetListGroupByUserId(string userId);
 
         void Save();
     }
@@ -27,10 +33,14 @@ namespace TEDU.Service
     {
         private IAppGroupRepository _appGroupRepository;
         private IUnitOfWork _unitOfWork;
+        private IAppUserGroupRepository _appUserGroupRepository;
 
-        public AppGroupService(IUnitOfWork unitOfWork, IAppGroupRepository appGroupRepository)
+        public AppGroupService(IUnitOfWork unitOfWork,
+            IAppUserGroupRepository appUserGroupRepository,
+            IAppGroupRepository appGroupRepository)
         {
             this._appGroupRepository = appGroupRepository;
+            this._appUserGroupRepository = appUserGroupRepository;
             this._unitOfWork = unitOfWork;
         }
 
@@ -45,6 +55,11 @@ namespace TEDU.Service
         {
             var appGroup = this._appGroupRepository.GetSingleById(id);
             return _appGroupRepository.Delete(appGroup);
+        }
+
+        public IEnumerable<AppGroup> GetAll()
+        {
+            return _appGroupRepository.GetAll();
         }
 
         public IEnumerable<AppGroup> GetAll(int page, int pageSize, out int totalRow, string filter = null)
@@ -72,6 +87,21 @@ namespace TEDU.Service
             if (_appGroupRepository.CheckContains(x => x.Name == appGroup.Name && x.Id != appGroup.Id))
                 throw new NameDuplicatedException("Tên không được trùng");
             _appGroupRepository.Update(appGroup);
+        }
+
+        public bool AddUserToGroups(IEnumerable<AppUserGroup> userGroups, string userId)
+        {
+            _appUserGroupRepository.DeleteMulti(x => x.UserId == userId);
+            foreach (var userGroup in userGroups)
+            {
+                _appUserGroupRepository.Add(userGroup);
+            }
+            return true;
+        }
+
+        public IEnumerable<AppGroup> GetListGroupByUserId(string userId)
+        {
+            return _appGroupRepository.GetListGroupByUserId(userId);
         }
     }
 }

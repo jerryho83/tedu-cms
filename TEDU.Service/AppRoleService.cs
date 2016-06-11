@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TEDU.Common.Exceptions;
 using TEDU.Data.Infrastructure;
@@ -12,6 +13,8 @@ namespace TEDU.Service
         AppRole GetDetail(string id);
 
         IEnumerable<AppRole> GetAll(int page, int pageSize, out int totalRow, string filter);
+
+        IEnumerable<AppRole> GetAll();
 
         AppRole Add(AppRole AppRole);
 
@@ -43,6 +46,11 @@ namespace TEDU.Service
         public void Delete(string id)
         {
             _appRoleRepository.DeleteMulti(x=>x.Id==id);
+        }
+
+        public IEnumerable<AppRole> GetAll()
+        {
+            return _appRoleRepository.GetAll();
         }
 
         public IEnumerable<AppRole> GetAll(int page, int pageSize, out int totalRow, string filter = null)

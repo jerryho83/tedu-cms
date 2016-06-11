@@ -52,7 +52,21 @@ namespace TEDU.Web.Api
                 return response;
             });
         }
+        [Route("getlistall")]
+        [HttpGet]
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                var model = _appRoleService.GetAll();
+                IEnumerable<AppRoleViewModel> modelVm = Mapper.Map<IEnumerable<AppRole>, IEnumerable<AppRoleViewModel>>(model);
 
+                response = request.CreateResponse(HttpStatusCode.OK, modelVm);
+
+                return response;
+            });
+        }
         [Route("detail/{id}")]
         [HttpGet]
         public HttpResponseMessage Details(HttpRequestMessage request, string id)

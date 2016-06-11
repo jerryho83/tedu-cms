@@ -42,7 +42,7 @@ namespace TEDU.Data
         // ADD THIS:
         public IDbSet<AppGroup> AppGroups { get; set; }
         public IDbSet<AppRoleGroup> AppRoleGroups { get; set; }
-
+        public IDbSet<AppUserGroup> AppUserGroups { get; set; }
         public virtual void Commit()
         {
             base.SaveChanges();
