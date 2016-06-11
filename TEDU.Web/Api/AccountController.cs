@@ -26,17 +26,19 @@ namespace TEDU.Web.Api
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private IAppGroupService _appGroupService;
-
+        private IAppRoleService _appRoleService;
         public AccountController(
             ApplicationUserManager userManager,
             ApplicationSignInManager signInManager,
             IAppGroupService appGroupService,
+            IAppRoleService appRoleService,
             IErrorService errorService)
             : base(errorService)
         {
             _userManager = userManager;
             _appGroupService = appGroupService;
             _signInManager = signInManager;
+            _appRoleService = appRoleService;
         }
 
         [Route("getlistpaging")]
@@ -90,6 +92,7 @@ namespace TEDU.Web.Api
 
         [HttpPost]
         [Route("add")]
+        [Authorize(Roles = "Admin, AddUser")]
         public async Task<HttpResponseMessage> Create(HttpRequestMessage request, AppUserViewModel appUserViewModel)
         {
             if (ModelState.IsValid)
@@ -102,6 +105,7 @@ namespace TEDU.Web.Api
                     var result = await _userManager.CreateAsync(newAppUser, appUserViewModel.Password);
                     if (result.Succeeded)
                     {
+                        //add account to group
                         List<AppUserGroup> userGroups = new List<AppUserGroup>();
                         foreach(var group in appUserViewModel.AppGroups)
                         {
@@ -110,10 +114,19 @@ namespace TEDU.Web.Api
                                 UserId = newAppUser.Id,
                                 GroupId = group.Id
                             });
+
+                            //add role to user
+                            var listRole = _appRoleService.GetListRoleByGroupId(group.Id);
+                            foreach(var role in listRole)
+                            {
+                                await _userManager.RemoveFromRoleAsync(newAppUser.Id, role.Name);
+                                await _userManager.AddToRoleAsync(newAppUser.Id, role.Name);
+                            }
                         }
                         _appGroupService.AddUserToGroups(userGroups, newAppUser.Id);
                         _appGroupService.Save();
 
+                       
 
                         return request.CreateResponse(HttpStatusCode.OK, appUserViewModel);
 
@@ -138,6 +151,7 @@ namespace TEDU.Web.Api
 
         [HttpPut]
         [Route("update")]
+        [Authorize(Roles = "Admin, EditUser")]
         public async Task<HttpResponseMessage> Update(HttpRequestMessage request, AppUserViewModel appUserViewModel)
         {
             if (ModelState.IsValid)
@@ -180,6 +194,7 @@ namespace TEDU.Web.Api
 
         [HttpDelete]
         [Route("delete")]
+        [Authorize(Roles ="Admin, DeleteUser")]
         public async Task<HttpResponseMessage> Delete(HttpRequestMessage request, string id)
         {
             var appUser = await _userManager.FindByIdAsync(id);

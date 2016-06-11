@@ -1,13 +1,16 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using TEDU.Common.Exceptions;
 using TEDU.Data.Infrastructure;
 using TEDU.Model.Models;
 using TEDU.Service;
+using TEDU.Web.App_Start;
 using TEDU.Web.Infrastructure.Core;
 using TEDU.Web.Infrastructure.Extensions;
 using TEDU.Web.ViewModels;
@@ -21,11 +24,14 @@ namespace TEDU.Web.Api
         private IAppGroupService _appGroupService;
         private IAppRoleService _appRoleService;
         private IUnitOfWork _unitOfWork;
+        private ApplicationUserManager _userManager;
 
         public AppGroupController(IErrorService errorService,
             IAppRoleService appRoleService,
+            ApplicationUserManager userManager,
             IAppGroupService appGroupService, IUnitOfWork unitOfWork) : base(errorService)
         {
+            _userManager = userManager;
             _appGroupService = appGroupService;
             _appRoleService = appRoleService;
             _unitOfWork = unitOfWork;
@@ -134,7 +140,7 @@ namespace TEDU.Web.Api
 
         [HttpPut]
         [Route("update")]
-        public HttpResponseMessage Update(HttpRequestMessage request, AppGroupViewModel appGroupViewModel)
+        public async Task<HttpResponseMessage> Update(HttpRequestMessage request, AppGroupViewModel appGroupViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -155,7 +161,22 @@ namespace TEDU.Web.Api
                     }
                     _appRoleService.AddRolesToGroup(listRoleGroup, appGroup.Id);
                     _appRoleService.Save();
-                    return request.CreateResponse(HttpStatusCode.OK, appGroup);
+
+                    //add role to user
+                    var listRole = _appRoleService.GetListRoleByGroupId(appGroup.Id);
+                    var listUserInGroup = _appGroupService.GetListUserByGroupId(appGroup.Id);
+                    foreach (var user in listUserInGroup)
+                    {
+                        var listRoleName = listRole.Select(x => x.Name).ToArray();
+                        foreach(var roleName in listRoleName)
+                        {
+                            await _userManager.RemoveFromRoleAsync(user.Id, roleName);
+                            await _userManager.AddToRoleAsync(user.Id, roleName);
+
+
+                        }
+                    }
+                    return request.CreateResponse(HttpStatusCode.OK, appGroupViewModel);
                 }
                 catch (NameDuplicatedException dex)
                 {

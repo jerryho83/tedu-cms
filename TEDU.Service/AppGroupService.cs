@@ -25,7 +25,7 @@ namespace TEDU.Service
         bool AddUserToGroups(IEnumerable<AppUserGroup> groups, string userId);
 
         IEnumerable<AppGroup> GetListGroupByUserId(string userId);
-
+        IEnumerable<AppUser> GetListUserByGroupId(int groupId);
 
         void Save();
     }
@@ -105,5 +105,9 @@ namespace TEDU.Service
             return _appGroupRepository.GetListGroupByUserId(userId);
         }
 
+        public IEnumerable<AppUser> GetListUserByGroupId(int groupId)
+        {
+            return _appGroupRepository.GetListUserByGroupId(groupId);
+        }
     }
 }
