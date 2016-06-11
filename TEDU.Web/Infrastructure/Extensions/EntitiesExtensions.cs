@@ -1,4 +1,5 @@
-﻿using TEDU.Common;
+﻿using System;
+using TEDU.Common;
 using TEDU.Common.Helper;
 using TEDU.Model;
 using TEDU.Model.Models;
@@ -94,7 +95,7 @@ namespace TEDU.Web.Infrastructure.Extensions
         {
             course.Name = courseVm.Name;
 
-            course.Alias = string.IsNullOrEmpty(courseVm.Alias) 
+            course.Alias = string.IsNullOrEmpty(courseVm.Alias)
                 ? StringHelper.ToUnsignString(courseVm.Name) : courseVm.Alias;
 
             course.Description = courseVm.Description;
@@ -125,6 +126,15 @@ namespace TEDU.Web.Infrastructure.Extensions
         {
             appGroup.Id = appGroupViewModel.Id;
             appGroup.Name = appGroupViewModel.Name;
+        }
+        public static void UpdateAppRole(this AppRole appRole, AppRoleViewModel appRoleViewModel, string action = "add")
+        {
+            if (action == "update")
+                appRole.Id = appRoleViewModel.Id;
+            else
+                appRole.Id = Guid.NewGuid().ToString();
+            appRole.Name = appRoleViewModel.Name;
+            appRole.Description = appRoleViewModel.Description;
         }
     }
 }

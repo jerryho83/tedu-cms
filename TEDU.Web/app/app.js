@@ -116,7 +116,45 @@
                 parent: 'base',
                 templateUrl: "/app/components/courses/addCourse.html",
                 controller: "addCourseCtrl"
-            });
+            })
+        //app_group
+        .state('app_groups', {
+            url: '/app_groups',
+            parent: 'base',
+            templateUrl: "/app/components/app_groups/app_groups.html",
+            controller: "appGroupCtrl"
+        })
+        .state('edit_app_group', {
+            url: '/edit_app_group/:id',
+            parent: 'base',
+            templateUrl: "/app/components/app_groups/editAppGroup.html",
+            controller: "editAppGroupCtrl"
+        })
+        .state('add_app_group', {
+            url: '/add_app_group',
+            parent: 'base',
+            templateUrl: "/app/components/app_groups/addAppGroup.html",
+            controller: "addAppGroupCtrl"
+        })
+        //app_role
+        .state('app_roles', {
+            url: '/app_roles',
+            parent: 'base',
+            templateUrl: "/app/components/app_roles/app_roles.html",
+            controller: "appRoleCtrl"
+        })
+        .state('edit_app_role', {
+            url: '/edit_app_role/:id',
+            parent: 'base',
+            templateUrl: "/app/components/app_roles/editAppRole.html",
+            controller: "editAppRoleCtrl"
+        })
+        .state('add_app_role', {
+            url: '/add_app_role',
+            parent: 'base',
+            templateUrl: "/app/components/app_roles/addAppRole.html",
+            controller: "addAppRoleCtrl"
+        });
     }
 
     function configSecurity($httpProvider) {

@@ -212,6 +212,18 @@
     <Content Include="app\components\accounts\addAccountCtrl.js" />
     <Content Include="app\components\accounts\editAccount.html" />
     <Content Include="app\components\accounts\editAccountCtrl.js" />
+    <Content Include="app\components\app_groups\appGroupCtrl.js" />
+    <Content Include="app\components\app_groups\app_groups.html" />
+    <Content Include="app\components\app_groups\addAppGroup.html" />
+    <Content Include="app\components\app_groups\addAppGroup.js" />
+    <Content Include="app\components\app_groups\editAppGroup.html" />
+    <Content Include="app\components\app_groups\editAppGroupCtrl.js" />
+    <Content Include="app\components\app_roles\addAppRole.html" />
+    <Content Include="app\components\app_roles\addAppRole.js" />
+    <Content Include="app\components\app_roles\appRoleCtrl.js" />
+    <Content Include="app\components\app_roles\app_roles.html" />
+    <Content Include="app\components\app_roles\editAppRole.html" />
+    <Content Include="app\components\app_roles\editAppRoleCtrl.js" />
     <Content Include="app\components\courses\addCourse.html" />
     <Content Include="app\components\courses\addCourseCtrl.js" />
     <Content Include="app\components\courses\editCourse.html" />
@@ -4186,9 +4198,9 @@
   <ItemGroup>
     <Compile Include="Api\CourseCategoryController.cs" />
     <Compile Include="Api\CourseController.cs" />
-    <Compile Include="Api\GroupController.cs" />
+    <Compile Include="Api\AppGroupController.cs" />
     <Compile Include="Api\HomeController.cs" />
-    <Compile Include="Api\RoleController.cs" />
+    <Compile Include="Api\AppRoleController.cs" />
     <Compile Include="Api\TrainerController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />

@@ -17,6 +17,8 @@ namespace TEDU.Web.Mappings
             Mapper.CreateMap<Page, PageViewModel>();
             Mapper.CreateMap<CourseCategory, CourseCategoryViewModel>();
             Mapper.CreateMap<Course, CourseViewModel>();
+            Mapper.CreateMap<AppGroup, AppGroupViewModel>();
+            Mapper.CreateMap<AppRole, AppRoleViewModel>();
         }
     }
 }

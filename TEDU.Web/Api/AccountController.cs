@@ -27,8 +27,6 @@ namespace TEDU.Web.Api
             _signInManager = signInManager;
         }
 
-     
-
         [AllowAnonymous]
         [Route("login")]
         [HttpPost]
