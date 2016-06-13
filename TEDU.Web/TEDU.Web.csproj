@@ -4229,7 +4229,6 @@
     <Content Include="Scripts\plugins\angular-local-storage\LICENSE" />
     <Content Include="Scripts\plugins\angular-local-storage\package.json" />
     <Content Include="Scripts\plugins\angular-local-storage\README.md" />
-    <Content Include="Views\Ebook\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -4275,8 +4274,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\CVController.cs" />
-    <Compile Include="Controllers\EbookController.cs" />
+    <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Global.asax.cs">
@@ -4329,7 +4327,7 @@
     <Folder Include="app\components\course_videos\" />
     <Folder Include="Scripts\plugins\checklist-model\test\" />
     <Folder Include="UploadData\" />
-    <Folder Include="Views\CV\" />
+    <Folder Include="Views\Course\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
