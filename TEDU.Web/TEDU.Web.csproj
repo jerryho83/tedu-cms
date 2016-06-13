@@ -206,6 +206,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\components\accounts\account.module.js" />
     <Content Include="app\components\accounts\accountCtrl.js" />
     <Content Include="app\components\accounts\accounts.html" />
     <Content Include="app\components\accounts\addAccount.html" />
@@ -213,6 +214,7 @@
     <Content Include="app\components\accounts\editAccount.html" />
     <Content Include="app\components\accounts\editAccountCtrl.js" />
     <Content Include="app\components\app_groups\appGroupCtrl.js" />
+    <Content Include="app\components\app_groups\app_group.module.js" />
     <Content Include="app\components\app_groups\app_groups.html" />
     <Content Include="app\components\app_groups\addAppGroup.html" />
     <Content Include="app\components\app_groups\addAppGroup.js" />
@@ -221,22 +223,29 @@
     <Content Include="app\components\app_roles\addAppRole.html" />
     <Content Include="app\components\app_roles\addAppRole.js" />
     <Content Include="app\components\app_roles\appRoleCtrl.js" />
+    <Content Include="app\components\app_roles\app_role.module.js" />
     <Content Include="app\components\app_roles\app_roles.html" />
     <Content Include="app\components\app_roles\editAppRole.html" />
     <Content Include="app\components\app_roles\editAppRoleCtrl.js" />
+    <Content Include="app\components\categories\category.module.js" />
     <Content Include="app\components\courses\addCourse.html" />
     <Content Include="app\components\courses\addCourseCtrl.js" />
+    <Content Include="app\components\courses\course.module.js" />
     <Content Include="app\components\courses\editCourse.html" />
     <Content Include="app\components\courses\editCourseCtrl.js" />
     <Content Include="app\components\courses\listCourses.html" />
     <Content Include="app\components\courses\courseCtrl.js" />
     <Content Include="app\components\course_categories\addCourseCategory.html" />
     <Content Include="app\components\course_categories\addCourseCategoryCtrl.js" />
+    <Content Include="app\components\course_categories\courseCategory.module.js" />
     <Content Include="app\components\course_categories\courseCategoryCtrl.js" />
     <Content Include="app\components\course_categories\editCourseCategory.html" />
     <Content Include="app\components\course_categories\editCourseCategoryCtrl.js" />
     <Content Include="app\components\course_categories\listCourseCategories.html" />
     <Content Include="app\components\home\rootCtrl.js" />
+    <Content Include="app\components\pages\page.module.js" />
+    <Content Include="app\components\posts\post.module.js" />
+    <Content Include="app\components\trainers\trainer.module.js" />
     <Content Include="app\components\trainers\trainerCtrl.js" />
     <Content Include="app\components\trainers\editTrainer.html" />
     <Content Include="app\components\trainers\editTrainerCtrl.js" />
@@ -252,7 +261,6 @@
     <Content Include="app\components\pages\editPageCtrl.js" />
     <Content Include="app\components\pages\listPages.html" />
     <Content Include="app\components\pages\pageCtrl.js" />
-    <Content Include="app\components\roles\roleCtrl.js" />
     <Content Include="app\shared\services\authData.js" />
     <Content Include="app\shared\services\authenticationService.js" />
     <Content Include="app\shared\services\loginService.js" />

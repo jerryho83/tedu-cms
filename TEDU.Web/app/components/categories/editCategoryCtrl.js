@@ -1,5 +1,5 @@
 ﻿(function (app) {
-    'use strict'
+    'use strict';
 
     app.controller('editCategoryCtrl', editCategoryCtrl);
 
@@ -47,4 +47,4 @@
         loadListParents();
         loadDetail();
     }
-})(angular.module('TEDU'));
+})(angular.module('TEDU.categories'));

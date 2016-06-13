@@ -74,4 +74,4 @@
         $scope.search();
     }
 }
-)(angular.module('TEDU'));
+)(angular.module('TEDU.course_categories'));

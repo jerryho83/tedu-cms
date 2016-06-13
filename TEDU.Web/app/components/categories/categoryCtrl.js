@@ -69,4 +69,4 @@
 
     }
 }
-)(angular.module('TEDU'));
+)(angular.module('TEDU.categories'));
