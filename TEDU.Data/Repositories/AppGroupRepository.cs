@@ -9,6 +9,7 @@ namespace TEDU.Data.Repositories
     {
         IEnumerable<AppGroup> GetListGroupByUserId(string userId);
         IEnumerable<AppUser> GetListUserByGroupId(int groupId);
+        IEnumerable<AppUser> GetListUserByGroupName(string groupName);
     }
 
     public class AppGroupRepository : RepositoryBase<AppGroup>, IAppGroupRepository
@@ -35,6 +36,18 @@ namespace TEDU.Data.Repositories
                         join u in DbContext.Users
                         on ug.UserId equals u.Id
                         where ug.GroupId == groupId
+                        select u;
+            return query;
+        }
+
+        public IEnumerable<AppUser> GetListUserByGroupName(string groupName)
+        {
+            var query = from g in DbContext.AppGroups
+                        join ug in DbContext.AppUserGroups
+                        on g.Id equals ug.GroupId
+                        join u in DbContext.Users
+                        on ug.UserId equals u.Id
+                        where g.Name == groupName
                         select u;
             return query;
         }

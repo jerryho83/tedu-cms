@@ -1,10 +1,9 @@
-﻿
-using System;
-using AutoMapper;
+﻿using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using AutoMapper;
 using TEDU.Model.Models;
 using TEDU.Service;
 using TEDU.Web.Infrastructure.Core;
@@ -20,9 +19,9 @@ namespace TEDU.Web.Api
         private readonly ICourseCategoryService _courseCategoryService;
 
         public CourseCategoryController(ICourseCategoryService courseCategoryService, IErrorService errorService) :
-           base(errorService)
+            base(errorService)
         {
-            this._courseCategoryService = courseCategoryService;
+            _courseCategoryService = courseCategoryService;
         }
 
         [HttpDelete]
@@ -48,7 +47,7 @@ namespace TEDU.Web.Api
 
                         _courseCategoryService.SaveCategory();
 
-                        response = request.CreateResponse<bool>(HttpStatusCode.OK, true);
+                        response = request.CreateResponse(HttpStatusCode.OK, true);
                     }
                 }
 
@@ -58,28 +57,41 @@ namespace TEDU.Web.Api
 
         [HttpGet]
         [Route("getlistpaging")]
-        public HttpResponseMessage GetListPaging(HttpRequestMessage request, int page, int pageSize, string filter = null)
+        public HttpResponseMessage GetListPaging(HttpRequestMessage request, int page, int pageSize,
+            string filter = null)
         {
-
-
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
                 int totalRow;
-                IEnumerable<CourseCategory> model = _courseCategoryService.GetCategories(page, pageSize, out totalRow, filter);
+                var model = _courseCategoryService.GetCategories(page, pageSize, out totalRow, filter);
 
-                IEnumerable<CourseCategoryViewModel> modelVM = Mapper.Map<IEnumerable<CourseCategory>, IEnumerable<CourseCategoryViewModel>>(model);
+                var modelVm = Mapper.Map<IEnumerable<CourseCategory>, IEnumerable<CourseCategoryViewModel>>(model);
 
-                PaginationSet<CourseCategoryViewModel> pagedSet = new PaginationSet<CourseCategoryViewModel>()
+                var pagedSet = new PaginationSet<CourseCategoryViewModel>
                 {
                     Page = page,
                     TotalCount = totalRow,
-                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize),
-                    Items = modelVM
+                    TotalPages = (int) Math.Ceiling((decimal) totalRow/pageSize),
+                    Items = modelVm
                 };
 
                 response = request.CreateResponse(HttpStatusCode.OK, pagedSet);
 
+                return response;
+            });
+        }
+
+        [HttpGet]
+        [Route("getlistparent")]
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                var model = _courseCategoryService.GetCategories();
+                var modelVm = Mapper.Map<IEnumerable<CourseCategory>, IEnumerable<CourseCategoryViewModel>>(model);
+                response = request.CreateResponse(HttpStatusCode.OK, modelVm);
                 return response;
             });
         }
@@ -93,9 +105,9 @@ namespace TEDU.Web.Api
                 HttpResponseMessage response = null;
                 var category = _courseCategoryService.GetCategory(id);
 
-                var categoryVM = Mapper.Map<CourseCategory, CourseCategoryViewModel>(category);
+                var categoryVm = Mapper.Map<CourseCategory, CourseCategoryViewModel>(category);
 
-                response = request.CreateResponse<CourseCategoryViewModel>(HttpStatusCode.OK, categoryVM);
+                response = request.CreateResponse(HttpStatusCode.OK, categoryVm);
 
                 return response;
             });
@@ -122,7 +134,7 @@ namespace TEDU.Web.Api
                     {
                         categoryDb.UpdateCourseCategory(category);
                         _courseCategoryService.SaveCategory();
-                        response = request.CreateResponse<CourseCategoryViewModel>(HttpStatusCode.OK, category);
+                        response = request.CreateResponse(HttpStatusCode.OK, category);
                     }
                 }
 
@@ -144,7 +156,7 @@ namespace TEDU.Web.Api
                 }
                 else
                 {
-                    CourseCategory newCategory = new CourseCategory();
+                    var newCategory = new CourseCategory();
 
                     newCategory.UpdateCourseCategory(category);
 
@@ -154,7 +166,7 @@ namespace TEDU.Web.Api
 
                     // Update view model
                     category = Mapper.Map<CourseCategory, CourseCategoryViewModel>(newCategory);
-                    response = request.CreateResponse<CourseCategoryViewModel>(HttpStatusCode.Created, category);
+                    response = request.CreateResponse(HttpStatusCode.Created, category);
                 }
 
                 return response;

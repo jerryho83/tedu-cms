@@ -16,7 +16,7 @@
           <h3 class="box-title">{{course.Name}}</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
-        <form class="form-horizontal" role="form" novalidate name="addCourseForm" ng-submit="AddCourse()">
+        <form class="form-horizontal" role="form" novalidate name="addCourseForm" ng-submit="addCourse()">
           <div class="box-body">
             <div class="col-md-6">
               <div class="form-group" ng-class="{'has-error':addCourseForm.name.$invalid && !addCourseForm.name.$pristine}">
@@ -129,7 +129,7 @@
               <div class="form-group" ng-class="{'has-error':addCourseForm.TrainerId.$invalid && !addCourseForm.TrainerId.$pristine}">
                 <label class="col-sm-2 control-label">Giảng viên</label>
                 <div class="col-sm-10">
-                  <select type="text" required class="form-control" name="TrainerId" ng-model="course.TrainerId" ng-options="option.ID as option.Name for option in trainers">
+                  <select type="text" required class="form-control" name="TrainerId" ng-model="course.TrainerId" ng-options="option.Id as option.FullName for option in trainers">
                     <option value="">-- Chọn giảng viên --</option>
                   </select>
 
