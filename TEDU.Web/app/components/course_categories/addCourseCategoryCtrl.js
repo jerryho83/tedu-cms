@@ -15,7 +15,7 @@
 
         $scope.categories = [];
 
-        function LoadListParents() {
+        function loadListParents() {
             apiService.get('/api/coursecategory/getlistparent', null, function (result) {
                 $scope.categories = result.data;
             });
@@ -40,6 +40,6 @@
             notificationService.displayErrorValidation(response);
         }
 
-        LoadListParents();
+        loadListParents();
     }
-})(angular.module('TEDU'));
+})(angular.module('TEDU.course_categories'));

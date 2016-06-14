@@ -1,14 +1,13 @@
-﻿
-using AutoMapper;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using AutoMapper;
+using Microsoft.AspNet.Identity.Owin;
+using TEDU.Common.Constants;
 using TEDU.Common.Exceptions;
 using TEDU.Model.Models;
 using TEDU.Service;
@@ -23,10 +22,11 @@ namespace TEDU.Web.Api
     [Authorize]
     public class AccountController : ApiControllerBase
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
-        private IAppGroupService _appGroupService;
-        private IAppRoleService _appRoleService;
+        private readonly IAppGroupService _appGroupService;
+        private readonly IAppRoleService _appRoleService;
+        private readonly ApplicationSignInManager _signInManager;
+        private readonly ApplicationUserManager _userManager;
+
         public AccountController(
             ApplicationUserManager userManager,
             ApplicationSignInManager signInManager,
@@ -43,24 +43,42 @@ namespace TEDU.Web.Api
 
         [Route("getlistpaging")]
         [HttpGet]
-        public HttpResponseMessage GetListPaging(HttpRequestMessage request, int page, int pageSize, string filter = null)
+        public HttpResponseMessage GetListPaging(HttpRequestMessage request, int page, int pageSize,
+            string filter = null)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                int totalRow = 0;
+                var totalRow = 0;
                 var model = _userManager.Users;
-                IEnumerable<AppUserViewModel> modelVm = Mapper.Map<IEnumerable<AppUser>, IEnumerable<AppUserViewModel>>(model);
+                var modelVm = Mapper.Map<IEnumerable<AppUser>, IEnumerable<AppUserViewModel>>(model);
 
-                PaginationSet<AppUserViewModel> pagedSet = new PaginationSet<AppUserViewModel>()
+                var pagedSet = new PaginationSet<AppUserViewModel>
                 {
                     Page = page,
                     TotalCount = totalRow,
-                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize),
+                    TotalPages = (int) Math.Ceiling((decimal) totalRow/pageSize),
                     Items = modelVm
                 };
 
                 response = request.CreateResponse(HttpStatusCode.OK, pagedSet);
+
+                return response;
+            });
+        }
+
+        [Route("getlisttrainer")]
+        [HttpGet]
+        public HttpResponseMessage GetListTrainer(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                var model = _appGroupService.GetListUserByGroupName(CommonConstants.TRAINER_GROUP_NAME);
+
+                var modelVm = Mapper.Map<IEnumerable<AppUser>, IEnumerable<AppUserViewModel>>(model);
+
+                response = request.CreateResponse(HttpStatusCode.OK, modelVm);
 
                 return response;
             });
@@ -79,20 +97,16 @@ namespace TEDU.Web.Api
             {
                 return request.CreateErrorResponse(HttpStatusCode.NoContent, "Không có dữ liệu");
             }
-            else
-            {
-                var appUserViewModel = Mapper.Map<AppUser, AppUserViewModel>(user.Result);
-                var groups = _appGroupService.GetListGroupByUserId(appUserViewModel.Id);
+            var appUserViewModel = Mapper.Map<AppUser, AppUserViewModel>(user.Result);
+            var groups = _appGroupService.GetListGroupByUserId(appUserViewModel.Id);
 
-                appUserViewModel.AppGroups = Mapper.Map<IEnumerable<AppGroup>, IEnumerable<AppGroupViewModel>>(groups);
-                return request.CreateResponse(HttpStatusCode.OK, appUserViewModel);
-            }
-           
+            appUserViewModel.AppGroups = Mapper.Map<IEnumerable<AppGroup>, IEnumerable<AppGroupViewModel>>(groups);
+            return request.CreateResponse(HttpStatusCode.OK, appUserViewModel);
         }
 
         [HttpPost]
         [Route("add")]
-        [Authorize(Roles = "Admin, AddUser")]
+        [Authorize(Roles = "AddUser")]
         public async Task<HttpResponseMessage> Create(HttpRequestMessage request, AppUserViewModel appUserViewModel)
         {
             if (ModelState.IsValid)
@@ -106,10 +120,10 @@ namespace TEDU.Web.Api
                     if (result.Succeeded)
                     {
                         //add account to group
-                        List<AppUserGroup> userGroups = new List<AppUserGroup>();
-                        foreach(var group in appUserViewModel.AppGroups)
+                        var userGroups = new List<AppUserGroup>();
+                        foreach (var group in appUserViewModel.AppGroups)
                         {
-                            userGroups.Add(new AppUserGroup()
+                            userGroups.Add(new AppUserGroup
                             {
                                 UserId = newAppUser.Id,
                                 GroupId = group.Id
@@ -117,7 +131,7 @@ namespace TEDU.Web.Api
 
                             //add role to user
                             var listRole = _appRoleService.GetListRoleByGroupId(group.Id);
-                            foreach(var role in listRole)
+                            foreach (var role in listRole)
                             {
                                 await _userManager.RemoveFromRoleAsync(newAppUser.Id, role.Name);
                                 await _userManager.AddToRoleAsync(newAppUser.Id, role.Name);
@@ -126,13 +140,9 @@ namespace TEDU.Web.Api
                         _appGroupService.AddUserToGroups(userGroups, newAppUser.Id);
                         _appGroupService.Save();
 
-                       
-
                         return request.CreateResponse(HttpStatusCode.OK, appUserViewModel);
-
                     }
-                    else
-                        return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
                 }
                 catch (NameDuplicatedException dex)
                 {
@@ -143,15 +153,12 @@ namespace TEDU.Web.Api
                     return request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
                 }
             }
-            else
-            {
-                return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
+            return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
         }
 
         [HttpPut]
         [Route("update")]
-        [Authorize(Roles = "Admin, EditUser")]
+        [Authorize(Roles = "EditUser")]
         public async Task<HttpResponseMessage> Update(HttpRequestMessage request, AppUserViewModel appUserViewModel)
         {
             if (ModelState.IsValid)
@@ -163,11 +170,10 @@ namespace TEDU.Web.Api
                     var result = await _userManager.UpdateAsync(appUser);
                     if (result.Succeeded)
                     {
-
-                        List<AppUserGroup> userGroups = new List<AppUserGroup>();
+                        var userGroups = new List<AppUserGroup>();
                         foreach (var group in appUserViewModel.AppGroups)
                         {
-                            userGroups.Add(new AppUserGroup()
+                            userGroups.Add(new AppUserGroup
                             {
                                 UserId = appUser.Id,
                                 GroupId = group.Id
@@ -176,33 +182,27 @@ namespace TEDU.Web.Api
                         _appGroupService.AddUserToGroups(userGroups, appUser.Id);
                         _appGroupService.Save();
                         return request.CreateResponse(HttpStatusCode.OK, appUserViewModel);
-
                     }
-                    else
-                        return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
+                    return request.CreateErrorResponse(HttpStatusCode.BadRequest, string.Join(",", result.Errors));
                 }
                 catch (NameDuplicatedException dex)
                 {
                     return request.CreateErrorResponse(HttpStatusCode.BadRequest, dex.Message);
                 }
             }
-            else
-            {
-                return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
+            return request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
         }
 
         [HttpDelete]
         [Route("delete")]
-        [Authorize(Roles ="Admin, DeleteUser")]
+        [Authorize(Roles = "DeleteUser")]
         public async Task<HttpResponseMessage> Delete(HttpRequestMessage request, string id)
         {
             var appUser = await _userManager.FindByIdAsync(id);
             var result = await _userManager.DeleteAsync(appUser);
             if (result.Succeeded)
                 return request.CreateResponse(HttpStatusCode.OK, id);
-            else
-                return request.CreateErrorResponse(HttpStatusCode.OK, string.Join(",", result.Errors));
+            return request.CreateErrorResponse(HttpStatusCode.OK, string.Join(",", result.Errors));
         }
 
         [AllowAnonymous]
@@ -212,21 +212,21 @@ namespace TEDU.Web.Api
         {
             if (!ModelState.IsValid)
             {
-                return request.CreateResponse(HttpStatusCode.OK, new { success = false });
+                return request.CreateResponse(HttpStatusCode.OK, new {success = false});
             }
 
             var result = await _signInManager.PasswordSignInAsync(user.UserName, user.Password, user.RememberMe, false);
             switch (result)
             {
                 case SignInStatus.Success:
-                    return request.CreateResponse(HttpStatusCode.OK, new { success = true });
+                    return request.CreateResponse(HttpStatusCode.OK, new {success = true});
 
                 case SignInStatus.LockedOut:
-                    return request.CreateResponse(HttpStatusCode.OK, new { success = false });
+                    return request.CreateResponse(HttpStatusCode.OK, new {success = false});
 
                 case SignInStatus.Failure:
                 default:
-                    return request.CreateResponse(HttpStatusCode.OK, new { success = false });
+                    return request.CreateResponse(HttpStatusCode.OK, new {success = false});
             }
         }
 
@@ -235,9 +235,9 @@ namespace TEDU.Web.Api
         [Route("logout")]
         public HttpResponseMessage LogOut(HttpRequestMessage request)
         {
-            IAuthenticationManager authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+            var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
             authenticationManager.SignOut();
-            return request.CreateResponse(HttpStatusCode.OK, new { success = true });
+            return request.CreateResponse(HttpStatusCode.OK, new {success = true});
         }
     }
 }

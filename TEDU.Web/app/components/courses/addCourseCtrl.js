@@ -20,12 +20,16 @@
         $scope.categories = [];
 
         function loadListParents() {
-            apiService.get('/api/coursecategory/getlistparent', null, function (result) {
-                $scope.categories = commonService.getTree(result.data, 'ID', 'ParentID');
+            apiService.get('/api/courseCategory/getlistparent', null, function (result) {
+                $scope.categories = result.data;
             });
         }
-
-        $scope.Addcourse = addcourse;
+        function loadLisTrainer() {
+            apiService.get('/api/account/getlisttrainer', null, function (result) {
+                $scope.trainers = result.data;
+            });
+        }
+        $scope.addCourse = addcourse;
 
         function createAlias() {
             $scope.course.Alias = commonService.makeSeoTitle($scope.course.Name);
@@ -44,7 +48,7 @@
             apiService.course('/api/course/add', $scope.course, addSuccessed, addFailed);
         }
 
-        function addSuccessed(response) {
+        function addSuccessed() {
             notificationService.displaySuccess($scope.course.Name + ' đã được thêm mới.');
             $location.url('courses');
         }
@@ -53,5 +57,6 @@
         }
 
         loadListParents();
+        loadLisTrainer();
     }
-})(angular.module('TEDU'));
+})(angular.module('TEDU.courses'));

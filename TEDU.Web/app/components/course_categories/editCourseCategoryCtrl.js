@@ -1,5 +1,5 @@
 ﻿(function (app) {
-    'use strict'
+    'use strict';
 
     app.controller('editCourseCategoryCtrl', editCourseCategoryCtrl);
 
@@ -47,4 +47,4 @@
         loadListParents();
         loadDetail();
     }
-})(angular.module('TEDU'));
+})(angular.module('TEDU.course_categories'));

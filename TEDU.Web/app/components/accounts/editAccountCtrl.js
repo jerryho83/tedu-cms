@@ -47,4 +47,4 @@
         loadGroups();
         loadDetail();
     }
-})(angular.module('TEDU'));
+})(angular.module('TEDU.accounts'));

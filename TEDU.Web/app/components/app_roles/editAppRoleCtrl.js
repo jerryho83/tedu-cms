@@ -35,4 +35,4 @@
         }
         loadDetail();
     }
-})(angular.module('TEDU'));
+})(angular.module('TEDU.app_roles'));
