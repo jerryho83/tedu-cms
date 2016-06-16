@@ -6,72 +6,40 @@ namespace TEDU.Web.App_Start
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-               "~/Scripts/plugins/jquery/dist/jquery.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/plugins").Include(
-                        "~/Scripts/plugins/toastr/toastr.js",
-                        "~/Scripts/plugins/bootbox/bootbox.min.js",
-                        "~/Scripts/plugins/ckeditor/ckeditor.js",
-                        "~/Scripts/vendors/ckfinder/ckfinder.js",
-                        "~/scripts/main.js",
-                        "~/Scripts/plugins/angular/angular.js",
-                        "~/Scripts/plugins/angular-route/angular-route.js",
-                         "~/Scripts/plugins/angular-base64/angular-base64.js",
-                        "~/Scripts/plugins/angular-ui-router/release/angular-ui-router.js",
-                        "~/Scripts/plugins/angular-cookies/angular-cookies.js",
-                        "~/Scripts/plugins/angular-resource/angular-resource.js",
-                        "~/Scripts/plugins/angular-validator/dist/angular-validator.js",
-                        "~/Scripts/plugins/bootbox/bootbox.js",
-                        "~/Scripts/plugins/ngBootbox/ngBootbox.js",
-                        "~/Scripts/plugins/angular-loading-bar/build/loading-bar.js",
-                        "~/Scripts/plugins/ng-ckeditor/ng-ckeditor.js",
-                        "~/Scripts/plugins/jquery-treegrid/js/jquery.treegrid.js",
-                        "~/Scripts/vendors/ng-nested-combobox/dist/ng-nested-combobox.js"
+            bundles.Add(new ScriptBundle("~/client/bundles/js").Include(
+                        "~/Content/client/js/jquery-1.10.2.min.js",
+                        "~/Content/client/js/html5.js",
+                        "~/Content/client/js/bootstrap.min.js",
+                        "~/Content/client/js/jquery.flexslider.js",
+                        "~/Content/client/js/jquery.flexslider.init.js",
+                        "~/Content/client/js/jquery.bxslider.js",
+                        "~/Content/client/js/jquery.bxslider.init.js",
+                        "~/Content/client/js/jquery.rating.js",
+                        "~/Content/client/js/jquery.idTabs.min.js",
+                        "~/Content/client/js/jquery.simplyscroll.js",
+                        "~/Content/client/js/fluidvids.min.js",
+                        "~/Content/client/js/jPages.js",
+                        "~/Content/client/js/jquery.sidr.min.js",
+                        "~/Content/client/js/jquery.touchSwipe.min.js",
+                        "~/Content/client/js/custom.js"
                         ));
-            bundles.Add(new ScriptBundle("~/bundles/spa").Include(
-                       "~/app/modules/common.core.js",
-                       "~/app/modules/common.ui.js",
-                       "~/app/app.js",
-                       "~/app/services/notificationService.js",
-                       "~/app/services/apiService.js",
-                       "~/app/services/commonService.js",
-                        "~/app/services/membershipService.js",
-                       "~/app/layout/customPager.directive.js",
-                        "~/app/layout/topBar.directive.js",
-                       "~/app/filters/boolStatus.filter.js",
-                        "~/app/home/rootCtrl.js",
-                       "~/app/home/homeCtrl.js",
-                       "~/app/categories/categoryCtrl.js",
-                       "~/app/categories/addCategoryCtrl.js",
-                       "~/app/categories/editCategoryCtrl.js",
-                       "~/app/posts/postCtrl.js",
-                       "~/app/posts/addPostCtrl.js",
-                       "~/app/posts/editPostCtrl.js",
-                        "~/app/pages/pageCtrl.js",
-                       "~/app/pages/addPageCtrl.js",
-                       "~/app/pages/editPageCtrl.js",
-                       "~/app/login/loginCtrl.js"
-                       ));
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/plugins/modernizr/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/scripts/plugins/bootstrap/dist/js/bootstrap.js"));
+            bundles.Add(new StyleBundle("~/client/bundles/css")
+                .Include("~/Content/client/css/swipemenu.css", new CssRewriteUrlTransform())
+                .Include("~/Content/client/css/flexslider.css", new CssRewriteUrlTransform())
+                .Include("~/Content/client/css/bootstrap.css", new CssRewriteUrlTransform())
+                .Include("~/Content/client/css/bootstrap-responsive.css", new CssRewriteUrlTransform())
+                .Include("~/Content/client/css/jquery.simplyscroll.css", new CssRewriteUrlTransform())
+                .Include("~/Content/client/css/jPages.css", new CssRewriteUrlTransform())
+                .Include("~/Content/client/css/jquery.rating.css", new CssRewriteUrlTransform())
+                .Include("~/Content/client/css/ie.css", new CssRewriteUrlTransform())
+                .Include("~/Content/client/css/font-awesome.min.css", new CssRewriteUrlTransform())
+                .Include("~/Content/client/css/custom.css", new CssRewriteUrlTransform())
+                .Include("~/Content/client/css/style.css", new CssRewriteUrlTransform())
+                );
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Scripts/plugins/bootstrap/dist/css/bootstrap.css",
-                      "~/Content/admin/css/AdminLTE.min.css",
-                      "~/Content/admin/css/skins/_all-skins.min.css",
-                      "~/Scripts/plugins/toastr/toastr.css",
-                      "~/Scripts/plugins/angular-loading-bar/build/loading-bar.css",
-                      "~/Scripts/plugins/jquery-treegrid/css/jquery.treegrid.css",
-                      "~/Scripts/vendors/ng-nested-combobox/dist/nestedCombobox.css"
-                       ));
-
-            BundleTable.EnableOptimizations = false;
+            BundleTable.EnableOptimizations = true;
             //BundleTable.EnableOptimizations = true;
         }
     }
