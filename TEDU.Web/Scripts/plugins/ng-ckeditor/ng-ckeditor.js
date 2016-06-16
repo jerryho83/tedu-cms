@@ -60,7 +60,7 @@ app.directive('ckeditor', ['$timeout', '$q', function ($timeout, $q) {
                         { name: 'tools', items: [ 'SpellChecker', 'Maximize' ] },
                         '/',
                         { name: 'styles', items: [ 'Format', 'FontSize', 'TextColor', 'PasteText', 'PasteFromWord', 'RemoveFormat' ] },
-                        { name: 'insert', items: [ 'Image', 'Table', 'SpecialChar' ] },
+                        { name: 'insert', items: ['Image', 'Table', 'SpecialChar', 'CodeSnippet'] },
                         { name: 'forms', items: [ 'Outdent', 'Indent' ] },
                         { name: 'clipboard', items: [ 'Undo', 'Redo' ] },
                         { name: 'document', items: [ 'PageBreak', 'Source' ] }

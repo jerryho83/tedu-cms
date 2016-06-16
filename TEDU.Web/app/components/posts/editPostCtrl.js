@@ -13,7 +13,9 @@
         // setup editor options
         $scope.editorOptions = {
             language: 'vi',
-            height: '200px'
+            height: '200px',
+            extraPlugins: 'codesnippet',
+            codeSnippet_theme: 'monokai_sublime'
         };
 
         function chooseImage() {
