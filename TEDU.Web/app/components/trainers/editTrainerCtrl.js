@@ -6,31 +6,37 @@
     editTrainerCtrl.$inject = ['$scope', 'apiService', '$stateParams', 'notificationService', '$location', 'commonService'];
 
     function editTrainerCtrl($scope, apiService, $stateParams, notificationService, $location, commonService) {
-        $scope.category = {};
-        $scope.CreateAlias = createAlias;
-        $scope.categories = [];
+        $scope.trainer = {};
+        $scope.chooseImage = chooseImage;
 
+        function chooseImage() {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.post.Image = fileUrl;
+                });
+
+            };
+            finder.popup();
+        }
         function loadDetail() {
             apiService.get('/api/trainer/GetDetails/' + $stateParams.id, null,
             function (result) {
-                $scope.category = result.data;
+                $scope.trainer = result.data;
             },
             function (result) {
                 notificationService.displayError(result.data);
             });
         }
 
-        $scope.UpdateCategory = updateCategory;
+        $scope.updateTrainer = updateTrainer;
 
-        function createAlias() {
-            $scope.category.Alias = commonService.makeSeoTitle($scope.category.Name);
-        }
-        function updateCategory() {
-            apiService.put('/api/trainer/update', $scope.category, addSuccessed, addFailed);
+        function updateTrainer() {
+            apiService.put('/api/trainer/update', $scope.trainer, addSuccessed, addFailed);
         }
 
         function addSuccessed() {
-            notificationService.displaySuccess($scope.category.Name + ' đã được cập nhật.');
+            notificationService.displaySuccess($scope.trainer.Name + ' đã được cập nhật.');
 
             $location.url('trainers');
         }
@@ -41,4 +47,4 @@
 
         loadDetail();
     }
-})(angular.module('TEDU'));
+})(angular.module('TEDU.trainers'));

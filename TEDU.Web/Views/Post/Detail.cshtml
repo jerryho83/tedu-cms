@@ -7,8 +7,13 @@
 }
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4e2ee2522e0da3e0"></script>
-
+<ol class="breadcrumb">
+  <li><a href="/"><i class="fa fa-home"></i> Trang chủ</a></li>
+  <li><a href="/@(Model.Category.Alias).html">@Model.Category.Name</a></li>
+  <li class="active">@Model.Name</li>
+</ol>
 <article class="post">
+
   <h2 class="entry-title">
     <span class="the_title">@Model.Name</span>
     <span class="entry-cat"><a href="/@(Model.Category.Alias+"-"+@Model.Category.ID).html" title="@Model.Category.Name" rel="category tag">@Model.Category.Name</a></span>

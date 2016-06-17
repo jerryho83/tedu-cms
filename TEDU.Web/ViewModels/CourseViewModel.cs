@@ -45,8 +45,7 @@ namespace TEDU.Web.ViewModels
 
         public int? ViewCount { set; get; }
 
-        [MaxLength(128)]
-        public string TrainerId { set; get; }
+        public int TrainerId { set; get; }
 
         public DateTime CreatedDate { set; get; }
 

@@ -147,5 +147,15 @@ namespace TEDU.Web.Infrastructure.Extensions
             appUser.UserName = appUserViewModel.UserName;
             appUser.PhoneNumber = appUserViewModel.PhoneNumber;
         }
+
+        public static void UpdateTrainer(this Trainer trainer, TrainerViewModel appUserViewModel, string action = "add")
+        {
+
+            trainer.ID = appUserViewModel.ID;
+            trainer.Name = appUserViewModel.Name;
+            trainer.Portfolio = appUserViewModel.Portfolio;
+            trainer.Image = appUserViewModel.Image;
+            trainer.JobTitle = appUserViewModel.JobTitle;
+        }
     }
 }

@@ -5,23 +5,23 @@
     function configRoute($stateProvider) {
         $stateProvider
             //category
-            .state('course_categories', {
-                url: '/course_categories',
+            .state('trainers', {
+                url: '/trainers',
                 parent: 'base',
-                templateUrl: "/app/components/course_categories/listCourseCategories.html",
-                controller: "courseCategoryCtrl"
+                templateUrl: "/app/components/trainers/listTrainers.html",
+                controller: "trainerCtrl"
             })
-            .state('edit_course_category', {
-                url: '/edit_course_category/:id',
+            .state('edit_trainer', {
+                url: '/edit_trainer/:id',
                 parent: 'base',
-                templateUrl: "/app/components/course_categories/editCourseCategory.html",
-                controller: "editCourseCategoryCtrl"
+                templateUrl: "/app/components/trainers/editTrainer.html",
+                controller: "editTrainerCtrl"
             })
-            .state('add_course_category', {
-                url: '/add_course_category',
+            .state('add_trainer', {
+                url: '/add_trainer',
                 parent: 'base',
-                templateUrl: "/app/components/course_categories/addCourseCategory.html",
-                controller: "addCourseCategoryCtrl"
+                templateUrl: "/app/components/trainers/addTrainer.html",
+                controller: "addTrainerCtrl"
             });
     }
 

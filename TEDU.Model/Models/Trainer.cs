@@ -8,9 +8,8 @@ namespace TEDU.Model.Models
     public class Trainer
     {
         [Key]
-        [Column(TypeName = "nvarchar")]
-        [StringLength(128)]
-        public string ID { set; get; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { set; get; }
 
         [StringLength(128)]
         public string Name { set; get; }

@@ -156,6 +156,10 @@
     <Compile Include="Migrations\201606100033208_repair5.Designer.cs">
       <DependentUpon>201606100033208_repair5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606162354223_changetrainer.cs" />
+    <Compile Include="Migrations\201606162354223_changetrainer.Designer.cs">
+      <DependentUpon>201606162354223_changetrainer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AppGroupRepository.cs" />
@@ -265,6 +269,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606100033208_repair5.resx">
       <DependentUpon>201606100033208_repair5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606162354223_changetrainer.resx">
+      <DependentUpon>201606162354223_changetrainer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

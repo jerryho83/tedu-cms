@@ -35,6 +35,7 @@
 /// <reference path="app/components/posts/editpostctrl.js" />
 /// <reference path="app/components/posts/post.module.js" />
 /// <reference path="app/components/posts/postctrl.js" />
+/// <reference path="app/components/trainers/addtrainerctrl.js" />
 /// <reference path="app/components/trainers/edittrainerctrl.js" />
 /// <reference path="app/components/trainers/trainer.module.js" />
 /// <reference path="app/components/trainers/trainerctrl.js" />

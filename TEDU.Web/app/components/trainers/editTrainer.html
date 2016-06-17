@@ -1,11 +1,11 @@
 ﻿<section class="content-header">
   <h1>
-    Cập nhật chuyên mục
+    Thêm mới giảng viên
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-    <li><a ui-sref="categories">Chuyên mục tin tức</a></li>
-    <li class="active"><a href="#">Cập nhật chuyên mục</a></li>
+    <li><a ui-sref="trainers">Danh mục giảng viên</a></li>
+    <li class="active"><a href="#">Cập nhật</a></li>
   </ol>
 </section>
 <section class="content">
@@ -13,62 +13,46 @@
     <div class="col-md-12">
       <div class="box box-info">
         <div class="box-header with-border">
-          <h3 class="box-title">{{category.Name}}</h3>
+          <h3 class="box-title">{{trainer.Name}}</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
-        <form class="form-horizontal" role="form" novalidate name="updateCategoryForm" ng-submit="UpdateCategory()">
+        <form class="form-horizontal" role="form" novalidate name="updateTrainerForm" ng-submit="updateTrainer()">
           <div class="box-body">
             <div class="col-md-8">
-              <div class="form-group" ng-class="{ 'has-error' : updateCategoryForm.name.$invalid && !updateCategoryForm.name.$pristine }">
-                <label class="col-sm-2 control-label">Tên chuyên mục</label>
+              <div class="form-group" ng-class="{ 'has-error' : updateTrainerForm.name.$invalid && !updateTrainerForm.name.$pristine }">
+                <label class="col-sm-2 control-label">Tên</label>
                 <div class="col-sm-10">
-                  <input type="text" ng-change="CreateAlias()" class="form-control" validate-on="blur"
-                         required reqired-message="Tên danh mục bắt buộc." ng-model="category.Name">
+                  <input type="text" name="name" class="form-control"
+                         required reqired-message="Tên danh mục bắt buộc." ng-model="trainer.Name">
+                </div>
+              </div>
+              <div class="form-group" ng-class="{ 'has-error' : updateTrainerForm.jobtitle.$invalid && !updateTrainerForm.jobtitle.$pristine }">
+                <label class="col-sm-2 control-label">Chức vụ</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" required reqired-message="Chức vụ bắt buộc." name="jobtitle" ng-model="trainer.JobTitle">
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">Alias</label>
+                <label class="col-sm-2 control-label">Lý lịch</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" ng-model="category.Alias">
+                  <textarea class="form-control" ng-model="trainer.Portfolio"></textarea>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">Chuyên mục cha</label>
+                <label class="col-sm-2 control-label">Hình ảnh</label>
                 <div class="col-sm-10">
-                  <select type="text" class="form-control" name="categoryID" ng-init="category.ParentID" ng-model="category.ParentID" ng-options="option.ID as option.Name for option in categories">
-                    <option value="">-- Chọn chuyên mục cha --</option>
-                  </select>
-                  <input type="hidden" name="ParentID" ng-model="category.ParentID" />
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Meta keyword</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" ng-model="category.MetaKeyword">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Meta description</label>
-                <div class="col-sm-10">
-                  <textarea type="text" class="form-control" ng-model="category.MetaDescription"></textarea>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" ng-model="category.Status" ng-checked="category.Status"> Kích hoạt
-                    </label>
-                    <label>
-                      <input type="checkbox" ng-model="category.ShowHome" ng-checked="category.ShowHome"> Show trang chủ
-                    </label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" ng-model="trainer.Image" />
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" ng-click="chooseImage()">Chọn ảnh</button>
+                    </span>
                   </div>
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                  <a ui-sref="categories" class="btn btn-default">Hủy bỏ</a>
-                  <input type="submit" class="btn btn-primary" ng-disabled="updateCategoryForm.$invalid" value="Lưu lại" />
+                  <a ui-sref="trainers" class="btn btn-default">Hủy bỏ</a>
+                  <input type="submit" ng-disabled="updateTrainerForm.$invalid" class="btn btn-primary" value="Lưu lại" />
                 </div>
               </div>
             </div>

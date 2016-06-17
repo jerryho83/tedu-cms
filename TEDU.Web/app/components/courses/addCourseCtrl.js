@@ -25,7 +25,7 @@
             });
         }
         function loadLisTrainer() {
-            apiService.get('/api/account/getlisttrainer', null, function (result) {
+            apiService.get('/api/trainer/getlistparent', null, function (result) {
                 $scope.trainers = result.data;
             });
         }

@@ -4,7 +4,7 @@
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-    <li class="active"><a ui-sref="categories">Danh mục giảng viên</a></li>
+    <li class="active"><a ui-sref="trainers">Danh mục giảng viên</a></li>
   </ol>
 </section>
 <!-- Main content -->
@@ -18,7 +18,7 @@
               <input type="text" id="txtSearch" ng-model="filterExpression" class="form-control" placeholder="Nhập từ khóa..." />
             </div>
             <div class="col-md-6">
-              <button class="btn btn-success pull-right" ui-sref="add_user"><i class="fa fa-plus"></i> Thêm mới</button>
+              <button class="btn btn-success pull-right" ui-sref="add_trainer"><i class="fa fa-plus"></i> Thêm mới</button>
             </div>
           </div>
         </div><!-- /.box-header -->
@@ -27,14 +27,13 @@
             <thead>
               <tr>
                 <td>Họ và tên</td>
-                <td>Trạng thái</td>
+                <td>Hình ảnh</td>
                 <td>#</td>
               </tr>
             </thead>
             <tr ng-repeat="item in data">
               <td>{{item.Name}}</td>
-              <td><span ng-class="{'badge bg-red':item.Status==false,'badge bg-green':item.Status==true}">{{item.Status | boolStatus}}</span></td>
-
+              <td><img src="{{item.Name}}" width="50" /></td>
               <td>
                 <a ui-sref="edit_trainer({id:item.ID})" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
                 <button class="btn btn-sm btn-danger" ng-click="deleteItem(item.ID)"><i class="fa fa-trash-o"></i></button>

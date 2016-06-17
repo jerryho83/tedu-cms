@@ -1,4 +1,5 @@
 ﻿using System.Web.Optimization;
+using TEDU.Common.Helper;
 
 namespace TEDU.Web.App_Start
 {
@@ -39,7 +40,7 @@ namespace TEDU.Web.App_Start
                 .Include("~/Content/client/css/style.css", new CssRewriteUrlTransform())
                 );
 
-            BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = bool.Parse(ConfigHelper.GetConfigByKey("EnabledBundles"));
             //BundleTable.EnableOptimizations = true;
         }
     }

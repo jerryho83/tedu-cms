@@ -26,8 +26,8 @@ namespace TEDU.Data.Migrations
 
         protected override void Seed(TEDU.Data.TeduDbContext context)
         {
-            AddGroups(context);
-            AddRoles(context);
+            //AddGroups(context);
+            //AddRoles(context);
 
         }
 

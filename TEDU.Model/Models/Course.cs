@@ -59,9 +59,7 @@ namespace TEDU.Model.Models
         [DefaultValue(0)]
         public int? ViewCount { set; get; }
 
-        [Column(TypeName = "nvarchar")]
-        [StringLength(128)]
-        public string TrainerId { set; get; }
+        public int TrainerId { set; get; }
 
         public DateTime CreatedDate { set; get; }
 

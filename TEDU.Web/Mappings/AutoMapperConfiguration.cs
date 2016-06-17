@@ -21,6 +21,7 @@ namespace TEDU.Web.Mappings
             Mapper.CreateMap<AppRole, AppRoleViewModel>();
             Mapper.CreateMap<AppUser, AppUserViewModel>();
             Mapper.CreateMap<AppUserGroup, AppUserGroupViewModel>();
+            Mapper.CreateMap<Trainer, TrainerViewModel>();
         }
     }
 }

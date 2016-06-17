@@ -9,6 +9,7 @@
             'TEDU.pages',
             'TEDU.course_categories',
             'TEDU.courses',
+            'TEDU.trainers',
             'common.core', 
             'common.ui'])
     .config(configRoute)

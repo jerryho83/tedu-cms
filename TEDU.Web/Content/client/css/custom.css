@@ -3,14 +3,50 @@
     top: 0;
     right: 17%;
 }
-.topbar ul {
-    list-style: none;
-}
-.topbar ul li {
-    display: inline;
-    margin-right: 10px;
-    margin-top: 5px;
-}
+
+    .topbar ul {
+        list-style: none;
+    }
+
+        .topbar ul li {
+            display: inline;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
 .login-form {
     width: 60%;
+}
+
+.breadcrumb-wrap .breadcrumb {
+    background-color: #fff;
+    border-radius: 0;
+    font-size: 0;
+    margin: 0;
+    padding: 10px 0;
+    overflow: hidden;
+}
+
+    .breadcrumb-wrap .breadcrumb li {
+        font-size: 11px;
+        display: block;
+        float: left;
+        white-space: nowrap;
+    }
+
+    .breadcrumb-wrap .breadcrumb a {
+        color: #000;
+        white-space: nowrap;
+    }
+
+    .breadcrumb-wrap .breadcrumb > .active {
+        color: #000;
+    }
+
+.breadcrumb > li + li:before {
+    content: "\f105";
+    padding: 0 5px;
+    color: #000;
+    font-family: FontAwesome;
+    font-weight: 400;
 }

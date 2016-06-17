@@ -245,6 +245,8 @@
     <Content Include="app\components\home\rootCtrl.js" />
     <Content Include="app\components\pages\page.module.js" />
     <Content Include="app\components\posts\post.module.js" />
+    <Content Include="app\components\trainers\addTrainer.html" />
+    <Content Include="app\components\trainers\addTrainerCtrl.js" />
     <Content Include="app\components\trainers\trainer.module.js" />
     <Content Include="app\components\trainers\trainerCtrl.js" />
     <Content Include="app\components\trainers\editTrainer.html" />
@@ -4304,6 +4306,7 @@
     <Compile Include="ViewModels\PostViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\TagViewModel.cs" />
+    <Compile Include="ViewModels\TrainerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TEDU.Common\TEDU.Common.csproj">
