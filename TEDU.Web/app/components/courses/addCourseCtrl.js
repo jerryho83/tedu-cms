@@ -15,6 +15,11 @@
             language: 'vi',
             height: '200px'
         };
+        $scope.levels = [
+            { ID: 1, Name: "Level 1" },
+            { ID: 2, Name: "Level 2" },
+            { ID: 3, Name: "Level 3" },
+        ];
         $scope.CreateAlias = createAlias;
         $scope.ChooseImage = chooseImage;
         $scope.categories = [];
@@ -37,7 +42,7 @@
         function chooseImage() {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
-                $scope.$apply(function() {
+                $scope.$apply(function () {
                     $scope.course.Image = fileUrl;
                 });
 
@@ -45,7 +50,7 @@
             finder.popup();
         }
         function addcourse() {
-            apiService.course('/api/course/add', $scope.course, addSuccessed, addFailed);
+            apiService.post('/api/course/add', $scope.course, addSuccessed, addFailed);
         }
 
         function addSuccessed() {

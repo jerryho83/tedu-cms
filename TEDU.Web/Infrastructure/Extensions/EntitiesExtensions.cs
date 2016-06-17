@@ -157,5 +157,31 @@ namespace TEDU.Web.Infrastructure.Extensions
             trainer.Image = appUserViewModel.Image;
             trainer.JobTitle = appUserViewModel.JobTitle;
         }
+
+        public static void UpdateCourseVideo(this CourseVideo courseVideo, CourseVideoViewModel courseVideoViewModel, string action = "add")
+        {
+            courseVideo.ID = courseVideoViewModel.ID;
+            courseVideo.Name = courseVideoViewModel.Name;
+            courseVideo.Alias = courseVideoViewModel.Alias;
+            courseVideo.Path = courseVideoViewModel.Path;
+            courseVideo.Duration = courseVideoViewModel.Duration;
+            courseVideo.SlidePath = courseVideoViewModel.SlidePath;
+            courseVideo.SourceCodePath = courseVideoViewModel.SourceCodePath;
+            courseVideo.Reference = courseVideoViewModel.Reference;
+            courseVideo.CourseId = courseVideoViewModel.CourseId;
+            courseVideo.Chapter = courseVideoViewModel.Chapter;
+            courseVideo.DisplayOrder = courseVideoViewModel.DisplayOrder;
+            courseVideo.AllowTrialView = courseVideoViewModel.AllowTrialView;
+            courseVideo.TrialViewTime = courseVideoViewModel.TrialViewTime;
+            if(action=="add")
+            {
+                courseVideo.CreatedDate = DateTime.Now;
+            }
+            else
+            {
+                courseVideo.LastModifiedDate = DateTime.Now;
+            }
+            courseVideo.Status = courseVideoViewModel.Status;
+        }
     }
 }

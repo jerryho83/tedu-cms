@@ -1,0 +1,121 @@
+﻿<section class="content-header">
+  <h1>
+    Thêm mới
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+    <li><a ui-sref="course_videos">Danh sách video</a></li>
+    <li class="active"><a href="#">Thêm mới</a></li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">{{video.Name}}</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" role="form" novalidate name="addCourseVideoForm" ng-submit="addVideo()">
+          <div class="box-body">
+            <div class="col-md-10">
+              <div class="form-group" ng-class="{'has-error':addCourseVideoForm.name.$invalid && !addCourseVideoForm.name.$pristine}">
+                <label class="col-sm-2 control-label">Tiêu đề</label>
+                <div class="col-sm-10">
+                  <input type="text" ng-change="createAlias()" name="name" class="form-control" validate-on="blur"
+                         required reqired-message="Tên video bắt buộc." ng-model="video.Name">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Alias</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="video.Alias">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Đường dẫn Video</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="video.Path" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Slide</label>
+                <div class="col-sm-10">
+                  <div class="input-group">
+                    <input type="text" class="form-control" ng-model="video.SlidePath" />
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" ng-click="chooseSlide()">Chọn slide</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Source code</label>
+                <div class="col-sm-10">
+                  <div class="input-group">
+                    <input type="text" class="form-control" ng-model="video.SourceCodePath" />
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" ng-click="chooseSource()">Chọn file</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Link tham khảo</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="video.Reference" />
+                </div>
+              </div>
+              <div class="form-group" ng-class="{'has-error':addCourseVideoForm.courseId.$invalid && !addCourseVideoForm.courseId.$pristine}">
+                <label class="col-sm-2 control-label">Thuộc khóa học</label>
+                <div class="col-sm-10">
+                  <select type="text" required class="form-control" name="courseId" ng-model="video.CourseId" ng-options="option.ID as option.Name for option in courses">
+                    <option value="">-- Chọn khóa học --</option>
+                  </select>
+
+                  <input type="hidden" name="courseId" ng-model="post.CourseId" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Danh mục</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="post.Chapter">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Thứ tự</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" ng-model="post.DisplayOrder">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Thời gian xem thử</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" ng-model="post.TrialViewTime">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" ng-model="video.Status" ng-checked="post.Status"> Kích hoạt
+                    </label>
+                    <label>
+                      <input type="checkbox" ng-model="video.AllowTrialView" ng-checked="post.AllowTrialView"> Cho xem thử
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <a ui-sref="posts" class="btn btn-default">Hủy bỏ</a>
+                  <input type="submit" class="btn btn-primary" ng-disabled="addCourseVideoForm.$invalid" value="Lưu lại" />
+                </div>
+              </div>
+            </div>
+          </div><!-- /.box-body -->
+        </form>
+      </div><!-- /.box -->
+    </div>
+  </div>
+</section>

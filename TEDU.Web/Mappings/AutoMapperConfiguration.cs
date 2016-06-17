@@ -22,6 +22,7 @@ namespace TEDU.Web.Mappings
             Mapper.CreateMap<AppUser, AppUserViewModel>();
             Mapper.CreateMap<AppUserGroup, AppUserGroupViewModel>();
             Mapper.CreateMap<Trainer, TrainerViewModel>();
+            Mapper.CreateMap<CourseVideo, CourseVideoViewModel>();
         }
     }
 }

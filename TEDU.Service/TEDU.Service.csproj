@@ -63,6 +63,7 @@
     <Compile Include="CategoryService.cs" />
     <Compile Include="CourseCategoryService.cs" />
     <Compile Include="CourseService.cs" />
+    <Compile Include="CourseVideoService.cs" />
     <Compile Include="EbookService.cs" />
     <Compile Include="ErrorService.cs" />
     <Compile Include="PageService.cs" />

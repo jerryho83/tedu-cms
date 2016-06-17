@@ -15,7 +15,7 @@
                 url: '/edit_course/:id',
                 parent: 'base',
                 templateUrl: "/app/components/courses/editCourse.html",
-                controller: "editCourseCategoryCtrl"
+                controller: "editCourseCtrl"
             })
             .state('add_course', {
                 url: '/add_course',

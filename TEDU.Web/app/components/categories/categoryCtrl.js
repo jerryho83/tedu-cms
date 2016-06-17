@@ -34,7 +34,7 @@
                 });
         }
 
-        function search() {
+        function search(page) {
             page = page || 0;
 
             $scope.loading = true;
@@ -69,7 +69,7 @@
             search();
         }
 
-        $scope.search();
+        search();
 
     }
 }

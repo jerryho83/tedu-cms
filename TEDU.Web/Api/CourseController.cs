@@ -54,7 +54,21 @@ namespace TEDU.Web.Api
                 return response;
             });
         }
+        [Route("getall")]
+        public HttpResponseMessage GetListAll(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                IEnumerable<Course> model = _courseService.GetCourses();
 
+                IEnumerable<CourseViewModel> modelVm = Mapper.Map<IEnumerable<Course>, IEnumerable<CourseViewModel>>(model);
+
+                response = request.CreateResponse(HttpStatusCode.OK, modelVm);
+
+                return response;
+            });
+        }
         [Route("getlistpaging")]
         public HttpResponseMessage GetListPaging(HttpRequestMessage request, int? page, int? pageSize, string filter = null)
         {
@@ -93,9 +107,9 @@ namespace TEDU.Web.Api
                 HttpResponseMessage response = null;
                 var course = _courseService.GetCourse(id);
 
-                var courseVM = Mapper.Map<Course, PostViewModel>(course);
+                var courseVM = Mapper.Map<Course, CourseViewModel>(course);
 
-                response = request.CreateResponse<PostViewModel>(HttpStatusCode.OK, courseVM);
+                response = request.CreateResponse<CourseViewModel>(HttpStatusCode.OK, courseVM);
 
                 return response;
             });
@@ -157,8 +171,8 @@ namespace TEDU.Web.Api
 
                     _courseService.SaveCourse();
 
-                        // Update view model
-                        course = Mapper.Map<Course, CourseViewModel>(newCourse);
+                    // Update view model
+                    course = Mapper.Map<Course, CourseViewModel>(newCourse);
                     response = request.CreateResponse<CourseViewModel>(HttpStatusCode.Created, course);
                 }
 

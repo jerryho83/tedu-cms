@@ -15,7 +15,11 @@
             language: 'vi',
             height: '200px'
         };
-
+        $scope.levels = [
+            { ID: 1, Name: "Level 1" },
+            { ID: 2, Name: "Level 2" },
+            { ID: 3, Name: "Level 3" },
+        ];
         function chooseImage() {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
@@ -29,6 +33,11 @@
         function loadListParents() {
             apiService.get('/api/coursecategory/getlistparent', null, function (result) {
                 $scope.categories = result.data;
+            });
+        }
+        function loadLisTrainer() {
+            apiService.get('/api/trainer/getlistparent', null, function (result) {
+                $scope.trainers = result.data;
             });
         }
         function loadDetail() {
@@ -61,6 +70,7 @@
         }
 
         loadListParents();
+        loadLisTrainer();
         loadDetail();
     }
 })(angular.module('TEDU.courses'));

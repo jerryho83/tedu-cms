@@ -42,9 +42,15 @@ namespace TEDU.Service
 
         public IEnumerable<Category> GetCategories(int page, int pageSize, out int totalRow, string filter = null)
         {
-            IEnumerable<Category> model =
-                categorysRepository.GetMulti(x => x.Name.Contains(filter));
-
+            IQueryable<Category> model;
+            if (!string.IsNullOrEmpty(filter))
+            {
+                model = categorysRepository.GetMulti(x => x.Name.Contains(filter));
+            }
+            else
+            {
+                model = categorysRepository.GetAll();
+            }
             totalRow = model.Count();
 
             return model.Skip(page * pageSize).Take(pageSize);

@@ -49,11 +49,11 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group" ng-class="{'has-error':updateCourseForm.categoryID.$invalid && !updateCourseForm.categoryID.$pristine}">
+              <div class="form-group" ng-class="{'has-error':updateCourseForm.categoryId.$invalid && !updateCourseForm.categoryId.$pristine}">
                 <label class="col-sm-2 control-label">Danh mục</label>
                 <div class="col-sm-10">
-                  <select type="text" required class="form-control" name="categoryID" ng-model="course.CategoryID" ng-options="option.ID as option.Name for option in categories">
-                    <option value="">-- Chọn chuyên mục --</option>
+                  <select type="text" required class="form-control" name="categoryId" ng-model="course.CategoryId" ng-options="option.ID as option.Name for option in categories">
+                    <option value="">-- Chọn danh mục --</option>
                   </select>
 
                   <input type="hidden" name="CategoryID" ng-model="course.CategoryID" />
@@ -112,11 +112,7 @@
                 <label class="col-sm-2 control-label">Level</label>
                 <div class="col-sm-10">
                   <select type="text" required class="form-control" name="level"
-                          ng-model="course.Level">
-                    <option value="1" selected="selected">Level 1</option>
-                    <option value="2">Level 2</option>
-                    <option value="3">Level 3</option>
-                  </select>
+                          ng-model="course.Level" ng-options="option.ID as option.Name for option in levels"></select>
                   <input type="hidden" name="level" ng-model="course.Level" />
                 </div>
               </div>
