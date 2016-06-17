@@ -1,6 +1,6 @@
 ﻿<section class="content-header">
   <h1>
-    Cập nhật
+    Cập nhật khóa học
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
@@ -13,92 +13,71 @@
     <div class="col-md-12">
       <div class="box box-info">
         <div class="box-header with-border">
-          <h3 class="box-title">{{post.Name}}</h3>
+          <h3 class="box-title">{{course.Name}}</h3>
         </div><!-- /.box-header -->
         <!-- form start -->
-        <form class="form-horizontal" role="form" novalidate name="addPostForm" ng-submit="UpdatePost()">
+        <form class="form-horizontal" role="form" novalidate name="updateCourseForm" ng-submit="updateCourse()">
           <div class="box-body">
-            <div class="col-md-8">
-              <div class="form-group" ng-class="{'has-error':addPostForm.name.$invalid && !addPostForm.name.$pristine}">
+            <div class="col-md-6">
+              <div class="form-group" ng-class="{'has-error':updateCourseForm.name.$invalid && !updateCourseForm.name.$pristine}">
                 <label class="col-sm-2 control-label">Tiêu đề</label>
                 <div class="col-sm-10">
                   <input type="text" ng-change="CreateAlias()" name="name" class="form-control" validate-on="blur"
-                         required reqired-message="Tên danh mục bắt buộc." ng-model="post.Name">
+                         required reqired-message="Tên danh mục bắt buộc." ng-model="course.Name">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">Alias</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" ng-model="post.Alias">
+                  <input type="text" class="form-control" ng-model="course.Alias">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">Mô tả</label>
                 <div class="col-sm-10">
-                  <textarea class="form-control" ng-model="post.Description"></textarea>
+                  <textarea class="form-control" ng-model="course.Description"></textarea>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">Hình ảnh</label>
                 <div class="col-sm-10">
                   <div class="input-group">
-                    <input type="text" class="form-control" ng-model="post.Image" />
+                    <input type="text" class="form-control" ng-model="course.Image" />
                     <span class="input-group-btn">
                       <button class="btn btn-default" type="button" ng-click="ChooseImage()">Chọn ảnh</button>
                     </span>
                   </div>
                 </div>
               </div>
-              <div class="form-group" ng-class="{'has-error':addPostForm.categoryID.$invalid && !addPostForm.categoryID.$pristine}">
+              <div class="form-group" ng-class="{'has-error':updateCourseForm.categoryID.$invalid && !updateCourseForm.categoryID.$pristine}">
                 <label class="col-sm-2 control-label">Danh mục</label>
                 <div class="col-sm-10">
-                  <select type="text" required class="form-control" name="categoryID" ng-model="post.CategoryID" ng-options="option.ID as option.Name for option in categories">
-                    <option value="">-- Chọn chuyên mục  --</option>
+                  <select type="text" required class="form-control" name="categoryID" ng-model="course.CategoryID" ng-options="option.ID as option.Name for option in categories">
+                    <option value="">-- Chọn chuyên mục --</option>
                   </select>
-                  <input type="hidden" name="CategoryID" ng-model="post.CategoryID" />
+
+                  <input type="hidden" name="CategoryID" ng-model="course.CategoryID" />
                 </div>
               </div>
+
               <div class="form-group">
                 <label class="col-sm-2 control-label">Nội dung</label>
                 <div class="col-sm-10">
-                  <textarea ng-model="post.Content" ckeditor="editorOptions"></textarea>
+                  <textarea ng-model="course.Content" ckeditor="editorOptions"></textarea>
                 </div>
               </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Meta keyword</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" ng-model="post.MetaKeyword">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Meta description</label>
-                <div class="col-sm-10">
-                  <textarea type="text" class="form-control" ng-model="post.MetaDescription"></textarea>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Tags</label>
-                <div class="col-sm-10">
-                  <textarea type="text" class="form-control" ng-model="post.Tags"></textarea>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Nguồn</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" ng-model="post.Source">
-                </div>
-              </div>
+
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" ng-model="post.Status" ng-checked="post.Status='Publish'"> Kích hoạt
+                      <input type="checkbox" ng-model="course.Status" ng-checked="course.Status='Publish'"> Kích hoạt
                     </label>
                     <label>
-                      <input type="checkbox" ng-model="post.HotFlag" ng-checked="post.HotFlag"> Tin hot
+                      <input type="checkbox" ng-model="course.HotFlag" ng-checked="course.HotFlag"> Tin hot
                     </label>
                     <label>
-                      <input type="checkbox" ng-model="post.SlideFlag" ng-checked="post.SlideFlag"> Slide
+                      <input type="checkbox" ng-model="course.SlideFlag" ng-checked="course.SlideFlag"> Slide
                     </label>
                   </div>
                 </div>
@@ -106,7 +85,67 @@
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <a ui-sref="posts" class="btn btn-default">Hủy bỏ</a>
-                  <input type="submit" class="btn btn-primary" ng-disabled="addPostForm.$invalid" value="Lưu lại" />
+                  <input type="submit" class="btn btn-primary" ng-disabled="updateCourseForm.$invalid" value="Lưu lại" />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Thời gian (phút)</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" ng-model="course.Duration" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Giá</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" ng-model="course.Price" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Giá khuyến mãi</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" ng-model="course.PromotionPrice" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Level</label>
+                <div class="col-sm-10">
+                  <select type="text" required class="form-control" name="level"
+                          ng-model="course.Level">
+                    <option value="1" selected="selected">Level 1</option>
+                    <option value="2">Level 2</option>
+                    <option value="3">Level 3</option>
+                  </select>
+                  <input type="hidden" name="level" ng-model="course.Level" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Thứ tự</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" ng-model="course.DisplayOrder" value="0" />
+                </div>
+              </div>
+              <div class="form-group" ng-class="{'has-error':updateCourseForm.TrainerId.$invalid && !updateCourseForm.TrainerId.$pristine}">
+                <label class="col-sm-2 control-label">Giảng viên</label>
+                <div class="col-sm-10">
+                  <select type="text" required class="form-control" name="TrainerId" ng-model="course.TrainerId" ng-options="option.ID as option.Name for option in trainers">
+                    <option value="">-- Chọn giảng viên --</option>
+                  </select>
+
+                  <input type="hidden" name="TrainerId" ng-model="course.TrainerId" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Meta keyword</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" ng-model="course.MetaKeyword">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Meta description</label>
+                <div class="col-sm-10">
+                  <textarea type="text" class="form-control" ng-model="course.MetaDescription"></textarea>
                 </div>
               </div>
             </div>
@@ -114,5 +153,6 @@
         </form>
       </div><!-- /.box -->
     </div>
+
   </div>
 </section>

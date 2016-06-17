@@ -160,6 +160,14 @@
     <Compile Include="Migrations\201606162354223_changetrainer.Designer.cs">
       <DependentUpon>201606162354223_changetrainer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606170739027_add_identity_to_trainer.cs" />
+    <Compile Include="Migrations\201606170739027_add_identity_to_trainer.Designer.cs">
+      <DependentUpon>201606170739027_add_identity_to_trainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606170854224_trainers.cs" />
+    <Compile Include="Migrations\201606170854224_trainers.Designer.cs">
+      <DependentUpon>201606170854224_trainers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AppGroupRepository.cs" />
@@ -272,6 +280,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606162354223_changetrainer.resx">
       <DependentUpon>201606162354223_changetrainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606170739027_add_identity_to_trainer.resx">
+      <DependentUpon>201606170739027_add_identity_to_trainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606170854224_trainers.resx">
+      <DependentUpon>201606170854224_trainers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

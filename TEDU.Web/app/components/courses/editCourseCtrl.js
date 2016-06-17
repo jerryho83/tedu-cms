@@ -41,12 +41,12 @@
             });
         }
 
-        $scope.Updatecourse = updatecourse;
+        $scope.updateCourse = updateCourse;
 
         function createAlias() {
             $scope.course.Alias = commonService.makeSeoTitle($scope.course.Name);
         }
-        function updatecourse() {
+        function updateCourse() {
             apiService.put('/api/course/update', $scope.course, addSuccessed, addFailed);
         }
 
