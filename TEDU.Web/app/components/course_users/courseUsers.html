@@ -1,11 +1,10 @@
 ﻿<section class="content-header">
   <h1>
-    DANH SÁCH VIDEO
-    <small>Danh sách video</small>
+    DANH SÁCH HỌC VIÊN
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-    <li class="active"><a ui-sref="course_videos">Danh sách video</a></li>
+    <li class="active"><a ui-sref="course_users">Danh sách học viên</a></li>
   </ol>
 </section>
 <!-- Main content -->
@@ -16,14 +15,16 @@
         <div class="box-header">
           <div class="col-md-12">
             <div class="col-md-4">
-              <select class="form-control" ng-model="searchCourseId" ng-options="option.ID as option.Name for option in courses"></select>
+              <select class="form-control">
+                <option>--Tất cả khóa học---</option>
+              </select>
             </div>
             <div class="col-md-4">
               <input type="text" id="txtSearch" ng-model="filterExpression" class="form-control" placeholder="Nhập từ khóa..." />
             </div>
             <div class="col-md-4">
-              <button class="btn btn-primary" ng-click="search()"><i class="fa fa-search"></i>Tìm kiếm</button>
-              <button class="btn btn-success pull-right" ng-disabled="searchCourseId==0" ui-sref="add_course_video({courseId:searchCourseId})"><i class="fa fa-plus"></i> Thêm mới</button>
+
+              <button class="btn btn-success pull-right" ui-sref="add_course_user"><i class="fa fa-plus"></i> Thêm mới</button>
             </div>
           </div>
         </div><!-- /.box-header -->
@@ -31,25 +32,20 @@
           <table class="table table-bordered">
             <thead>
               <tr>
-                <th style="width: 5%">ID</th>
-                <th>Tiêu đề</th>
-                <th style="width:10%;">Ngày tạo</th>
-                <th style="width:10%;">Ngày sửa</th>
-                <th style="width: 10%">Trạng thái</th>
+                <th>Tên học viên</th>
+                <th>Tài khoản</th>
+                <th>Ngày </th>
                 <th style="width:10%"></th>
               </tr>
             </thead>
             <tbody>
-              <tr ng-repeat="item in data">
-                <td>{{item.ID}}</td>
-                <td><a ui-sref="edit_course_video({id:item.ID})">{{item.Name}}</a></td>
-                <th>{{item.CreatedDate | date:'yyyy-MM-dd HH:mm'}}</th>
-                <th>{{item.LastModifiedDate}}</th>
-                <td><span ng-class="{'badge bg-red':item.Status==false,'badge bg-green':item.Status==true}">{{item.Status | boolStatus}}</span></td>
+              <tr ng-repeat="item in data | filter:filterExpression">
+                <td><a ui-sref="edit_account({id:item.Id})">{{item.FullName}}</a></td>
+                <td><a ui-sref="edit_account({id:item.Id})">{{item.UserName}}</a></td>
+                <td>{{item.Email}}</td>
                 <td>
-
-                  <a ui-sref="edit_course_video({id:item.ID})" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
-                  <button class="btn btn-sm btn-danger" ng-click="deleteItem(item.ID)"><i class="fa fa-trash-o"></i></button>
+                  <a ui-sref="edit_account({id:item.Id})" class="btn btn-sm btn-primary"><i class="fa fa-pencil"></i></a>
+                  <button class="btn btn-sm btn-danger" ng-click="deleteItem(item.Id)"><i class="fa fa-trash-o"></i></button>
                 </td>
               </tr>
             </tbody>

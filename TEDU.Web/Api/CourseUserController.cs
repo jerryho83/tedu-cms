@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -14,15 +13,15 @@ using TEDU.Web.ViewModels;
 namespace TEDU.Web.Api
 {
     [Authorize]
-    [RoutePrefix("api/courseVideo")]
-    public class CourseVideoController : ApiControllerBase
+    [RoutePrefix("api/courseUser")]
+    public class CourseUserController : ApiControllerBase
     {
-        private readonly ICourseVideoService _courseVideoService;
+        private ICourseUserService _courseUserService;
 
-        public CourseVideoController(ICourseVideoService courseVideoService, IErrorService errorService) :
-           base(errorService)
+        public CourseUserController(IErrorService errorService,ICourseUserService courseUserService)
+            : base(errorService)
         {
-            this._courseVideoService = courseVideoService;
+            _courseUserService = courseUserService;
         }
 
         [HttpDelete]
@@ -39,14 +38,14 @@ namespace TEDU.Web.Api
                 }
                 else
                 {
-                    var courseVideoDb = _courseVideoService.GetCourseVideo(id);
-                    if (courseVideoDb == null)
+                    var courseUserDb = _courseUserService.GetCourseUser(id);
+                    if (courseUserDb == null)
                         response = request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid Id.");
                     else
                     {
-                        _courseVideoService.Delete(courseVideoDb);
+                        _courseUserService.Delete(courseUserDb);
 
-                        _courseVideoService.SaveCourseVideo();
+                        _courseUserService.SaveCourseUser();
 
                         response = request.CreateResponse<bool>(HttpStatusCode.OK, true);
                     }
@@ -57,24 +56,17 @@ namespace TEDU.Web.Api
         }
 
         [Route("getlistpaging")]
-        public HttpResponseMessage GetListPaging(HttpRequestMessage request, int courseId, int page, int pageSize, string filter = null)
+        public HttpResponseMessage GetListPaging(HttpRequestMessage request, int page, int pageSize, string filter = null)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
                 int totalRow;
-                IEnumerable<CourseVideo> model;
-                if (courseId != 0)
-                {
-                    model = _courseVideoService.GetCourseVideos(courseId, page, pageSize, out totalRow, filter);
-                }
-                else
-                {
-                    model = _courseVideoService.GetCourseVideos(page, pageSize, out totalRow, filter);
-                }
-                IEnumerable<CourseVideoViewModel> modelVm = Mapper.Map<IEnumerable<CourseVideo>, IEnumerable<CourseVideoViewModel>>(model);
+                IEnumerable<CourseUser> model = _courseUserService.GetCourseUsers(page, pageSize, out totalRow, filter);
 
-                PaginationSet<CourseVideoViewModel> pagedSet = new PaginationSet<CourseVideoViewModel>()
+                IEnumerable<CourseUserViewModel> modelVm = Mapper.Map<IEnumerable<CourseUser>, IEnumerable<CourseUserViewModel>>(model);
+
+                PaginationSet<CourseUserViewModel> pagedSet = new PaginationSet<CourseUserViewModel>()
                 {
                     Page = page,
                     TotalCount = totalRow,
@@ -95,11 +87,11 @@ namespace TEDU.Web.Api
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                var courseVideo = _courseVideoService.GetCourseVideo(id);
+                var courseUser = _courseUserService.GetCourseUser(id);
 
-                var postVM = Mapper.Map<CourseVideo, CourseVideoViewModel>(courseVideo);
+                var postVM = Mapper.Map<CourseUser, CourseUserViewModel>(courseUser);
 
-                response = request.CreateResponse<CourseVideoViewModel>(HttpStatusCode.OK, postVM);
+                response = request.CreateResponse<CourseUserViewModel>(HttpStatusCode.OK, postVM);
 
                 return response;
             });
@@ -107,7 +99,7 @@ namespace TEDU.Web.Api
 
         [Route("update")]
         [HttpPut]
-        public HttpResponseMessage Update(HttpRequestMessage request, CourseVideoViewModel courseVideoViewModel)
+        public HttpResponseMessage Update(HttpRequestMessage request, CourseUserViewModel post)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -119,18 +111,16 @@ namespace TEDU.Web.Api
                 }
                 else
                 {
-                    var courseVideoDb = _courseVideoService.GetCourseVideo(courseVideoViewModel.ID);
+                    var courseUserDb = _courseUserService.GetCourseUser(post.ID);
 
-                    if (courseVideoDb == null)
+                    if (courseUserDb == null)
                         response = request.CreateErrorResponse(HttpStatusCode.NotFound, "Invalid.");
                     else
                     {
-                        courseVideoDb.UpdateCourseVideo(courseVideoViewModel);
-                        courseVideoDb.LastModifiedDate = DateTime.Now;
-                        courseVideoDb.LastModifiedBy = User.Identity.Name;
-                        _courseVideoService.UpdateCourseVideo(courseVideoDb);
-                        _courseVideoService.SaveCourseVideo();
-                        response = request.CreateResponse<CourseVideoViewModel>(HttpStatusCode.OK, courseVideoViewModel);
+                        courseUserDb.UpdateCourseUser(post);
+                        _courseUserService.UpdateCourseUser(courseUserDb);
+                        _courseUserService.SaveCourseUser();
+                        response = request.CreateResponse<CourseUserViewModel>(HttpStatusCode.OK, post);
                     }
                 }
 
@@ -140,7 +130,7 @@ namespace TEDU.Web.Api
 
         [HttpPost]
         [Route("add")]
-        public HttpResponseMessage Add(HttpRequestMessage request, CourseVideoViewModel courseVideoViewModel, int courseId)
+        public HttpResponseMessage Add(HttpRequestMessage request, CourseUserViewModel post)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -152,18 +142,18 @@ namespace TEDU.Web.Api
                 }
                 else
                 {
-                    CourseVideo newPost = new CourseVideo();
+                    CourseUser newPost = new CourseUser();
 
-                    newPost.UpdateCourseVideo(courseVideoViewModel);
+                    newPost.UpdateCourseUser(post);
                     newPost.CreatedDate = DateTime.Now;
                     newPost.CreatedBy = User.Identity.Name;
-                    _courseVideoService.CreateCourseVideo(newPost);
+                    _courseUserService.CreateCourseUser(newPost);
 
-                    _courseVideoService.SaveCourseVideo();
+                    _courseUserService.SaveCourseUser();
 
                     // Update view model
-                    courseVideoViewModel = Mapper.Map<CourseVideo, CourseVideoViewModel>(newPost);
-                    response = request.CreateResponse<CourseVideoViewModel>(HttpStatusCode.Created, courseVideoViewModel);
+                    post = Mapper.Map<CourseUser, CourseUserViewModel>(newPost);
+                    response = request.CreateResponse<CourseUserViewModel>(HttpStatusCode.Created, post);
                 }
 
                 return response;

@@ -242,6 +242,9 @@
     <Content Include="app\components\course_categories\editCourseCategory.html" />
     <Content Include="app\components\course_categories\editCourseCategoryCtrl.js" />
     <Content Include="app\components\course_categories\listCourseCategories.html" />
+    <Content Include="app\components\course_users\course_user.module.js" />
+    <Content Include="app\components\course_users\courseUserCtrl.js" />
+    <Content Include="app\components\course_users\courseUsers.html" />
     <Content Include="app\components\course_videos\addCourseVideo.html" />
     <Content Include="app\components\course_videos\addCourseVideoCtrl.js" />
     <Content Include="app\components\course_videos\editCourseVideo.html" />
@@ -252,6 +255,13 @@
     <Content Include="app\components\home\rootCtrl.js" />
     <Content Include="app\components\pages\page.module.js" />
     <Content Include="app\components\posts\post.module.js" />
+    <Content Include="app\components\techlines\addTechLine.html" />
+    <Content Include="app\components\techlines\addTechLineCtrl.js" />
+    <Content Include="app\components\techlines\techLineCtrl.js" />
+    <Content Include="app\components\techlines\techline.module.js" />
+    <Content Include="app\components\techlines\techLines.html" />
+    <Content Include="app\components\techlines\editTechLine.html" />
+    <Content Include="app\components\techlines\editTechLineCtrl.js" />
     <Content Include="app\components\trainers\addTrainer.html" />
     <Content Include="app\components\trainers\addTrainerCtrl.js" />
     <Content Include="app\components\trainers\trainer.module.js" />
@@ -4268,9 +4278,11 @@
     <Compile Include="Api\CourseCategoryController.cs" />
     <Compile Include="Api\CourseController.cs" />
     <Compile Include="Api\AppGroupController.cs" />
+    <Compile Include="Api\CourseUserController.cs" />
     <Compile Include="Api\CourseVideoController.cs" />
     <Compile Include="Api\HomeController.cs" />
     <Compile Include="Api\AppRoleController.cs" />
+    <Compile Include="Api\TechLineController.cs" />
     <Compile Include="Api\TrainerController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -4304,6 +4316,7 @@
     <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\ChangeProfileViewModel.cs" />
     <Compile Include="ViewModels\CourseCategoryViewModel.cs" />
+    <Compile Include="ViewModels\CourseUserViewModel.cs" />
     <Compile Include="ViewModels\CourseVideoViewModel.cs" />
     <Compile Include="ViewModels\CourseViewModel.cs" />
     <Compile Include="ViewModels\EbookViewModel.cs" />
@@ -4315,6 +4328,7 @@
     <Compile Include="ViewModels\PostViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\TagViewModel.cs" />
+    <Compile Include="ViewModels\TechLineViewModel.cs" />
     <Compile Include="ViewModels\TrainerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -4336,7 +4350,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\components\course_users\" />
     <Folder Include="Scripts\plugins\checklist-model\test\" />
     <Folder Include="UploadData\" />
     <Folder Include="Views\Course\" />

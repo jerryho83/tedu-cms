@@ -1,0 +1,42 @@
+﻿<section class="content-header">
+  <h1>
+    Thêm mới
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+    <li><a ui-sref="techlines">Dòng công nghệ</a></li>
+    <li class="active"><a href="#">Thêm mới</a></li>
+  </ol>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">{{techline.Name}}</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" role="form" novalidate name="frmAddTechLine" ng-submit="addTechLine()">
+          <div class="box-body">
+            <div class="col-md-8">
+              <div class="form-group" ng-class="{ 'has-error' : frmAddTechLine.name.$invalid && !frmAddTechLine.name.$pristine }">
+                <label class="col-sm-2 control-label">Tên danh mục</label>
+                <div class="col-sm-10">
+                  <input type="text" name="name" class="form-control"
+                         required reqired-message="Tên nhóm bắt buộc." ng-model="techline.Name">
+                </div>
+              </div>
+            
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <a ui-sref="techlines" class="btn btn-default">Hủy bỏ</a>
+                  <input type="submit" ng-disabled="frmAddTechLine.$invalid" class="btn btn-primary" value="Lưu lại" />
+                </div>
+              </div>
+            </div>
+          </div><!-- /.box-body -->
+        </form>
+      </div><!-- /.box -->
+    </div>
+  </div>
+</section>

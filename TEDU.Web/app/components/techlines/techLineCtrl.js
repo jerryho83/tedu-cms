@@ -1,23 +1,18 @@
 ﻿(function (app) {
     'use strict';
 
-    app.controller('courseVideoCtrl', courseVideoCtrl);
+    app.controller('techLineCtrl', techLineCtrl);
 
-    courseVideoCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox'];
+    techLineCtrl.$inject = ['$scope', 'apiService', 'notificationService', '$ngBootbox'];
 
-    function courseVideoCtrl($scope, apiService, notificationService, $ngBootbox) {
+    function techLineCtrl($scope, apiService, notificationService, $ngBootbox) {
         $scope.loading = true;
         $scope.data = [];
         $scope.page = 0;
         $scope.pageCount = 0;
-        $scope.searchCourseId = 0   ;
         $scope.search = search;
         $scope.clearSearch = clearSearch;
-
         $scope.deleteItem = deleteItem;
-        $scope.showOnSlide = showOnSlide;
-        $scope.showHot = showHot;
-        $scope.courses = [];
 
         function deleteItem(id) {
             $ngBootbox.confirm('Bạn có chắc muốn xóa?')
@@ -27,7 +22,7 @@
                             id: id
                         }
                     }
-                    apiService.del('/api/courseVideo/delete', config, function () {
+                    apiService.del('/api/techLine/delete', config, function () {
                         notificationService.displaySuccess('Đã xóa thành công.');
                         search();
                     },
@@ -42,21 +37,15 @@
             $scope.loading = true;
             var config = {
                 params: {
-                    courseId: $scope.searchCourseId,
                     page: page,
                     pageSize: 10,
                     filter: $scope.filterExpression
                 }
             }
 
-            apiService.get('/api/courseVideo/getlistpaging', config, dataLoadCompleted, dataLoadFailed);
+            apiService.get('api/techLine/getlistpaging', config, dataLoadCompleted, dataLoadFailed);
         }
-        function showOnSlide(id) {
-            notificationService.displayError('Xóa không thành công.' + id);
-        }
-        function showHot(id) {
-            notificationService.displayError('Xóa không thành công.');
-        }
+
         function dataLoadCompleted(result) {
             $scope.data = result.data.Items;
             $scope.page = result.data.Page;
@@ -77,13 +66,6 @@
             search();
         }
 
-        function loadCourseSearch() {
-            apiService.get('/api/course/getall', null, function (result) {
-                $scope.courses = result.data;
-            });
-        }
-        loadCourseSearch();
         $scope.search();
     }
-}
-)(angular.module('TEDU.course_videos'));
+})(angular.module('TEDU.techlines'));

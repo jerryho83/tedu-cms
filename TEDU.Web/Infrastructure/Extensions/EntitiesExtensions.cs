@@ -127,6 +127,12 @@ namespace TEDU.Web.Infrastructure.Extensions
             appGroup.Id = appGroupViewModel.Id;
             appGroup.Name = appGroupViewModel.Name;
         }
+
+        public static void UpdateTechLine(this TechLine techLine, TechLineViewModel techLineViewModel)
+        {
+            techLine.ID = techLineViewModel.ID;
+            techLine.Name = techLineViewModel.Name;
+        }
         public static void UpdateAppRole(this AppRole appRole, AppRoleViewModel appRoleViewModel, string action = "add")
         {
             if (action == "update")
@@ -183,5 +189,22 @@ namespace TEDU.Web.Infrastructure.Extensions
             }
             courseVideo.Status = courseVideoViewModel.Status;
         }
+        public static void UpdateCourseUser(this CourseUser courseUser, CourseUserViewModel courseUserViewModel, string action = "add")
+        {
+            courseUser.ID = courseUserViewModel.ID;
+            courseUser.UserId = courseUserViewModel.UserId;
+            courseUser.CourseId = courseUserViewModel.CourseId;
+            courseUser.Price = courseUserViewModel.Price;
+            courseUser.PaymentMethodId = courseUserViewModel.PaymentMethodId;
+            if(action=="add")
+            {
+                courseUser.CreatedDate = courseUserViewModel.CreatedDate;
+
+            }
+            courseUser.CreatedBy = courseUserViewModel.CreatedBy;
+            courseUser.Status = courseUserViewModel.Status;
+        }
+
+        
     }
 }

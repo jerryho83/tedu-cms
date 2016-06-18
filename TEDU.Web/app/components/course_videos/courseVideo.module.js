@@ -17,7 +17,7 @@
                 controller: "editCourseVideoCtrl"
             })
             .state('add_course_video', {
-                url: '/add_course_video',
+                url: '/add_course_video/:courseId',
                 parent: 'base',
                 templateUrl: "/app/components/course_videos/addCourseVideo.html",
                 controller: "addCourseVideoCtrl"

@@ -8,12 +8,13 @@ namespace TEDU.Model.Models
     public class CourseUser
     {
         [Key]
-        [Column(Order = 1, TypeName = "nvarchar")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { set; get; }
+
+        [Column(TypeName = "nvarchar")]
         [StringLength(128)]
         public string UserId { set; get; }
 
-        [Key]
-        [Column(Order = 2)]
         public int CourseId { set; get; }
 
         [Required]
@@ -27,6 +28,8 @@ namespace TEDU.Model.Models
         [Column(TypeName = "nvarchar")]
         [StringLength(128)]
         public string CreatedBy { set; get; }
+
+        public bool Status { set; get; }
 
         [ForeignKey("UserId")]
         public virtual AppUser AppUser { set; get; }

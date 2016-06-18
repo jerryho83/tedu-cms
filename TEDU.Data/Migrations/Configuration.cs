@@ -108,6 +108,14 @@ namespace TEDU.Data.Migrations
         //    }
         //}
 
+        //private void CreatePaymentMethod(TeduDbContext context)
+        //{
+        //    if (context.PaymentMethods.Any())
+        //    {
+        //        context.PaymentMethods.Add()
+        //    }
+        //}
+
         private void CreateUser(TeduDbContext context)
         {
             //  This method will be called after migrating to the latest version.

@@ -53,7 +53,7 @@ namespace TEDU.Service
             }
             totalRow = model.Count();
 
-            return model.Skip(page * pageSize).Take(pageSize);
+            return model.OrderByDescending(x=>x.CreatedDate).Skip(page * pageSize).Take(pageSize);
         }
 
         public Category GetCategory(int id)
