@@ -7,7 +7,8 @@
 
     function addCourseVideoCtrl($scope, apiService, $stateParams, notificationService, $location, commonService) {
         $scope.video = {
-            Status: 1
+            Status: 1,
+            CourseId: parseInt($stateParams.courseId)
         };
         $scope.createAlias = createAlias;
         $scope.chooseImage = chooseImage;

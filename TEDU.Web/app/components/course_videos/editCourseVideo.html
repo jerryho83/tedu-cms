@@ -73,35 +73,35 @@
                     <option value="">-- Chọn khóa học --</option>
                   </select>
 
-                  <input type="hidden" name="courseId" ng-model="post.CourseId" />
+                  <input type="hidden" name="courseId" ng-model="video.CourseId" />
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">Danh mục</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" ng-model="post.Chapter">
+                  <input type="text" class="form-control" ng-model="video.Chapter">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">Thứ tự</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" ng-model="post.DisplayOrder">
+                  <input type="number" class="form-control" ng-model="video.DisplayOrder">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">Thời gian xem thử</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control" ng-model="post.TrialViewTime">
+                  <input type="number" class="form-control" ng-model="video.TrialViewTime">
                 </div>
               </div>
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" ng-model="video.Status" ng-checked="post.Status"> Kích hoạt
+                      <input type="checkbox" ng-model="video.Status" ng-checked="video.Status"> Kích hoạt
                     </label>
                     <label>
-                      <input type="checkbox" ng-model="video.AllowTrialView" ng-checked="post.AllowTrialView"> Cho xem thử
+                      <input type="checkbox" ng-model="video.AllowTrialView" ng-checked="video.AllowTrialView"> Cho xem thử
                     </label>
                   </div>
                 </div>

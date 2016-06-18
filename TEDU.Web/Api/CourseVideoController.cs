@@ -140,7 +140,7 @@ namespace TEDU.Web.Api
 
         [HttpPost]
         [Route("add")]
-        public HttpResponseMessage Add(HttpRequestMessage request, CourseVideoViewModel courseVideoViewModel, int courseId)
+        public HttpResponseMessage Add(HttpRequestMessage request, CourseVideoViewModel courseVideoViewModel)
         {
             return CreateHttpResponse(request, () =>
             {
