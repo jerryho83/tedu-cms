@@ -34,10 +34,10 @@ CKEDITOR.editorConfig = function (config) {
     // Simplify the dialog windows.
     config.removeDialogTabs = 'image:advanced;link:advanced';
 
-    config.filebrowserBrowseUrl = '/Scripts/plugins/ckfinder/ckfinder.html';
-    config.filebrowserImageBrowseUrl = '/Scripts/plugins/ckfinder/ckfinder.html?type=Images';
-    config.filebrowserFlashBrowseUrl = '/Scripts/plugins/ckfinder/ckfinder.html?type=Flash';
-    config.filebrowserUploadUrl = '/Scripts/plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files';
-    config.filebrowserImageUploadUrl = '/Scripts/plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images';
-    config.filebrowserFlashUploadUrl = '/Scripts/plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash';
+    config.filebrowserBrowseUrl = '/Scripts/vendors/ckfinder/ckfinder.html';
+    config.filebrowserImageBrowseUrl = '/Scripts/vendors/ckfinder/ckfinder.html?type=Images';
+    config.filebrowserFlashBrowseUrl = '/Scripts/vendors/ckfinder/ckfinder.html?type=Flash';
+    config.filebrowserUploadUrl = '/Scripts/vendors/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files';
+    config.filebrowserImageUploadUrl = '/Scripts/vendors/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images';
+    config.filebrowserFlashUploadUrl = '/Scripts/vendors/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash';
 };

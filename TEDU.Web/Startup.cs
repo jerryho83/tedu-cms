@@ -82,7 +82,7 @@ namespace TEDU.Web
             // Configure the db context, user manager and signin manager to use a single instance per request
             app.CreatePerOwinContext(TeduDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            
+            app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
             app.CreatePerOwinContext<UserManager<AppUser>>(CreateManager);
             app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions
             {
