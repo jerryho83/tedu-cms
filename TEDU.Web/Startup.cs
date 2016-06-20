@@ -25,6 +25,7 @@ using TEDU.Model.Models;
 using TEDU.Service;
 using TEDU.Web.App_Start;
 using System.Collections.Generic;
+using Microsoft.Owin.Security.Google;
 
 [assembly: OwinStartup(typeof(TEDU.Web.Startup))]
 
@@ -121,11 +122,11 @@ namespace TEDU.Web
                appId: "500141453482575",
                appSecret: "0f00d528183076ce33cb4576d6f4cbd9");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "147364546558-1bm59u2csi6hp5nb12dinvet5fnb083g.apps.googleusercontent.com",
+                ClientSecret = "Aih-AsvmPzvK34COgBBfbDql"
+            });
         }
 
         public class AuthorizationServerProvider : OAuthAuthorizationServerProvider
