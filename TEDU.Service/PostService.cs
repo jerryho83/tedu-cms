@@ -84,7 +84,7 @@ namespace TEDU.Service
 
         public IEnumerable<Post> GetPosts(int page, int pageSize, out int totalRow, string filter = null)
         {
-            var model = _postsRepository.GetAll(new string[] {"Category"});
+            var model = _postsRepository.GetAll(new string[] { "Category" });
 
             if (!string.IsNullOrEmpty(filter))
                 model = model.Where(x => x.Name.Contains(filter));
@@ -245,11 +245,25 @@ namespace TEDU.Service
         {
             var list = _tagRepository.GetAll(new string[] { "PostTags" });
 
-            var list1 = list.Select(x => new { ID = x.ID, Name = x.Name, Count = x.PostTags.Count() })
-                .GroupBy(a => new { a.ID, a.Name })
+            var list1 = list.Select(x => new
+            {
+                ID = x.ID,
+                Name = x.Name,
+                Count = x.PostTags.Count()
+            })
+                .GroupBy(
+                    a => new
+                    {
+                        a.ID,
+                        a.Name
+                    })
                 .SelectMany(g => g.OrderByDescending(grp => grp.Count))
                 .Take(top)
-                .Select(y => new Tag { ID = y.ID, Name = y.Name });
+                .Select(y => new Tag
+                {
+                    ID = y.ID,
+                    Name = y.Name
+                });
             return list.ToList();
         }
 
@@ -261,13 +275,14 @@ namespace TEDU.Service
         public List<Post> GetListByTagId(string tagId, int page, int pageSize, out int totalRow)
         {
             var model = _postsRepository.GetListPostByTag(tagId, page, pageSize, out totalRow);
-            return model.ToList() ;
+            return model.ToList();
         }
 
         public List<Post> Search(string keyword, int page, int pageSize, out int totalRow)
         {
             var model = _postsRepository
-                   .GetMulti(m => m.Status == StatusEnum.Publish.ToString() && m.Name.Contains(keyword), new string[] { "Category" })
+                   .GetMulti(m => m.Status == StatusEnum.Publish.ToString() 
+                   && m.Name.Contains(keyword), new string[] { "Category" })
                    .OrderByDescending(m => m.CreatedDate)
                    .Skip((page - 1) * pageSize)
                    .Take(pageSize)

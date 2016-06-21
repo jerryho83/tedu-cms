@@ -14,23 +14,12 @@ namespace TEDU.Data.Repositories
         { }
         public IEnumerable<Post> GetListPostByTag(string tagId, int page, int pageSize, out int totalRow)
         {
-            var query = from p in DbContext.Posts
-                        join pt in DbContext.PostTags
-                        on p.ID equals pt.PostID
-                        join c in DbContext.Categories
-                        on p.CategoryID equals c.ID
-                        where pt.TagID == tagId
-                        select new
-                        {
-                            ID = p.ID,
-                            Alias = p.Alias,
-                            Name = p.Name,
-                            Category  = c,
-                            Description = p.Description,
-                            CreatedDate = p.CreatedDate,
-                            ViewCount = p.ViewCount,
-                            Image = p.Image
-                        };
+            var query = (from p in DbContext.Posts
+                         join pt in DbContext.PostTags
+                         on p.ID equals pt.PostID
+                         where pt.TagID == tagId
+                         select p).Include("Category");
+
             totalRow = query.Count();
 
             return (IEnumerable<Post>)query.OrderByDescending(x => x.CreatedDate).Skip((page - 1) * pageSize).Take(pageSize);
