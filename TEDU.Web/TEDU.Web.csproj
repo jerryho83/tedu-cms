@@ -4261,6 +4261,7 @@
     <None Include="Properties\PublishProfiles\local1.pubxml" />
     <Content Include="Scripts\plugins\ckeditor\skins\kama\readme.md" />
     <Content Include="Scripts\plugins\ckeditor\skins\moono\readme.md" />
+    <Content Include="Views\Course\Index.cshtml" />
     <None Include="_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Content\admin\css\bootstrap\bootstrap.css.map" />
@@ -4357,7 +4358,6 @@
     <Folder Include="Scripts\plugins\checklist-model\test\" />
     <Folder Include="Scripts\vendors\" />
     <Folder Include="UploadData\" />
-    <Folder Include="Views\Course\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
