@@ -23,7 +23,7 @@
       <div class="tagcloud">
         @foreach (var item in (List<TEDU.Web.ViewModels.TagViewModel>)ViewBag.TagCloud)
         {
-            <a href='/tag/@item.ID'>@item.Name</a>
+            <a href='/tag/@(item.ID).html'>@item.Name</a>
         }
       </div>
     </div>
