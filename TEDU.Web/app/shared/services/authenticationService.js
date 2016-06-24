@@ -1,12 +1,12 @@
 ﻿(function (app) {
     'use strict';
-    app.service('authenticationService', ['$http', '$q', '$window',
-        function ($http, $q, $window) {
+    app.service('authenticationService', ['$http', 'localStorageService', 'authData', '$q', '$window',
+        function ($http, localStorageService, authData, $q, $window) {
             var tokenInfo;
 
             this.setTokenInfo = function (data) {
                 tokenInfo = data;
-                $window.sessionStorage["TokenInfo"] = JSON.stringify(tokenInfo);
+                localStorageService.set("TokenInfo", JSON.stringify(tokenInfo));
             }
 
             this.getTokenInfo = function () {
@@ -15,12 +15,14 @@
 
             this.removeToken = function () {
                 tokenInfo = null;
-                $window.sessionStorage["TokenInfo"] = null;
+                localStorageService.set("TokenInfo", null);
             }
 
             this.init = function () {
-                if ($window.sessionStorage["TokenInfo"]) {
-                    tokenInfo = JSON.parse($window.sessionStorage["TokenInfo"]);
+                if (localStorageService.get("TokenInfo")) {
+                    tokenInfo = JSON.parse(localStorageService.get("TokenInfo"));
+                    authData.authenticationData.IsAuthenticated = true;
+                    authData.authenticationData.userName = tokenInfo.userName;
                 }
             }
 
@@ -30,17 +32,6 @@
                     $http.defaults.headers.common['Authorization'] = 'Bearer ' + tokenInfo.accessToken;
                     $http.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
                 }
-            }
-
-            this.validateRequest = function () {
-                var url =  'api/home/TestMethod';
-                var deferred = $q.defer();
-                $http.get(url).then(function () {
-                    deferred.resolve(null);
-                }, function (error) {
-                    deferred.reject(error);
-                });
-                return deferred.promise;
             }
 
             this.init();
