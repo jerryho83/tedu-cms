@@ -1,18 +1,6 @@
-﻿.topbar {
-    position: absolute;
-    top: 0;
-    right: 17%;
+﻿.error {
+    color: red;
 }
-
-    .topbar ul {
-        list-style: none;
-    }
-
-        .topbar ul li {
-            display: inline;
-            margin-right: 10px;
-            margin-top: 5px;
-        }
 
 .login-form {
     width: 60%;
@@ -50,3 +38,27 @@
     font-family: FontAwesome;
     font-weight: 400;
 }
+
+.topbar {
+    position: absolute;
+    top: 5px;
+    right: 0%;
+}
+
+    .topbar ul {
+        list-style: none;
+    }
+
+        .topbar ul li {
+            display: inline;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+@media (min-width: 1200px) {
+    .topbar {
+        padding: 0 40px;
+    }
+}
+
+

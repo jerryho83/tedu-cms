@@ -348,6 +348,7 @@
     <Content Include="Content\admin\img\user7-128x128.jpg" />
     <Content Include="Content\admin\img\user8-128x128.jpg" />
     <Content Include="Content\client\css\bootstrap-responsive.css" />
+    <Content Include="Content\client\css\bootstrap-social.css" />
     <Content Include="Content\client\css\bootstrap.css" />
     <Content Include="Content\client\css\custom.css" />
     <Content Include="Content\client\css\flexslider.css" />

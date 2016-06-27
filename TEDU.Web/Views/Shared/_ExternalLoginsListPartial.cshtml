@@ -1,6 +1,7 @@
 ﻿
 @model TEDU.Web.ViewModels.ExternalLoginListViewModel
 @using Microsoft.Owin.Security
+<h4>Đăng nhập bằng mạng xã hội</h4>
 <hr />
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
@@ -13,7 +14,7 @@
               <p>
                 @foreach (AuthenticationDescription p in loginProviders)
                 {
-                    <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
+                    <button type="submit" class="btn" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account"><i class="fa fa-@p.AuthenticationType.ToLower()"></i> @p.AuthenticationType</button>
                 }
               </p>
             </div>

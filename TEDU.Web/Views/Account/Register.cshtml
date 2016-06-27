@@ -10,66 +10,67 @@
     <h1 class="entry-title"><span>Đăng ký thành viên mới</span></h1>
   </header><!-- .entry-header -->
   <div class="row-fluid">
-    <div class="span9">
+    <div class="col-md-12">
       @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "login-form", @role = "form" }))
       {
           @Html.AntiForgeryToken()
-        <div class="form-group">
-          <label class="col-lg-2 control-label">Tài khoản: </label>
-          <div class="col-lg-6">
-            @Html.TextBoxFor(model => model.UserName)
-          </div>
+          @Html.ValidationSummary(false, "", new { @class = "error" })
+          <div class="form-group">ss
+            <label class="col-lg-2 control-label">Tài khoản: </label>
+            <div class="col-lg-8">
+              @Html.TextBoxFor(model => model.UserName)
+            </div>
 
-        </div>
+          </div>
 
           <div class="form-group">
             <label>Mật khẩu: </label>
-            <div class="col-lg-6">
+            <div class="col-lg-8">
               @Html.PasswordFor(model => model.Password)
             </div>
           </div>
-        <div class="form-group">
-          <label>Xác nhận mật khẩu: </label>
-          <div class="col-lg-6">
-            @Html.PasswordFor(model => model.ConfirmPassword)
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-2 control-label">Email: </label>
-          <div class="col-lg-6">
-            @Html.TextBoxFor(model => model.Email)
-          </div>
-
-        </div>
-        <div class="form-group">
-          <label class="col-lg-2 control-label">Họ tên: </label>
-          <div class="col-lg-6">
-            @Html.TextBoxFor(model => model.FullName)
-          </div>
-
-        </div>
-        <div class="form-group">
-          <label class="col-lg-2 control-label">Điện thoại: </label>
-          <div class="col-lg-6">
-            @Html.TextBoxFor(model => model.PhoneNumber)
-          </div>
-
-        </div>
-        <div class="form-group">
-          <label class="col-lg-2 control-label">Điện thoại: </label>
-          <div class="col-lg-6">
-            @{ MvcCaptcha formCaptcha = new MvcCaptcha("FormCaptcha"); }
-            @Html.Captcha(formCaptcha)
-            @Html.TextBox("CaptchaCode")
-          </div>
-          
-          </div>
           <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-6">
-              <button type="submit" class="btn">Đăng ký thành viên</button>
+            <label>Xác nhận mật khẩu: </label>
+            <div class="col-lg-8">
+              @Html.PasswordFor(model => model.ConfirmPassword)
             </div>
           </div>
-      }
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Email: </label>
+            <div class="col-lg-8">
+              @Html.TextBoxFor(model => model.Email)
+            </div>
+
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Họ tên: </label>
+            <div class="col-lg-8">
+              @Html.TextBoxFor(model => model.FullName)
+            </div>
+
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Điện thoại: </label>
+            <div class="col-lg-8">
+              @Html.TextBoxFor(model => model.PhoneNumber)
+            </div>
+
+          </div>
+          <div class="form-group">
+            <label class="col-lg-2 control-label">Điện thoại: </label>
+            <div class="col-lg-8">
+              @{ MvcCaptcha formCaptcha = new MvcCaptcha("FormCaptcha"); }
+              @Html.Captcha(formCaptcha)
+              @Html.TextBox("CaptchaCode")
+            </div>
+
+          </div>
+          <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-8">
+              <button type="submit" class="btn btn-success">Đăng ký thành viên</button>
+            </div>
+          </div>
+                  }
     </div>
   </div>
 

@@ -31,6 +31,7 @@ namespace TEDU.Web.App_Start
                 .Include("~/Content/client/css/flexslider.css", new CssRewriteUrlTransform())
                 .Include("~/Content/client/css/bootstrap.css", new CssRewriteUrlTransform())
                 .Include("~/Content/client/css/bootstrap-responsive.css", new CssRewriteUrlTransform())
+                 .Include("~/Content/client/css/bootstrap-social.css", new CssRewriteUrlTransform())
                 .Include("~/Content/client/css/jquery.simplyscroll.css", new CssRewriteUrlTransform())
                 .Include("~/Content/client/css/jPages.css", new CssRewriteUrlTransform())
                 .Include("~/Content/client/css/jquery.rating.css", new CssRewriteUrlTransform())
